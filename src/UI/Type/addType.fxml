@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="UI.Type.Controller.AddTypeController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <TextField fx:id="nameType" prefHeight="17.0" prefWidth="200.0" promptText="Введите наименование" />
+        <Button fx:id="buttonOk" layoutX="200.0" layoutY="25.0" mnemonicParsing="false" onAction="#onClickOk" text="OK" />
+        <TableView fx:id="tableViewParameters" layoutY="26.0" prefHeight="374.0" prefWidth="199.0">
+            <columns>
+                <TableColumn fx:id="firstColumn" prefWidth="199.0" text="C1" />
+            </columns>
+        </TableView>
+    </children>
+
+</AnchorPane>

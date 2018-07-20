@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="UI.ExampleController"
+           prefHeight="800.0" prefWidth="600.0">
+    <JFXTabPane fx:id="mTabContainer" side="LEFT" tabMaxWidth="200.0" tabMinWidth="200.0" tabMinHeight="100.0"
+                tabMaxHeight="100.0">
+        <Tab fx:id="mDepartmentTab" text="Отделы">
+            <AnchorPane>
+                <children>
+                    <fx:include source="MainTabs/departmentTab.fxml" AnchorPane.bottomAnchor="0"
+                                AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"/>
+                </children>
+            </AnchorPane>
+        </Tab>
+        <Tab fx:id="mEquipmentTab" text="Оборудование">
+            <AnchorPane>
+                <fx:include source="MainTabs/equipmentTab.fxml" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+                            AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"/>
+            </AnchorPane>
+        </Tab>
+        <Tab fx:id="mSupplyTab" text="Поставки">
+            <AnchorPane>
+
+            </AnchorPane>
+        </Tab>
+        <Tab fx:id="mMovementTab" text="Перемещение">
+            <AnchorPane>
+
+            </AnchorPane>
+        </Tab>
+        <Tab fx:id="mCatalog" text="Справочник">
+            <AnchorPane>
+                <JFXTabPane fx:id="mCatalogContainer" side="LEFT" tabMaxWidth="200.0" tabMinWidth="200.0"
+                            tabMinHeight="100.0" tabMaxHeight="100.0" AnchorPane.bottomAnchor="0"
+                            AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">
+                    <Tab fx:id="mInventoryTab" text="Инвентарный номер">
+                        <AnchorPane>
+                            <fx:include source="Inventory_number/inventoryNumbers.fxml"/>
+                        </AnchorPane>
+                    </Tab>
+                    <Tab fx:id="mParameterTab" text="Параметры">
+                        <AnchorPane>
+                            <fx:include source="Parameter/parameters.fxml"/>
+                        </AnchorPane>
+                    </Tab>
+                    <Tab fx:id="mProvider" text="Поставщики">
+                        <AnchorPane>
+                            <fx:include source="Provider/providers.fxml"/>
+                        </AnchorPane>
+                    </Tab>
+                    <Tab fx:id="mAreaTab" text="Районы">
+                        <AnchorPane>
+                            <fx:include source="Area/areas.fxml"/>
+                        </AnchorPane>
+                    </Tab>
+                    <Tab fx:id="mStateTab" text="Состояние">
+                        <AnchorPane>
+                            <fx:include source="State/states.fxml"/>
+                        </AnchorPane>
+                    </Tab>
+                    <Tab fx:id="mWorkerTab" text="Сотрудники">
+                        <AnchorPane>
+                            <fx:include source="Worker/workers.fxml"/>
+                        </AnchorPane>
+                    </Tab>
+                    <Tab fx:id="mTypeTab" text="Типы">
+                        <AnchorPane>
+                            <fx:include source="Type/types.fxml"/>
+                        </AnchorPane>
+                    </Tab>
+                </JFXTabPane>
+            </AnchorPane>
+        </Tab>
+    </JFXTabPane>
+</StackPane>

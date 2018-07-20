@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.Tab?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="UI.MainTabs.EquipmentTabController">
+    <children>
+        <AnchorPane>
+            <children>
+                <fx:include source="/UI/Equipment/equipments.fxml"
+                            AnchorPane.bottomAnchor="10"
+                            AnchorPane.leftAnchor="0"
+                            AnchorPane.topAnchor="0"
+                            AnchorPane.rightAnchor="0"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane>
+            <JFXTabPane fx:id="mEquipmentTabContainer" side="LEFT" tabMaxWidth="1.0" tabMinWidth="1.0"
+                        tabMinHeight="1.0" tabMaxHeight="1.0"
+                        AnchorPane.bottomAnchor="0"
+                        AnchorPane.leftAnchor="0"
+                        AnchorPane.topAnchor="0"
+                        AnchorPane.rightAnchor="0">
+                <Tab>
+                    <VBox fx:id="emptyBox"/>
+                </Tab>
+            </JFXTabPane>
+        </AnchorPane>
+    </children>
+</HBox>

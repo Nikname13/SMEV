@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Department.Controller.AddPurchaseController">
+   <children>
+      <TextField fx:id="textFieldURL" layoutX="22.0" layoutY="44.0" prefHeight="25.0" prefWidth="174.0" promptText="URL" />
+      <DatePicker layoutX="22.0" layoutY="78.0" />
+      <TextArea fx:id="textAreaDescription" layoutX="22.0" layoutY="110.0" prefHeight="200.0" prefWidth="200.0" promptText="Комментарий"/>
+      <Button layoutX="231.0" layoutY="285.0" mnemonicParsing="false" text="Button" onAction="#onClickAdd" />
+   </children>
+</AnchorPane>

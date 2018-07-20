@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="UI.Area.Controller.AreasController"
+            prefHeight="400.0" prefWidth="600.0" fx:id="anchorPaneArea">
+
+    <TableView fx:id="tableViewArea" prefHeight="400.0" prefWidth="199.0">
+        <columns>
+            <TableColumn fx:id="firstColumn" prefWidth="199.0" text="C1" />
+        </columns>
+    </TableView>
+    <Button fx:id="buttonAdd" layoutX="208.0" layoutY="23.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="add" onAction="#onClickAdd" />
+    <Button fx:id="buttonDelete" layoutX="208.0" layoutY="56.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="delete" onAction="#onClickDelete" />
+
+</AnchorPane>

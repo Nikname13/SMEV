@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<AnchorPane fx:id="anchorPaneEquipments" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="UI.Equipment.Controller.EquipmentsController">
+    <children>
+        <!--    <TableView fx:id="tableViewEquipment" prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <columns>
+                    <TableColumn fx:id="typeColumn" prefWidth="100.0" text="type" />
+                    <TableColumn fx:id="nameColumn" prefWidth="150.0" text="name" />
+                    <TableColumn fx:id="nameFactColumn" prefWidth="150.0" text="nameFact" />
+                </columns>
+            </TableView>-->
+        <!--<Button fx:id="buttonAdd" layoutX="400.0" layoutY="23.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="32.0" prefWidth="75.0" text="Button" />-->
+        <Button fx:id="buttonAdd" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="32.0" text="Новое оборудование" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" />
+        <JFXTreeView fx:id="mEquipmentTreeView"
+                     AnchorPane.bottomAnchor="0.0"
+                     AnchorPane.topAnchor="35.0"/>
+    </children>
+</AnchorPane>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Supply.Controller.EditSupplyController">
+
+    <TextField fx:id="numberTextField" layoutY="25.0" prefWidth="200.0" promptText="Введите номер поставки" />
+    <RadioButton fx:id="supplyButton" mnemonicParsing="false" text="Supply" />
+    <RadioButton fx:id="auctionButton" layoutX="100.0" mnemonicParsing="false" text="Auction" />
+    <DatePicker layoutY="50.0" prefHeight="25.0" prefWidth="200.0" />
+    <ComboBox fx:id="providerBox" layoutY="75.0" prefHeight="25.0" prefWidth="200.0" />
+    <Button fx:id="addSupplyButton" layoutX="200.0" layoutY="75.0" mnemonicParsing="false" onAction="#onClickEdit" text="edit" />
+    <Button fx:id="deleteSupplyButton" layoutX="255.0" layoutY="75.0" mnemonicParsing="false" onAction="#onClickDelete" text="delete" />
+    <TextArea fx:id="textAreaDescription" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
+   <Label fx:id="documentationLabel" layoutX="462.0" layoutY="8.0" text="doc" />
+
+</AnchorPane>

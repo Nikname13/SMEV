@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="UI.Inventory_number.Controller.EditInventoryNumber"
+            prefHeight="400.0" prefWidth="600.0"
+            fx:id="anchorPanelInventoryNumber">
+    <children>
+        <TextField fx:id="numberText" layoutX="14.0" layoutY="14.0" />
+        <ComboBox fx:id="comboBoxSupply" layoutX="14.0" layoutY="50.0" prefWidth="150.0" />
+        <TextArea fx:id="textAreaDescription" layoutX="14.0" layoutY="83.0" prefHeight="200.0" prefWidth="200.0" />
+        <Button layoutX="274.0" layoutY="258.0" mnemonicParsing="false" onAction="#onClickEdit" text="edit" />
+        <Button layoutX="274.0" layoutY="308.0" mnemonicParsing="false" onAction="#onClickDelete" text="delete" />
+        <CheckBox fx:id="checkBoxGroup" layoutX="178.0" layoutY="18.0" mnemonicParsing="false" text="CheckBox" />
+    </children>
+
+</AnchorPane>

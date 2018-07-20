@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorPaneSupplys" prefHeight="400.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Supply.Controller.SupplysController">
+
+    <TableView fx:id="tableViewSupply" prefHeight="400.0" prefWidth="800.0">
+        <columns>
+            <TableColumn fx:id="numberColumn" prefWidth="200.0" text="Номер" />
+            <TableColumn fx:id="typeColumn" prefWidth="200.0" text="Тип" />
+            <TableColumn fx:id="providerColumn" prefWidth="200.0" text="Поставщик" />
+            <TableColumn fx:id="dateColumn" prefWidth="200.0" text="Дата" />
+        </columns>
+    </TableView>
+    <Button fx:id="buttonAdd" layoutX="800.0" layoutY="23.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="32.0" prefWidth="75.0" text="Button" />
+
+</AnchorPane>

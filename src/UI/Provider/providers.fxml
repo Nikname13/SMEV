@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="UI.Provider.Controller.ProvidersController"
+            prefHeight="400.0" prefWidth="600.0" fx:id="anchorPaneProviders">
+    <TableView fx:id="tableViewProvider" prefHeight="400.0" prefWidth="300.0">
+        <columns>
+            <TableColumn fx:id="firstColumn" prefWidth="100.0" text="Имя"/>
+            <TableColumn fx:id="secondColumn" prefWidth="200.0" text="Комментарий"/>
+        </columns>
+    </TableView>
+    <Button fx:id="buttonAdd" layoutX="300.0" layoutY="23.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="32.0" prefWidth="75.0" text="Button" />
+
+</AnchorPane>

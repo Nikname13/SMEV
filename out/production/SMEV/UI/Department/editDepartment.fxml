@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.image.ImageView?>
+<?import com.jfoenix.controls.JFXListView?>
+<AnchorPane fx:id="anchorPaneEditDepartment"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="UI.Department.Controller.EditDepartmentController">
+    <children>
+        <!--основная информация-->
+        <AnchorPane fx:id="mAnchorPaneBasicInfoDepartment" style="-fx-background-color: #ffffff;" minWidth="450.0"
+                    minHeight="190.0" prefWidth="450.0" prefHeight="190.0"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <JFXTextField fx:id="mTextFieldNumber" focusColor="#40a85f" labelFloat="true"
+                              prefHeight="25.0" prefWidth="200.0" promptText="Номер"
+                              AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="20.0"/>
+                <JFXTextField fx:id="mTextFieldName" focusColor="#40a85f" labelFloat="true" layoutY="80.0"
+                              prefHeight="25.0" prefWidth="200.0" promptText="Имя"
+                              AnchorPane.leftAnchor="10.0"/>
+                <JFXComboBox fx:id="mComboBoxArea" focusColor="#40a85f" labelFloat="true" layoutX="206.0"
+                             prefHeight="25.0" prefWidth="200.0" promptText="Район" AnchorPane.topAnchor="20.0"
+                             AnchorPane.rightAnchor="10.0"/>
+                <JFXRadioButton fx:id="mRadioButtonElQ" layoutX="13.0" layoutY="130.0" mnemonicParsing="false"
+                                text="Электронная очередь" AnchorPane.leftAnchor="10.0"/>
+                <JFXRadioButton fx:id="mRadioButtonRenting" layoutX="14.0" layoutY="161.0" mnemonicParsing="false"
+                                text="в аренде" AnchorPane.leftAnchor="10.0"/>
+                <JFXTextArea fx:id="mTextAreaDescription" focusColor="#40a85f" labelFloat="true" layoutX="206.0"
+                             minHeight="60.0" maxHeight="89.0" prefHeight="89.0" prefWidth="200.0"
+                             promptText="Комментарий" AnchorPane.topAnchor="83.0" AnchorPane.rightAnchor="10.0"/>
+                <JFXButton fx:id="mButtonUpdate" ripplerFill="#40a85f" mnemonicParsing="false" onAction="#onClickEdit"
+                           text="Сохранить"
+                           AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0" prefWidth="75.0"
+                           visible="false"/>
+            </children>
+        </AnchorPane>
+        <!--три кнопки док, конфиг и фото-->
+        <AnchorPane style="-fx-background-color: #ffffff;" prefHeight="190.0" prefWidth="200.0"
+                    AnchorPane.leftAnchor="460.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <JFXButton fx:id="mButtonDoc" ripplerFill="#40a85f" text="Документация" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0" prefHeight="50.0"/>
+                <JFXButton fx:id="mButtonConfig" ripplerFill="#40a85f" text="Конфигурация" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="70.0" AnchorPane.rightAnchor="10.0" prefHeight="50.0"/>
+                <JFXButton fx:id="mButtonPhoto" ripplerFill="#40a85f" text="Фотографии" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="130.0" AnchorPane.rightAnchor="10.0" prefHeight="50.0"/>
+            </children>
+        </AnchorPane>
+        <!--аватар-->
+        <AnchorPane style="-fx-background-color: #ffffff;" prefHeight="190.0" AnchorPane.topAnchor="0.0"
+                    AnchorPane.rightAnchor="10.0" AnchorPane.leftAnchor="670.0">
+            <children>
+                <JFXButton AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.bottomAnchor="10.0"
+                           prefWidth="340.0" style="-fx-background-color: #a8f1b3;"/>
+                <Label text="Адрес" AnchorPane.leftAnchor="360.0"
+                       AnchorPane.topAnchor="10.0"/>
+                <JFXListView fx:id="mListViewLocation" prefHeight="60.0" prefWidth="400.0" AnchorPane.leftAnchor="360.0"
+                             AnchorPane.topAnchor="33.0"/>
+                <JFXButton mnemonicParsing="false" onAction="#onClickAddLocation"
+                           text="Добавить" AnchorPane.topAnchor="33.0" AnchorPane.leftAnchor="770.0" prefHeight="60.0"
+                           ripplerFill="#40a85f" prefWidth="100.0"/>
+                <Label text="Сотрудники" AnchorPane.leftAnchor="360.0"
+                       AnchorPane.topAnchor="98.0"/>
+                <JFXListView fx:id="mListViewWorker" prefHeight="60.0" prefWidth="400.0" AnchorPane.bottomAnchor="10.0"
+                             AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="120.0"/>
+                <JFXButton mnemonicParsing="false"
+                           text="Добавить" AnchorPane.topAnchor="120.0" AnchorPane.leftAnchor="770.0" prefHeight="60.0"
+                           ripplerFill="#40a85f" prefWidth="100.0"/>
+
+
+                <!--<Button layoutX="408.0" layoutY="33.0" mnemonicParsing="false" onAction="#onClickDelete" text="delete"/>-->
+
+            </children>
+        </AnchorPane>
+        <!--закупки-->
+        <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0" prefWidth="450.0">
+            <children>
+                <JFXButton mnemonicParsing="false" onAction="#onClickAddPurchase"
+                           text="Новая поставка" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+                           AnchorPane.topAnchor="10.0" prefHeight="35.0" ripplerFill="#40a85f"/>
+                <JFXListView fx:id="mListViewPurchase" AnchorPane.topAnchor="55.0" AnchorPane.rightAnchor="10.0"
+                           AnchorPane.leftAnchor="10.0" AnchorPane.bottomAnchor="10.0">
+                </JFXListView>
+
+            </children>
+        </AnchorPane>
+        <!--список оборудования-->
+        <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="460.0" AnchorPane.topAnchor="200.0">
+            <children>
+
+                <!--                        <TableView fx:id="tableViewEquipmentInventory" prefHeight="393.0" prefWidth="400.0">
+                                            <columns>
+                                                <TableColumn fx:id="nameEquipmentColumn" prefWidth="100.0" text="Наименование"/>
+                                                <TableColumn fx:id="numberEquipmentColumn" prefWidth="100.0" text="Номер"/>
+                                                <TableColumn fx:id="stateEquipmentColumn" prefWidth="100.0" text="Состояние"/>
+                                                <TableColumn fx:id="descriptionEquipmentColumn" prefWidth="100.0" text="Комментарий"/>
+                                            </columns>
+                                        </TableView>-->
+                <TreeTableView fx:id="mTreeTableEquipmentInventory" prefHeight="200.0"
+                               AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0"
+                               AnchorPane.bottomAnchor="10.0">
+                    <columns>
+                        <TreeTableColumn fx:id="mNameEquipmentColumn" prefWidth="100.0" text="Наименование"/>
+                        <TreeTableColumn fx:id="mNumberEquipmentColumn" prefWidth="100.0" text="Номер"/>
+                        <TreeTableColumn fx:id="mStateEquipmentColumn" prefWidth="75.0" text="Состояние"/>
+                        <TreeTableColumn fx:id="mDescriptionEquipmentColumn" prefWidth="100.0"
+                                         text="Комментарий"/>
+                    </columns>
+                </TreeTableView>
+            </children>
+        </AnchorPane>
+        <!--информация об оборудовании-->
+        <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="868.0" AnchorPane.topAnchor="200.0"
+                    AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0">
+            <fx:include source="/UI/TabPane/tabPaneSecondLvl.fxml" AnchorPane.topAnchor="0"
+                        AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0"
+                        AnchorPane.rightAnchor="0"/>
+        </AnchorPane>
+    </children>
+</AnchorPane>

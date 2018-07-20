@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Movement.Controller.MovementsController">
+   <children>
+      <TableView fx:id="tableViewMovement" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="500.0">
+        <columns>
+          <TableColumn fx:id="dateColumn" prefWidth="100.0" text="Date" />
+          <TableColumn fx:id="firstDepartmentColumn" prefWidth="150.0" text="firstDepartment" />
+          <TableColumn fx:id="secondDepartmentColumn" prefWidth="150.0" text="secondDepartment" />
+          <TableColumn fx:id="baseColumn" prefWidth="100.0" text="base" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

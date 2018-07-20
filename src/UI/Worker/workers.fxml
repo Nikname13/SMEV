@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorPaneWorkers" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Worker.Controller.WorkersController">
+    <TableView fx:id="tableViewWorkers" prefHeight="400.0" prefWidth="300.0">
+        <columns>
+            <TableColumn fx:id="firstColumn" prefWidth="100.0" text="name"/>
+            <TableColumn fx:id="secondColumn" prefWidth="100.0" text="post"/>
+            <TableColumn fx:id="departmentColumn" prefWidth="100.0" text="department"/>
+        </columns>
+    </TableView>
+    <Button fx:id="buttonAdd" layoutX="308.0" layoutY="23.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="32.0" prefWidth="75.0" text="add" />
+    <Button fx:id="buttonDelete" layoutX="308.0" layoutY="56.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="32.0" prefWidth="75.0" text="delete" />
+</AnchorPane>
