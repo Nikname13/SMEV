@@ -65,7 +65,7 @@ public class AddDepartmentController {
             }
         });
         mComboBoxArea.setItems(DepartmentPresenter.get().getObservableArea());
-        mComboBoxArea.setConverter(new StringConverter<AreaModel>() {
+        mComboBoxArea.setConverter(new StringConverter<>() {
             @Override
             public String toString(AreaModel object) {
                 if(object!=null) return object.getName();
@@ -87,6 +87,27 @@ public class AddDepartmentController {
                 if(item!=null && !empty){
                     setText(item.getName());
                 }else setText(null);
+            }
+        });
+        mComboBoxLocation.setButtonCell(new ListCell<>(){
+            @Override
+            protected void updateItem(LocationModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if(item!=null && !empty){
+                    setText(item.getName());
+                }else setText(null);
+            }
+        });
+        mComboBoxLocation.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(LocationModel object) {
+                if(object!=null) return object.getName();
+                else return null;
+            }
+
+            @Override
+            public LocationModel fromString(String string) {
+                return new LocationModel(-1,mComboBoxLocation.getEditor().getText());
             }
         });
     }
