@@ -55,6 +55,7 @@ public class AddLocationController {
         mComboBoxLocation.getEditor().textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                System.out.println(mComboBoxLocation.getEditor().getText());
                 mSelectedFlag=false;
             }
         });
@@ -63,12 +64,16 @@ public class AddLocationController {
     }
 
     private void selectedLocation() {
-        mSelectedFlag=true;
-        mLocation=mComboBoxLocation.getSelectionModel().getSelectedItem();
+        System.out.println("selected "+mComboBoxLocation.getSelectionModel().getSelectedIndex());
+        if(mComboBoxLocation.getSelectionModel().getSelectedIndex()!=-1) {
+            mSelectedFlag = true;
+            mLocation = mComboBoxLocation.getSelectionModel().getSelectedItem();
+        }
     }
 
     @FXML
     private void onClickAdd() {
+        System.out.println(mSelectedFlag);
         if(mSelectedFlag){
             System.out.println(mLocation.getName());
             mLocation.addLocation(mDepartment);

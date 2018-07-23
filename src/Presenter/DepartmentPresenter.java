@@ -1,6 +1,7 @@
 package Presenter;
 
 import Iteractor.IteractorDepartment;
+import Iteractor.IteractorLocation;
 import Iteractor.IteractorPurchase;
 import Model.Area.AreaModel;
 import Model.Area.Areas;
@@ -53,8 +54,17 @@ public class DepartmentPresenter {
 
     public ObservableList<LocationModel> getObservableLocation(){return Locations.get().getEntityList();}
 
-    public void addDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area){
-        new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));
+    public void addDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area, String address){
+        /*new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));*/
+        new IteractorLocation().addNew(new LocationModel(-1, address,
+                new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area))));
+    }
+
+    public void addDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area, LocationModel address){
+        /*new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));*/
+        DepartmentModel department=new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));
+        address.addLocation(department);
+        new IteractorLocation().edit(address);
     }
 
     public void editDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area){

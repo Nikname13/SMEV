@@ -8,11 +8,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane  style="-fx-background-color: #ffffff;" minHeight="150.0" maxHeight="150.0" prefHeight="150.0" minWidth="150.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Department.Controller.AddLocationController">
+<AnchorPane maxHeight="150.0" minHeight="150.0" minWidth="150.0" prefHeight="150.0" prefWidth="250.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Department.Controller.AddLocationController">
    <children>
-       <JFXComboBox fx:id="mComboBoxLocation" focusColor="#40a85f" labelFloat="true" promptText="Адрес" editable="true" prefHeight="35.0" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-      <JFXButton text="Сохранить" ripplerFill="#40a85f" prefWidth="110.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="65.0" prefHeight="35.0" onAction="#onClickAdd" />
-      <JFXButton text="Отмена" ripplerFill="#40a85f" prefWidth="110.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="65.0" prefHeight="35.0" />
+       <JFXComboBox fx:id="mComboBoxLocation" editable="true" focusColor="#40a85f" labelFloat="true" prefHeight="35.0" promptText="Адрес" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0" />
+      <JFXButton onAction="#onClickAdd" prefHeight="35.0" prefWidth="110.0" ripplerFill="#40a85f" text="Сохранить" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="65.0" />
+      <JFXButton prefHeight="35.0" prefWidth="110.0" ripplerFill="#40a85f" text="Отмена" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="65.0" />
+      <Label layoutX="51.0" layoutY="100.0" text="Label" textFill="#c93b3b" />
    </children>
 
 </AnchorPane>

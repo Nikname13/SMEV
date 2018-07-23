@@ -9,7 +9,7 @@ import Presenter.EquipmentPresenter;
 import Service.UpdateService;
 import UI.Coordinator;
 import Service.IUpdateUI;
-import UI.Validator.TextValidator;
+import UI.Validator.ControllerValidator;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
@@ -56,7 +56,7 @@ public class EquipmentInventoryController implements IUpdateUI{
     @FXML
     public void initialize(){
         System.out.println("equipment inventory initialize");
-        TextValidator.setTextFieldValidator(mTextFieldGuaranty);
+        ControllerValidator.setTextFieldValidator(mTextFieldGuaranty);
         mButtonSave.setFocusTraversable(false);
         mComboBoxDepartment.setCellFactory(p->new ListCell<>(){
             @Override

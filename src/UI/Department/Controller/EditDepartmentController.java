@@ -17,7 +17,7 @@ import UI.Coordinator;
 import Service.IUpdateUI;
 import Service.TabControllerService;
 import UI.TabPane.Controller.TabPaneSecondLvlController;
-import UI.Validator.TextValidator;
+import UI.Validator.ControllerValidator;
 import com.jfoenix.controls.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -98,7 +98,7 @@ public class EditDepartmentController implements IUpdateUI {
         mTreeTableEquipmentInventory.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipment(newValue)));
         mButtonUpdate.setFocusTraversable(false);
 
-        mValidTextFields = TextValidator.setTextFieldValidator(mTextFieldName, mTextFieldNumber);
+        mValidTextFields = ControllerValidator.setTextFieldValidator(mTextFieldName, mTextFieldNumber);
 
         for (JFXTextField text : mValidTextFields) {
             text.textProperty().addListener(new ChangeListener<String>() {
@@ -237,7 +237,7 @@ public class EditDepartmentController implements IUpdateUI {
     @FXML
     private void onClickAddPurchase() {
         DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
-        new Coordinator().goToAddPurchaseWindow((Stage) anchorPaneEditDepartment.getScene().getWindow(), 100.0, 200.0);
+        new Coordinator().goToAddPurchaseWindow((Stage) anchorPaneEditDepartment.getScene().getWindow(), 360.0, 335.0);
     }
 
     @FXML

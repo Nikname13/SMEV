@@ -3,27 +3,27 @@ package UI.Department.Controller;
 import Model.Area.AreaModel;
 import Model.Location.LocationModel;
 import Presenter.DepartmentPresenter;
-import UI.Validator.TextValidator;
-import com.google.gson.annotations.Expose;
+import UI.Validator.ControllerValidator;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.ValidationFacade;
-import com.jfoenix.validation.base.ValidatorBase;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddDepartmentController {
 
     private AreaModel mAreaModel;
     private List<JFXTextField> mValidText;
+    private boolean mFlagLocation;
+    private LocationModel mLocation;
 
     @FXML
     private JFXTextField mTextFieldNumber, mTextFieldName;
@@ -50,11 +50,12 @@ public class AddDepartmentController {
 
     @FXML
     public void initialize(){
+        mFlagLocation=false;
         RequiredFieldValidator validator=new RequiredFieldValidator();
         validator.setMessage("Необходимо выбрать значение");
         mValidationArea.getValidators().add(validator);
         mValidationLocation.getValidators().add(validator);
-        mValidText=TextValidator.setTextFieldValidator(mTextFieldName, mTextFieldNumber);
+        mValidText=ControllerValidator.setTextFieldValidator(mTextFieldName, mTextFieldNumber);
         mComboBoxArea.setCellFactory(p->new ListCell<>(){
             @Override
             protected void updateItem(AreaModel item,boolean empty){
@@ -110,6 +111,20 @@ public class AddDepartmentController {
                 return new LocationModel(-1,mComboBoxLocation.getEditor().getText());
             }
         });
+        mComboBoxLocation.getEditor().textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                mFlagLocation=false;
+            }
+        });
+        mComboBoxLocation.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedLocation()));
+    }
+
+    private void selectedLocation(){
+        if(mComboBoxLocation.getSelectionModel().getSelectedIndex()!=-1){
+            mFlagLocation=true;
+            mLocation=mComboBoxLocation.getSelectionModel().getSelectedItem();
+        }
     }
 
     private void selectedWorker(AreaModel area){
@@ -122,9 +137,25 @@ public class AddDepartmentController {
       for(JFXTextField textField:mValidText){
          if(!textField.validate()) flag=false;
       }
-      flag=TextValidator.validationFacade(mValidationArea,mValidationLocation);
-      System.out.println(flag);
-
+      if(flag && ControllerValidator.validationFacade(mValidationArea,mValidationLocation)){
+          if(mFlagLocation){
+              DepartmentPresenter.get().addDepartment(mTextFieldNumber.getText(),
+                      mTextFieldName.getText(),
+                      mRadioButtonElQ.isSelected(),
+                      mRadioButtonRenting.isSelected(),
+                      mTextAreaDescription.getText(),
+                      mAreaModel,
+                      mComboBoxLocation.getSelectionModel().getSelectedItem());
+          }else {
+              DepartmentPresenter.get().addDepartment(mTextFieldNumber.getText(),
+                      mTextFieldName.getText(),
+                      mRadioButtonElQ.isSelected(),
+                      mRadioButtonRenting.isSelected(),
+                      mTextAreaDescription.getText(),
+                      mAreaModel,
+                      mComboBoxLocation.getEditor().getText());
+          }
+      }
 /*        DepartmentPresenter.get().addDepartment(
                 mTextFieldNumber.getText(),
                 mTextFieldName.getText(),

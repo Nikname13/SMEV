@@ -82,7 +82,7 @@
                     AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0" prefWidth="450.0">
             <children>
                 <JFXButton mnemonicParsing="false" onAction="#onClickAddPurchase"
-                           text="Новая поставка" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+                           text="Новая закупка" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
                            AnchorPane.topAnchor="10.0" prefHeight="35.0" ripplerFill="#40a85f"/>
                 <JFXListView fx:id="mListViewPurchase" AnchorPane.topAnchor="55.0" AnchorPane.rightAnchor="10.0"
                            AnchorPane.leftAnchor="10.0" AnchorPane.bottomAnchor="10.0">

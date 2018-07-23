@@ -23,12 +23,9 @@
                       prefHeight="25.0" prefWidth="200.0" promptText="Номер отдела"/>
         <JFXTextField fx:id="mTextFieldName" focusColor="#41a65d" labelFloat="true" layoutX="14.0" layoutY="76.0"
                       prefHeight="25.0" prefWidth="200.0" promptText="Наименование отдела"/>
-        <JFXRadioButton fx:id="mRadioButtonElQ" layoutX="235.0" layoutY="14.0" mnemonicParsing="false"
-                        text="Электронная очередь"/>
-        <JFXRadioButton fx:id="mRadioButtonRenting" layoutX="235.0" layoutY="45.0" mnemonicParsing="false" text="В аренде"/>
         <ValidationFacade fx:id="mValidationArea"  layoutX="14.0" layoutY="136.0">
             <control>
-                <JFXComboBox fx:id="mComboBoxArea" editable="true" focusColor="#40a85f" labelFloat="true"
+                <JFXComboBox fx:id="mComboBoxArea" focusColor="#40a85f" labelFloat="true"
                              prefHeight="25.0" prefWidth="200.0" promptText="Район"/>
             </control>
         </ValidationFacade>
@@ -39,6 +36,9 @@
             </control>
         </ValidationFacade>
 
+        <JFXRadioButton fx:id="mRadioButtonElQ" layoutX="235.0" layoutY="14.0" mnemonicParsing="false"
+                        text="Электронная очередь"/>
+        <JFXRadioButton fx:id="mRadioButtonRenting" layoutX="235.0" layoutY="45.0" mnemonicParsing="false" text="В аренде"/>
         <JFXTextArea fx:id="mTextAreaDescription" focusColor="#41a65d" labelFloat="true" layoutX="14.0" layoutY="260.0"
                      prefHeight="100.0" prefWidth="200.0" promptText="Комментарий" wrapText="true"/>
         <JFXButton fx:id="buttonAdd" layoutX="226.0" layoutY="337.0" mnemonicParsing="false" onAction="#onClickAdd" prefWidth="75.0"
