@@ -13,18 +13,17 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateModel>{
 
     private int mGuaranty;
     private transient Image mAvatar;
-    private String mDescription, mDescription_department, mPhotos;
+    private String mDescription, mDescription_department;
     private InventoryNumberModel mInventoryNumber;
     private DepartmentModel mDepartmentModel;
     private EquipmentModel mEquipmentModel;
 
-    public EquipmentInventoryModel(int id, InventoryNumberModel inventoryNumber, int guaranty, String description, String photos,
+    public EquipmentInventoryModel(int id, InventoryNumberModel inventoryNumber, int guaranty, String description,
                                    DepartmentModel departmentModel, EquipmentStateModel equipmentState, EquipmentModel equipmentModel) {
         super(id);
         addEntity(equipmentState);
         mGuaranty = guaranty;
         mDescription = description;
-        mPhotos = photos;
         mInventoryNumber = inventoryNumber;
         mDepartmentModel = departmentModel;
         mEquipmentModel=equipmentModel;
@@ -69,14 +68,6 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateModel>{
         mDescription_department = description_department;
     }
 
-    public String getPhotos() {
-        return mPhotos;
-    }
-
-    public void setPhotos(String photos) {
-        mPhotos = photos;
-    }
-
     public StringProperty description_departmentProperty() {
         return new SimpleStringProperty(mDescription_department);
     }
@@ -95,10 +86,6 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateModel>{
 
     public StringProperty descriptionProperty() {
         return new SimpleStringProperty(mDescription);
-    }
-
-    public StringProperty photosProperty() {
-        return new SimpleStringProperty(mPhotos);
     }
 
     public InventoryNumberModel getInventoryNumber() {

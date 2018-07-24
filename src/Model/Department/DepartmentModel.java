@@ -32,7 +32,7 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     @Expose
     private List<LocationModel> mLocationList;
     @Expose
-    private List<EquipmentInventoryModel> mEquipmnetList;
+    private List<EquipmentInventoryModel> mEquipmentList;
     private transient List<FileDumpModel> mFileDumpDocList, mFileDumpConfigList, mFileDumpPhotoList;
 
     public DepartmentModel(int id, String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area) {
@@ -44,7 +44,7 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
         mAreaModel=area;
         mLocationList=new ArrayList<>();
         mWorkerList=new ArrayList<>();
-        mEquipmnetList=new ArrayList<>();
+        mEquipmentList = new ArrayList<>();
     }
 
     public DepartmentModel(int id,String name){
@@ -60,33 +60,40 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     }
 
     public ObservableList<EquipmentInventoryModel> getObsEquipmnetList() {
-        if(mEquipmnetList==null) {
-            getEquipmnetList();
+        if (mEquipmentList == null) {
+            getEquipmentList();
         }
             ObservableList<EquipmentInventoryModel> equipmentList=FXCollections.observableArrayList();
-            for(EquipmentInventoryModel equipment : mEquipmnetList ){
+        for (EquipmentInventoryModel equipment : mEquipmentList) {
                 equipmentList.add(equipment);
             }
         return equipmentList;
     }
 
-    public List<EquipmentInventoryModel> getEquipmnetList() {
+    public List<EquipmentInventoryModel> getEquipmentList() {
         if(!isLoad()){
             new IteractorDepartment().loadData(getId());
         }
-        return mEquipmnetList;
+        return mEquipmentList;
     }
 
-    public void setEquipmnetList(List<EquipmentInventoryModel> list){
-        mEquipmnetList=list;
+    public void setEquipmentList(List<EquipmentInventoryModel> list) {
+        mEquipmentList = list;
     }
 
     public void addEquipment(EquipmentInventoryModel equipment){
-        mEquipmnetList.add(equipment);
+        mEquipmentList.add(equipment);
+    }
+
+    public EquipmentInventoryModel getEquipment(int id) {
+        for (EquipmentInventoryModel equipment : mEquipmentList) {
+            if (equipment.getId() == id) return equipment;
+        }
+        return null;
     }
 
     public void deleteEquipment(EquipmentInventoryModel equipment){
-        mEquipmnetList.remove(equipment);
+        mEquipmentList.remove(equipment);
     }
 
     public String getNumber() {
@@ -266,6 +273,16 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
         purchase.setName(entity.getName());
         purchase.setDate(entity.getDate());
         purchase.setDescription(entity.getDescription());
+    }
+
+    public void replace(EquipmentInventoryModel entity) {
+        EquipmentInventoryModel equipment = getEquipment(entity.getId());
+        //equipment.setLoad(entity.isLoad());
+        equipment.setDescription(entity.getDescription());
+        equipment.setDescription_department(entity.getDescription_department());
+        equipment.setGuaranty(entity.getGuaranty());
+        equipment.setInventoryNumber(entity.getInventoryNumber());
+        equipment.addEntity(entity.getLastEntity());
     }
 
     @Override

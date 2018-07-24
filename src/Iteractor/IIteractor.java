@@ -15,7 +15,8 @@ public interface IIteractor<T> {
      void loadData();
      void loadData(int id);
      T addNew(T entity);
-     void edit(T entity);
+
+    T edit(T entity);
      void delete(Set<Integer> idList);
      void delete(int id);
      void delete(T entity);

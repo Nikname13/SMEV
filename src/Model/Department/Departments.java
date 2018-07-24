@@ -37,9 +37,9 @@ public class Departments extends GenericList<DepartmentModel> {
         department.setRenting(entity.isRenting());
         department.setWorkerList(entity.getWorkerList());
         department.setElectronicQ(entity.isElectronicQ());
-        department.setEquipmnetList(entity.getEquipmnetList());
+        department.setEquipmentList(entity.getEquipmentList());
         department.setEntityList(entity.getEntityList());
-        for(EquipmentInventoryModel equipment :department.getEquipmnetList()){
+        for (EquipmentInventoryModel equipment : department.getEquipmentList()) {
             equipment.setDepartmentModel(department);
         }
     }

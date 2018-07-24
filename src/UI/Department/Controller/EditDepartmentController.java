@@ -1,5 +1,6 @@
 package UI.Department.Controller;
 
+import Model.AbstractModel;
 import Model.Area.AreaModel;
 import Model.Department.DepartmentModel;
 import Model.Department.PurchaseModel;
@@ -12,10 +13,10 @@ import Model.State.StateModel;
 import Model.Worker.WorkerModel;
 import Presenter.DepartmentPresenter;
 import Presenter.EquipmentPresenter;
-import Service.UpdateService;
-import UI.Coordinator;
 import Service.IUpdateUI;
 import Service.TabControllerService;
+import Service.UpdateService;
+import UI.Coordinator;
 import UI.TabPane.Controller.TabPaneSecondLvlController;
 import UI.Validator.ControllerValidator;
 import com.jfoenix.controls.*;
@@ -23,7 +24,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -215,6 +219,7 @@ public class EditDepartmentController implements IUpdateUI {
                 System.out.println("selected equipment");
                 EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
                 EquipmentPresenter.get().setEquipmentModel(equipment.getEquipmentModel());
+                EquipmentPresenter.get().setTreeEquipmentInvItem(treeEquipment);
                 /*TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));*/
                 TabControllerService.get().getListenerThirdTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
                 UpdateService.get().updateUI(EquipmentInventoryModel.class);
@@ -248,20 +253,21 @@ public class EditDepartmentController implements IUpdateUI {
     @FXML
     private void onClickEdit() {
         setInvisibleEditButton();
+        mTreeTableEquipmentInventory.refresh();
 /*        DepartmentPresenter.get().editDepartment(mTextFieldNumber.getText(), mTextFieldName.getText(), mRadioButtonElQ.isSelected(), mRadioButtonRenting.isSelected(),
                 mTextAreaDescription.getText(), mDepartmentModel.getAreaModel());*/
     }
 
     @FXML
     private void onClickConfig() {
-        DepartmentPresenter.get().setTypeDocuments(mDepartmentModel.getTypeDoc());
+        DepartmentPresenter.get().setTypeDocuments(AbstractModel.getTypeDoc());
         new Coordinator().goToFilesDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow(), 100.0, 200.0);
 
     }
 
     @FXML
     private void onClickPhoto() {
-        DepartmentPresenter.get().setTypeDocuments(mDepartmentModel.getTypePhoto());
+        DepartmentPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
         new Coordinator().goToPhotoDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow(), 100.0, 200.0);
     }
 
@@ -313,7 +319,12 @@ public class EditDepartmentController implements IUpdateUI {
             setInvisibleEditButton();
             updateEquipmentTable(mDepartmentModel.getObsEquipmnetList());
             UpdateService.get().updateUI(TabPaneSecondLvlController.class);
+
         }
+    }
+
+    public void refreshTableEquipment() {
+
     }
 
 }

@@ -43,6 +43,17 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
         return mEqInventoryList;
     }
 
+    public EquipmentInventoryModel getEquipmentInventory(int id) {
+        for (EquipmentInventoryModel equipment : mEqInventoryList) {
+            if (equipment.getId() == id) return equipment;
+        }
+        return null;
+    }
+
+    public EquipmentInventoryModel getEquipmentInventory(EquipmentInventoryModel equipment) {
+        return getEquipmentInventory(equipment.getId());
+    }
+
     public void setEquipmentInventoryList(List<EquipmentInventoryModel> eqInvList) {
         mEqInventoryList = eqInvList;
     }
@@ -111,5 +122,20 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
 
     public void setTypeModel(TypeModel typeModel) {
         mTypeModel = typeModel;
+    }
+
+    public void replace(EquipmentInventoryModel entity) {
+        EquipmentInventoryModel equipment = getEquipmentInventory(entity);
+        equipment.setLoad(entity.isLoad());
+        equipment.setDescription(entity.getDescription());
+        equipment.setDescription_department(entity.getDescription_department());
+        equipment.setGuaranty(entity.getGuaranty());
+        equipment.setInventoryNumber(entity.getInventoryNumber());
+        equipment.setEntityList(entity.getEntityList());
+    }
+
+    @Override
+    public void replace(EquipmentParameterModel entity) {
+        super.replace(entity);
     }
 }

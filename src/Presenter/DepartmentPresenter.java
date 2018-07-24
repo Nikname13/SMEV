@@ -8,10 +8,13 @@ import Model.Area.Areas;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
 import Model.Department.PurchaseModel;
+import Model.Equipment.EquipmentInventoryModel;
 import Model.Location.LocationModel;
 import Model.Location.Locations;
 import Model.Worker.WorkerModel;
 import Model.Worker.Workers;
+import Service.IUpdateData;
+import Service.UpdateService;
 import javafx.collections.ObservableList;
 
 import java.awt.*;
@@ -20,7 +23,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class DepartmentPresenter {
+public class DepartmentPresenter implements IUpdateData {
 
     private static DepartmentModel sDepartmentModel;
     private static String mTypeDocuments;
@@ -30,7 +33,10 @@ public class DepartmentPresenter {
         if(sDepartmentPresenter==null)sDepartmentPresenter=new DepartmentPresenter();
         return sDepartmentPresenter;
     }
-    private DepartmentPresenter(){}
+
+    private DepartmentPresenter() {
+        UpdateService.get().addListenerData(this);
+    }
 
     public DepartmentModel getDepartmentModel() {
         return sDepartmentModel;
@@ -109,5 +115,12 @@ public class DepartmentPresenter {
 
     public void downloadSaveFile(String path, String typeDocuments, File savePath){
         new IteractorDepartment().downloadFile(sDepartmentModel.getId(), typeDocuments, path, savePath);
+    }
+
+    @Override
+    public void updateEquipment(EquipmentInventoryModel equipment) {
+        if (sDepartmentModel != null) {
+            sDepartmentModel.replace(equipment);
+        }
     }
 }

@@ -9,8 +9,4 @@
 <?import javafx.scene.layout.HBox?>
 
 
-<ValidationFacade maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <JFXComboBox />
-   </children>
-</ValidationFacade>
+<JFXTextField unFocusColor="#e84848" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />

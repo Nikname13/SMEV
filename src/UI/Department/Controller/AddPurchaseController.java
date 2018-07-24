@@ -10,17 +10,10 @@ import com.jfoenix.validation.ValidationFacade;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class AddPurchaseController {
@@ -45,6 +38,7 @@ public class AddPurchaseController {
 
     @FXML
     public void initialize(){
+        mDatePicker.setValue(LocalDate.now());
         RequiredFieldValidator validator=new RequiredFieldValidator();
         validator.setMessage("Необходимо указать дату");
         mDateValidationFacade.getValidators().add(validator);
@@ -62,14 +56,18 @@ public class AddPurchaseController {
 
     @FXML
     private void onClickAdd(){
+        mTextFieldURL.validate();
+        mTextAreaDescription.validate();
+        dateValidate();
         if(mTextFieldURL.validate() &&
         mTextAreaDescription.validate() &&
         dateValidate()){
             System.out.println("true");
+            DepartmentPresenter.get().addPurchase(mTextFieldURL.getText(), mTextAreaDescription.getText(), mDatePicker.getValue());
         }else{
             System.out.println("false");
+
         }
-                //DepartmentPresenter.get().addPurchase(mTextFieldURL.getText(),mTextAreaDescription.getText(), LocalDate.now());
     }
 
     private boolean dateValidate(){

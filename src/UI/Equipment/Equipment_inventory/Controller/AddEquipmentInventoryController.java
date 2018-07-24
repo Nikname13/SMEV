@@ -78,13 +78,13 @@ public class AddEquipmentInventoryController {
 
     @FXML
     private void onClickAdd(){
-        EquipmentPresenter.get().addEquipmentInventory(
+/*        EquipmentPresenter.get().addEquipmentInventory(
                 mInventory,
                 Integer.parseInt(textFieldGuaranty.getText()),
                 textAreaDescription.getText(),
                 labelPhotos.getText(),
                 null,
                 EquipmentPresenter.get().getEquipmentState(),
-                mEquipment);
+                mEquipment);*/
     }
 }

@@ -39,8 +39,6 @@
                              AnchorPane.topAnchor="220.0" AnchorPane.leftAnchor="30.0"/>
                 <JFXTextArea fx:id="mTextAreaDescription" focusColor="#40a85f" labelFloat="true" prefHeight="100.0"
                              prefWidth="340.0" promptText="Комментарий" AnchorPane.topAnchor="280.0" AnchorPane.rightAnchor="30.0"/>
-                <JFXButton fx:id="mButtonSave" text="Сохранить" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" prefHeight="45.0"
-                           prefWidth="165.0" visible="false" onAction="#onClickSave"/>
                 <JFXTextArea fx:id="mTextAreaDescriptionDepartment" focusColor="#40a85f" labelFloat="true" prefHeight="100.0"
                              prefWidth="243.0" promptText="Заметка для отдела" AnchorPane.topAnchor="280.0" AnchorPane.leftAnchor="30.0"/>
                 <JFXButton AnchorPane.topAnchor="30.0" AnchorPane.rightAnchor="30.0" prefHeight="160.0"
@@ -49,6 +47,8 @@
                            prefWidth="165.0" ripplerFill="#40a85f" text="Фотографии"/>
                 <JFXButton AnchorPane.topAnchor="205.0" AnchorPane.rightAnchor="30.0" prefHeight="45.0" text="Конфиги"
                            prefWidth="165.0" ripplerFill="#40a85f"/>
+                <JFXButton fx:id="mButtonSave" text="Сохранить" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" prefHeight="45.0"
+                           prefWidth="165.0" visible="false" onAction="#onClickSave"/>
                 <!--        <Button layoutX="300.0" layoutY="164.0" mnemonicParsing="false" text="update" onAction="#onClickUpdate"/>
                         <Button layoutX="300.0" layoutY="195.0" mnemonicParsing="false" text="delete" onAction="#onClickDelete"/>-->
                 <!--        <Button layoutX="552.0" layoutY="151.0" mnemonicParsing="false" text="move" onAction="#onClickMove"/>-->

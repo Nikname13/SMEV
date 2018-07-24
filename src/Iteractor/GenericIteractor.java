@@ -64,12 +64,14 @@ public class GenericIteractor<T> implements IIteractor<T> {
     }
 
     @Override
-    public void edit(T entity) {
+    public T edit(T entity) {
         String json=Connector.put(new URLBuilder(sURI).build(),getGson(entity));
         if(json != null) {
             setEntity(new Gson().fromJson(json,mModel));
+            return new Gson().fromJson(json, mModel);
         }else{
             System.out.println("Ошибка при обновлении записи");
+            return null;
         }
     }
 

@@ -1,13 +1,8 @@
 package Iteractor;
 
 import Model.Equipment.EquipmentInventoryModel;
-import Model.Equipment.EquipmentModel;
-import Model.Equipment.Equipments;
-import Net.Connector;
-import Net.URLBuilder;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import com.google.gson.reflect.TypeToken;
@@ -45,7 +40,12 @@ public class IteractorEquipmentInventory extends GenericIteractor<EquipmentInven
 
     @Override
     public void setEntity(EquipmentInventoryModel entity) {
-        super.setEntity(entity);
+/*        EquipmentModel equipment=Equipments.get().getEntity(entity.getEquipmentModel().getId());
+        if(Equipments.get().getEntity(entity.getEquipmentModel().getId()).getEquipmentInventory(entity)!=null){
+           // equipment.replace(entity);
+        }else{
+            equipment.addEquipmentInventory(entity);
+        }*/
     }
 
     @Override

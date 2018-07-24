@@ -69,7 +69,8 @@ public class GenericModel<T> extends AbstractModel<GenericModel<T>> implements I
     @Override
     public void addEntity(T entity) {
         if(mEntityList == null) mEntityList=new ArrayList<>();
-        mEntityList.add(entity);
+        if (getEntity(entity.hashCode()) == null)
+            mEntityList.add(entity);
     }
 
     @Override
