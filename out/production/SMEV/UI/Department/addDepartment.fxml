@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.Button?>
-<?import com.jfoenix.controls.JFXTextField?>
-
 <?import com.jfoenix.validation.ValidationFacade?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
 <AnchorPane fx:id="mAnchorPaneAddDepartment" prefHeight="370.0" prefWidth="600.0" style="-fx-background-color: #ffffff;"
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="UI.Department.Controller.AddDepartmentController">
@@ -29,13 +18,14 @@
                              prefHeight="25.0" prefWidth="200.0" promptText="Район"/>
             </control>
         </ValidationFacade>
+        <Label fx:id="mErrorArea"/>
         <ValidationFacade fx:id="mValidationLocation"  layoutX="14.0" layoutY="196.0">
             <control>
                 <JFXComboBox fx:id="mComboBoxLocation" editable="true" focusColor="#40a85f" labelFloat="true"
                              prefHeight="25.0" prefWidth="200.0" promptText="Адрес"/>
             </control>
         </ValidationFacade>
-
+        <Label fx:id="mErrorLocation"/>
         <JFXRadioButton fx:id="mRadioButtonElQ" layoutX="235.0" layoutY="14.0" mnemonicParsing="false"
                         text="Электронная очередь"/>
         <JFXRadioButton fx:id="mRadioButtonRenting" layoutX="235.0" layoutY="45.0" mnemonicParsing="false" text="В аренде"/>

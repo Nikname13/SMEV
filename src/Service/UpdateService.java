@@ -7,7 +7,7 @@ import java.util.List;
 
 public class UpdateService {
 
-    private List<IUpdateUI> mListeners=new ArrayList<>();
+    private List<IUpdateUI> mListenerUI = new ArrayList<>();
     private List<IUpdateData> mListenerData = new ArrayList<>();
     private static UpdateService sUpdateService;
 
@@ -19,8 +19,8 @@ public class UpdateService {
         return sUpdateService;
     }
 
-    public List<IUpdateUI> getListeners() {
-        return mListeners;
+    public List<IUpdateUI> getListenerUI() {
+        return mListenerUI;
     }
 
     public List<IUpdateData> getListenerData() {
@@ -32,12 +32,18 @@ public class UpdateService {
     }
 
     public void addListener(IUpdateUI listener){
-        mListeners.add(listener);
+        mListenerUI.add(listener);
     }
 
     public void updateUI(Class<?> updateClass){
-        for(IUpdateUI listener : UpdateService.get().getListeners()){
+        for (IUpdateUI listener : getListenerUI()) {
             listener.updateUI(updateClass);
+        }
+    }
+
+    public void refreshControl() {
+        for (IUpdateUI listener : getListenerUI()) {
+            listener.refreshControl();
         }
     }
 

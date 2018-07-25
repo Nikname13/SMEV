@@ -92,6 +92,7 @@ public class EquipmentInventoryController implements IUpdateUI{
                 return new DepartmentModel(-1,mComboBoxDepartment.getEditor().getText());
             }
         });
+        mComboBoxDepartment.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment()));
         mComboBoxNumber.setCellFactory(p->new ListCell<>(){
             @Override
             protected void updateItem(InventoryNumberModel item, boolean empty) {
@@ -195,29 +196,20 @@ public class EquipmentInventoryController implements IUpdateUI{
         }
     }
 
-    private void selectedState(){
-        System.out.println(mComboBoxState.getSelectionModel().getSelectedIndex());
-        if (mComboBoxState.focusedProperty().get()) {
-            EquipmentPresenter.get().setStateModel(mComboBoxState.getSelectionModel().getSelectedItem());
-            new Coordinator().goToAddEquipmentStateWindow((Stage) anchorPaneEquipmentInventory.getScene().getWindow(), 360.0, 355.0);
-            mButtonSave.setVisible(true);
+    private void selectedDepartment() {
+        if (mComboBoxDepartment.focusedProperty().get()) {
+            EquipmentPresenter.get().setEquipmentInventoryModel(mEquipmentInventory);
+            EquipmentPresenter.get().setDepartmentModel(mComboBoxDepartment.getValue());
+            new Coordinator().goToMoveEquipmentInventoryWindow((Stage) anchorPaneEquipmentInventory.getScene().getWindow(), 380.0, 365.0);
         }
     }
 
-    private void selectedDepartment(Object department){
-        mDepartmentModel=(DepartmentModel)department;
-    }
-
-    @FXML
-    private void onClickUpdate(){
-
-
-    }
-
-    @FXML
-    private void onClickMove(){
-        EquipmentPresenter.get().setEquipmentInventoryModel(mEquipmentInventory);
-        new Coordinator().goToMoveEquipmentInventoryWindow((Stage)anchorPaneEquipmentInventory.getScene().getWindow(),100.0,200.0);
+    private void selectedState(){
+        if (mComboBoxState.focusedProperty().get()) {
+            EquipmentPresenter.get().setStateModel(mComboBoxState.getValue());
+            new Coordinator().goToAddEquipmentStateWindow((Stage) anchorPaneEquipmentInventory.getScene().getWindow(), 360.0, 355.0);
+            mButtonSave.setVisible(true);
+        }
     }
 
     @FXML
@@ -235,9 +227,14 @@ public class EquipmentInventoryController implements IUpdateUI{
             mComboBoxNumber.setItems(EquipmentPresenter.get().getObservableInventory());
             mComboBoxNumber.getSelectionModel().select(mEquipmentInventory.getInventoryNumber());
             mTextFieldGuaranty.setText(String.valueOf(mEquipmentInventory.getGuaranty()));
-            mTextAreaDescription.setText(mEquipmentInventory.getDescription() + "\nstate description=" + mEquipmentInventory.getLastEntity().getDescription());
+            mTextAreaDescription.setText(mEquipmentInventory.getDescription());
             mComboBoxState.setItems(EquipmentPresenter.get().getObservableState());
             mComboBoxState.getSelectionModel().select(mEquipmentInventory.getLastEntity().getStateModel());
         }
+    }
+
+    @Override
+    public void refreshControl() {
+
     }
 }

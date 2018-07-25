@@ -40,7 +40,7 @@ public class EditDepartmentController implements IUpdateUI {
 
     public EditDepartmentController() {
         mDepartmentModel = DepartmentPresenter.get().getDepartmentModel();
-        UpdateService.get().addListener(this::updateUI);
+        UpdateService.get().addListener(this);
         System.out.println("edit department controller");
     }
 
@@ -253,7 +253,7 @@ public class EditDepartmentController implements IUpdateUI {
     @FXML
     private void onClickEdit() {
         setInvisibleEditButton();
-        mTreeTableEquipmentInventory.refresh();
+
 /*        DepartmentPresenter.get().editDepartment(mTextFieldNumber.getText(), mTextFieldName.getText(), mRadioButtonElQ.isSelected(), mRadioButtonRenting.isSelected(),
                 mTextAreaDescription.getText(), mDepartmentModel.getAreaModel());*/
     }
@@ -323,8 +323,9 @@ public class EditDepartmentController implements IUpdateUI {
         }
     }
 
-    public void refreshTableEquipment() {
-
+    @Override
+    public void refreshControl() {
+        mTreeTableEquipmentInventory.refresh();
     }
 
 }

@@ -4,11 +4,13 @@ import Model.Department.DepartmentModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Worker.WorkerModel;
 import Presenter.EquipmentPresenter;
+import UI.Validator.ControllerValidator;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.ValidationFacade;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.TextArea;
 
 public class MoveEquipmentInventoryController {
 
@@ -16,26 +18,38 @@ public class MoveEquipmentInventoryController {
     private DepartmentModel mDepartment;
     private WorkerModel mWorkerTo, mWorkerFrom;
 
-    public MoveEquipmentInventoryController(){
-        mEquipment=EquipmentPresenter.get().getEquipmentInventoryModel();
+    @FXML
+    private JFXTextField mTextFieldDepartment;
+    @FXML
+    private JFXComboBox<DepartmentModel> mComboBoxDepartment;
+    @FXML
+    private JFXComboBox<WorkerModel> mComboBoxWorkerTo, mComboBoxWorkerFrom;
+    @FXML
+    private JFXTextArea mTextAreaBase;
+    @FXML
+    private ValidationFacade mFacadeWorkerFrom, mFacadeWorkerTo, mFacadeDepartmentTo;
+
+    public MoveEquipmentInventoryController() {
+        mEquipment = EquipmentPresenter.get().getEquipmentInventoryModel();
+        mDepartment = EquipmentPresenter.get().getDepartmentModel();
     }
 
     @FXML
-    private Label labelDepartment;
-
-    @FXML
-    private ComboBox<DepartmentModel> comboBoxDepartment;
-
-    @FXML
-    private ComboBox<WorkerModel> comboBoxWorkerTo, comboBoxWorkerFrom;
-
-    @FXML
-    private TextArea textAreaBase;
-
-    @FXML
     public void initialize(){
-        labelDepartment.setText(mEquipment.getDepartmentModel().getName());
-        comboBoxDepartment.setCellFactory(p-> new ListCell<DepartmentModel>(){
+        ControllerValidator.validationFacade(mFacadeDepartmentTo, mFacadeWorkerTo, mFacadeWorkerFrom);
+        mTextFieldDepartment.setText(mEquipment.getDepartmentModel().getName());
+        mComboBoxDepartment.setCellFactory(p -> new ListCell<DepartmentModel>() {
+            @Override
+            protected void updateItem(DepartmentModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else {
+                    setText(null);
+                }
+            }
+        });
+        mComboBoxDepartment.setButtonCell(new ListCell<>() {
             @Override
             protected void updateItem(DepartmentModel item, boolean empty) {
                 super.updateItem(item, empty);
@@ -46,9 +60,9 @@ public class MoveEquipmentInventoryController {
                 }
             }
         });
-        comboBoxDepartment.setItems(EquipmentPresenter.get().getObservableDepartment());
-        comboBoxDepartment.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment(newValue)));
-        comboBoxWorkerFrom.setCellFactory((p->new ListCell<WorkerModel>(){
+        mComboBoxDepartment.setItems(EquipmentPresenter.get().getObservableDepartment());
+        mComboBoxDepartment.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment(newValue)));
+        mComboBoxWorkerFrom.setCellFactory((p -> new ListCell<WorkerModel>() {
             @Override
             protected void updateItem(WorkerModel item, boolean empty) {
                 super.updateItem(item, empty);
@@ -59,13 +73,13 @@ public class MoveEquipmentInventoryController {
                 }
             }
         }));
-        comboBoxWorkerFrom.setItems(mEquipment.getDepartmentModel().getObsWorkerList());
-        comboBoxWorkerFrom.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedWorkerFrom(newValue)));
+        mComboBoxWorkerFrom.setItems(mEquipment.getDepartmentModel().getObsWorkerList());
+        mComboBoxWorkerFrom.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedWorkerFrom(newValue)));
     }
 
     private void selectedDepartment(DepartmentModel department){
         mDepartment=department;
-        comboBoxWorkerTo.setCellFactory(p-> new ListCell<WorkerModel>(){
+        mComboBoxWorkerTo.setCellFactory(p -> new ListCell<WorkerModel>() {
             @Override
             protected void updateItem(WorkerModel item, boolean empty) {
                 super.updateItem(item, empty);
@@ -76,8 +90,8 @@ public class MoveEquipmentInventoryController {
                 }
             }
         });
-        comboBoxWorkerTo.setItems(department.getObsWorkerList());
-        comboBoxWorkerTo.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedWorkerTo(newValue)));
+        mComboBoxWorkerTo.setItems(department.getObsWorkerList());
+        mComboBoxWorkerTo.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedWorkerTo(newValue)));
     }
 
     private void selectedWorkerTo(WorkerModel worker){
@@ -90,6 +104,6 @@ public class MoveEquipmentInventoryController {
 
     @FXML
     private void onClickMove(){
-        EquipmentPresenter.get().moveEquipmentInventory(mEquipment,mDepartment,mWorkerFrom, mWorkerTo,textAreaBase.getText());
+        EquipmentPresenter.get().moveEquipmentInventory(mEquipment, mDepartment, mWorkerFrom, mWorkerTo, mTextAreaBase.getText());
     }
 }

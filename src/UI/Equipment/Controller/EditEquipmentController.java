@@ -12,11 +12,8 @@ import Presenter.EquipmentPresenter;
 import Service.IUpdateUI;
 import Service.TabControllerService;
 import Service.UpdateService;
-import UI.BaseController;
 import UI.Coordinator;
 import UI.TabPane.Controller.TabPaneSecondLvlController;
-import com.jfoenix.controls.JFXTabPane;
-import com.jfoenix.controls.JFXTreeTableView;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -28,7 +25,7 @@ public class EditEquipmentController implements IUpdateUI {
     private static EquipmentModel sEquipmentModel;
 
     public EditEquipmentController() {
-        UpdateService.get().addListener(this::updateUI);
+        UpdateService.get().addListener(this);
         sEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
     }
 
@@ -141,6 +138,11 @@ public class EditEquipmentController implements IUpdateUI {
             updateEuipmentTable(sEquipmentModel.getObservableEqInventoryList());
             UpdateService.get().updateUI(TabPaneSecondLvlController.class);
         }
+    }
+
+    @Override
+    public void refreshControl() {
+
     }
 
 }

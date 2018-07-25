@@ -8,16 +8,16 @@ import Service.UpdateService;
 import UI.Coordinator;
 import com.jfoenix.controls.JFXListView;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class DepartmentsController{
+public class DepartmentsController implements IUpdateUI {
 
     public DepartmentsController(){
-        UpdateService.get().addListener((Class<?> updateClass)->{
-            if(updateClass.getName().equals(this.getClass().getName()))
-            mDepartmentListView.getSelectionModel().clearSelection();});
+        UpdateService.get().addListener(this);
     }
 
     @FXML
@@ -68,5 +68,17 @@ public class DepartmentsController{
     @FXML
     private void onClickAdd(){
         new Coordinator().goToAddDepartmentWindow((Stage)anchorPaneDepartment.getScene().getWindow(),400.0,414.0);
+    }
+
+    @Override
+    public void updateUI(Class<?> updateClass) {
+        if (updateClass.getName().equals(this.getClass().getName())) {
+            mDepartmentListView.getSelectionModel().clearSelection();
+        }
+    }
+
+    @Override
+    public void refreshControl() {
+
     }
 }

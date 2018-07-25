@@ -3,27 +3,27 @@ package UI.Department.Controller;
 import Model.Area.AreaModel;
 import Model.Location.LocationModel;
 import Presenter.DepartmentPresenter;
-import UI.Validator.ControllerValidator;
+import UI.Validator.BaseValidator;
+import UI.Validator.PairFacadeLabel;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.ValidationFacade;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
-
-import java.util.List;
 
 public class AddDepartmentController {
 
     private AreaModel mAreaModel;
-    private List<JFXTextField> mValidText;
     private boolean mFlagLocation;
     private LocationModel mLocation;
+    private BaseValidator mBaseValidator = new BaseValidator();
 
     @FXML
     private JFXTextField mTextFieldNumber, mTextFieldName;
@@ -44,6 +44,9 @@ public class AddDepartmentController {
     private ValidationFacade mValidationArea, mValidationLocation;
 
     @FXML
+    private Label mErrorArea, mErrorLocation;
+
+    @FXML
     private AnchorPane mAnchorPaneAddDepartment;
 
 
@@ -51,11 +54,8 @@ public class AddDepartmentController {
     @FXML
     public void initialize(){
         mFlagLocation=false;
-        RequiredFieldValidator validator=new RequiredFieldValidator();
-        validator.setMessage("Необходимо выбрать значение");
-        mValidationArea.getValidators().add(validator);
-        mValidationLocation.getValidators().add(validator);
-        mValidText=ControllerValidator.setTextFieldValidator(mTextFieldName, mTextFieldNumber);
+        mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNumber);
+        mBaseValidator.setValidationFacades(new PairFacadeLabel(mValidationArea, mErrorArea), new PairFacadeLabel(mValidationLocation, mErrorLocation));
         mComboBoxArea.setCellFactory(p->new ListCell<>(){
             @Override
             protected void updateItem(AreaModel item,boolean empty){
@@ -133,11 +133,14 @@ public class AddDepartmentController {
 
     @FXML
     private void onClickAdd(){
-        boolean flag=true;
+        System.out.println(mBaseValidator.validate());
+/*        boolean flagTextField=true;
+        boolean flagComboBox=true;
       for(JFXTextField textField:mValidText){
-         if(!textField.validate()) flag=false;
+         if(!textField.validate()) flagTextField=false;
       }
-      if(flag && ControllerValidator.validationFacade(mValidationArea,mValidationLocation)){
+      flagComboBox=ControllerValidator.validationFacade(mValidationArea,mValidationLocation);*/
+/*      if(flag && ControllerValidator.validationFacade(mValidationArea,mValidationLocation)){
           if(mFlagLocation){
               DepartmentPresenter.get().addDepartment(mTextFieldNumber.getText(),
                       mTextFieldName.getText(),
@@ -155,7 +158,7 @@ public class AddDepartmentController {
                       mAreaModel,
                       mComboBoxLocation.getEditor().getText());
           }
-      }
+      }*/
 /*        DepartmentPresenter.get().addDepartment(
                 mTextFieldNumber.getText(),
                 mTextFieldName.getText(),

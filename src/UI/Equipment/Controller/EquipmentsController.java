@@ -3,6 +3,7 @@ package UI.Equipment.Controller;
 import Model.AbstractModel;
 import Model.Equipment.EquipmentModel;
 import Presenter.EquipmentPresenter;
+import Service.IUpdateUI;
 import Service.TabControllerService;
 import Service.UpdateService;
 import UI.Coordinator;
@@ -15,14 +16,10 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class EquipmentsController {
+public class EquipmentsController implements IUpdateUI {
 
     public EquipmentsController() {
-        UpdateService.get().addListener((Class<?> updateClass) -> {
-            if (updateClass.getName().equals(this.getClass().getName())) {
-                mEquipmentTreeView.getSelectionModel().clearSelection();
-            }
-        });
+        UpdateService.get().addListener(this);
     }
 
     @FXML
@@ -98,5 +95,17 @@ public class EquipmentsController {
                 // new Coordinator().goToEditEquipmentWindow((Stage)anchorPaneEquipments.getScene().getWindow());
             }
         }
+    }
+
+    @Override
+    public void updateUI(Class<?> updateClass) {
+        if (updateClass.getName().equals(this.getClass().getName())) {
+            mEquipmentTreeView.getSelectionModel().clearSelection();
+        }
+    }
+
+    @Override
+    public void refreshControl() {
+
     }
 }

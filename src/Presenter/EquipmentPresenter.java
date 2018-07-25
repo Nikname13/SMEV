@@ -29,6 +29,7 @@ public class EquipmentPresenter implements IUpdateData {
     private static StateModel sStateModel;
     private static EquipmentStateModel mEquipmentState;
     private static EquipmentPresenter sEquipmentPresenter;
+    private static DepartmentModel sDepartmentModel;
     private static TreeItem<EquipmentInventoryModel> sTreeEquipmentInvItem;
 
     private EquipmentPresenter() {
@@ -48,6 +49,14 @@ public class EquipmentPresenter implements IUpdateData {
 
     public void setTreeEquipmentInvItem(TreeItem<EquipmentInventoryModel> treeEquipmentInvItem) {
         sTreeEquipmentInvItem = treeEquipmentInvItem;
+    }
+
+    public DepartmentModel getDepartmentModel() {
+        return sDepartmentModel;
+    }
+
+    public void setDepartmentModel(DepartmentModel departmentModel) {
+        sDepartmentModel = departmentModel;
     }
 
     public EquipmentModel getEquipmentModel() {
@@ -129,6 +138,7 @@ public class EquipmentPresenter implements IUpdateData {
                                        DepartmentModel departmentModel, EquipmentStateModel equipmentState, EquipmentModel equipmentModel) {
         UpdateService.get().updateData(new IteractorEquipmentInventory().edit(new EquipmentInventoryModel(sEquipmentInventoryModel.getId(), inventoryNumber, guaranty,
                 description, departmentModel, equipmentState, equipmentModel)));
+        UpdateService.get().refreshControl();
     }
 
     public void moveEquipmentInventory(EquipmentInventoryModel equipment, DepartmentModel toDepartment, WorkerModel fromWorker, WorkerModel toWorker, String base) {

@@ -1,5 +1,6 @@
 package UI.MainTabs;
 
+import Service.IUpdateUI;
 import Service.TabControllerService;
 import Service.UpdateService;
 import UI.BaseController;
@@ -8,17 +9,10 @@ import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 
-public class DepartmentTabController extends BaseController {
+public class DepartmentTabController extends BaseController implements IUpdateUI {
 
     public DepartmentTabController(){
-        UpdateService.get().addListener((Class<?> updateClass)->{
-            System.out.println("update class= "+updateClass.getName()+" tabClass "+this.getClass().getName());
-            if (updateClass.getName().equals(this.getClass().getName())) {
-                TabControllerService.get().setListenerFirstTabPane((Tab nextTab)-> nextTab(nextTab,mDepartmentTabContainer));
-                UpdateService.get().updateUI(DepartmentsController.class);
-                mDepartmentTabContainer.getSelectionModel().select(0);
-            }
-        });
+        UpdateService.get().addListener(this);
         TabControllerService.get().setListenerFirstTabPane((Tab nextTab)-> nextTab(nextTab,mDepartmentTabContainer));
     }
 
@@ -28,6 +22,20 @@ public class DepartmentTabController extends BaseController {
     @FXML
     public void initialize(){
         System.out.println("department tab initialize");
+
+    }
+
+    @Override
+    public void updateUI(Class<?> updateClass) {
+        if (updateClass.getName().equals(this.getClass().getName())) {
+            TabControllerService.get().setListenerFirstTabPane((Tab nextTab) -> nextTab(nextTab, mDepartmentTabContainer));
+            UpdateService.get().updateUI(DepartmentsController.class);
+            mDepartmentTabContainer.getSelectionModel().select(0);
+        }
+    }
+
+    @Override
+    public void refreshControl() {
 
     }
 }
