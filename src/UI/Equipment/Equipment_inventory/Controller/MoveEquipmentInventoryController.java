@@ -4,19 +4,23 @@ import Model.Department.DepartmentModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Worker.WorkerModel;
 import Presenter.EquipmentPresenter;
-import UI.Validator.ControllerValidator;
+import UI.Validator.BaseValidator;
+import UI.Validator.Pair;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.ValidationFacade;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.TextField;
 
 public class MoveEquipmentInventoryController {
 
     private EquipmentInventoryModel mEquipment;
     private DepartmentModel mDepartment;
     private WorkerModel mWorkerTo, mWorkerFrom;
+    private BaseValidator mBaseValidator = new BaseValidator();
 
     @FXML
     private JFXTextField mTextFieldDepartment;
@@ -28,6 +32,8 @@ public class MoveEquipmentInventoryController {
     private JFXTextArea mTextAreaBase;
     @FXML
     private ValidationFacade mFacadeWorkerFrom, mFacadeWorkerTo, mFacadeDepartmentTo;
+    @FXML
+    private Label mErrorWorkerFrom, mErrorWorkerTo, mErrorDepartmentTo;
 
     public MoveEquipmentInventoryController() {
         mEquipment = EquipmentPresenter.get().getEquipmentInventoryModel();
@@ -35,8 +41,10 @@ public class MoveEquipmentInventoryController {
     }
 
     @FXML
-    public void initialize(){
-        ControllerValidator.validationFacade(mFacadeDepartmentTo, mFacadeWorkerTo, mFacadeWorkerFrom);
+    public void initialize() {
+        TextField text = new TextField();
+        mBaseValidator.setValidationFacades(new Pair(mFacadeWorkerFrom, mErrorWorkerFrom),
+                new Pair(mFacadeWorkerTo, mErrorWorkerTo), new Pair(mFacadeDepartmentTo, mErrorDepartmentTo));
         mTextFieldDepartment.setText(mEquipment.getDepartmentModel().getName());
         mComboBoxDepartment.setCellFactory(p -> new ListCell<DepartmentModel>() {
             @Override
@@ -53,9 +61,9 @@ public class MoveEquipmentInventoryController {
             @Override
             protected void updateItem(DepartmentModel item, boolean empty) {
                 super.updateItem(item, empty);
-                if(item!=null && !empty){
+                if (item != null && !empty) {
                     setText(item.getName());
-                }else {
+                } else {
                     setText(null);
                 }
             }
@@ -66,9 +74,9 @@ public class MoveEquipmentInventoryController {
             @Override
             protected void updateItem(WorkerModel item, boolean empty) {
                 super.updateItem(item, empty);
-                if(item!=null && !empty){
+                if (item != null && !empty) {
                     setText(item.getName());
-                }else {
+                } else {
                     setText(null);
                 }
             }
@@ -77,15 +85,15 @@ public class MoveEquipmentInventoryController {
         mComboBoxWorkerFrom.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedWorkerFrom(newValue)));
     }
 
-    private void selectedDepartment(DepartmentModel department){
-        mDepartment=department;
+    private void selectedDepartment(DepartmentModel department) {
+        mDepartment = department;
         mComboBoxWorkerTo.setCellFactory(p -> new ListCell<WorkerModel>() {
             @Override
             protected void updateItem(WorkerModel item, boolean empty) {
                 super.updateItem(item, empty);
-                if(item!=null && !empty){
+                if (item != null && !empty) {
                     setText(item.getName());
-                }else {
+                } else {
                     setText(null);
                 }
             }
@@ -94,16 +102,16 @@ public class MoveEquipmentInventoryController {
         mComboBoxWorkerTo.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedWorkerTo(newValue)));
     }
 
-    private void selectedWorkerTo(WorkerModel worker){
-        mWorkerTo =worker;
+    private void selectedWorkerTo(WorkerModel worker) {
+        mWorkerTo = worker;
     }
 
-    private void selectedWorkerFrom(WorkerModel worker){
-        mWorkerFrom=worker;
+    private void selectedWorkerFrom(WorkerModel worker) {
+        mWorkerFrom = worker;
     }
 
     @FXML
-    private void onClickMove(){
+    private void onClickMove() {
         EquipmentPresenter.get().moveEquipmentInventory(mEquipment, mDepartment, mWorkerFrom, mWorkerTo, mTextAreaBase.getText());
     }
 }

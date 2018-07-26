@@ -4,7 +4,7 @@ import Model.Area.AreaModel;
 import Model.Location.LocationModel;
 import Presenter.DepartmentPresenter;
 import UI.Validator.BaseValidator;
-import UI.Validator.PairFacadeLabel;
+import UI.Validator.Pair;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -41,7 +41,7 @@ public class AddDepartmentController {
     private JFXComboBox<LocationModel> mComboBoxLocation;
 
     @FXML
-    private ValidationFacade mValidationArea, mValidationLocation;
+    private ValidationFacade mFacadeArea, mFacadeLocation;
 
     @FXML
     private Label mErrorArea, mErrorLocation;
@@ -55,7 +55,7 @@ public class AddDepartmentController {
     public void initialize(){
         mFlagLocation=false;
         mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNumber);
-        mBaseValidator.setValidationFacades(new PairFacadeLabel(mValidationArea, mErrorArea), new PairFacadeLabel(mValidationLocation, mErrorLocation));
+        mBaseValidator.setValidationFacades(new Pair(mFacadeArea, mErrorArea), new Pair(mFacadeLocation, mErrorLocation));
         mComboBoxArea.setCellFactory(p->new ListCell<>(){
             @Override
             protected void updateItem(AreaModel item,boolean empty){
@@ -90,15 +90,6 @@ public class AddDepartmentController {
                 }else setText(null);
             }
         });
-        mComboBoxLocation.setButtonCell(new ListCell<>(){
-            @Override
-            protected void updateItem(LocationModel item, boolean empty) {
-                super.updateItem(item, empty);
-                if(item!=null && !empty){
-                    setText(item.getName());
-                }else setText(null);
-            }
-        });
         mComboBoxLocation.setConverter(new StringConverter<>() {
             @Override
             public String toString(LocationModel object) {
@@ -108,7 +99,12 @@ public class AddDepartmentController {
 
             @Override
             public LocationModel fromString(String string) {
-                return new LocationModel(-1,mComboBoxLocation.getEditor().getText());
+                if (!string.trim().isEmpty())
+                    return new LocationModel(-1, mComboBoxLocation.getEditor().getText().trim());
+                else {
+                    mComboBoxLocation.getEditor().clear();
+                    return null;
+                }
             }
         });
         mComboBoxLocation.getEditor().textProperty().addListener(new ChangeListener<String>() {
@@ -139,8 +135,8 @@ public class AddDepartmentController {
       for(JFXTextField textField:mValidText){
          if(!textField.validate()) flagTextField=false;
       }
-      flagComboBox=ControllerValidator.validationFacade(mValidationArea,mValidationLocation);*/
-/*      if(flag && ControllerValidator.validationFacade(mValidationArea,mValidationLocation)){
+      flagComboBox=ControllerValidator.validationFacade(mFacadeArea,mFacadeLocation);*/
+/*      if(flag && ControllerValidator.validationFacade(mFacadeArea,mFacadeLocation)){
           if(mFlagLocation){
               DepartmentPresenter.get().addDepartment(mTextFieldNumber.getText(),
                       mTextFieldName.getText(),

@@ -63,7 +63,7 @@ public class AddPurchaseController {
         mTextAreaDescription.validate() &&
         dateValidate()){
             System.out.println("true");
-            DepartmentPresenter.get().addPurchase(mTextFieldURL.getText(), mTextAreaDescription.getText(), mDatePicker.getValue());
+            DepartmentPresenter.get().addPurchase(mTextFieldURL.getText().trim(), mTextAreaDescription.getText().trim(), mDatePicker.getValue());
         }else{
             System.out.println("false");
 

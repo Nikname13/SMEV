@@ -1,29 +1,34 @@
 package UI.Department.Controller;
 
-import Iteractor.IteractorLocation;
 import Model.Department.DepartmentModel;
 import Model.Location.LocationModel;
 import Presenter.DepartmentPresenter;
-import Presenter.LocationPresenter;
+import UI.Validator.BaseValidator;
+import UI.Validator.Pair;
 import com.jfoenix.controls.JFXComboBox;
-import javafx.beans.Observable;
+import com.jfoenix.validation.ValidationFacade;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 
 public class AddLocationController {
 
     private DepartmentModel mDepartment;
+    private BaseValidator mBaseValidator = new BaseValidator();
 
     public AddLocationController() {
         mDepartment = DepartmentPresenter.get().getDepartmentModel();
     }
 
     @FXML
+    private ValidationFacade mFacadeLocation;
+    @FXML
     private JFXComboBox<LocationModel> mComboBoxLocation;
+    @FXML
+    private Label mErrorLocation;
 
     private LocationModel mLocation;
 
@@ -32,6 +37,7 @@ public class AddLocationController {
     @FXML
     public void initialize() {
         mSelectedFlag=false;
+        mBaseValidator.setValidationFacades(new Pair(mFacadeLocation, mErrorLocation));
         mComboBoxLocation.setCellFactory(p->new ListCell<>(){
             @Override
             protected void updateItem(LocationModel item, boolean empty) {
@@ -49,7 +55,12 @@ public class AddLocationController {
             }
             @Override
             public LocationModel fromString(String string) {
-                return new LocationModel(-1,mComboBoxLocation.getEditor().getText());
+                if (!string.trim().isEmpty())
+                    return new LocationModel(-1,mComboBoxLocation.getEditor().getText());
+                else {
+                    mComboBoxLocation.getEditor().clear();
+                    return null;
+                }
             }
         });
         mComboBoxLocation.getEditor().textProperty().addListener(new ChangeListener<String>() {
@@ -74,13 +85,15 @@ public class AddLocationController {
     @FXML
     private void onClickAdd() {
         System.out.println(mSelectedFlag);
-        if(mSelectedFlag){
+        if (mBaseValidator.validate()) {
+/*        if(mSelectedFlag){
             System.out.println(mLocation.getName());
             mLocation.addLocation(mDepartment);
             LocationPresenter.get().editLocation(mLocation);
         }else{
             System.out.println(mComboBoxLocation.getEditor().getText());
             LocationPresenter.get().addLocation(mComboBoxLocation.getEditor().getText(),mDepartment);
+        }*/
         }
     }
 }

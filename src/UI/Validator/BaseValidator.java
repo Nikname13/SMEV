@@ -1,5 +1,6 @@
 package UI.Validator;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
@@ -14,7 +15,8 @@ public class BaseValidator {
 
     private List<JFXTextArea> mJFXTextAreas;
     private List<JFXTextField> mJFXTextFields;
-    private List<PairFacadeLabel> mValidationFacades;
+    private List<Pair> mValidationFacades;
+    private List<JFXComboBox> mJFXComboBoxesEditor;
     private String mFacadeErrorMessage = "Необходимо выбрать значение";
 
     public void setJFXTextAreas(JFXTextArea... textAreas) {
@@ -31,12 +33,11 @@ public class BaseValidator {
             mJFXTextFields.add(textField);
             ControllerValidator.setTextFieldValidator(textField);
         }
-
     }
 
-    public void setValidationFacades(PairFacadeLabel... validationFacades) {
+    public void setValidationFacades(Pair... validationFacades) {
         mValidationFacades = new ArrayList<>();
-        for (PairFacadeLabel validationFacade : validationFacades) {
+        for (Pair validationFacade : validationFacades) {
             RequiredFieldValidator validator = new RequiredFieldValidator();
             validator.setMessage(mFacadeErrorMessage);
             ValidationFacade facade = validationFacade.getValidationFacade();
@@ -46,15 +47,26 @@ public class BaseValidator {
             facade.getControl().focusedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                    System.out.println("old= " + oldValue + " new= " + newValue);
                     if (oldValue) {
                         if (ControllerValidator.validationFacade(facade)) {
+                            System.out.println("valid");
                             validationFacade.getErrorLabel().setVisible(false);
                         } else {
+                            System.out.println("not valid");
                             validationFacade.getErrorLabel().setVisible(true);
                         }
                     }
                 }
             });
+        }
+    }
+
+
+    public void setJFXComboBoxesEditor(JFXComboBox... comboBoxes) {
+        mJFXComboBoxesEditor = new ArrayList<>();
+        for (JFXComboBox comboBox : comboBoxes) {
+
         }
     }
 
@@ -71,7 +83,7 @@ public class BaseValidator {
             }
         }
         if (mValidationFacades != null) {
-            for (PairFacadeLabel validationFacade : mValidationFacades) {
+            for (Pair validationFacade : mValidationFacades) {
                 if (!ControllerValidator.validationFacade(validationFacade.getValidationFacade())) {
                     flag = false;
                     validationFacade.getErrorLabel().setVisible(true);

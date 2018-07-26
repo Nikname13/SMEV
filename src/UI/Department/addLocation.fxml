@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.validation.ValidationFacade?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="150.0" minHeight="150.0" minWidth="150.0" prefHeight="150.0"
+            prefWidth="250.0" style="-fx-background-color: #ffffff;"
+            xmlns="http://javafx.com/javafx/8" fx:controller="UI.Department.Controller.AddLocationController">
+    <children>
+        <ValidationFacade fx:id="mFacadeLocation" layoutX="10.0" layoutY="20.0" AnchorPane.leftAnchor="10.0"
+                          AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
+            <control>
+                <JFXComboBox fx:id="mComboBoxLocation" editable="true" focusColor="#40a85f" labelFloat="true"
+                             prefHeight="35.0" prefWidth="200.0" promptText="Адрес"/>
+            </control>
+        </ValidationFacade>
+        <Label fx:id="mErrorLocation" prefWidth="200.0"/>
+        <JFXButton onAction="#onClickAdd" prefHeight="35.0" prefWidth="110.0" ripplerFill="#40a85f" text="Сохранить"
+                   AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="104.0"/>
+        <JFXButton prefHeight="35.0" prefWidth="110.0" ripplerFill="#40a85f" text="Отмена" AnchorPane.leftAnchor="130.0"
+                   AnchorPane.topAnchor="104.0"/>
 
-<AnchorPane maxHeight="150.0" minHeight="150.0" minWidth="150.0" prefHeight="150.0" prefWidth="250.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Department.Controller.AddLocationController">
-   <children>
-       <JFXComboBox fx:id="mComboBoxLocation" editable="true" focusColor="#40a85f" labelFloat="true" prefHeight="35.0" promptText="Адрес" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0" />
-      <JFXButton onAction="#onClickAdd" prefHeight="35.0" prefWidth="110.0" ripplerFill="#40a85f" text="Сохранить" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="65.0" />
-      <JFXButton prefHeight="35.0" prefWidth="110.0" ripplerFill="#40a85f" text="Отмена" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="65.0" />
-      <Label layoutX="51.0" layoutY="100.0" text="Label" textFill="#c93b3b" />
-   </children>
+    </children>
 
 </AnchorPane>

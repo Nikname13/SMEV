@@ -1,6 +1,5 @@
 package UI.Validator;
 
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
@@ -8,7 +7,6 @@ import com.jfoenix.validation.ValidationFacade;
 import com.jfoenix.validation.base.ValidatorBase;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.Control;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +28,8 @@ public class ControllerValidator {
             text.focusedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                    if (!newValue) {
+                    if (oldValue) {
+                        text.setText(text.getText().trim());
                         text.validate();
                     }
                 }
@@ -39,9 +38,8 @@ public class ControllerValidator {
         return response;
     }
 
-    public static boolean validationFacade(ValidationFacade... facades) {
+    public static boolean validationFacade(ValidationFacade facade) {
         boolean flag = true;
-        for (ValidationFacade facade : facades) {
             for (ValidatorBase validator : facade.getValidators()) {
                 if (validator.getSrcControl() == null) {
                     validator.setSrcControl(facade.getControl());
@@ -51,7 +49,6 @@ public class ControllerValidator {
                     flag = false;
                 }
                 validator.setSrcControl(null);
-            }
         }
         return flag;
     }
@@ -67,7 +64,8 @@ public class ControllerValidator {
             text.focusedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                    if (!newValue) {
+                    if (oldValue) {
+                        text.setText(text.getText().trim());
                         text.validate();
                     }
                 }

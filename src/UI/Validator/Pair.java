@@ -4,20 +4,23 @@ import com.jfoenix.validation.ValidationFacade;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 
-public class PairFacadeLabel {
+public class Pair {
     private Label mErrorLabel;
     private ValidationFacade mValidationFacade;
 
-    public PairFacadeLabel(ValidationFacade validationFacade, Label label) {
-        mValidationFacade = validationFacade;
-        mErrorLabel = label;
+    public Pair(ValidationFacade facade, Label errorLabel) {
+        mValidationFacade = facade;
+        mErrorLabel = errorLabel;
+        mErrorLabel.setLayoutX(facade.getLayoutX());
+        mErrorLabel.setLayoutY(facade.getLayoutY() + 30.0);
+        setDefaultPropertyLabel();
+    }
+
+    private void setDefaultPropertyLabel() {
         mErrorLabel.setTextFill(Color.web("#c94444"));
         mErrorLabel.setText("Error message");
-        mErrorLabel.setLayoutX(mValidationFacade.getLayoutX());
-        mErrorLabel.setLayoutY(mValidationFacade.getLayoutY() + 30.0);
         mErrorLabel.setVisible(false);
-        System.out.println("y= " + mValidationFacade.getLayoutY() + " x= " + mValidationFacade.getLayoutX());
-
+        mErrorLabel.setWrapText(true);
     }
 
     public Label getErrorLabel() {

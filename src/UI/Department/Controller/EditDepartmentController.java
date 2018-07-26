@@ -236,7 +236,7 @@ public class EditDepartmentController implements IUpdateUI {
     @FXML
     private void onClickAddLocation() {
         DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
-        new Coordinator().goToAddLocationWindow((Stage) anchorPaneEditDepartment.getScene().getWindow(), 270.0, 150.0);
+        new Coordinator().goToAddLocationWindow((Stage) anchorPaneEditDepartment.getScene().getWindow(), 270.0, 190.0);
     }
 
     @FXML

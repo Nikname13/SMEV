@@ -12,14 +12,14 @@
                       prefHeight="25.0" prefWidth="200.0" promptText="Номер отдела"/>
         <JFXTextField fx:id="mTextFieldName" focusColor="#41a65d" labelFloat="true" layoutX="14.0" layoutY="76.0"
                       prefHeight="25.0" prefWidth="200.0" promptText="Наименование отдела"/>
-        <ValidationFacade fx:id="mValidationArea"  layoutX="14.0" layoutY="136.0">
+        <ValidationFacade fx:id="mFacadeArea" layoutX="14.0" layoutY="136.0">
             <control>
                 <JFXComboBox fx:id="mComboBoxArea" focusColor="#40a85f" labelFloat="true"
                              prefHeight="25.0" prefWidth="200.0" promptText="Район"/>
             </control>
         </ValidationFacade>
         <Label fx:id="mErrorArea"/>
-        <ValidationFacade fx:id="mValidationLocation"  layoutX="14.0" layoutY="196.0">
+        <ValidationFacade fx:id="mFacadeLocation" layoutX="14.0" layoutY="196.0">
             <control>
                 <JFXComboBox fx:id="mComboBoxLocation" editable="true" focusColor="#40a85f" labelFloat="true"
                              prefHeight="25.0" prefWidth="200.0" promptText="Адрес"/>
