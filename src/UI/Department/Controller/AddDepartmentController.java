@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 public class AddDepartmentController {
@@ -75,7 +76,7 @@ public class AddDepartmentController {
 
             @Override
             public AreaModel fromString(String string) {
-                if(!string.isEmpty())return new AreaModel(-1,mComboBoxArea.getEditor().getText());
+                if (!string.isEmpty()) return new AreaModel(-1, string.trim());
                 return null;
             }
         });
@@ -100,7 +101,7 @@ public class AddDepartmentController {
             @Override
             public LocationModel fromString(String string) {
                 if (!string.trim().isEmpty())
-                    return new LocationModel(-1, mComboBoxLocation.getEditor().getText().trim());
+                    return new LocationModel(-1, string.trim());
                 else {
                     mComboBoxLocation.getEditor().clear();
                     return null;
@@ -130,13 +131,7 @@ public class AddDepartmentController {
     @FXML
     private void onClickAdd(){
         System.out.println(mBaseValidator.validate());
-/*        boolean flagTextField=true;
-        boolean flagComboBox=true;
-      for(JFXTextField textField:mValidText){
-         if(!textField.validate()) flagTextField=false;
-      }
-      flagComboBox=ControllerValidator.validationFacade(mFacadeArea,mFacadeLocation);*/
-/*      if(flag && ControllerValidator.validationFacade(mFacadeArea,mFacadeLocation)){
+        if (mBaseValidator.validate()) {
           if(mFlagLocation){
               DepartmentPresenter.get().addDepartment(mTextFieldNumber.getText(),
                       mTextFieldName.getText(),
@@ -154,15 +149,19 @@ public class AddDepartmentController {
                       mAreaModel,
                       mComboBoxLocation.getEditor().getText());
           }
-      }*/
-/*        DepartmentPresenter.get().addDepartment(
-                mTextFieldNumber.getText(),
-                mTextFieldName.getText(),
-                mRadioButtonElQ.isSelected(),
-                mRadioButtonRenting.isSelected(),
-                mTextAreaDescription.getText(),
-                mAreaModel,
-                mTextFieldLocation.getText());*/
+            close();
+        }
+
+    }
+
+    @FXML
+    private void onClickCancel() {
+        close();
+    }
+
+    private void close() {
+        Stage stage = (Stage) mAnchorPaneAddDepartment.getScene().getWindow();
+        stage.close();
     }
 
 }

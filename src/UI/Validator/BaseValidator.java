@@ -1,6 +1,5 @@
 package UI.Validator;
 
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
@@ -16,7 +15,6 @@ public class BaseValidator {
     private List<JFXTextArea> mJFXTextAreas;
     private List<JFXTextField> mJFXTextFields;
     private List<Pair> mValidationFacades;
-    private List<JFXComboBox> mJFXComboBoxesEditor;
     private String mFacadeErrorMessage = "Необходимо выбрать значение";
 
     public void setJFXTextAreas(JFXTextArea... textAreas) {
@@ -59,14 +57,6 @@ public class BaseValidator {
                     }
                 }
             });
-        }
-    }
-
-
-    public void setJFXComboBoxesEditor(JFXComboBox... comboBoxes) {
-        mJFXComboBoxesEditor = new ArrayList<>();
-        for (JFXComboBox comboBox : comboBoxes) {
-
         }
     }
 

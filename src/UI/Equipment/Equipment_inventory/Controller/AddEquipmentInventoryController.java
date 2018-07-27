@@ -73,7 +73,7 @@ public class AddEquipmentInventoryController {
 
     private void selectedState(StateModel state){
         EquipmentPresenter.get().setStateModel(state);
-        new Coordinator().goToAddEquipmentStateWindow((Stage)anchorPaneEquipmentInventory.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToAddEquipmentStateWindow((Stage) anchorPaneEquipmentInventory.getScene().getWindow());
     }
 
     @FXML

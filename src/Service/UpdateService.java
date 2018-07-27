@@ -41,9 +41,9 @@ public class UpdateService {
         }
     }
 
-    public void refreshControl() {
+    public void refreshControl(Class<?> updateClass) {
         for (IUpdateUI listener : getListenerUI()) {
-            listener.refreshControl();
+            listener.refreshControl(updateClass);
         }
     }
 

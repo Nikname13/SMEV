@@ -230,19 +230,19 @@ public class EditDepartmentController implements IUpdateUI {
     @FXML
     private void onClickAddWorker() {
         DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
-        new Coordinator().goToAddWorkerDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow(), 100.0, 200.0);
+        new Coordinator().goToAddWorkerDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
     }
 
     @FXML
     private void onClickAddLocation() {
         DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
-        new Coordinator().goToAddLocationWindow((Stage) anchorPaneEditDepartment.getScene().getWindow(), 270.0, 190.0);
+        new Coordinator().goToAddLocationWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
     }
 
     @FXML
     private void onClickAddPurchase() {
         DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
-        new Coordinator().goToAddPurchaseWindow((Stage) anchorPaneEditDepartment.getScene().getWindow(), 360.0, 335.0);
+        new Coordinator().goToAddPurchaseWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
     }
 
     @FXML
@@ -261,14 +261,14 @@ public class EditDepartmentController implements IUpdateUI {
     @FXML
     private void onClickConfig() {
         DepartmentPresenter.get().setTypeDocuments(AbstractModel.getTypeDoc());
-        new Coordinator().goToFilesDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow(), 100.0, 200.0);
+        new Coordinator().goToFilesDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
 
     }
 
     @FXML
     private void onClickPhoto() {
         DepartmentPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
-        new Coordinator().goToPhotoDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow(), 100.0, 200.0);
+        new Coordinator().goToPhotoDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
     }
 
     private void updateEquipmentTable(ObservableList<EquipmentInventoryModel> equipmentList) {
@@ -324,7 +324,8 @@ public class EditDepartmentController implements IUpdateUI {
     }
 
     @Override
-    public void refreshControl() {
+    public void refreshControl(Class<?> updateClass) {
+        if (updateClass.getName().equals(DepartmentModel.class.getName()))
         mTreeTableEquipmentInventory.refresh();
     }
 

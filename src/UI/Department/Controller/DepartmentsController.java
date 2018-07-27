@@ -12,6 +12,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class DepartmentsController implements IUpdateUI {
@@ -31,6 +32,8 @@ public class DepartmentsController implements IUpdateUI {
 
     @FXML
     private AnchorPane anchorPaneDepartment;
+    @FXML
+    private StackPane mStackPane;
 
     @FXML
     public void initialize(){
@@ -67,7 +70,7 @@ public class DepartmentsController implements IUpdateUI {
 
     @FXML
     private void onClickAdd(){
-        new Coordinator().goToAddDepartmentWindow((Stage)anchorPaneDepartment.getScene().getWindow(),400.0,414.0);
+        new Coordinator().goToAddDepartmentWindow((Stage) anchorPaneDepartment.getScene().getWindow());
     }
 
     @Override
@@ -78,7 +81,7 @@ public class DepartmentsController implements IUpdateUI {
     }
 
     @Override
-    public void refreshControl() {
+    public void refreshControl(Class<?> updateClass) {
 
     }
 }

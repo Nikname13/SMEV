@@ -3,7 +3,6 @@ package UI.Mains;
 
 import UI.Coordinator;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -87,7 +86,7 @@ public class Controller {
     }
     @FXML
     private void onClickMove(){
-        new Coordinator().goToMoveEquipmentInventoryWindow((Stage)anchorPaneMain.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToMoveEquipmentInventoryWindow((Stage) anchorPaneMain.getScene().getWindow());
     }
 
 }

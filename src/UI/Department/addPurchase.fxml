@@ -5,26 +5,28 @@
 <?import com.jfoenix.validation.ValidationFacade?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="340.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPanePurchase" prefHeight="340.0" prefWidth="350.0"
+            xmlns="http://javafx.com/javafx/8"
             fx:controller="UI.Department.Controller.AddPurchaseController" style="-fx-background-color: #ffffff;">
     <children>
         <JFXTextField fx:id="mTextFieldURL" prefHeight="25.0" prefWidth="350.0" focusColor="#41a65d" promptText="URL"
-                      labelFloat="true" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0"
+                      labelFloat="true" AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="20.0"
                       AnchorPane.rightAnchor="20.0"/>
-        <ValidationFacade fx:id="mDateValidationFacade" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
-                          AnchorPane.topAnchor="80.0">
+        <ValidationFacade fx:id="mFacadeDate" layoutX="20.0" layoutY="90.0" AnchorPane.leftAnchor="20.0"
+                          AnchorPane.rightAnchor="20.0"
+                          AnchorPane.topAnchor="90.0">
             <control>
-                <JFXDatePicker fx:id="mDatePicker" layoutX="175.0" layoutY="75.0" promptText="Дата закупки" prefWidth="350.0" />
+                <JFXDatePicker fx:id="mDatePicker" promptText="Дата закупки" prefWidth="350.0" editable="false"/>
             </control>
         </ValidationFacade>
-        <Label fx:id="mDateErrorMessage" text="Необходимо указать дату" AnchorPane.leftAnchor="20.0"
-               AnchorPane.topAnchor="115.0" textFill="#e14343" visible="false"/>
+        <Label fx:id="mErrorDate"/>
         <JFXTextArea fx:id="mTextAreaDescription" focusColor="#41a65d" promptText="Описание" labelFloat="true"
                      prefHeight="71.0" prefWidth="350.0" AnchorPane.rightAnchor="20.0" AnchorPane.leftAnchor="20.0"
-                     AnchorPane.topAnchor="150.0"/>
-        <JFXButton text="Сохранить" prefHeight="35.0" prefWidth="150.0" ripplerFill="#40a85f"
-                   AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="180.0" onAction="#onClickAdd"/>
-        <JFXButton text="Отмена" prefHeight="35.0" prefWidth="150.0" ripplerFill="#40a85f" AnchorPane.rightAnchor="20.0"
-                   AnchorPane.bottomAnchor="10.0"/>
+                     AnchorPane.topAnchor="160.0"/>
+        <JFXButton onAction="#onClickAdd" text="Сохранить" prefHeight="35.0" prefWidth="150.0" ripplerFill="#40a85f"
+                   AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="180.0"/>
+        <JFXButton onAction="#onClickCancel" text="Отмена" prefHeight="35.0" prefWidth="150.0" ripplerFill="#40a85f"
+                   AnchorPane.rightAnchor="20.0"
+                   AnchorPane.bottomAnchor="20.0"/>
     </children>
 </AnchorPane>

@@ -138,7 +138,7 @@ public class EquipmentPresenter implements IUpdateData {
                                        DepartmentModel departmentModel, EquipmentStateModel equipmentState, EquipmentModel equipmentModel) {
         UpdateService.get().updateData(new IteractorEquipmentInventory().edit(new EquipmentInventoryModel(sEquipmentInventoryModel.getId(), inventoryNumber, guaranty,
                 description, departmentModel, equipmentState, equipmentModel)));
-        UpdateService.get().refreshControl();
+        UpdateService.get().refreshControl(DepartmentModel.class);
     }
 
     public void moveEquipmentInventory(EquipmentInventoryModel equipment, DepartmentModel toDepartment, WorkerModel fromWorker, WorkerModel toWorker, String base) {
@@ -169,6 +169,10 @@ public class EquipmentPresenter implements IUpdateData {
         return mEquipmentState;
     }
 
+    public void setEquipmentState(EquipmentStateModel equipmentState) {
+        mEquipmentState = equipmentState;
+    }
+
     public void addMovement(LocalDate date, String base, Object fromDepartment, Object toDepartment, Object fromWorker, Object toWorker, Object equipment) {
 
     }
@@ -176,5 +180,9 @@ public class EquipmentPresenter implements IUpdateData {
     @Override
     public void updateEquipment(EquipmentInventoryModel equipment) {
 
+    }
+
+    public void cancel() {
+        UpdateService.get().refreshControl(EquipmentInventoryModel.class);
     }
 }

@@ -105,7 +105,7 @@ public class EquipmentsController implements IUpdateUI {
     }
 
     @Override
-    public void refreshControl() {
+    public void refreshControl(Class<?> updateClass) {
 
     }
 }

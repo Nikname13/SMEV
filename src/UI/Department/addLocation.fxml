@@ -5,22 +5,24 @@
 <?import com.jfoenix.validation.ValidationFacade?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="150.0" minHeight="150.0" minWidth="150.0" prefHeight="150.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPaneLocation" maxHeight="150.0" minHeight="150.0"
+            minWidth="150.0" prefHeight="150.0"
             prefWidth="250.0" style="-fx-background-color: #ffffff;"
             xmlns="http://javafx.com/javafx/8" fx:controller="UI.Department.Controller.AddLocationController">
     <children>
-        <ValidationFacade fx:id="mFacadeLocation" layoutX="10.0" layoutY="20.0" AnchorPane.leftAnchor="10.0"
-                          AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
+        <ValidationFacade fx:id="mFacadeLocation" layoutX="20.0" layoutY="30.0" AnchorPane.leftAnchor="20.0"
+                          AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
             <control>
                 <JFXComboBox fx:id="mComboBoxLocation" editable="true" focusColor="#40a85f" labelFloat="true"
-                             prefHeight="35.0" prefWidth="200.0" promptText="Адрес"/>
+                             prefHeight="35.0" prefWidth="220.0" promptText="Адрес"/>
             </control>
         </ValidationFacade>
         <Label fx:id="mErrorLocation" prefWidth="200.0"/>
-        <JFXButton onAction="#onClickAdd" prefHeight="35.0" prefWidth="110.0" ripplerFill="#40a85f" text="Сохранить"
-                   AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="104.0"/>
-        <JFXButton prefHeight="35.0" prefWidth="110.0" ripplerFill="#40a85f" text="Отмена" AnchorPane.leftAnchor="130.0"
-                   AnchorPane.topAnchor="104.0"/>
+        <JFXButton onAction="#onClickAdd" prefHeight="35.0" prefWidth="105.0" ripplerFill="#40a85f" text="Сохранить"
+                   AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0"/>
+        <JFXButton onAction="#onClickCancel" prefHeight="35.0" prefWidth="105.0" ripplerFill="#40a85f" text="Отмена"
+                   AnchorPane.leftAnchor="130.0"
+                   AnchorPane.topAnchor="80.0"/>
 
     </children>
 

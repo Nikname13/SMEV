@@ -1,21 +1,17 @@
 package UI;
 
-import com.sun.javafx.tools.packager.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class Coordinator {
 
     private Parent windowSceneContent(String fxml,Stage rootStage, String title,double width, double height) throws Exception{
         System.out.println("WindowSceneContent");
-        Parent page=(Parent) FXMLLoader.load(getClass().getResource(fxml),null, new JavaFXBuilderFactory());
+        Parent page = FXMLLoader.load(getClass().getResource(fxml), null, new JavaFXBuilderFactory());
         Stage stage=new Stage();
         stage.setScene(new Scene(page));
         stage.setTitle(title);
@@ -264,9 +260,9 @@ public class Coordinator {
         }
     }
 
-    public void goToAddEquipmentStateWindow(Stage stage, double width, double height){
+    public void goToAddEquipmentStateWindow(Stage stage) {
         try{
-            windowSceneContent("Equipment/Equipment_inventory/Equipment_state/addEquipmentState.fxml",stage,"Новое состояние", width, height);
+            windowSceneContent("Equipment/Equipment_inventory/Equipment_state/addEquipmentState.fxml", stage, "Новое состояние", 360.0, 355.0);
         }catch (Exception ex){
             System.out.println("Exeption goToAddEquipmnetWindow "+ex);
         }
@@ -280,9 +276,9 @@ public class Coordinator {
         }
     }
 
-    public void goToAddDepartmentWindow(Stage stage, double width, double height){
+    public void goToAddDepartmentWindow(Stage stage) {
         try {
-            windowSceneContent("Department/addDepartment.fxml",stage,"Новый отдел", width, height);
+            windowSceneContent("Department/addDepartment.fxml", stage, "Новый отдел", 310.0, 540.0);
         }catch (Exception ex){
             System.out.println("Exception goToAddDepartmentWindow" +ex );
         }
@@ -296,33 +292,33 @@ public class Coordinator {
         }
     }
 
-    public void goToFilesDepartmentWindow(Stage stage, double width, double height){
+    public void goToFilesDepartmentWindow(Stage stage) {
         try {
-            windowSceneContent("Department/DepartmentFiles/filesDepartment.fxml",stage,"файлы", width, height);
+            windowSceneContent("Department/DepartmentFiles/filesDepartment.fxml", stage, "файлы", 100.0, 200.0);
         }catch (Exception ex){
             System.out.println("Exeption goToFilesDepartmentWindow "+ex);
         }
     }
 
-    public void goToPhotoDepartmentWindow(Stage stage, double width, double height){
+    public void goToPhotoDepartmentWindow(Stage stage) {
         try {
-            windowSceneContent("Department/DepartmentFiles/photoDepartment.fxml",stage,"Фото", width, height);
+            windowSceneContent("Department/DepartmentFiles/photoDepartment.fxml", stage, "Фото", 100.0, 200.0);
         }catch (Exception ex){
             System.out.println("Exeption goToPhotoDepartmentWindow "+ex);
         }
     }
 
-    public void goToAddWorkerDepartmentWindow(Stage stage, double width, double height){
+    public void goToAddWorkerDepartmentWindow(Stage stage) {
         try {
-            windowSceneContent("Department/addWorker.fxml",stage,"Добавить сотрудника", width, height);
+            windowSceneContent("Department/addWorker.fxml", stage, "Добавить сотрудника", 100.0, 200.0);
         }catch (Exception ex){
             System.out.println("Exeption goToAddWorkerDepartmentWindow "+ex);
         }
     }
 
-    public void goToAddPurchaseWindow(Stage stage, double width, double height){
+    public void goToAddPurchaseWindow(Stage stage) {
         try {
-            windowSceneContent("Department/addPurchase.fxml",stage,"Добавить закупку", width, height);
+            windowSceneContent("Department/addPurchase.fxml", stage, "Добавить закупку", 365.0, 360.0);
         }catch (Exception ex){
             System.out.println("Exeption goToAddPurchaseWindow "+ex);
         }
@@ -360,17 +356,17 @@ public class Coordinator {
         }
     }
 
-    public void goToAddLocationWindow(Stage stage, double width, double height){
+    public void goToAddLocationWindow(Stage stage) {
         try {
-            windowSceneContent("Department/addLocation.fxml", stage, "Новый адрес", width, height);
+            windowSceneContent("Department/addLocation.fxml", stage, "Новый адрес", 275.0, 170.0);
         }catch (Exception ex){
             System.out.println("Exception goToAddProviderWindow "+ex);
         }
     }
 
-    public void goToMoveEquipmentInventoryWindow(Stage stage, double width, double height){
+    public void goToMoveEquipmentInventoryWindow(Stage stage) {
         try {
-            windowSceneContent("Equipment/Equipment_inventory/moveEquipmentInventory.fxml", stage, "Перемещение", width, height);
+            windowSceneContent("Equipment/Equipment_inventory/moveEquipmentInventory.fxml", stage, "Перемещение", 380.0, 365.0);
         }catch (Throwable ex){
             System.out.println("Exception goToMoveEquipmentInventoryWindow "+ex);
         }

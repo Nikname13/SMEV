@@ -1,17 +1,15 @@
 package UI.Department.Controller;
 
-import Presenter.DepartmentPresenter;
-import UI.Validator.ControllerValidator;
+import UI.Validator.BaseValidator;
+import UI.Validator.Pair;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.ValidationFacade;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
@@ -28,56 +26,45 @@ public class AddPurchaseController {
     private JFXDatePicker mDatePicker;
 
     @FXML
-    private Label mDateErrorMessage;
+    private Label mErrorDate;
 
     @FXML
-    private ValidationFacade mDateValidationFacade;
+    private ValidationFacade mFacadeDate;
 
     @FXML
     private AnchorPane mAnchorPanePurchase;
 
+    private BaseValidator mBaseValidator = new BaseValidator();
+
     @FXML
     public void initialize(){
         mDatePicker.setValue(LocalDate.now());
-        RequiredFieldValidator validator=new RequiredFieldValidator();
-        validator.setMessage("Необходимо указать дату");
-        mDateValidationFacade.getValidators().add(validator);
-        ControllerValidator.setTextFieldValidator(mTextFieldURL);
-        ControllerValidator.setTextAreaValidator(mTextAreaDescription);
-        mDatePicker.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                System.out.println(oldValue);
-                System.out.println(newValue);
-               if(oldValue)dateValidate();
-            }
-        });
+        mBaseValidator.setJFXTextFields(mTextFieldURL);
+        mBaseValidator.setJFXTextAreas(mTextAreaDescription);
+        Pair pair = new Pair(mFacadeDate, mErrorDate);
+        pair.getErrorLabel().setLayoutY(pair.getErrorLabel().getLayoutY() + 5.0);
+        mBaseValidator.setFacadeErrorMessage("Необходимо указать дату");
+        mBaseValidator.setValidationFacades(pair);
     }
 
     @FXML
     private void onClickAdd(){
-        mTextFieldURL.validate();
-        mTextAreaDescription.validate();
-        dateValidate();
-        if(mTextFieldURL.validate() &&
-        mTextAreaDescription.validate() &&
-        dateValidate()){
+        if (mBaseValidator.validate()) {
             System.out.println("true");
-            DepartmentPresenter.get().addPurchase(mTextFieldURL.getText().trim(), mTextAreaDescription.getText().trim(), mDatePicker.getValue());
-        }else{
-            System.out.println("false");
-
+            System.out.println(mTextFieldURL.getText());
+            //DepartmentPresenter.get().addPurchase(mTextFieldURL.getText().trim(), mTextAreaDescription.getText().trim(), mDatePicker.getValue());
+            close();
         }
     }
 
-    private boolean dateValidate(){
-        if(ControllerValidator.validationFacade(mDateValidationFacade)){
-            mDateErrorMessage.setVisible(false);
-            return true;
-        }
-        else{
-            mDateErrorMessage.setVisible(true);
-            return false;
-        }
+    @FXML
+    private void onClickCancel() {
+        close();
     }
+
+    private void close() {
+        Stage stage = (Stage) mAnchorPanePurchase.getScene().getWindow();
+        stage.close();
+    }
+
 }

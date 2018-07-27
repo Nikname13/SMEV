@@ -32,7 +32,7 @@ public class TabPaneSecondLvlController extends BaseController implements IUpdat
     }
 
     @Override
-    public void refreshControl() {
+    public void refreshControl(Class<?> updateClass) {
 
     }
 }

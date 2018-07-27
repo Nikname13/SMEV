@@ -9,6 +9,8 @@ import com.jfoenix.controls.JFXTextArea;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import java.time.LocalDate;
@@ -29,6 +31,8 @@ public class AddEquipmentState {
     @FXML
     private JFXComboBox<StateModel> mComboBoxState;
 
+    @FXML
+    private AnchorPane mAnchorPaneEquipmentState;
 
     @FXML
     public void initialize(){
@@ -76,7 +80,19 @@ public class AddEquipmentState {
     private void onClickAdd(){
         if (mTextAreaDescription.validate()) {
             EquipmentPresenter.get().addEquipmentState(mTextAreaDescription.getText(), LocalDate.now());
+            close();
         }
+    }
+
+    @FXML
+    private void onClickCancel() {
+        EquipmentPresenter.get().cancel();
+        close();
+    }
+
+    private void close() {
+        Stage stage = (Stage) mAnchorPaneEquipmentState.getScene().getWindow();
+        stage.close();
     }
 
 }

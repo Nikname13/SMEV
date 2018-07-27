@@ -141,7 +141,7 @@ public class EditEquipmentController implements IUpdateUI {
     }
 
     @Override
-    public void refreshControl() {
+    public void refreshControl(Class<?> updateClass) {
 
     }
 

@@ -3,5 +3,5 @@ package Service;
 public interface IUpdateUI {
     void updateUI(Class<?> updateClass);
 
-    void refreshControl();
+    void refreshControl(Class<?> updateClass);
 }

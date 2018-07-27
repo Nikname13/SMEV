@@ -11,6 +11,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.image.ImageView?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.text.Font?>
 <AnchorPane fx:id="anchorPaneEditDepartment"
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="UI.Department.Controller.EditDepartmentController">
@@ -58,14 +59,22 @@
                 <JFXButton AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.bottomAnchor="10.0"
                            prefWidth="340.0" style="-fx-background-color: #a8f1b3;"/>
                 <Label text="Адрес" AnchorPane.leftAnchor="360.0"
-                       AnchorPane.topAnchor="10.0"/>
+                       AnchorPane.topAnchor="10.0">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Label>
                 <JFXListView fx:id="mListViewLocation" prefHeight="60.0" prefWidth="400.0" AnchorPane.leftAnchor="360.0"
                              AnchorPane.topAnchor="33.0"/>
                 <JFXButton mnemonicParsing="false" onAction="#onClickAddLocation"
                            text="Добавить" AnchorPane.topAnchor="33.0" AnchorPane.leftAnchor="770.0" prefHeight="60.0"
                            ripplerFill="#40a85f" prefWidth="100.0"/>
                 <Label text="Сотрудники" AnchorPane.leftAnchor="360.0"
-                       AnchorPane.topAnchor="98.0"/>
+                       AnchorPane.topAnchor="98.0">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Label>
                 <JFXListView fx:id="mListViewWorker" prefHeight="60.0" prefWidth="400.0" AnchorPane.bottomAnchor="10.0"
                              AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="120.0"/>
                 <JFXButton mnemonicParsing="false"
