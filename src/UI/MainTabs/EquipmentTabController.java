@@ -36,4 +36,9 @@ public class EquipmentTabController extends BaseController implements IUpdateUI 
     public void refreshControl(Class<?> updateClass) {
 
     }
+
+    @Override
+    public void updateControl(Class<?> updateClass) {
+
+    }
 }

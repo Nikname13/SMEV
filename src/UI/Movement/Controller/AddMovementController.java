@@ -93,4 +93,9 @@ public class AddMovementController {
     private void onClickAdd(){
         EquipmentPresenter.get().addMovement(LocalDate.now(),textAreaBase.getText(),sEquipmentInventoryModel.getDepartmentModel(),mToDepartment,mFormWorker,mToWorker,sEquipmentInventoryModel);
     }
+
+    @FXML
+    private void onClickCancel() {
+        EquipmentPresenter.get().cancel();
+    }
 }

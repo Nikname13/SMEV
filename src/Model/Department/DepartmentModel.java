@@ -36,42 +36,39 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     private transient List<FileDumpModel> mFileDumpDocList, mFileDumpConfigList, mFileDumpPhotoList;
 
     public DepartmentModel(int id, String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area) {
-        super(id,name);
+        super(id, name);
         mNumber = number;
         mDescription = description;
         mElectronicQ = eleсtronicQ;
         mRenting = renting;
-        mAreaModel=area;
-        mLocationList=new ArrayList<>();
-        mWorkerList=new ArrayList<>();
+        mAreaModel = area;
+        mLocationList = new ArrayList<>();
+        mWorkerList = new ArrayList<>();
         mEquipmentList = new ArrayList<>();
     }
 
-    public DepartmentModel(int id,String name){
-        super(id,name);
+    public DepartmentModel(int id, String name) {
+        super(id, name);
     }
 
     @Override
     public List<PurchaseModel> getEntityList() {
-        if(!isLoad()){
+        if (!isLoad()) {
             new IteractorDepartment().loadData(getId());
         }
         return super.getEntityList();
     }
 
     public ObservableList<EquipmentInventoryModel> getObsEquipmnetList() {
-        if (mEquipmentList == null) {
-            getEquipmentList();
+        ObservableList<EquipmentInventoryModel> equipmentList = FXCollections.observableArrayList();
+        for (EquipmentInventoryModel equipment : getEquipmentList()) {
+            equipmentList.add(equipment);
         }
-            ObservableList<EquipmentInventoryModel> equipmentList=FXCollections.observableArrayList();
-        for (EquipmentInventoryModel equipment : mEquipmentList) {
-                equipmentList.add(equipment);
-            }
         return equipmentList;
     }
 
     public List<EquipmentInventoryModel> getEquipmentList() {
-        if(!isLoad()){
+        if (!isLoad()) {
             new IteractorDepartment().loadData(getId());
         }
         return mEquipmentList;
@@ -81,7 +78,7 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
         mEquipmentList = list;
     }
 
-    public void addEquipment(EquipmentInventoryModel equipment){
+    public void addEquipment(EquipmentInventoryModel equipment) {
         mEquipmentList.add(equipment);
     }
 
@@ -92,7 +89,7 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
         return null;
     }
 
-    public void deleteEquipment(EquipmentInventoryModel equipment){
+    public void deleteEquipment(EquipmentInventoryModel equipment) {
         mEquipmentList.remove(equipment);
     }
 
@@ -154,18 +151,15 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     }
 
     public ObservableList<WorkerModel> getObsWorkerList() {
-        if(mWorkerList==null) {
-            getWorkerList();
+        ObservableList<WorkerModel> workerList = FXCollections.observableArrayList();
+        for (WorkerModel worker : getWorkerList()) {
+            workerList.add(worker);
         }
-            ObservableList<WorkerModel> workerList = FXCollections.observableArrayList();
-            for(WorkerModel worker :mWorkerList){
-                workerList.add(worker);
-             }
-            return workerList;
+        return workerList;
     }
 
     public List<WorkerModel> getWorkerList() {
-        if(!isLoad()){
+        if (!isLoad()) {
             new IteractorDepartment().loadData(getId());
         }
         return mWorkerList;
@@ -175,32 +169,32 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
         mWorkerList = workerList;
     }
 
-    public void addWorker(WorkerModel worker){
+    public void addWorker(WorkerModel worker) {
         mWorkerList.add(worker);
     }
 
-    public WorkerModel getWorker(int id){
-        for(WorkerModel worker:mWorkerList){
-            if(worker.getId()==id) return worker;
+    public WorkerModel getWorker(int id) {
+        for (WorkerModel worker : mWorkerList) {
+            if (worker.getId() == id) return worker;
         }
         return null;
     }
 
     public ObservableList<LocationModel> getObsLocationList() {
-        if(mLocationList==null) {
+        if (mLocationList == null) {
             getLocationList();
         }
-            ObservableList<LocationModel> locationList=FXCollections.observableArrayList();
-            for(LocationModel location : mLocationList){
-                locationList.add(location);
-            }
-            return locationList;
+        ObservableList<LocationModel> locationList = FXCollections.observableArrayList();
+        for (LocationModel location : mLocationList) {
+            locationList.add(location);
+        }
+        return locationList;
     }
 
     public List<LocationModel> getLocationList() {
-        if( mLocationList==null){
-            mLocationList=new ArrayList<>();
-            mLocationList=new IteractorLocation().getList(getId());
+        if (mLocationList == null) {
+            mLocationList = new ArrayList<>();
+            mLocationList = new IteractorLocation().getList(getId());
         }
         return mLocationList;
     }
@@ -209,44 +203,44 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
         mLocationList = locationList;
     }
 
-    public void addLocation(LocationModel location){
+    public void addLocation(LocationModel location) {
         mLocationList.add(location);
     }
 
-    public LocationModel getLocation(int id){
-        for(LocationModel location:mLocationList){
-            if(location.getId()==id)return location;
+    public LocationModel getLocation(int id) {
+        for (LocationModel location : mLocationList) {
+            if (location.getId() == id) return location;
         }
         return null;
     }
 
     public List<FileDumpModel> getFileDumpDocList() {
-        if(mFileDumpDocList==null) mFileDumpDocList=new ArrayList<>();
-       mFileDumpDocList = new IteractorDepartment().getFiles(getId(),getTypeDoc());
+        if (mFileDumpDocList == null) mFileDumpDocList = new ArrayList<>();
+        mFileDumpDocList = new IteractorDepartment().getFiles(getId(), getTypeDoc());
         return mFileDumpDocList;
     }
 
-    public ObservableList<FileDumpModel> getObsFileDumpDocList(){
-        if(mFileDumpDocList==null) getFileDumpDocList();
-        ObservableList<FileDumpModel> list=FXCollections.observableArrayList();
-        for(FileDumpModel file:mFileDumpDocList){
+    public void setFileDumpDocList(List<File> fileList) throws IOException {
+        mFileDumpDocList = new IteractorDepartment().uploadFile(getId(), fileList, getTypeDoc());
+        for (FileDumpModel file : mFileDumpDocList) {
+            System.out.println(file.toString());
+        }
+    }
+
+    public ObservableList<FileDumpModel> getObsFileDumpDocList() {
+        if (mFileDumpDocList == null) getFileDumpDocList();
+        ObservableList<FileDumpModel> list = FXCollections.observableArrayList();
+        for (FileDumpModel file : mFileDumpDocList) {
             list.add(file);
         }
         return list;
     }
 
-    public void setFileDumpDocList(List<File> fileList) throws IOException {
-        mFileDumpDocList=new IteractorDepartment().uploadFile(getId(), fileList, getTypeDoc());
-        for(FileDumpModel file:mFileDumpDocList){
-            System.out.println(file.toString());
-        }
-    }
-
     public void addFileDumpDocList(List<File> fileList) throws IOException {
-        if(mFileDumpDocList==null){
-            mFileDumpDocList=new ArrayList<>();
+        if (mFileDumpDocList == null) {
+            mFileDumpDocList = new ArrayList<>();
             setFileDumpDocList(fileList);
-        }else {
+        } else {
             mFileDumpDocList.addAll(new IteractorDepartment().uploadFile(getId(), fileList, getTypeDoc()));
         }
     }
@@ -269,7 +263,7 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
 
     @Override
     public void replace(PurchaseModel entity) {
-        PurchaseModel purchase=getEntity(entity.getId());
+        PurchaseModel purchase = getEntity(entity.getId());
         purchase.setName(entity.getName());
         purchase.setDate(entity.getDate());
         purchase.setDescription(entity.getDescription());
@@ -287,6 +281,6 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
 
     @Override
     public String toString() {
-        return mNumber+" - "+getName();
+        return mNumber + " - " + getName();
     }
 }

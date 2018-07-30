@@ -16,6 +16,10 @@ public class WorkerModel extends AbstractModel {
         setDepartmentModel(department);
     }
 
+    public WorkerModel(int id, String name) {
+        super(id, name);
+    }
+
     public String getPost() {
         return mPost;
     }

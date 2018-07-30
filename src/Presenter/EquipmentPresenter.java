@@ -143,6 +143,8 @@ public class EquipmentPresenter implements IUpdateData {
 
     public void moveEquipmentInventory(EquipmentInventoryModel equipment, DepartmentModel toDepartment, WorkerModel fromWorker, WorkerModel toWorker, String base) {
 
+        Departments.get().getEntity(toDepartment.getId()).setLoad(false);
+        Departments.get().getEntity(equipment.getDepartmentModel().getId()).setLoad(false);
         MovementModel movement = new MovementModel(0, LocalDate.now(), base);
         movement.addDepartment(equipment.getDepartmentModel());
         movement.addDepartment(toDepartment);
@@ -152,6 +154,7 @@ public class EquipmentPresenter implements IUpdateData {
         movement.addEntity(equipment);
         new IteractorMovement().addNew(movement);
         new IteractorEquipmentInventory().edit(equipment);
+        UpdateService.get().updateControl(DepartmentModel.class);
     }
 
     public void deleteEquipment() {

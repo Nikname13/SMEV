@@ -13,13 +13,14 @@ import com.jfoenix.validation.ValidationFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 public class MoveEquipmentInventoryController {
 
     private EquipmentInventoryModel mEquipment;
     private DepartmentModel mDepartment;
-    private WorkerModel mWorkerTo, mWorkerFrom;
     private BaseValidator mBaseValidator = new BaseValidator();
 
     @FXML
@@ -34,6 +35,8 @@ public class MoveEquipmentInventoryController {
     private ValidationFacade mFacadeWorkerFrom, mFacadeWorkerTo, mFacadeDepartmentTo;
     @FXML
     private Label mErrorWorkerFrom, mErrorWorkerTo, mErrorDepartmentTo;
+    @FXML
+    private AnchorPane mAnchorPaneMoveEquipment;
 
     public MoveEquipmentInventoryController() {
         mEquipment = EquipmentPresenter.get().getEquipmentInventoryModel();
@@ -42,9 +45,11 @@ public class MoveEquipmentInventoryController {
 
     @FXML
     public void initialize() {
-        TextField text = new TextField();
-        mBaseValidator.setValidationFacades(new Pair(mFacadeWorkerFrom, mErrorWorkerFrom),
-                new Pair(mFacadeWorkerTo, mErrorWorkerTo), new Pair(mFacadeDepartmentTo, mErrorDepartmentTo));
+        mBaseValidator.setValidationFacades(
+                new Pair(mFacadeWorkerFrom, mErrorWorkerFrom),
+                new Pair(mFacadeWorkerTo, mErrorWorkerTo),
+                new Pair(mFacadeDepartmentTo, mErrorDepartmentTo));
+        mBaseValidator.setJFXTextAreas(mTextAreaBase);
         mTextFieldDepartment.setText(mEquipment.getDepartmentModel().getName());
         mComboBoxDepartment.setCellFactory(p -> new ListCell<DepartmentModel>() {
             @Override
@@ -60,15 +65,30 @@ public class MoveEquipmentInventoryController {
         mComboBoxDepartment.setButtonCell(new ListCell<>() {
             @Override
             protected void updateItem(DepartmentModel item, boolean empty) {
-                super.updateItem(item, empty);
                 if (item != null && !empty) {
                     setText(item.getName());
                 } else {
                     setText(null);
                 }
+                this.setVisible(!empty);
+            }
+        });
+        mComboBoxDepartment.setConverter(new StringConverter<DepartmentModel>() {
+            @Override
+            public String toString(DepartmentModel object) {
+                if (object != null) return object.getName();
+                return null;
+            }
+
+            @Override
+            public DepartmentModel fromString(String string) {
+                if (!string.trim().isEmpty())
+                    return new DepartmentModel(-1, string);
+                return null;
             }
         });
         mComboBoxDepartment.setItems(EquipmentPresenter.get().getObservableDepartment());
+        mComboBoxDepartment.getSelectionModel().select(EquipmentPresenter.get().getDepartmentModel());
         mComboBoxDepartment.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment(newValue)));
         mComboBoxWorkerFrom.setCellFactory((p -> new ListCell<WorkerModel>() {
             @Override
@@ -81,12 +101,6 @@ public class MoveEquipmentInventoryController {
                 }
             }
         }));
-        mComboBoxWorkerFrom.setItems(mEquipment.getDepartmentModel().getObsWorkerList());
-        mComboBoxWorkerFrom.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedWorkerFrom(newValue)));
-    }
-
-    private void selectedDepartment(DepartmentModel department) {
-        mDepartment = department;
         mComboBoxWorkerTo.setCellFactory(p -> new ListCell<WorkerModel>() {
             @Override
             protected void updateItem(WorkerModel item, boolean empty) {
@@ -98,20 +112,115 @@ public class MoveEquipmentInventoryController {
                 }
             }
         });
+        mComboBoxWorkerTo.setConverter(new StringConverter<WorkerModel>() {
+            @Override
+            public String toString(WorkerModel object) {
+                if (object != null) object.getName();
+                return null;
+            }
+
+            @Override
+            public WorkerModel fromString(String string) {
+                if (!string.trim().isEmpty()) return new WorkerModel(-1, string);
+                return null;
+            }
+        });
+        setButtonCellWorkerTo();
+        mComboBoxWorkerTo.setItems(mDepartment.getObsWorkerList());
+        mComboBoxWorkerTo.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> {
+            mBaseValidator.validateFacade(mFacadeWorkerTo);
+        }));
+        setWorkerTo();
+        mComboBoxWorkerFrom.setCellFactory(p -> new ListCell<WorkerModel>() {
+            @Override
+            protected void updateItem(WorkerModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else {
+                    setText(null);
+                }
+
+            }
+        });
+        mComboBoxWorkerFrom.setConverter(new StringConverter<WorkerModel>() {
+            @Override
+            public String toString(WorkerModel object) {
+                if (object != null) object.getName();
+                return null;
+            }
+
+            @Override
+            public WorkerModel fromString(String string) {
+                if (!string.trim().isEmpty()) return new WorkerModel(-1, string);
+                return null;
+            }
+        });
+        mComboBoxWorkerFrom.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(WorkerModel item, boolean empty) {
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else {
+                    setText(null);
+                }
+                this.setVisible(!empty);
+            }
+        });
+
+        mComboBoxWorkerFrom.setItems(mEquipment.getDepartmentModel().getObsWorkerList());
+        mComboBoxWorkerFrom.getSelectionModel().selectFirst();
+    }
+
+    private void setWorkerTo() {
+        mComboBoxWorkerTo.getSelectionModel().selectFirst();
+
+    }
+
+    private void setButtonCellWorkerTo() {
+        mComboBoxWorkerTo.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(WorkerModel item, boolean empty) {
+                System.out.println("item= " + item + " empty= " + empty);
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else {
+                    setText(null);
+                }
+                this.setVisible(!empty);
+            }
+        });
+    }
+
+    private void selectedDepartment(DepartmentModel department) {
+        System.out.println("select department");
         mComboBoxWorkerTo.setItems(department.getObsWorkerList());
-        mComboBoxWorkerTo.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedWorkerTo(newValue)));
-    }
-
-    private void selectedWorkerTo(WorkerModel worker) {
-        mWorkerTo = worker;
-    }
-
-    private void selectedWorkerFrom(WorkerModel worker) {
-        mWorkerFrom = worker;
+        mComboBoxWorkerTo.getEditor().requestFocus();
+        setButtonCellWorkerTo();
+        setWorkerTo();
     }
 
     @FXML
     private void onClickMove() {
-        EquipmentPresenter.get().moveEquipmentInventory(mEquipment, mDepartment, mWorkerFrom, mWorkerTo, mTextAreaBase.getText());
+        if (mBaseValidator.validate()) {
+            EquipmentPresenter.get().moveEquipmentInventory(
+                    mEquipment,
+                    mDepartment,
+                    mComboBoxWorkerFrom.getValue(),
+                    mComboBoxWorkerTo.getValue(),
+                    mTextAreaBase.getText());
+            close();
+        }
+    }
+
+    @FXML
+    private void onClickCancel() {
+        EquipmentPresenter.get().cancel();
+        close();
+    }
+
+    private void close() {
+        Stage stage = (Stage) mAnchorPaneMoveEquipment.getScene().getWindow();
+        stage.close();
     }
 }

@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTextArea?>
-<?import com.jfoenix.controls.JFXRadioButton?>
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import javafx.scene.image.ImageView?>
-<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.text.Font?>
 <AnchorPane fx:id="anchorPaneEditDepartment"
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
@@ -61,7 +53,7 @@
                 <Label text="Адрес" AnchorPane.leftAnchor="360.0"
                        AnchorPane.topAnchor="10.0">
                     <font>
-                        <Font size="10.0" />
+                        <Font size="10.0"/>
                     </font>
                 </Label>
                 <JFXListView fx:id="mListViewLocation" prefHeight="60.0" prefWidth="400.0" AnchorPane.leftAnchor="360.0"
@@ -72,7 +64,7 @@
                 <Label text="Сотрудники" AnchorPane.leftAnchor="360.0"
                        AnchorPane.topAnchor="98.0">
                     <font>
-                        <Font size="10.0" />
+                        <Font size="10.0"/>
                     </font>
                 </Label>
                 <JFXListView fx:id="mListViewWorker" prefHeight="60.0" prefWidth="400.0" AnchorPane.bottomAnchor="10.0"

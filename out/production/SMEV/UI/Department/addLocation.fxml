@@ -5,7 +5,8 @@
 <?import com.jfoenix.validation.ValidationFacade?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-<AnchorPane fx:id="mAnchorPaneLocation" xmlns:fx="http://javafx.com/fxml/1" maxHeight="150.0" minHeight="150.0" minWidth="150.0" prefHeight="150.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPaneLocation" maxHeight="150.0" minHeight="150.0"
+            minWidth="150.0" prefHeight="150.0"
             prefWidth="250.0" style="-fx-background-color: #ffffff;"
             xmlns="http://javafx.com/javafx/8" fx:controller="UI.Department.Controller.AddLocationController">
     <children>
@@ -19,7 +20,8 @@
         <Label fx:id="mErrorLocation" prefWidth="200.0"/>
         <JFXButton onAction="#onClickAdd" prefHeight="35.0" prefWidth="105.0" ripplerFill="#40a85f" text="Сохранить"
                    AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0"/>
-        <JFXButton onAction="#onClickCancel" prefHeight="35.0" prefWidth="105.0" ripplerFill="#40a85f" text="Отмена" AnchorPane.leftAnchor="130.0"
+        <JFXButton onAction="#onClickCancel" prefHeight="35.0" prefWidth="105.0" ripplerFill="#40a85f" text="Отмена"
+                   AnchorPane.leftAnchor="130.0"
                    AnchorPane.topAnchor="80.0"/>
 
     </children>

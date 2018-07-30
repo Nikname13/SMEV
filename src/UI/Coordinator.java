@@ -366,7 +366,7 @@ public class Coordinator {
 
     public void goToMoveEquipmentInventoryWindow(Stage stage) {
         try {
-            windowSceneContent("Equipment/Equipment_inventory/moveEquipmentInventory.fxml", stage, "Перемещение", 380.0, 365.0);
+            windowSceneContent("Equipment/Equipment_inventory/moveEquipmentInventory.fxml", stage, "Перемещение", 480.0, 375.0);
         }catch (Throwable ex){
             System.out.println("Exception goToMoveEquipmentInventoryWindow "+ex);
         }

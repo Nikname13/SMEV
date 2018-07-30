@@ -141,13 +141,14 @@ public class EditDepartmentController implements IUpdateUI {
 
             @Override
             public AreaModel fromString(String string) {
-                return new AreaModel(-1,mComboBoxArea.getEditor().getText());
+                if (!string.isEmpty())
+                    return new AreaModel(-1, string);
+                else return null;
             }
         });
         mComboBoxArea.setButtonCell(new ListCell<>(){
             @Override
             protected void updateItem(AreaModel item, boolean empty) {
-                super.updateItem(item, empty);
                 if (item != null && !empty) {
                     setText(item.getName());
                 } else setText(null);
@@ -325,8 +326,18 @@ public class EditDepartmentController implements IUpdateUI {
 
     @Override
     public void refreshControl(Class<?> updateClass) {
-        if (updateClass.getName().equals(DepartmentModel.class.getName()))
-        mTreeTableEquipmentInventory.refresh();
+        if (updateClass.getName().equals(DepartmentModel.class.getName())) {
+            mTreeTableEquipmentInventory.refresh();
+        }
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass) {
+        if (updateClass.getName().equals(DepartmentModel.class.getName())) {
+            updateEquipmentTable(mDepartmentModel.getObsEquipmnetList());
+            UpdateService.get().updateUI(TabPaneSecondLvlController.class);
+        }
     }
 
 }

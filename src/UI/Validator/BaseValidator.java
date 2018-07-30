@@ -45,13 +45,10 @@ public class BaseValidator {
             facade.getControl().focusedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                    System.out.println("old= " + oldValue + " new= " + newValue);
                     if (oldValue) {
                         if (ControllerValidator.validationFacade(facade)) {
-                            System.out.println("valid");
                             validationFacade.getErrorLabel().setVisible(false);
                         } else {
-                            System.out.println("not valid");
                             validationFacade.getErrorLabel().setVisible(true);
                         }
                     }
@@ -81,6 +78,20 @@ public class BaseValidator {
             }
         }
         return flag;
+    }
+
+    public boolean validateFacade(ValidationFacade validationFacade) {
+        for (Pair facade : mValidationFacades) {
+            if (facade.getValidationFacade().getId().equals(validationFacade.getId())) {
+                if (!ControllerValidator.validationFacade(facade.getValidationFacade())) {
+                    facade.getErrorLabel().setVisible(true);
+                    return false;
+                } else {
+                    facade.getErrorLabel().setVisible(false);
+                }
+            }
+        }
+        return true;
     }
 
     public void setFacadeErrorMessage(String facadeErrorMessage) {

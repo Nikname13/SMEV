@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXListView?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import com.jfoenix.controls.JFXButton?>
-<AnchorPane fx:id="anchorPaneDepartment" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="UI.Department.Controller.DepartmentsController">
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.layout.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mStackPane" xmlns="http://javafx.com/javafx/8"
+           fx:controller="UI.Department.Controller.DepartmentsController">
     <children>
+        <AnchorPane>
+            <children>
         <!-- <TableView fx:id="mDepartmentTableView" layoutX="-1.0" layoutY="-3.0" prefHeight="146.0" prefWidth="465.0">
            <columns>
              <TableColumn fx:id="numberColumn" prefWidth="150.0" text="номер" />
@@ -20,6 +21,8 @@
                    AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
         <JFXListView fx:id="mDepartmentListView" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="45.0"
                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+            </children>
+        </AnchorPane>
     </children>
 
-</AnchorPane>
+</StackPane>

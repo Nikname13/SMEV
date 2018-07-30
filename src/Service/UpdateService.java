@@ -47,6 +47,13 @@ public class UpdateService {
         }
     }
 
+    public void updateControl(Class<?> updateClass) {
+        for (IUpdateUI listener : getListenerUI()) {
+            listener.updateControl(updateClass);
+        }
+
+    }
+
     public void updateData(EquipmentInventoryModel equipment) {
         for (IUpdateData listener : getListenerData()) {
             listener.updateEquipment(equipment);

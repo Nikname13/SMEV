@@ -118,7 +118,9 @@ public class EquipmentInventoryController implements IUpdateUI{
 
             @Override
             public InventoryNumberModel fromString(String string) {
-                return new InventoryNumberModel(-1,mComboBoxNumber.getEditor().getText());
+                if (!string.trim().isEmpty())
+                    return new InventoryNumberModel(-1, string);
+                else return null;
             }
         });
         mComboBoxNumber.setButtonCell(new ListCell<>(){
@@ -130,6 +132,7 @@ public class EquipmentInventoryController implements IUpdateUI{
                 }else {
                     setText(null);
                 }
+
             }
         });
         mComboBoxState.setCellFactory(p-> new ListCell<>(){
@@ -153,7 +156,9 @@ public class EquipmentInventoryController implements IUpdateUI{
 
             @Override
             public StateModel fromString(String string) {
-                return new StateModel(-1, string);
+                if (!string.trim().isEmpty())
+                    return new StateModel(-1, string);
+                else return null;
             }
         });
         mComboBoxState.setButtonCell(new ListCell<>(){
@@ -165,6 +170,7 @@ public class EquipmentInventoryController implements IUpdateUI{
                 }else {
                     setText(null);
                 }
+
             }
         });
         mComboBoxState.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) ->selectedState());
@@ -253,5 +259,10 @@ public class EquipmentInventoryController implements IUpdateUI{
             mComboBoxState.getSelectionModel().select(getState().getStateModel());
             mComboBoxDepartment.getSelectionModel().select(getDepartment());
         }
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass) {
+
     }
 }
