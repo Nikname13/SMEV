@@ -129,6 +129,7 @@ public class EquipmentPresenter implements IUpdateData {
         ));
     }
 
+
     public void addEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
                                       DepartmentModel departmentModel, EquipmentStateModel equipmentState, EquipmentModel equipmentModel) {
         new IteractorEquipmentInventory().addNew(new EquipmentInventoryModel(0, inventoryNumber, guaranty, description, Departments.get().getEntity(5), equipmentState, equipmentModel));
@@ -140,6 +141,12 @@ public class EquipmentPresenter implements IUpdateData {
                 description, departmentModel, equipmentState, equipmentModel)));
         UpdateService.get().refreshControl(DepartmentModel.class);
     }
+
+    public void editEquipmentInventory(EquipmentInventoryModel equipment) {
+        UpdateService.get().updateData(new IteractorEquipmentInventory().edit(equipment));
+        UpdateService.get().refreshControl(DepartmentModel.class);
+    }
+
 
     public void moveEquipmentInventory(EquipmentInventoryModel equipment, DepartmentModel toDepartment, WorkerModel fromWorker, WorkerModel toWorker, String base) {
 
@@ -161,7 +168,9 @@ public class EquipmentPresenter implements IUpdateData {
     }
 
     public void deleteEquipmentInventory(EquipmentInventoryModel eq_inv) {
-        new IteractorEquipmentInventory().delete(eq_inv);
+        System.out.println("delete " + eq_inv.getInventoryNumber().getName());
+        sEquipmentInventoryModel = null;
+        //new IteractorEquipmentInventory().delete(eq_inv);
     }
 
     public void addEquipmentState(String description, LocalDate date) {

@@ -186,12 +186,12 @@ public class EquipmentInventoryController implements IUpdateUI{
                 if(mTextAreaDescription.focusedProperty().get())mButtonSave.setVisible(true);
             }
         });
-        mTextAreaDescriptionDepartment.textProperty().addListener(new ChangeListener<String>() {
+/*        mTextAreaDescriptionDepartment.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if(mTextAreaDescriptionDepartment.focusedProperty().get())mButtonSave.setVisible(true);
             }
-        });
+        });*/
     }
 
     @FXML

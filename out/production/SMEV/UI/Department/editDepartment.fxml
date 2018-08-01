@@ -93,17 +93,8 @@
         </AnchorPane>
         <!--список оборудования-->
         <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.leftAnchor="460.0" AnchorPane.topAnchor="200.0">
+                    AnchorPane.leftAnchor="460.0" AnchorPane.topAnchor="200.0" prefWidth="560">
             <children>
-
-                <!--                        <TableView fx:id="tableViewEquipmentInventory" prefHeight="393.0" prefWidth="400.0">
-                                            <columns>
-                                                <TableColumn fx:id="nameEquipmentColumn" prefWidth="100.0" text="Наименование"/>
-                                                <TableColumn fx:id="numberEquipmentColumn" prefWidth="100.0" text="Номер"/>
-                                                <TableColumn fx:id="stateEquipmentColumn" prefWidth="100.0" text="Состояние"/>
-                                                <TableColumn fx:id="descriptionEquipmentColumn" prefWidth="100.0" text="Комментарий"/>
-                                            </columns>
-                                        </TableView>-->
                 <TreeTableView fx:id="mTreeTableEquipmentInventory" prefHeight="200.0"
                                AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0"
                                AnchorPane.bottomAnchor="10.0">
@@ -111,14 +102,15 @@
                         <TreeTableColumn fx:id="mNameEquipmentColumn" prefWidth="100.0" text="Наименование"/>
                         <TreeTableColumn fx:id="mNumberEquipmentColumn" prefWidth="100.0" text="Номер"/>
                         <TreeTableColumn fx:id="mStateEquipmentColumn" prefWidth="75.0" text="Состояние"/>
-                        <TreeTableColumn fx:id="mDescriptionEquipmentColumn" prefWidth="100.0"
-                                         text="Комментарий"/>
+                        <TreeTableColumn fx:id="mDescriptionEquipmentColumn" prefWidth="263.0"
+                                         text="Заметка для отдела"/>
                     </columns>
                 </TreeTableView>
+
             </children>
         </AnchorPane>
         <!--информация об оборудовании-->
-        <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="868.0" AnchorPane.topAnchor="200.0"
+        <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="1030.0" AnchorPane.topAnchor="200.0"
                     AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0">
             <fx:include source="/UI/TabPane/tabPaneSecondLvl.fxml" AnchorPane.topAnchor="0"
                         AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0"

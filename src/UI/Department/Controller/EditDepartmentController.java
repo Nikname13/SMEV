@@ -17,26 +17,28 @@ import Service.IUpdateUI;
 import Service.TabControllerService;
 import Service.UpdateService;
 import UI.Coordinator;
+import UI.Popup.BasePopup;
 import UI.TabPane.Controller.TabPaneSecondLvlController;
-import UI.Validator.ControllerValidator;
+import UI.Validator.BaseValidator;
 import com.jfoenix.controls.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
+import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-import java.util.List;
-
 public class EditDepartmentController implements IUpdateUI {
 
     private static DepartmentModel mDepartmentModel;
+    private BaseValidator mBaseValidator = new BaseValidator();
 
     public EditDepartmentController() {
         mDepartmentModel = DepartmentPresenter.get().getDepartmentModel();
@@ -62,12 +64,6 @@ public class EditDepartmentController implements IUpdateUI {
     @FXML
     private JFXListView<PurchaseModel> mListViewPurchase;
 
-    /*    @FXML
-    private TableView<EquipmentInventoryModel> tableViewEquipmentInventory;
-
-    @FXML
-    private TableColumn<EquipmentInventoryModel, String> nameEquipmentColumn, numberEquipmentColumn, stateEquipmentColumn, descriptionEquipmentColumn;*/
-
     @FXML
     private JFXTextArea mTextAreaDescription;
 
@@ -80,40 +76,97 @@ public class EditDepartmentController implements IUpdateUI {
     @FXML
     private JFXButton mButtonUpdate;
 
+
     @FXML
     private AnchorPane anchorPaneEditDepartment, mAnchorPaneBasicInfoDepartment;
-
-    private List<JFXTextField> mValidTextFields;
-    private AreaModel mSelectedArea;
 
     @FXML
     public void initialize() {
         System.out.println("edit department initialize ");
         mAnchorPaneBasicInfoDepartment.setPrefSize(450.0, 190.0);
-/*        nameEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getEquipmentModel().nameProperty());
-        numberEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getInventoryNumber().nameProperty());
-        stateEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getLastEntity().getStateModel().nameProperty());
-        descriptionEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().description_departmentProperty());
-        tableViewEquipmentInventory.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedEquipment(newValue));*/
+        mButtonUpdate.setFocusTraversable(false);
+        mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNumber);
+        initTreeTableEquipmentInventory();
+        initComboBoxArea();
+        initTextAreaDescription();
+        initRadioButton();
+        initListView();
+        initPopup();
+    }
 
+    private void initTreeTableEquipmentInventory() {
+        TextFieldTreeTableCell text = new TextFieldTreeTableCell();
+        text.setWrapText(true);
         mNameEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getEquipmentModel().nameProperty());
         mNumberEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getInventoryNumber().nameProperty());
         mStateEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getLastEntity().getStateModel().nameProperty());
-        mTreeTableEquipmentInventory.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipment(newValue)));
-        mButtonUpdate.setFocusTraversable(false);
-
-        mValidTextFields = ControllerValidator.setTextFieldValidator(mTextFieldName, mTextFieldNumber);
-
-        for (JFXTextField text : mValidTextFields) {
-            text.textProperty().addListener(new ChangeListener<String>() {
-                @Override
-                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    if (text.focusedProperty().get()) {
-                        setVisibleEditButton();
-                    }
+        mDescriptionEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().description_departmentProperty());
+        mDescriptionEquipmentColumn.setCellFactory(TextFieldTreeTableCell.forTreeTableColumn());
+        mDescriptionEquipmentColumn.setOnEditCommit(new EventHandler<TreeTableColumn.CellEditEvent<EquipmentInventoryModel, String>>() {
+            @Override
+            public void handle(TreeTableColumn.CellEditEvent<EquipmentInventoryModel, String> event) {
+                TreeItem<EquipmentInventoryModel> currentEditEquipment = mTreeTableEquipmentInventory.getTreeItem(event.getTreeTablePosition().getRow());
+                if (currentEditEquipment.getValue().getId() != -1) {
+                    currentEditEquipment.getValue().setDescription_department(event.getNewValue());
+                    EquipmentPresenter.get().editEquipmentInventory(currentEditEquipment.getValue());
+                } else {
+                    mTreeTableEquipmentInventory.refresh();
                 }
-            });
-        }
+                System.out.println(currentEditEquipment.getValue().getId());
+            }
+        });
+        mTreeTableEquipmentInventory.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipment(newValue)));
+        mTreeTableEquipmentInventory.setEditable(true);
+
+    }
+
+    private void initListView() {
+        mListViewLocation.setCellFactory(p -> new ListCell<>() {
+            @Override
+            protected void updateItem(LocationModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else setText(null);
+            }
+        });
+
+        mListViewWorker.setCellFactory(p -> new ListCell<>() {
+            @Override
+            protected void updateItem(WorkerModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getName() + " " + item.getPost());
+                } else setText(null);
+            }
+        });
+        mListViewPurchase.setCellFactory(p -> new ListCell<>() {
+            @Override
+            protected void updateItem(PurchaseModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getDate().toString() + " " + item.getDescription());
+                } else setText(null);
+            }
+        });
+    }
+
+    private void initRadioButton() {
+        mRadioButtonElQ.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                setVisibleEditButton();
+            }
+        });
+        mRadioButtonRenting.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                setVisibleEditButton();
+            }
+        });
+    }
+
+    private void initTextAreaDescription() {
         mTextAreaDescription.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -122,7 +175,9 @@ public class EditDepartmentController implements IUpdateUI {
                 }
             }
         });
+    }
 
+    private void initComboBoxArea() {
         mComboBoxArea.setCellFactory(p -> new ListCell<>() {
             @Override
             protected void updateItem(AreaModel item, boolean empty) {
@@ -155,51 +210,12 @@ public class EditDepartmentController implements IUpdateUI {
             }
         });
         mComboBoxArea.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
-            mSelectedArea = newValue;
             setVisibleEditButton();
         }));
-        mRadioButtonElQ.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                setVisibleEditButton();
-            }
-        });
-        mRadioButtonRenting.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                setVisibleEditButton();
-            }
-        });
+    }
 
-        mListViewLocation.setCellFactory(p -> new ListCell<>() {
-            @Override
-            protected void updateItem(LocationModel item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty) {
-                    setText(item.getName());
-                } else setText(null);
-            }
-        });
-
-        mListViewWorker.setCellFactory(p -> new ListCell<>() {
-            @Override
-            protected void updateItem(WorkerModel item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty) {
-                    setText(item.getName() + " " + item.getPost());
-                } else setText(null);
-            }
-        });
-        mListViewPurchase.setCellFactory(p -> new ListCell<>() {
-            @Override
-            protected void updateItem(PurchaseModel item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty) {
-                    setText(item.getDate().toString() + " " + item.getDescription());
-                } else setText(null);
-            }
-        });
-
+    private void initPopup() {
+        new BasePopup(mTreeTableEquipmentInventory, BasePopup.getEquipmentInventoryPopup());
     }
 
     private void setVisibleEditButton() {
@@ -217,11 +233,9 @@ public class EditDepartmentController implements IUpdateUI {
         if (treeEquipment != null) {
             EquipmentInventoryModel equipment = treeEquipment.getValue();
             if (equipment != null && equipment.getId() != -1) {
-                System.out.println("selected equipment");
                 EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
                 EquipmentPresenter.get().setEquipmentModel(equipment.getEquipmentModel());
                 EquipmentPresenter.get().setTreeEquipmentInvItem(treeEquipment);
-                /*TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));*/
                 TabControllerService.get().getListenerThirdTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
                 UpdateService.get().updateUI(EquipmentInventoryModel.class);
             }

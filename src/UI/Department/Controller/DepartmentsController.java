@@ -6,12 +6,12 @@ import Service.IUpdateUI;
 import Service.TabControllerService;
 import Service.UpdateService;
 import UI.Coordinator;
+import UI.Popup.BasePopup;
 import com.jfoenix.controls.JFXListView;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -31,17 +31,10 @@ public class DepartmentsController implements IUpdateUI {
     private JFXListView<DepartmentModel> mDepartmentListView;
 
     @FXML
-    private AnchorPane anchorPaneDepartment;
-    @FXML
     private StackPane mStackPane;
 
     @FXML
     public void initialize(){
-/*        numberColumn.setCellValueFactory(cellData->cellData.getValue().numberProperty());
-        nameColumn.setCellValueFactory(cellData->cellData.getValue().nameProperty());
-        areaColumn.setCellValueFactory(cellData->cellData.getValue().getAreaModel().nameProperty());
-        mDepartmentTableView.setItems(DepartmentPresenter.get().getObservableDepartment());
-        mDepartmentTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->selectedDepartment(newValue));*/
         mDepartmentListView.setItems(DepartmentPresenter.get().getObservableDepartment());
         mDepartmentListView.setCellFactory(p->new ListCell<>(){
             @Override
@@ -55,6 +48,11 @@ public class DepartmentsController implements IUpdateUI {
             }
         });
         mDepartmentListView.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment(newValue)));
+        initPopup();
+    }
+
+    private void initPopup() {
+        new BasePopup(mDepartmentListView, BasePopup.getDepartmentsListPopup());
     }
 
     private void selectedDepartment(DepartmentModel department) {
@@ -70,7 +68,7 @@ public class DepartmentsController implements IUpdateUI {
 
     @FXML
     private void onClickAdd(){
-        new Coordinator().goToAddDepartmentWindow((Stage) anchorPaneDepartment.getScene().getWindow());
+        new Coordinator().goToAddDepartmentWindow((Stage) mStackPane.getScene().getWindow());
     }
 
     @Override
