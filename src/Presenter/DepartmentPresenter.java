@@ -23,10 +23,11 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class DepartmentPresenter implements IUpdateData {
+public class DepartmentPresenter extends BasePresenter implements IUpdateData {
 
     private static DepartmentModel sDepartmentModel;
-    private static String mTypeDocuments;
+    private static PurchaseModel sPurchaseModel;
+    private static String sTypeDocuments;
     private static DepartmentPresenter sDepartmentPresenter;
 
     public static DepartmentPresenter get() {
@@ -44,6 +45,14 @@ public class DepartmentPresenter implements IUpdateData {
 
     public void setDepartmentModel(Object departmentModel) {
         sDepartmentModel = (DepartmentModel) departmentModel;
+    }
+
+    public PurchaseModel getPurchaseModel() {
+        return sPurchaseModel;
+    }
+
+    public void setPurchaseModel(PurchaseModel purchaseModel) {
+        sPurchaseModel = purchaseModel;
     }
 
     public ObservableList<DepartmentModel> getObservableDepartment(){
@@ -92,12 +101,12 @@ public class DepartmentPresenter implements IUpdateData {
         sDepartmentModel.addFileDumpDocList(files);
     }
 
-    public void setTypeDocuments(String type){
-        mTypeDocuments=type;
+    public String getTypeDocuments(){
+        return sTypeDocuments;
     }
 
-    public String getTypeDocuments(){
-        return mTypeDocuments;
+    public void setTypeDocuments(String type) {
+        sTypeDocuments = type;
     }
 
     public void downloadOpenFile(String path, String typeDocuments){
@@ -121,6 +130,18 @@ public class DepartmentPresenter implements IUpdateData {
     public void updateEquipment(EquipmentInventoryModel equipment) {
         if (sDepartmentModel != null) {
             sDepartmentModel.replace(equipment);
+        }
+    }
+
+    @Override
+    public void delete() {
+        if (getSelectedObject() != null) {
+            if (getSelectedObject().equals(sDepartmentModel)) {
+                System.out.println("delete " + sDepartmentModel.getName());
+            }
+            if (getSelectedObject().equals(sPurchaseModel)) {
+                System.out.println("delete " + sPurchaseModel.getName());
+            }
         }
     }
 }

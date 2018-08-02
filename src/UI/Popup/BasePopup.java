@@ -10,7 +10,7 @@ import java.io.IOException;
 public class BasePopup {
 
     private static String sEquipmentInventoryPopup = "/UI/Popup/equipmentInventoryPopup.fxml";
-    private static String sDepartmentsListPopup = "/UI/Popup/departmentsListPopup.fxml";
+    private static String sBaseListPopup = "/UI/Popup/BaseListPopup.fxml";
     private JFXPopup mPopup;
 
     public BasePopup(Node node, String resourceURL) {
@@ -20,7 +20,6 @@ public class BasePopup {
             node.setOnMouseClicked(event -> {
                 if (event.getButton() == MouseButton.SECONDARY)
                     mPopup.show(node, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());
-
             });
         } catch (IOException ex) {
             System.out.println("Ошибка загрузки " + resourceURL);
@@ -32,8 +31,8 @@ public class BasePopup {
         return sEquipmentInventoryPopup;
     }
 
-    public static String getDepartmentsListPopup() {
-        return sDepartmentsListPopup;
+    public static String getBaseListPopup() {
+        return sBaseListPopup;
     }
 
     public JFXPopup get() {

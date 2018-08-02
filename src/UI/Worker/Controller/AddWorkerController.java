@@ -30,7 +30,7 @@ public class AddWorkerController {
                 }
             }
         });
-        comboBoxDepartment.setItems(new WorkerPresenter().getObservableDepartment());
+        comboBoxDepartment.setItems(WorkerPresenter.get().getObservableDepartment());
         comboBoxDepartment.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment(newValue)));
     }
 
@@ -40,6 +40,6 @@ public class AddWorkerController {
 
     @FXML
     private void onClickAdd(){
-        new WorkerPresenter().addWorker(textFieldName.getText(),textFieldPost.getText(), mDepartmentModel);
+        WorkerPresenter.get().addWorker(textFieldName.getText(), textFieldPost.getText(), mDepartmentModel);
     }
 }

@@ -1,11 +1,12 @@
 package Model;
 
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class AbstractModel  <T extends AbstractModel<?>> implements IAbstractModel {
+public class AbstractModel<T extends AbstractModel<?>> extends RecursiveTreeObject<AbstractModel> implements IAbstractModel {
 
     private int mId;
     private String mName;

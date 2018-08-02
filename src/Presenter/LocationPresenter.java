@@ -2,11 +2,14 @@ package Presenter;
 
 import Iteractor.IteractorLocation;
 import Model.Department.DepartmentModel;
+import Model.Equipment.EquipmentInventoryModel;
 import Model.Location.LocationModel;
 import Model.Location.Locations;
+import Service.IUpdateData;
+import Service.UpdateService;
 import javafx.collections.ObservableList;
 
-public class LocationPresenter {
+public class LocationPresenter extends BasePresenter implements IUpdateData {
 
     private static LocationModel sLocationModel;
     private static LocationPresenter sLocationPresenter;
@@ -16,7 +19,9 @@ public class LocationPresenter {
         return sLocationPresenter;
     }
 
-    private LocationPresenter(){}
+    private LocationPresenter() {
+        UpdateService.get().addListenerData(this);
+    }
 
     public LocationModel getLocation(){
         return sLocationModel;
@@ -44,5 +49,19 @@ public class LocationPresenter {
 
     public void delete(int id){
         new IteractorLocation().delete(id);
+    }
+
+    @Override
+    public void updateEquipment(EquipmentInventoryModel equipment) {
+
+    }
+
+    @Override
+    public void delete() {
+        if (getSelectedObject() != null) {
+            if (getSelectedObject().equals(sLocationModel)) {
+                System.out.println("delete " + sLocationModel.getName() + "hashCode " + sLocationModel.hashCode());
+            }
+        }
     }
 }

@@ -31,20 +31,20 @@ public class WorkersController {
         firstColumn.setCellValueFactory(cellData->cellData.getValue().nameProperty());
         secondColumn.setCellValueFactory(cellData->cellData.getValue().postProperty());
         departmentColumn.setCellValueFactory(cellData->cellData.getValue().getDepartmentModel().nameProperty());
-        tableViewWorkers.setItems(new WorkerPresenter().getObservableWorkers());
+        tableViewWorkers.setItems(WorkerPresenter.get().getObservableWorkers());
         tableViewWorkers.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) ->delete(newValue) ));
     }
 
     private void delete(WorkerModel worker){
         mId=worker.getId();
-        new WorkerPresenter().setWorker(worker);
-        new WorkerPresenter().editWorker("new name","new post", worker.getDepartmentModel());
+        WorkerPresenter.get().setWorkerModel(worker);
+        WorkerPresenter.get().editWorker("new name", "new post", worker.getDepartmentModel());
     }
 
     @FXML
     private void onClickDelete(){
         if(mId!=-1){
-            new WorkerPresenter().deleteWorker(mId);
+            WorkerPresenter.get().deleteWorker(mId);
             mId=-1;
         }
     }

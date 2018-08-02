@@ -17,20 +17,18 @@ import Model.Worker.WorkerModel;
 import Service.IUpdateData;
 import Service.UpdateService;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TreeItem;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class EquipmentPresenter implements IUpdateData {
+public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     private static EquipmentModel sEquipmentModel;
     private static EquipmentInventoryModel sEquipmentInventoryModel;
     private static StateModel sStateModel;
-    private static EquipmentStateModel mEquipmentState;
+    private static EquipmentStateModel sEquipmentState;
     private static EquipmentPresenter sEquipmentPresenter;
     private static DepartmentModel sDepartmentModel;
-    private static TreeItem<EquipmentInventoryModel> sTreeEquipmentInvItem;
 
     private EquipmentPresenter() {
         UpdateService.get().addListenerData(this);
@@ -42,15 +40,6 @@ public class EquipmentPresenter implements IUpdateData {
         }
         return sEquipmentPresenter;
     }
-
-    public TreeItem<EquipmentInventoryModel> getTreeEquipmentInvItem() {
-        return sTreeEquipmentInvItem;
-    }
-
-    public void setTreeEquipmentInvItem(TreeItem<EquipmentInventoryModel> treeEquipmentInvItem) {
-        sTreeEquipmentInvItem = treeEquipmentInvItem;
-    }
-
     public DepartmentModel getDepartmentModel() {
         return sDepartmentModel;
     }
@@ -137,13 +126,13 @@ public class EquipmentPresenter implements IUpdateData {
 
     public void editEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
                                        DepartmentModel departmentModel, EquipmentStateModel equipmentState, EquipmentModel equipmentModel) {
-        UpdateService.get().updateData(new IteractorEquipmentInventory().edit(new EquipmentInventoryModel(sEquipmentInventoryModel.getId(), inventoryNumber, guaranty,
+        UpdateService.get().updateEquipment(new IteractorEquipmentInventory().edit(new EquipmentInventoryModel(sEquipmentInventoryModel.getId(), inventoryNumber, guaranty,
                 description, departmentModel, equipmentState, equipmentModel)));
         UpdateService.get().refreshControl(DepartmentModel.class);
     }
 
     public void editEquipmentInventory(EquipmentInventoryModel equipment) {
-        UpdateService.get().updateData(new IteractorEquipmentInventory().edit(equipment));
+        UpdateService.get().updateEquipment(new IteractorEquipmentInventory().edit(equipment));
         UpdateService.get().refreshControl(DepartmentModel.class);
     }
 
@@ -174,15 +163,15 @@ public class EquipmentPresenter implements IUpdateData {
     }
 
     public void addEquipmentState(String description, LocalDate date) {
-        mEquipmentState = new EquipmentStateModel(0, description, sStateModel, date);
+        sEquipmentState = new EquipmentStateModel(0, description, sStateModel, date);
     }
 
     public EquipmentStateModel getEquipmentState() {
-        return mEquipmentState;
+        return sEquipmentState;
     }
 
     public void setEquipmentState(EquipmentStateModel equipmentState) {
-        mEquipmentState = equipmentState;
+        sEquipmentState = equipmentState;
     }
 
     public void addMovement(LocalDate date, String base, Object fromDepartment, Object toDepartment, Object fromWorker, Object toWorker, Object equipment) {
@@ -192,6 +181,16 @@ public class EquipmentPresenter implements IUpdateData {
     @Override
     public void updateEquipment(EquipmentInventoryModel equipment) {
 
+    }
+
+    @Override
+    public void delete() {
+        if (getSelectedObject() != null) {
+            if (getSelectedObject().equals(sEquipmentInventoryModel)) {
+                System.out.println("delete " + sEquipmentInventoryModel.getInventoryNumber().getName());
+            }
+
+        }
     }
 
     public void cancel() {

@@ -2,27 +2,21 @@ package UI.Popup.Controller;
 
 import Presenter.EquipmentPresenter;
 import com.jfoenix.controls.JFXListView;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 
-public class EquipmentInventoryPopupController {
+public class EquipmentInventoryPopupController extends BasePopupController {
 
     @FXML
     private JFXListView<Node> mPopupList;
 
+    @FXML
     public void initialize() {
-        mPopupList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedPopupItem(newValue));
-        mPopupList.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (oldValue) clearSelection();
-            }
-        });
+        init(mPopupList);
     }
 
-    private void selectedPopupItem(Node node) {
+    @Override
+    protected void selectedPopupItem(Node node) {
         if (node != null) {
             switch (node.getId()) {
                 case "moveLog":

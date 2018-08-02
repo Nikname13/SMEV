@@ -54,9 +54,15 @@ public class UpdateService {
 
     }
 
-    public void updateData(EquipmentInventoryModel equipment) {
+    public void updateEquipment(EquipmentInventoryModel equipment) {
         for (IUpdateData listener : getListenerData()) {
             listener.updateEquipment(equipment);
+        }
+    }
+
+    public void delete() {
+        for (IUpdateData listener : getListenerData()) {
+            listener.delete();
         }
     }
 }

@@ -8,13 +8,15 @@
             fx:controller="UI.Equipment.Equipment_inventory.Controller.EquipmentInventoryController"
             style="-fx-background-color: #ffffff;">
     <children>
-        <AnchorPane AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="80.0" AnchorPane.bottomAnchor="80.0" AnchorPane.rightAnchor="100.0">
+        <AnchorPane AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="80.0" AnchorPane.bottomAnchor="80.0"
+                    AnchorPane.rightAnchor="100.0">
             <children>
                 <JFXButton AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="30.0" prefHeight="160.0"
                            prefWidth="250.0" style="-fx-background-color: #a8f1b3;"/>
                 <JFXButton prefHeight="45.0" prefWidth="120.0" ripplerFill="#40a85f" text="Фотографии"
                            AnchorPane.topAnchor="200.0" AnchorPane.leftAnchor="30.0"/>
-                <JFXButton prefHeight="45.0" text="Конфиги" prefWidth="120.0" ripplerFill="#40a85f" AnchorPane.topAnchor="200.0"
+                <JFXButton prefHeight="45.0" text="Конфиги" prefWidth="120.0" ripplerFill="#40a85f"
+                           AnchorPane.topAnchor="200.0"
                            AnchorPane.leftAnchor="160.0"/>
 
                 <JFXComboBox fx:id="mComboBoxDepartment" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"

@@ -8,6 +8,8 @@ import Service.UpdateService;
 import UI.Coordinator;
 import UI.Popup.BasePopup;
 import com.jfoenix.controls.JFXListView;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TableColumn;
@@ -35,6 +37,11 @@ public class DepartmentsController implements IUpdateUI {
 
     @FXML
     public void initialize(){
+        initListViewDepartments();
+        initPopup();
+    }
+
+    private void initListViewDepartments() {
         mDepartmentListView.setItems(DepartmentPresenter.get().getObservableDepartment());
         mDepartmentListView.setCellFactory(p->new ListCell<>(){
             @Override
@@ -48,22 +55,28 @@ public class DepartmentsController implements IUpdateUI {
             }
         });
         mDepartmentListView.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment(newValue)));
-        initPopup();
+        mDepartmentListView.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if (!oldValue)
+                    DepartmentPresenter.get().setSelectedObject(mDepartmentListView.getSelectionModel().getSelectedItem());
+            }
+        });
     }
 
     private void initPopup() {
-        new BasePopup(mDepartmentListView, BasePopup.getDepartmentsListPopup());
+        new BasePopup(mDepartmentListView, BasePopup.getBaseListPopup());
     }
 
     private void selectedDepartment(DepartmentModel department) {
         if(department!=null) {
             System.out.println("select department");
             DepartmentPresenter.get().setDepartmentModel(department);
+            DepartmentPresenter.get().setSelectedObject(department);
             TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditDepartmentResource()));
             System.out.println(" listener " + TabControllerService.get().getListenerFirstTabPane().getClass().getName());
             UpdateService.get().updateUI(DepartmentModel.class);
         }
-
     }
 
     @FXML
