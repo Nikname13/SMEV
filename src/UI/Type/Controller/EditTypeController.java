@@ -29,7 +29,7 @@ public class EditTypeController {
     public void initialize(){
         nameType.setText(sTypeModel.getName());
         firstColumn.setCellValueFactory(cellData->cellData.getValue().nameProperty());
-        tableViewEditParameters.setItems(sTypeModel.getObservableList());
+        tableViewEditParameters.setItems(sTypeModel.getObservableEntityList());
         tableViewEditParameters.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->editEntity(newValue) );
     }
 

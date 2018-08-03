@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class TypesController {
 
     public TypesController(){
-        //new TypePresenter().update();
+        //new TypePresenter().updateData();
     }
 
     @FXML

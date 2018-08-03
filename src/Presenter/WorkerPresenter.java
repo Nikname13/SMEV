@@ -3,7 +3,6 @@ package Presenter;
 import Iteractor.IteractorWorker;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
-import Model.Equipment.EquipmentInventoryModel;
 import Model.Worker.WorkerModel;
 import Model.Worker.Workers;
 import Service.IUpdateData;
@@ -41,7 +40,8 @@ public class WorkerPresenter extends BasePresenter implements IUpdateData {
     }
 
     public void addWorker(String name, String post, DepartmentModel department){
-        new IteractorWorker().addNew(new WorkerModel(0, name, post, department));
+        UpdateService.get().updateData(new IteractorWorker().addNew(new WorkerModel(0, name, post, department)));
+        UpdateService.get().updateControl(WorkerModel.class);
     }
 
     public void editWorker(String name, String post, DepartmentModel department){
@@ -52,12 +52,8 @@ public class WorkerPresenter extends BasePresenter implements IUpdateData {
         new IteractorWorker().delete(id);
     }
 
-    public void update(){
-        Workers.get().update();
-    }
-
     @Override
-    public void updateEquipment(EquipmentInventoryModel equipment) {
+    public void update(Object equipment) {
 
     }
 
@@ -65,7 +61,10 @@ public class WorkerPresenter extends BasePresenter implements IUpdateData {
     public void delete() {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sWorkerModel)) {
-                System.out.println("delete " + sWorkerModel.getName() + "hashCode " + sWorkerModel.hashCode());
+                System.out.println("delete " + sWorkerModel.getDepartmentModel().getId() + " hashCode " + sWorkerModel.hashCode());
+                UpdateService.get().updateData(sWorkerModel);
+                new IteractorWorker().delete(sWorkerModel.getId());
+                UpdateService.get().updateControl(WorkerModel.class);
             }
         }
     }

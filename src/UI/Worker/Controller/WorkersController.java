@@ -14,7 +14,7 @@ public class WorkersController {
     private int mId;
 
     public WorkersController(){
-        //new WorkerPresenter().update();
+        //new WorkerPresenter().updateData();
     }
 
     @FXML

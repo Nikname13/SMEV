@@ -1,7 +1,5 @@
 package Service;
 
-import Model.Equipment.EquipmentInventoryModel;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,9 +52,9 @@ public class UpdateService {
 
     }
 
-    public void updateEquipment(EquipmentInventoryModel equipment) {
+    public void updateData(Object object) {
         for (IUpdateData listener : getListenerData()) {
-            listener.updateEquipment(equipment);
+            listener.update(object);
         }
     }
 

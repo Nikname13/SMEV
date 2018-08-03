@@ -31,7 +31,7 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
     private static DepartmentPresenter sDepartmentPresenter;
 
     public static DepartmentPresenter get() {
-        if(sDepartmentPresenter==null)sDepartmentPresenter=new DepartmentPresenter();
+        if (sDepartmentPresenter == null) sDepartmentPresenter = new DepartmentPresenter();
         return sDepartmentPresenter;
     }
 
@@ -55,45 +55,50 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
         sPurchaseModel = purchaseModel;
     }
 
-    public ObservableList<DepartmentModel> getObservableDepartment(){
+    public ObservableList<DepartmentModel> getObservableDepartment() {
         return Departments.get().getEntityList();
     }
 
-    public ObservableList<WorkerModel> getObservableWorker(){
+    public ObservableList<WorkerModel> getObservableWorker() {
         return Workers.get().getEntityList();
     }
 
-    public ObservableList<AreaModel> getObservableArea(){
+    public ObservableList<AreaModel> getObservableArea() {
         return Areas.get().getEntityList();
     }
 
-    public ObservableList<LocationModel> getObservableLocation(){return Locations.get().getEntityList();}
+    public ObservableList<LocationModel> getObservableLocation() {
+        return Locations.get().getEntityList();
+    }
 
-    public void addDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area, String address){
+    public void addDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area, String address) {
         /*new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));*/
         new IteractorLocation().addNew(new LocationModel(-1, address,
                 new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area))));
     }
 
-    public void addDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area, LocationModel address){
+    public void addDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area, LocationModel address) {
         /*new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));*/
-        DepartmentModel department=new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));
+        DepartmentModel department = new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));
         address.addLocation(department);
         new IteractorLocation().edit(address);
     }
 
-    public void editDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area){
+    public void editDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area) {
         new IteractorDepartment().edit(new DepartmentModel(sDepartmentModel.getId(), number, name, eleсtronicQ, renting, description, area));
+        UpdateService.get().refreshControl(Departments.class);
     }
 
-    public void addPurchase(String url, String description, LocalDate date){
-      new IteractorPurchase().addNew(new PurchaseModel(0, url, description, date, sDepartmentModel));
+    public void addPurchase(String url, String description, LocalDate date) {
+        UpdateService.get().updateData(new IteractorPurchase().addNew(new PurchaseModel(0, url, description, date, sDepartmentModel)));
+        UpdateService.get().updateControl(PurchaseModel.class);
     }
 
-    public void editPurchase(){}
+    public void editPurchase() {
+    }
 
 
-    public void deleteDepartment(int id){
+    public void deleteDepartment(int id) {
         new IteractorDepartment().delete(id);
     }
 
@@ -101,7 +106,7 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
         sDepartmentModel.addFileDumpDocList(files);
     }
 
-    public String getTypeDocuments(){
+    public String getTypeDocuments() {
         return sTypeDocuments;
     }
 
@@ -109,28 +114,48 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
         sTypeDocuments = type;
     }
 
-    public void downloadOpenFile(String path, String typeDocuments){
+    public void downloadOpenFile(String path, String typeDocuments) {
         try {
-            File file = File.createTempFile(path.substring(0, path.length() - 4), path.substring(path.length() - 4, path.length()));
+            File file = File.createTempFile(path.substring(0, path.length() - 4), path.substring(path.length() - 4));
             Desktop desktop = null;
             if (Desktop.isDesktopSupported()) {
                 desktop = Desktop.getDesktop();
             }
             desktop.open(new IteractorDepartment().downloadFile(sDepartmentModel.getId(), typeDocuments, path, file));
-        }catch (IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex);
         }
     }
 
-    public void downloadSaveFile(String path, String typeDocuments, File savePath){
+    public void downloadSaveFile(String path, String typeDocuments, File savePath) {
         new IteractorDepartment().downloadFile(sDepartmentModel.getId(), typeDocuments, path, savePath);
     }
 
     @Override
-    public void updateEquipment(EquipmentInventoryModel equipment) {
-        if (sDepartmentModel != null) {
-            sDepartmentModel.replace(equipment);
+    public void update(Object object) {
+        System.out.println(object.getClass() + " " + EquipmentInventoryModel.class);
+        if (object.getClass().equals(EquipmentInventoryModel.class)) {
+            EquipmentInventoryModel equipment = (EquipmentInventoryModel) object;
+            setLoadFalse(equipment.getDepartmentModel().getId());
         }
+        if (object.getClass().equals(WorkerModel.class)) {
+            WorkerModel workerModel = (WorkerModel) object;
+            setLoadFalse(workerModel.getDepartmentModel().getId());
+        }
+        if (object.getClass().equals(LocationModel.class)) {
+            LocationModel locationModel = (LocationModel) object;
+            for (DepartmentModel departmentModel : locationModel.getDepartmentList()) {
+                Departments.get().getEntity(departmentModel.getId()).setLocationList(null);
+            }
+        }
+        if (object.getClass().equals(PurchaseModel.class)) {
+            PurchaseModel purchaseModel = (PurchaseModel) object;
+            setLoadFalse(purchaseModel.getDepratment().getId());
+        }
+    }
+
+    private void setLoadFalse(int id) {
+        Departments.get().getEntity(id).setLoad(false);
     }
 
     @Override
@@ -138,9 +163,13 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sDepartmentModel)) {
                 System.out.println("delete " + sDepartmentModel.getName());
+                //getBasePopup().get().hide();
             }
             if (getSelectedObject().equals(sPurchaseModel)) {
                 System.out.println("delete " + sPurchaseModel.getName());
+                UpdateService.get().updateData(sPurchaseModel);
+                new IteractorPurchase().delete(sPurchaseModel.getId());
+                UpdateService.get().updateControl(PurchaseModel.class);
             }
         }
     }

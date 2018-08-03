@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 
 public interface IGenericModel<T> {
 
-    ObservableList<T> getObservableList();
+    ObservableList<T> getObservableEntityList();
     T getEntity(int id);
     void addEntity(T entity);
     T getLastEntity();

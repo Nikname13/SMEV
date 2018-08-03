@@ -310,9 +310,9 @@ public class Coordinator {
 
     public void goToAddWorkerDepartmentWindow(Stage stage) {
         try {
-            windowSceneContent("Department/addWorker.fxml", stage, "Добавить сотрудника", 100.0, 200.0);
+            windowSceneContent("Worker/addWorker.fxml", stage, "Добавить сотрудника", 260.0, 300.0);
         }catch (Exception ex){
-            System.out.println("Exeption goToAddWorkerDepartmentWindow "+ex);
+            System.out.println("Exception goToAddWorkerDepartmentWindow " + ex);
         }
     }
 

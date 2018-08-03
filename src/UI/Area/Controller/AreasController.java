@@ -14,7 +14,7 @@ public class AreasController {
     private int mId;
 
     public AreasController(){
-        //new AreaPresenter().update();
+        //new AreaPresenter().updateData();
     }
 
     @FXML

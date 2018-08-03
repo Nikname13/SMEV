@@ -32,7 +32,7 @@ public class ProvidersController {
 
     private void editEntity(Object entity){
         /*new ProviderPresenter().setProviderModel(entity);
-        new ProviderPresenter().editProvide("update name","update description");*/
+        new ProviderPresenter().editProvide("updateData name","updateData description");*/
         new ProviderPresenter().delete(entity.hashCode());
     }
 

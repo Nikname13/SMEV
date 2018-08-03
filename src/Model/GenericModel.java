@@ -47,7 +47,7 @@ public class GenericModel<T> extends AbstractModel<GenericModel<T>> implements I
     }
 
     @Override
-    public ObservableList<T> getObservableList() {
+    public ObservableList<T> getObservableEntityList() {
         if(mEntityList == null){
             getEntityList();
         }

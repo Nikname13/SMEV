@@ -1,6 +1,7 @@
 package UI.Department.Controller;
 
 import Model.Department.DepartmentModel;
+import Model.Department.Departments;
 import Presenter.DepartmentPresenter;
 import Service.IUpdateUI;
 import Service.TabControllerService;
@@ -22,6 +23,8 @@ public class DepartmentsController implements IUpdateUI {
     public DepartmentsController(){
         UpdateService.get().addListener(this);
     }
+
+    private BasePopup mPopup;
 
     @FXML
     private TableView<DepartmentModel> mDepartmentTableView;
@@ -65,12 +68,14 @@ public class DepartmentsController implements IUpdateUI {
     }
 
     private void initPopup() {
-        new BasePopup(mDepartmentListView, BasePopup.getBaseListPopup());
+        mPopup = new BasePopup(mDepartmentListView, BasePopup.getBaseListPopup());
+
     }
 
     private void selectedDepartment(DepartmentModel department) {
         if(department!=null) {
             System.out.println("select department");
+            DepartmentPresenter.get().setBasePopup(mPopup);
             DepartmentPresenter.get().setDepartmentModel(department);
             DepartmentPresenter.get().setSelectedObject(department);
             TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditDepartmentResource()));
@@ -93,7 +98,9 @@ public class DepartmentsController implements IUpdateUI {
 
     @Override
     public void refreshControl(Class<?> updateClass) {
-
+        if (updateClass.getClass().getName().equals(Departments.class.getName())) {
+            mDepartmentListView.refresh();
+        }
     }
 
     @Override

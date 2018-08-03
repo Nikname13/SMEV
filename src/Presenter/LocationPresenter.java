@@ -2,7 +2,6 @@ package Presenter;
 
 import Iteractor.IteractorLocation;
 import Model.Department.DepartmentModel;
-import Model.Equipment.EquipmentInventoryModel;
 import Model.Location.LocationModel;
 import Model.Location.Locations;
 import Service.IUpdateData;
@@ -36,7 +35,8 @@ public class LocationPresenter extends BasePresenter implements IUpdateData {
     }
 
     public void addLocation(String address, DepartmentModel department){
-        new IteractorLocation().addNew(new LocationModel(0, address, department));
+        UpdateService.get().updateData(new IteractorLocation().addNew(new LocationModel(0, address, department)));
+        UpdateService.get().updateControl(LocationModel.class);
     }
 
     public void editLocation(String address, DepartmentModel department){
@@ -51,8 +51,9 @@ public class LocationPresenter extends BasePresenter implements IUpdateData {
         new IteractorLocation().delete(id);
     }
 
+
     @Override
-    public void updateEquipment(EquipmentInventoryModel equipment) {
+    public void update(Object equipment) {
 
     }
 

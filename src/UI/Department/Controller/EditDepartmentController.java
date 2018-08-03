@@ -88,7 +88,8 @@ public class EditDepartmentController implements IUpdateUI {
         System.out.println("edit department initialize ");
         mAnchorPaneBasicInfoDepartment.setPrefSize(450.0, 190.0);
         mButtonUpdate.setFocusTraversable(false);
-        mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNumber);
+
+        initTextFields();
         initTreeTableEquipmentInventory();
         initComboBoxArea();
         initTextAreaDescription();
@@ -97,6 +98,22 @@ public class EditDepartmentController implements IUpdateUI {
         initLocationListView();
         initWorkerListView();
         initPopup();
+    }
+
+    private void initTextFields() {
+        mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNumber);
+        mTextFieldName.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                setVisibleEditButton();
+            }
+        });
+        mTextFieldNumber.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                setVisibleEditButton();
+            }
+        });
     }
 
     private void initLocationListView() {
@@ -133,8 +150,11 @@ public class EditDepartmentController implements IUpdateUI {
             }
         });
         mListViewPurchase.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
-            DepartmentPresenter.get().setSelectedObject(newValue);
-            DepartmentPresenter.get().setPurchaseModel(newValue);
+            if (newValue != null) {
+                newValue.setDepratment(mDepartmentModel);
+                DepartmentPresenter.get().setSelectedObject(newValue);
+                DepartmentPresenter.get().setPurchaseModel(newValue);
+            }
         }));
         mListViewPurchase.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
@@ -197,6 +217,7 @@ public class EditDepartmentController implements IUpdateUI {
         });
         mListViewWorker.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
             if (newValue != null) {
+                newValue.setDepartmentModel(mDepartmentModel);
                 WorkerPresenter.get().setWorkerModel(newValue);
                 WorkerPresenter.get().setSelectedObject(newValue);
             }
@@ -330,10 +351,11 @@ public class EditDepartmentController implements IUpdateUI {
 
     @FXML
     private void onClickEdit() {
-        setInvisibleEditButton();
-
-/*        DepartmentPresenter.get().editDepartment(mTextFieldNumber.getText(), mTextFieldName.getText(), mRadioButtonElQ.isSelected(), mRadioButtonRenting.isSelected(),
-                mTextAreaDescription.getText(), mDepartmentModel.getAreaModel());*/
+        if (mBaseValidator.validate()) {
+            setInvisibleEditButton();
+            DepartmentPresenter.get().editDepartment(mTextFieldNumber.getText(), mTextFieldName.getText(), mRadioButtonElQ.isSelected(), mRadioButtonRenting.isSelected(),
+                    mTextAreaDescription.getText(), mComboBoxArea.getValue());
+        }
     }
 
     @FXML
@@ -390,7 +412,7 @@ public class EditDepartmentController implements IUpdateUI {
             mRadioButtonRenting.setSelected(mDepartmentModel.isRenting());
             mListViewWorker.setItems(mDepartmentModel.getObsWorkerList());
             mListViewLocation.setItems(mDepartmentModel.getObsLocationList());
-            mListViewPurchase.setItems(mDepartmentModel.getObservableList());
+            mListViewPurchase.setItems(mDepartmentModel.getObservableEntityList());
             mComboBoxArea.setItems(DepartmentPresenter.get().getObservableArea());
             mComboBoxArea.getSelectionModel().select(mDepartmentModel.getAreaModel());
             setInvisibleEditButton();
@@ -402,8 +424,11 @@ public class EditDepartmentController implements IUpdateUI {
 
     @Override
     public void refreshControl(Class<?> updateClass) {
-        if (updateClass.getName().equals(DepartmentModel.class.getName())) {
+        if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
             mTreeTableEquipmentInventory.refresh();
+        }
+        if (updateClass.getName().equals(WorkerModel.class.getName())) {
+            mListViewWorker.refresh();
         }
 
     }
@@ -413,6 +438,15 @@ public class EditDepartmentController implements IUpdateUI {
         if (updateClass.getName().equals(DepartmentModel.class.getName())) {
             updateEquipmentTable(mDepartmentModel.getObsEquipmnetList());
             UpdateService.get().updateUI(TabPaneSecondLvlController.class);
+        }
+        if (updateClass.getName().equals(WorkerModel.class.getName())) {
+            mListViewWorker.setItems(mDepartmentModel.getObsWorkerList());
+        }
+        if (updateClass.getName().equals(LocationModel.class.getName())) {
+            mListViewLocation.setItems(mDepartmentModel.getObsLocationList());
+        }
+        if (updateClass.getName().equals(PurchaseModel.class.getName())) {
+            mListViewPurchase.setItems(mDepartmentModel.getObservableEntityList());
         }
     }
 

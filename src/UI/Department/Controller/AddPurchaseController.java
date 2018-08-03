@@ -1,5 +1,6 @@
 package UI.Department.Controller;
 
+import Presenter.DepartmentPresenter;
 import UI.Validator.BaseValidator;
 import UI.Validator.Pair;
 import com.jfoenix.controls.JFXDatePicker;
@@ -52,7 +53,7 @@ public class AddPurchaseController {
         if (mBaseValidator.validate()) {
             System.out.println("true");
             System.out.println(mTextFieldURL.getText());
-            //DepartmentPresenter.get().addPurchase(mTextFieldURL.getText().trim(), mTextAreaDescription.getText().trim(), mDatePicker.getValue());
+            DepartmentPresenter.get().addPurchase(mTextFieldURL.getText().trim(), mTextAreaDescription.getText().trim(), mDatePicker.getValue());
             close();
         }
     }

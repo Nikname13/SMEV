@@ -70,7 +70,7 @@ public class EditEquipmentController implements IUpdateUI {
         columnNameType.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
 /*        columnNumber.setCellValueFactory(cellData -> cellData.getValue().getInventoryNumber().nameProperty());
         columnState.setCellValueFactory(cellData -> cellData.getValue().getLastEntity().getStateModel().nameProperty());
-        columnDepartment.setCellValueFactory(cellData -> cellData.getValue().getDepartmentModel().nameProperty());
+        columnDepartment.setCellValueFactory(cellData -> cellData.getValue().getDepartmentList().nameProperty());
         tableViewEquipment.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedEquipment(newValue));*/
 
         mDepartmentEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getDepartmentModel().nameProperty());

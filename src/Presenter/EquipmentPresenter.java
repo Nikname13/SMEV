@@ -40,6 +40,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         }
         return sEquipmentPresenter;
     }
+
     public DepartmentModel getDepartmentModel() {
         return sDepartmentModel;
     }
@@ -126,14 +127,14 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     public void editEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
                                        DepartmentModel departmentModel, EquipmentStateModel equipmentState, EquipmentModel equipmentModel) {
-        UpdateService.get().updateEquipment(new IteractorEquipmentInventory().edit(new EquipmentInventoryModel(sEquipmentInventoryModel.getId(), inventoryNumber, guaranty,
+        UpdateService.get().updateData(new IteractorEquipmentInventory().edit(new EquipmentInventoryModel(sEquipmentInventoryModel.getId(), inventoryNumber, guaranty,
                 description, departmentModel, equipmentState, equipmentModel)));
         UpdateService.get().refreshControl(DepartmentModel.class);
     }
 
     public void editEquipmentInventory(EquipmentInventoryModel equipment) {
-        UpdateService.get().updateEquipment(new IteractorEquipmentInventory().edit(equipment));
-        UpdateService.get().refreshControl(DepartmentModel.class);
+        UpdateService.get().updateData(new IteractorEquipmentInventory().edit(equipment));
+        UpdateService.get().refreshControl(EquipmentInventoryModel.class);
     }
 
 
@@ -141,6 +142,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
         Departments.get().getEntity(toDepartment.getId()).setLoad(false);
         Departments.get().getEntity(equipment.getDepartmentModel().getId()).setLoad(false);
+        Equipments.get().getEntity(equipment.getEquipmentModel().getId()).setLoad(false);
         MovementModel movement = new MovementModel(0, LocalDate.now(), base);
         movement.addDepartment(equipment.getDepartmentModel());
         movement.addDepartment(toDepartment);
@@ -179,8 +181,14 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     }
 
     @Override
-    public void updateEquipment(EquipmentInventoryModel equipment) {
-
+    public void update(Object object) {
+        if (object.getClass().equals(EquipmentInventoryModel.class)) {
+            EquipmentInventoryModel equipment = (EquipmentInventoryModel) object;
+            EquipmentModel equipmentModel = Equipments.get().getEntity(equipment.getEquipmentModel().getId());
+            if (equipmentModel != null) {
+                equipmentModel.setLoad(false);
+            }
+        }
     }
 
     @Override

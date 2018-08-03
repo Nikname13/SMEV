@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class StatesController {
 
     public StatesController(){
-        //new StatePresenter().update();
+        //new StatePresenter().updateData();
     }
 
     @FXML

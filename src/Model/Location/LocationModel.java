@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LocationModel extends AbstractModel {
 
-    private List<DepartmentModel> mDepartmentModel;
+    private List<DepartmentModel> mDepartmentList;
 
     public LocationModel(int id, String name) {
         super(id, name);
@@ -19,16 +19,16 @@ public class LocationModel extends AbstractModel {
         addLocation(department);
     }
 
-    public List<DepartmentModel> getDepartmentModel() {
-        return mDepartmentModel;
+    public List<DepartmentModel> getDepartmentList() {
+        return mDepartmentList;
     }
 
-    public void setDepartmentModel(List<DepartmentModel> departmentModel) {
-        mDepartmentModel = departmentModel;
+    public void setDepartmentList(List<DepartmentModel> departmentList) {
+        mDepartmentList = departmentList;
     }
 
     public void addLocation(DepartmentModel department){
-        if(mDepartmentModel ==null) mDepartmentModel=new ArrayList<>();
-        mDepartmentModel.add(department);
+        if (mDepartmentList == null) mDepartmentList = new ArrayList<>();
+        mDepartmentList.add(department);
     }
 }

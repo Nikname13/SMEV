@@ -2,24 +2,46 @@ package UI.Worker.Controller;
 
 import Model.Department.DepartmentModel;
 import Presenter.WorkerPresenter;
+import UI.Validator.BaseValidator;
+import UI.Validator.Pair;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.ValidationFacade;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class AddWorkerController {
 
-    private DepartmentModel mDepartmentModel;
+    private BaseValidator mBaseValidator = new BaseValidator();
 
     @FXML
-    private TextField textFieldName, textFieldPost;
+    private JFXTextField mTextFieldName, mTextFieldPost;
 
     @FXML
-    private ComboBox<DepartmentModel> comboBoxDepartment;
+    private JFXComboBox<DepartmentModel> mComboBoxDepartment;
+
+    @FXML
+    private ValidationFacade mFacadeDepartment;
+
+    @FXML
+    private Label mErrorDepartment;
+
+    @FXML
+    private AnchorPane mAnchorPaneWorker;
 
     @FXML
     public void initialize(){
-        comboBoxDepartment.setCellFactory(p-> new ListCell<DepartmentModel>(){
+        mBaseValidator.setValidationFacades(new Pair(mFacadeDepartment, mErrorDepartment));
+        mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldPost);
+        initComboBoxDepartment();
+
+    }
+
+    private void initComboBoxDepartment() {
+        mComboBoxDepartment.setCellFactory(p -> new ListCell<DepartmentModel>() {
             @Override
             protected void updateItem(DepartmentModel item, boolean empty) {
                 super.updateItem(item, empty);
@@ -30,16 +52,24 @@ public class AddWorkerController {
                 }
             }
         });
-        comboBoxDepartment.setItems(WorkerPresenter.get().getObservableDepartment());
-        comboBoxDepartment.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment(newValue)));
-    }
-
-    private void selectedDepartment(DepartmentModel departmet){
-        mDepartmentModel=departmet;
+        mComboBoxDepartment.setItems(WorkerPresenter.get().getObservableDepartment());
     }
 
     @FXML
     private void onClickAdd(){
-        WorkerPresenter.get().addWorker(textFieldName.getText(), textFieldPost.getText(), mDepartmentModel);
+        if (mBaseValidator.validate()) {
+            WorkerPresenter.get().addWorker(mTextFieldName.getText(), mTextFieldPost.getText(), mComboBoxDepartment.getValue());
+            close();
+        }
+    }
+
+    @FXML
+    private void onClickCancel() {
+        close();
+    }
+
+    private void close() {
+        Stage stage = (Stage) mAnchorPaneWorker.getScene().getWindow();
+        stage.close();
     }
 }

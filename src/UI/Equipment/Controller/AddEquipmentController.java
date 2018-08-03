@@ -2,18 +2,13 @@ package UI.Equipment.Controller;
 
 import Model.Equipment.EquipmentParameterModel;
 import Model.Parameter.ParameterModel;
-import Model.Provider.ProviderModel;
 import Model.Type.TypeModel;
 import Presenter.EquipmentPresenter;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class AddEquipmentController {
@@ -64,7 +59,7 @@ public class AddEquipmentController {
     }
 
     private void selectedType(Object type){
-        tableViewParameter.setItems(((TypeModel)type).getObservableList());
+        tableViewParameter.setItems(((TypeModel) type).getObservableEntityList());
         mType=type;
     }
 

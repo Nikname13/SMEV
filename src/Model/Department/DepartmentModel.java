@@ -181,11 +181,8 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     }
 
     public ObservableList<LocationModel> getObsLocationList() {
-        if (mLocationList == null) {
-            getLocationList();
-        }
         ObservableList<LocationModel> locationList = FXCollections.observableArrayList();
-        for (LocationModel location : mLocationList) {
+        for (LocationModel location : getLocationList()) {
             locationList.add(location);
         }
         return locationList;

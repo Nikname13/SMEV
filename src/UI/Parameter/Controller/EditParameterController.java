@@ -6,7 +6,10 @@ import Presenter.ParametersPresenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class EditParameterController {
 
@@ -14,9 +17,9 @@ public class EditParameterController {
     private static List<Object> mEditValues, mdeleteValue;
 
     public EditParameterController() {
-        this.mParameter = new ParametersPresenter().getParameter();
-        this.mEditValues = new ArrayList<>();
-        this.mdeleteValue = new ArrayList<>();
+        mParameter = new ParametersPresenter().getParameter();
+        mEditValues = new ArrayList<>();
+        mdeleteValue = new ArrayList<>();
     }
 
     @FXML
@@ -44,7 +47,7 @@ public class EditParameterController {
             tableViewEditParameters.setVisible(true);
             valuesTextArea.setVisible(false);
             firstColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-            tableViewEditParameters.setItems(mParameter.getObservableList());
+            tableViewEditParameters.setItems(mParameter.getObservableEntityList());
             tableViewEditParameters.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> editParameter(newValue.getId()));
             isValue.setSelected(mParameter.isValue());
         } else {
