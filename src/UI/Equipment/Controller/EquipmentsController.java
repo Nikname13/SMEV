@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 public class EquipmentsController implements IUpdateUI {
 
     public EquipmentsController() {
-        UpdateService.get().addListener(this);
+        UpdateService.get().addListenerUI(this);
     }
 
     @FXML
@@ -43,7 +43,7 @@ public class EquipmentsController implements IUpdateUI {
         nameColumn.setCellValueFactory(cellData->cellData.getValue().nameProperty());
         nameFactColumn.setCellValueFactory(cellData->cellData.getValue().nameFactProperty());
         typeColumn.setCellValueFactory(cellData->cellData.getValue().getTypeModel().nameProperty());
-        tableViewEquipment.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedEquipment(newValue));*/
+        tableViewEquipment.getSelectionModel().selectedItemProperty().addListenerUI((observable, oldValue, newValue) -> selectedEquipment(newValue));*/
 
         TreeItem<AbstractModel<?>> rootItem = new TreeItem<>();
         boolean flag = false;

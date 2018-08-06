@@ -152,7 +152,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         movement.addEntity(equipment);
         new IteractorMovement().addNew(movement);
         new IteractorEquipmentInventory().edit(equipment);
-        UpdateService.get().updateControl(DepartmentModel.class);
+        UpdateService.get().updateControl(EquipmentInventoryModel.class);
     }
 
     public void deleteEquipment() {
@@ -197,7 +197,6 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
             if (getSelectedObject().equals(sEquipmentInventoryModel)) {
                 System.out.println("delete " + sEquipmentInventoryModel.getInventoryNumber().getName());
             }
-
         }
     }
 

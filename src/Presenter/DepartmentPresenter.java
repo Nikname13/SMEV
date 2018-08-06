@@ -90,7 +90,7 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
     }
 
     public void addPurchase(String url, String description, LocalDate date) {
-        UpdateService.get().updateData(new IteractorPurchase().addNew(new PurchaseModel(0, url, description, date, sDepartmentModel)));
+        new IteractorPurchase().addNew(new PurchaseModel(0, url, description, date, sDepartmentModel));
         UpdateService.get().updateControl(PurchaseModel.class);
     }
 
@@ -148,10 +148,6 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
                 Departments.get().getEntity(departmentModel.getId()).setLocationList(null);
             }
         }
-        if (object.getClass().equals(PurchaseModel.class)) {
-            PurchaseModel purchaseModel = (PurchaseModel) object;
-            setLoadFalse(purchaseModel.getDepratment().getId());
-        }
     }
 
     private void setLoadFalse(int id) {
@@ -162,13 +158,11 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
     public void delete() {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sDepartmentModel)) {
-                System.out.println("delete " + sDepartmentModel.getName());
-                //getBasePopup().get().hide();
+                new IteractorDepartment().delete(sDepartmentModel.getId());
+                UpdateService.get().updateControl(DepartmentModel.class);
             }
             if (getSelectedObject().equals(sPurchaseModel)) {
-                System.out.println("delete " + sPurchaseModel.getName());
-                UpdateService.get().updateData(sPurchaseModel);
-                new IteractorPurchase().delete(sPurchaseModel.getId());
+                new IteractorPurchase().delete(sPurchaseModel);
                 UpdateService.get().updateControl(PurchaseModel.class);
             }
         }

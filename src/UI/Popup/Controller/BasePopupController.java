@@ -1,5 +1,6 @@
 package UI.Popup.Controller;
 
+import Service.UpdateService;
 import com.jfoenix.controls.JFXListView;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,8 +13,12 @@ public class BasePopupController {
         list.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (oldValue) list.getSelectionModel().clearSelection();
+                System.out.println(oldValue + " " + list);
+                if (!oldValue) list.getSelectionModel().clearSelection();
             }
+        });
+        list.setOnMouseClicked(event -> {
+            UpdateService.get().hidePopup();
         });
     }
 

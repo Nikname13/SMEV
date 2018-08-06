@@ -33,8 +33,4 @@ public class EquipmentInventoryPopupController extends BasePopupController {
         }
 
     }
-
-    private void clearSelection() {
-        mPopupList.getSelectionModel().clearSelection();
-    }
 }

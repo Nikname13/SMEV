@@ -25,7 +25,7 @@ public class EditEquipmentController implements IUpdateUI {
     private static EquipmentModel sEquipmentModel;
 
     public EditEquipmentController() {
-        UpdateService.get().addListener(this);
+        UpdateService.get().addListenerUI(this);
         sEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
     }
 
@@ -71,7 +71,7 @@ public class EditEquipmentController implements IUpdateUI {
 /*        columnNumber.setCellValueFactory(cellData -> cellData.getValue().getInventoryNumber().nameProperty());
         columnState.setCellValueFactory(cellData -> cellData.getValue().getLastEntity().getStateModel().nameProperty());
         columnDepartment.setCellValueFactory(cellData -> cellData.getValue().getDepartmentList().nameProperty());
-        tableViewEquipment.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedEquipment(newValue));*/
+        tableViewEquipment.getSelectionModel().selectedItemProperty().addListenerUI((observable, oldValue, newValue) -> selectedEquipment(newValue));*/
 
         mDepartmentEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getDepartmentModel().nameProperty());
         mNumberEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getInventoryNumber().nameProperty());

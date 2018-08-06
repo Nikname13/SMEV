@@ -7,6 +7,10 @@ public class UpdateService {
 
     private List<IUpdateUI> mListenerUI = new ArrayList<>();
     private List<IUpdateData> mListenerData = new ArrayList<>();
+    private List<IUpdatePopup> mListenerPopup = new ArrayList<>();
+
+
+
     private static UpdateService sUpdateService;
 
     public static UpdateService get(){
@@ -25,12 +29,20 @@ public class UpdateService {
         return mListenerData;
     }
 
+    public List<IUpdatePopup> getListenerPopup() {
+        return mListenerPopup;
+    }
+
     public void addListenerData(IUpdateData listener) {
         mListenerData.add(listener);
     }
 
-    public void addListener(IUpdateUI listener){
+    public void addListenerUI(IUpdateUI listener) {
         mListenerUI.add(listener);
+    }
+
+    public void addListenerPopup(IUpdatePopup listener) {
+        mListenerPopup.add(listener);
     }
 
     public void updateUI(Class<?> updateClass){
@@ -61,6 +73,12 @@ public class UpdateService {
     public void delete() {
         for (IUpdateData listener : getListenerData()) {
             listener.delete();
+        }
+    }
+
+    public void hidePopup() {
+        for (IUpdatePopup listener : mListenerPopup) {
+            listener.hide();
         }
     }
 }

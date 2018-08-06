@@ -62,8 +62,7 @@ public class WorkerPresenter extends BasePresenter implements IUpdateData {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sWorkerModel)) {
                 System.out.println("delete " + sWorkerModel.getDepartmentModel().getId() + " hashCode " + sWorkerModel.hashCode());
-                UpdateService.get().updateData(sWorkerModel);
-                new IteractorWorker().delete(sWorkerModel.getId());
+                new IteractorWorker().delete(sWorkerModel);
                 UpdateService.get().updateControl(WorkerModel.class);
             }
         }

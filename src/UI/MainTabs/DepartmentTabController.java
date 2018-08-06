@@ -12,7 +12,7 @@ import javafx.scene.control.Tab;
 public class DepartmentTabController extends BaseController implements IUpdateUI {
 
     public DepartmentTabController(){
-        UpdateService.get().addListener(this);
+        UpdateService.get().addListenerUI(this);
         TabControllerService.get().setListenerFirstTabPane((Tab nextTab)-> nextTab(nextTab,mDepartmentTabContainer));
     }
 

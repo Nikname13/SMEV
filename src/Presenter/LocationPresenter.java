@@ -61,7 +61,16 @@ public class LocationPresenter extends BasePresenter implements IUpdateData {
     public void delete() {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sLocationModel)) {
-                System.out.println("delete " + sLocationModel.getName() + "hashCode " + sLocationModel.hashCode());
+                System.out.println("delete " + sLocationModel.getName() + "  " + sLocationModel.getDepartmentList());
+                UpdateService.get().updateData(sLocationModel);
+                for (DepartmentModel departmentModel : sLocationModel.getDepartmentList()) {
+                    if (departmentModel.getId() == DepartmentPresenter.get().getDepartmentModel().getId()) {
+                        sLocationModel.getDepartmentList().remove(departmentModel);
+                        break;
+                    }
+                }
+                new IteractorLocation().edit(sLocationModel);
+                UpdateService.get().updateControl(LocationModel.class);
             }
         }
     }

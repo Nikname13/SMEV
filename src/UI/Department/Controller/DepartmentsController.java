@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 public class DepartmentsController implements IUpdateUI {
 
     public DepartmentsController(){
-        UpdateService.get().addListener(this);
+        UpdateService.get().addListenerUI(this);
     }
 
     private BasePopup mPopup;
@@ -74,12 +74,10 @@ public class DepartmentsController implements IUpdateUI {
 
     private void selectedDepartment(DepartmentModel department) {
         if(department!=null) {
-            System.out.println("select department");
             DepartmentPresenter.get().setBasePopup(mPopup);
             DepartmentPresenter.get().setDepartmentModel(department);
             DepartmentPresenter.get().setSelectedObject(department);
             TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditDepartmentResource()));
-            System.out.println(" listener " + TabControllerService.get().getListenerFirstTabPane().getClass().getName());
             UpdateService.get().updateUI(DepartmentModel.class);
         }
     }
@@ -105,6 +103,7 @@ public class DepartmentsController implements IUpdateUI {
 
     @Override
     public void updateControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(DepartmentModel.class.getName()))
+            mDepartmentListView.setItems(DepartmentPresenter.get().getObservableDepartment());
     }
 }

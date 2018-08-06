@@ -47,9 +47,4 @@ public class IteractorLocation extends GenericIteractor<LocationModel> {
             Locations.get().addEntity(entity);
         }
     }
-
-    @Override
-    public void deleteEntity(int id) {
-        Locations.get().deleteEntity(id);
-    }
 }

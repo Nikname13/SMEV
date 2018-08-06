@@ -12,7 +12,7 @@ public class PurchaseModel extends AbstractModel {
 
     private String mDescription;
     private LocalDate mDate;
-    private DepartmentModel mDepratment;
+    private DepartmentModel mDepartment;
 
     public PurchaseModel(int id, String URL, String description,LocalDate date) {
         super(id,URL);
@@ -24,7 +24,7 @@ public class PurchaseModel extends AbstractModel {
         super(id,URL);
         mDescription = description;
         mDate = date;
-        setDepratment(department);
+        setDepartment(department);
     }
 
     public String getDescription() {
@@ -51,11 +51,11 @@ public class PurchaseModel extends AbstractModel {
         return new SimpleObjectProperty<>(mDate);
     }
 
-    public DepartmentModel getDepratment() {
-        return mDepratment;
+    public DepartmentModel getDepartment() {
+        return mDepartment;
     }
 
-    public void setDepratment(DepartmentModel depratment) {
-        mDepratment = depratment;
+    public void setDepartment(DepartmentModel department) {
+        mDepartment = department;
     }
 }

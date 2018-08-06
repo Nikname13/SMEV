@@ -7,11 +7,15 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.ValidationFacade;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDate;
 
 
@@ -40,12 +44,30 @@ public class AddPurchaseController {
     @FXML
     public void initialize(){
         mDatePicker.setValue(LocalDate.now());
-        mBaseValidator.setJFXTextFields(mTextFieldURL);
         mBaseValidator.setJFXTextAreas(mTextAreaDescription);
         Pair pair = new Pair(mFacadeDate, mErrorDate);
         pair.getErrorLabel().setLayoutY(pair.getErrorLabel().getLayoutY() + 5.0);
         mBaseValidator.setFacadeErrorMessage("Необходимо указать дату");
         mBaseValidator.setValidationFacades(pair);
+        initTextField();
+    }
+
+    private void initTextField() {
+        mBaseValidator.setJFXTextFields(mTextFieldURL);
+        mTextFieldURL.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if (oldValue) {
+                    try {
+                        URL url = new URL(mTextFieldURL.getText());
+                    } catch (MalformedURLException e) {
+                        a
+                        System.out.println("неверный URL");
+
+                    }
+                }
+            }
+        });
     }
 
     @FXML

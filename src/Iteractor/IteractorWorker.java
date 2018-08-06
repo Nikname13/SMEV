@@ -1,5 +1,6 @@
 package Iteractor;
 
+import Model.Department.Departments;
 import Model.Worker.WorkerModel;
 import Model.Worker.Workers;
 import com.google.gson.ExclusionStrategy;
@@ -49,7 +50,8 @@ public class IteractorWorker extends GenericIteractor<WorkerModel>  {
     }
 
     @Override
-    public void deleteEntity(int id) {
-        Workers.get().deleteEntity(id);
+    public void delete(WorkerModel entity) {
+        Departments.get().getEntity(entity.getDepartmentModel().getId()).getWorkerList().remove(entity);
+        Workers.get().deleteEntity(entity.getId());
     }
 }

@@ -2,6 +2,7 @@ package Iteractor;
 
 import Model.Department.Departments;
 import Model.Department.PurchaseModel;
+import Model.GenericModel;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.GsonBuilder;
@@ -28,22 +29,22 @@ public class IteractorPurchase extends GenericIteractor<PurchaseModel> {
 
             @Override
             public boolean shouldSkipClass(Class<?> aClass) {
-                return false;
+                return (aClass == GenericModel.class);
             }
         }).create().toJson(entity);
     }
 
     @Override
     public void setEntity(PurchaseModel entity) {
-        if(Departments.get().getEntity(entity.getDepratment().getId()).getEntity(entity.getId())!= null){
-            Departments.get().getEntity(entity.getDepratment().getId()).replace(entity);
+        if (Departments.get().getEntity(entity.getDepartment().getId()).getEntity(entity.getId()) != null) {
+            Departments.get().getEntity(entity.getDepartment().getId()).replace(entity);
         }else{
-            Departments.get().getEntity(entity.getDepratment().getId()).addEntity(entity);
+            Departments.get().getEntity(entity.getDepartment().getId()).addEntity(entity);
         }
     }
 
     @Override
     public void deleteEntity(PurchaseModel entity) {
-        entity.getDepratment().deleteEntity(entity);
+        Departments.get().getEntity(entity.getDepartment().getId()).deleteEntity(entity);
     }
 }

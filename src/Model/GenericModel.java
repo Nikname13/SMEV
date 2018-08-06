@@ -48,11 +48,8 @@ public class GenericModel<T> extends AbstractModel<GenericModel<T>> implements I
 
     @Override
     public ObservableList<T> getObservableEntityList() {
-        if(mEntityList == null){
-            getEntityList();
-        }
         ObservableList<T> obsList= FXCollections.observableArrayList();
-        for(T value:mEntityList){
+        for (T value : getEntityList()) {
             obsList.add(value);
         }
         return obsList;

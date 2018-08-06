@@ -31,7 +31,7 @@ public class EquipmentInventoryController implements IUpdateUI{
     private BaseValidator mBaseValidator = new BaseValidator();
 
     public EquipmentInventoryController(){
-        UpdateService.get().addListener(this);
+        UpdateService.get().addListenerUI(this);
     }
 
     @FXML
@@ -186,7 +186,7 @@ public class EquipmentInventoryController implements IUpdateUI{
                 if(mTextAreaDescription.focusedProperty().get())mButtonSave.setVisible(true);
             }
         });
-/*        mTextAreaDescriptionDepartment.textProperty().addListener(new ChangeListener<String>() {
+/*        mTextAreaDescriptionDepartment.textProperty().addListenerUI(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if(mTextAreaDescriptionDepartment.focusedProperty().get())mButtonSave.setVisible(true);

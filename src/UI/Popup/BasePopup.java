@@ -1,5 +1,7 @@
 package UI.Popup;
 
+import Service.IUpdatePopup;
+import Service.UpdateService;
 import com.jfoenix.controls.JFXPopup;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -7,14 +9,14 @@ import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
-public class BasePopup {
+public class BasePopup implements IUpdatePopup {
 
     private static String sEquipmentInventoryPopup = "/UI/Popup/equipmentInventoryPopup.fxml";
     private static String sBaseListPopup = "/UI/Popup/BaseListPopup.fxml";
     private JFXPopup mPopup;
 
     public BasePopup(Node node, String resourceURL) {
-
+        UpdateService.get().addListenerPopup(this::hide);
         try {
             mPopup = new JFXPopup(FXMLLoader.load(getClass().getResource(resourceURL)));
             node.setOnMouseClicked(event -> {
@@ -37,5 +39,11 @@ public class BasePopup {
 
     public JFXPopup get() {
         return mPopup;
+    }
+
+    @Override
+    public void hide() {
+        if (mPopup.showingProperty().get())
+            mPopup.hide();
     }
 }

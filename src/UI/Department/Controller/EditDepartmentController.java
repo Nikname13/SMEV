@@ -45,8 +45,7 @@ public class EditDepartmentController implements IUpdateUI {
 
     public EditDepartmentController() {
         mDepartmentModel = DepartmentPresenter.get().getDepartmentModel();
-        UpdateService.get().addListener(this);
-        System.out.println("edit department controller");
+        UpdateService.get().addListenerUI(this);
     }
 
     @FXML
@@ -78,7 +77,6 @@ public class EditDepartmentController implements IUpdateUI {
 
     @FXML
     private JFXButton mButtonUpdate;
-
 
     @FXML
     private AnchorPane anchorPaneEditDepartment, mAnchorPaneBasicInfoDepartment;
@@ -151,7 +149,7 @@ public class EditDepartmentController implements IUpdateUI {
         });
         mListViewPurchase.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                newValue.setDepratment(mDepartmentModel);
+                newValue.setDepartment(mDepartmentModel);
                 DepartmentPresenter.get().setSelectedObject(newValue);
                 DepartmentPresenter.get().setPurchaseModel(newValue);
             }
@@ -435,7 +433,7 @@ public class EditDepartmentController implements IUpdateUI {
 
     @Override
     public void updateControl(Class<?> updateClass) {
-        if (updateClass.getName().equals(DepartmentModel.class.getName())) {
+        if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
             updateEquipmentTable(mDepartmentModel.getObsEquipmnetList());
             UpdateService.get().updateUI(TabPaneSecondLvlController.class);
         }

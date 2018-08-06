@@ -12,7 +12,7 @@ import javafx.scene.control.Tab;
 public class EquipmentTabController extends BaseController implements IUpdateUI {
 
     public EquipmentTabController() {
-        UpdateService.get().addListener(this);
+        UpdateService.get().addListenerUI(this);
     }
 
     @FXML

@@ -12,7 +12,7 @@ public class TabPaneSecondLvlController extends BaseController implements IUpdat
 
     public TabPaneSecondLvlController() {
         System.out.println("second lvl controller");
-        UpdateService.get().addListener(this);
+        UpdateService.get().addListenerUI(this);
         TabControllerService.get().setListenerThirdTabPane(((Tab nextTab)->nextTab(nextTab,mSecondLvlTabPane)));
     }
 
