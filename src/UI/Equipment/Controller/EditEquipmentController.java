@@ -14,6 +14,12 @@ import Service.TabControllerService;
 import Service.UpdateService;
 import UI.Coordinator;
 import UI.TabPane.Controller.TabPaneSecondLvlController;
+import UI.Validator.BaseValidator;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -23,6 +29,7 @@ import javafx.stage.Stage;
 public class EditEquipmentController implements IUpdateUI {
 
     private static EquipmentModel sEquipmentModel;
+    private BaseValidator mBaseValidator = new BaseValidator();
 
     public EditEquipmentController() {
         UpdateService.get().addListenerUI(this);
@@ -30,13 +37,13 @@ public class EditEquipmentController implements IUpdateUI {
     }
 
     @FXML
-    private TextField textFieldName, textFieldNameFact;
+    private JFXTextField mTextFieldName, mTextFieldNameFact;
 
     @FXML
-    private TextArea textAreaDescription;
+    private JFXTextArea mTextAreaDescription;
 
     @FXML
-    private Button buttonConfig;
+    private JFXButton mButtonUpdate;
 
     @FXML
     private ComboBox<TypeModel> comboBoxType;
@@ -46,15 +53,6 @@ public class EditEquipmentController implements IUpdateUI {
 
     @FXML
     private TableColumn<ParameterModel, String> columnNameType;
-
-/*    @FXML
-    private TableView<EquipmentInventoryModel> tableViewEquipment;
-
-    @FXML
-    private TableColumn<EquipmentInventoryModel, String> columnNumber, columnDepartment, columnState;*/
-
-    @FXML
-    private Label labelConfig;
 
     @FXML
     private TreeTableView<EquipmentInventoryModel> mTreeTableEquipmentInventory;
@@ -68,15 +66,40 @@ public class EditEquipmentController implements IUpdateUI {
     @FXML
     public void initialize() {
         columnNameType.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-/*        columnNumber.setCellValueFactory(cellData -> cellData.getValue().getInventoryNumber().nameProperty());
-        columnState.setCellValueFactory(cellData -> cellData.getValue().getLastEntity().getStateModel().nameProperty());
-        columnDepartment.setCellValueFactory(cellData -> cellData.getValue().getDepartmentList().nameProperty());
-        tableViewEquipment.getSelectionModel().selectedItemProperty().addListenerUI((observable, oldValue, newValue) -> selectedEquipment(newValue));*/
-
         mDepartmentEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getDepartmentModel().nameProperty());
         mNumberEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getInventoryNumber().nameProperty());
         mStateEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getLastEntity().getStateModel().nameProperty());
         mTreeTableEquipmentInventory.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipment(newValue)));
+        initTextField();
+        initTextArea();
+    }
+
+    private void initTextArea() {
+        mTextAreaDescription.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (mTextAreaDescription.focusedProperty().get())
+                    setVisibleEditButton();
+            }
+        });
+    }
+
+    private void initTextField() {
+        mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNameFact);
+        mTextFieldName.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (mTextFieldName.focusedProperty().get())
+                    setVisibleEditButton();
+            }
+        });
+        mTextFieldNameFact.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (mTextFieldNameFact.focusedProperty().get())
+                    setVisibleEditButton();
+            }
+        });
     }
 
     private void selectedEquipment(TreeItem<EquipmentInventoryModel> treeEquipment) {
@@ -91,12 +114,30 @@ public class EditEquipmentController implements IUpdateUI {
         }
     }
 
+
+    private void setVisibleEditButton() {
+        mTextAreaDescription.setPrefHeight(mTextAreaDescription.getMinHeight());
+        mButtonUpdate.setVisible(true);
+    }
+
+    private void setInvisibleEditButton() {
+
+        mButtonUpdate.setVisible(false);
+        mTextAreaDescription.setPrefHeight(mTextAreaDescription.getMaxHeight());
+    }
+
+    @FXML
+    private void onClickEdit() {
+        if (mBaseValidator.validate())
+            setInvisibleEditButton();
+    }
+
     @FXML
     private void onClickAddEquipmentInventory() {
         new Coordinator().goToAddEquipmentInventoryWindow((Stage) anchorPaneEditEquipment.getScene().getWindow(),100.0,200.0);
     }
 
-    private void updateEuipmentTable(ObservableList<EquipmentInventoryModel> equipmentList) {
+    private void updateEquipmentTable(ObservableList<EquipmentInventoryModel> equipmentList) {
         TreeItem<EquipmentInventoryModel> rootItem = new TreeItem<>();
         boolean flag = false;
         for (EquipmentInventoryModel equipment : equipmentList) {
@@ -130,12 +171,11 @@ public class EditEquipmentController implements IUpdateUI {
         if (updateClass.getName().equals(EquipmentModel.class.getName())) {
             sEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
             sEquipmentModel.getEntityList(); // первое обращение в базу для загрузки оборудования
-            textFieldName.setText(sEquipmentModel.getName());
-            textFieldNameFact.setText(sEquipmentModel.getNameFact());
-            textAreaDescription.setText(sEquipmentModel.getDescription());
-            labelConfig.setText(sEquipmentModel.getConfig());
+            mTextFieldName.setText(sEquipmentModel.getName());
+            mTextFieldNameFact.setText(sEquipmentModel.getNameFact());
+            mTextAreaDescription.setText(sEquipmentModel.getDescription());
             //tableViewEquipment.setItems(sEquipmentModel.getObservableEqInventoryList());
-            updateEuipmentTable(sEquipmentModel.getObservableEqInventoryList());
+            updateEquipmentTable(sEquipmentModel.getObservableEqInventoryList());
             UpdateService.get().updateUI(TabPaneSecondLvlController.class);
         }
     }

@@ -27,9 +27,9 @@
                 <JFXRadioButton fx:id="mRadioButtonRenting" layoutX="14.0" layoutY="161.0" mnemonicParsing="false"
                                 text="в аренде" AnchorPane.leftAnchor="10.0"/>
                 <JFXTextArea fx:id="mTextAreaDescription" focusColor="#40a85f" labelFloat="true" layoutX="206.0"
-                             minHeight="60.0" maxHeight="89.0" prefHeight="89.0" prefWidth="200.0"
+                             minHeight="55.0" maxHeight="89.0" prefHeight="89.0" prefWidth="200.0"
                              promptText="Комментарий" AnchorPane.topAnchor="83.0" AnchorPane.rightAnchor="10.0"/>
-                <JFXButton fx:id="mButtonUpdate" ripplerFill="#40a85f" mnemonicParsing="false" onAction="#onClickEdit"
+                <JFXButton fx:id="mButtonUpdate" onAction="#onClickEdit" ripplerFill="#40a85f" mnemonicParsing="false"
                            text="Сохранить"
                            AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0" prefWidth="75.0"
                            visible="false"/>

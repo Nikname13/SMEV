@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
 <?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.*?>
 <AnchorPane xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="UI.MainTabs.DepartmentTabController"
-      fx:id="splitPaneDepartmentTab">
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="UI.MainTabs.DepartmentTabController"
+            fx:id="splitPaneDepartmentTab">
     <children>
-        <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.bottomAnchor="10.0" prefWidth="200.0" minWidth="200.0" maxWidth="200.0">
+        <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
+                    AnchorPane.bottomAnchor="10.0" prefWidth="250.0" minWidth="250.0" maxWidth="250.0">
             <fx:include source="/UI/Department/departments.fxml" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10.0"
                         AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0"/>
         </AnchorPane>
-        <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.leftAnchor="220.0" >
+        <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0"
+                    AnchorPane.leftAnchor="270.0">
             <JFXTabPane fx:id="mDepartmentTabContainer" side="LEFT" tabMaxWidth="0" tabMinWidth="0"
                         tabMinHeight="0" tabMaxHeight="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
                         AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">

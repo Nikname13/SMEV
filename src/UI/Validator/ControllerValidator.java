@@ -10,6 +10,8 @@ import javafx.beans.value.ObservableValue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ControllerValidator {
 
@@ -46,20 +48,20 @@ public class ControllerValidator {
 
     public static boolean validationFacade(ValidationFacade facade) {
         boolean flag = true;
-            for (ValidatorBase validator : facade.getValidators()) {
-                if (validator.getSrcControl() == null) {
-                    validator.setSrcControl(facade.getControl());
-                }
-                validator.validate();
-                if (validator.getHasErrors()) {
-                    flag = false;
-                }
-                validator.setSrcControl(null);
+        for (ValidatorBase validator : facade.getValidators()) {
+            if (validator.getSrcControl() == null) {
+                validator.setSrcControl(facade.getControl());
+            }
+            validator.validate();
+            if (validator.getHasErrors()) {
+                flag = false;
+            }
+            validator.setSrcControl(null);
         }
         return flag;
     }
 
-    public static List<JFXTextArea> setTextAreaValidator(JFXTextArea... textArea){
+    public static List<JFXTextArea> setTextAreaValidator(JFXTextArea... textArea) {
 
         List<JFXTextArea> response = new ArrayList<>();
         for (JFXTextArea text : textArea) {
@@ -78,5 +80,15 @@ public class ControllerValidator {
             });
         }
         return response;
+    }
+
+    public static boolean customURLValidation(JFXTextField textField) {
+        Pattern p = Pattern.compile("^(https?:\\/\\/)?([\\w\\.]+)\\.([a-z]{2,6}\\.?)(\\/[\\w\\.]*)*\\/?$");
+        Matcher m = p.matcher(textField.getText());
+        if (!m.matches()) {
+            System.out.println("неверный URL");
+            return false;
+        }
+        return true;
     }
 }

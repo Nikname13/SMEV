@@ -7,13 +7,9 @@ import Service.IUpdateUI;
 import Service.TabControllerService;
 import Service.UpdateService;
 import UI.Coordinator;
-import com.jfoenix.controls.JFXTreeView;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TreeCell;
-import javafx.scene.control.TreeItem;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class EquipmentsController implements IUpdateUI {
@@ -32,10 +28,10 @@ public class EquipmentsController implements IUpdateUI {
     private TableColumn<EquipmentModel, String> typeColumn;
 
     @FXML
-    private AnchorPane anchorPaneEquipments;
+    private StackPane mStackPaneEquipments;
 
     @FXML
-    private JFXTreeView<AbstractModel<?>> mEquipmentTreeView;
+    private TreeView<AbstractModel<?>> mEquipmentTreeView;
 
     @FXML
     public void initialize() {
@@ -80,7 +76,7 @@ public class EquipmentsController implements IUpdateUI {
 
     @FXML
     private void onClickAdd() {
-        new Coordinator().goToAddEquipmentWindow((Stage) anchorPaneEquipments.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToAddEquipmentWindow((Stage) mStackPaneEquipments.getScene().getWindow(), 100.0, 200.0);
     }
 
     private void selectedEquipment(TreeItem<AbstractModel<?>> equipment) {
@@ -92,7 +88,7 @@ public class EquipmentsController implements IUpdateUI {
                 EquipmentPresenter.get().setEquipmentModel(equipment.getValue());
                 TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditEquipmentResource()));
                 UpdateService.get().updateUI(EquipmentModel.class);
-                // new Coordinator().goToEditEquipmentWindow((Stage)anchorPaneEquipments.getScene().getWindow());
+                // new Coordinator().goToEditEquipmentWindow((Stage)mStackPaneEquipments.getScene().getWindow());
             }
         }
     }

@@ -6,6 +6,7 @@ import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.ValidationFacade;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class BaseValidator {
 
     private List<JFXTextArea> mJFXTextAreas;
     private List<JFXTextField> mJFXTextFields;
-    private List<Pair> mValidationFacades;
+    private List<Pair> mValidationFacades, mCustomURLValidation;
     private String mFacadeErrorMessage = "Необходимо выбрать значение";
 
     public void setJFXTextAreas(JFXTextArea... textAreas) {
@@ -57,6 +58,39 @@ public class BaseValidator {
         }
     }
 
+    public void setCustomURLValidation(Pair... objects) {
+        mCustomURLValidation = new ArrayList<>();
+        for (Pair text : objects) {
+            mCustomURLValidation.add(text);
+            setJFXTextFields(text.getJFXTextField());
+            text.getJFXTextField().focusedProperty().addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                    if (oldValue) {
+                        if (!text.getJFXTextField().getText().trim().isEmpty()) {
+                            if (ControllerValidator.customURLValidation(text.getJFXTextField())) {
+                                text.getErrorLabel().setVisible(false);
+                                text.getJFXTextField().setUnFocusColor(Color.BLACK);
+                            } else {
+                                text.getErrorLabel().setVisible(true);
+                                text.getJFXTextField().setUnFocusColor(Color.web("#c94444"));
+                            }
+                        }
+                    }
+                }
+            });
+            text.getJFXTextField().textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    if (text.getJFXTextField().getText().trim().isEmpty()) {
+                        text.getErrorLabel().setVisible(false);
+                    }
+                }
+            });
+        }
+
+    }
+
     public boolean validate() {
         boolean flag = true;
         if (mJFXTextFields != null) {
@@ -76,6 +110,14 @@ public class BaseValidator {
                     validationFacade.getErrorLabel().setVisible(true);
                 }
             }
+        }
+        if (mCustomURLValidation != null) {
+            for (Pair object : mCustomURLValidation) {
+                if (!ControllerValidator.customURLValidation(object.getJFXTextField())) {
+                    flag = false;
+                }
+            }
+
         }
         return flag;
     }
