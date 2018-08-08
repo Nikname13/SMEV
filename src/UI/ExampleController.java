@@ -1,20 +1,27 @@
 package UI;
 
+import Service.IErrorMessage;
 import Service.UpdateService;
 import UI.MainTabs.DepartmentTabController;
 import UI.MainTabs.EquipmentTabController;
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.layout.StackPane;
 
-public class ExampleController {
+public class ExampleController implements IErrorMessage {
 
-    public ExampleController() {
-
-    }
+    @FXML
+    private StackPane mStackPainMain;
 
     @FXML
     private JFXTabPane mTabContainer;
+
+    public ExampleController() {
+        UpdateService.get().setErrorListener(this::showError);
+    }
 
     @FXML
     private Tab mDepartmentTab, mEquipmentTab, mSupplyTab, mMovementTab;
@@ -46,5 +53,11 @@ public class ExampleController {
             case "mSupplyTab": break;
             case "mMovementTab": break;
         }
+    }
+
+    @Override
+    public void showError(String errorMessage) {
+        JFXDialog dialog = new JFXDialog(mStackPainMain, new Label(errorMessage), JFXDialog.DialogTransition.BOTTOM);
+        dialog.show();
     }
 }

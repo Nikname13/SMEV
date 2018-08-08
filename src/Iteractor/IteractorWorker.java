@@ -50,7 +50,7 @@ public class IteractorWorker extends GenericIteractor<WorkerModel>  {
     }
 
     @Override
-    public void delete(WorkerModel entity) {
+    public void deleteEntity(WorkerModel entity) {
         Departments.get().getEntity(entity.getDepartmentModel().getId()).getWorkerList().remove(entity);
         Workers.get().deleteEntity(entity.getId());
     }

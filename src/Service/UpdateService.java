@@ -8,6 +8,7 @@ public class UpdateService {
     private List<IUpdateUI> mListenerUI = new ArrayList<>();
     private List<IUpdateData> mListenerData = new ArrayList<>();
     private List<IUpdatePopup> mListenerPopup = new ArrayList<>();
+    private IErrorMessage mErrorListener;
 
 
 
@@ -45,6 +46,14 @@ public class UpdateService {
         mListenerPopup.add(listener);
     }
 
+    public IErrorMessage getErrorListener() {
+        return mErrorListener;
+    }
+
+    public void setErrorListener(IErrorMessage errorListener) {
+        mErrorListener = errorListener;
+    }
+
     public void updateUI(Class<?> updateClass){
         for (IUpdateUI listener : getListenerUI()) {
             listener.updateUI(updateClass);
@@ -80,5 +89,9 @@ public class UpdateService {
         for (IUpdatePopup listener : mListenerPopup) {
             listener.hide();
         }
+    }
+
+    public void showError(String errorMessage) {
+        mErrorListener.showError(errorMessage);
     }
 }

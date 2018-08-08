@@ -9,9 +9,11 @@
             xmlns="http://javafx.com/javafx/8"
             fx:controller="UI.Department.Controller.AddPurchaseController" style="-fx-background-color: #ffffff;">
     <children>
-        <JFXTextField fx:id="mTextFieldURL" prefHeight="25.0" prefWidth="350.0" focusColor="#41a65d" promptText="URL"
+        <JFXTextField fx:id="mTextFieldURL" prefHeight="25.0" prefWidth="350.0" layoutX="20.0" layoutY="30.0"
+                      focusColor="#41a65d" promptText="URL"
                       labelFloat="true" AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="20.0"
                       AnchorPane.rightAnchor="20.0"/>
+        <Label fx:id="mErrorURL"/>
         <ValidationFacade fx:id="mFacadeDate" layoutX="20.0" layoutY="90.0" AnchorPane.leftAnchor="20.0"
                           AnchorPane.rightAnchor="20.0"
                           AnchorPane.topAnchor="90.0">

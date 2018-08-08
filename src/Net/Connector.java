@@ -1,6 +1,7 @@
 package Net;
 
-import java.awt.*;
+import Service.UpdateService;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -36,10 +37,8 @@ public class Connector {
 
     private static String getJSON(HttpURLConnection connect){
         try {
-            //int status = connect.getResponseCode();
-            // System.out.println(status);
             System.out.println(" connect encoding ");
-            BufferedReader br = new BufferedReader(new InputStreamReader(connect.getInputStream(),"UTF-8"));
+            BufferedReader br = new BufferedReader(new InputStreamReader(connect.getInputStream(), StandardCharsets.UTF_8));
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
@@ -47,9 +46,10 @@ public class Connector {
             }
             br.close();
             System.out.println("out "+sb.toString());
+            connect.disconnect();
             return sb.toString();
         } catch (IOException ex) {
-            System.out.println("Нет связи с сервером");
+            System.out.println("ошибка");
             System.out.println("Exception getJSON " + ex);
             return null;
         }
@@ -82,10 +82,8 @@ public class Connector {
                 String json=getJSON(connect);
                 return json;
             }
-                connect.disconnect();
                 return "";
         }
-
     public static File get(String uri, File file){
         HttpURLConnection connect=connection(uri,"GET");
             System.out.println("Content-disposition "+connect.getHeaderField("Content-disposition"));
@@ -98,10 +96,9 @@ public class Connector {
         if(connect != null) {
             try {
                 OutputStream os = connect.getOutputStream();
-                os.write(json.getBytes("UTF-8"));
+                os.write(json.getBytes(StandardCharsets.UTF_8));
                 os.close();
                 String response = getJSON(connect);
-                connect.disconnect();
                 return response;
             } catch (IOException ex) {
                 System.out.println("Exception POST " + ex);
@@ -112,16 +109,16 @@ public class Connector {
     }
 
     public static int delete(String uri){
-        System.out.println("DELETE ");
+        System.out.println("DELETE " + uri);
         HttpURLConnection connect = connection(uri,"DELETE");
         if(connect != null) {
-            try {
-                int responseCode=connect.getResponseCode();
-                System.out.println(responseCode+" "+connect.getResponseMessage());
-                connect.disconnect();
-                return responseCode;
-            } catch (IOException ex) {
-                System.out.println("Exception DELETE " + ex);
+            String s = getJSON(connect);
+            if (!s.isEmpty()) {
+                System.out.println("Show dialog error " + s);
+                UpdateService.get().showError(s);
+                return 0;
+            } else {
+                return 200;
             }
         }
         return 0;
@@ -133,10 +130,9 @@ public class Connector {
         if(connect != null){
             try {
                 OutputStream os = connect.getOutputStream();
-                os.write(json.getBytes("UTF-8"));
+                os.write(json.getBytes(StandardCharsets.UTF_8));
                 os.close();
                 String response = getJSON(connect);
-                connect.disconnect();
                 int responseCode=connect.getResponseCode();
                 System.out.println(responseCode+" "+connect.getResponseMessage());
                 return response;
