@@ -4,11 +4,9 @@ import Model.Equipment.EquipmentModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.State.StateModel;
 import Presenter.EquipmentPresenter;
-import UI.Coordinator;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class AddEquipmentInventoryController {
 
@@ -64,27 +62,20 @@ public class AddEquipmentInventoryController {
             }
         });
         comboBoxState.setItems(EquipmentPresenter.get().getObservableState());
-        comboBoxState.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedState(newValue)));
     }
 
     private void selectedInventory(InventoryNumberModel inventory){
         mInventory=inventory;
     }
 
-    private void selectedState(StateModel state){
-        EquipmentPresenter.get().setStateModel(state);
-        new Coordinator().goToAddEquipmentStateWindow((Stage) anchorPaneEquipmentInventory.getScene().getWindow());
-    }
-
     @FXML
     private void onClickAdd(){
-/*        EquipmentPresenter.get().addEquipmentInventory(
+        EquipmentPresenter.get().addEquipmentInventory(
                 mInventory,
                 Integer.parseInt(textFieldGuaranty.getText()),
                 textAreaDescription.getText(),
-                labelPhotos.getText(),
                 null,
-                EquipmentPresenter.get().getEquipmentState(),
-                mEquipment);*/
+                mEquipment,
+                comboBoxState.getValue());
     }
 }

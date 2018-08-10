@@ -6,7 +6,6 @@ import Model.Department.DepartmentModel;
 import Model.Department.PurchaseModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Equipment.EquipmentModel;
-import Model.Equipment.EquipmentStateModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Location.LocationModel;
 import Model.State.StateModel;
@@ -166,7 +165,7 @@ public class EditDepartmentController implements IUpdateUI {
     private void initTreeTableEquipmentInventory() {
         mNameEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getEquipmentModel().nameProperty());
         mNumberEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getInventoryNumber().nameProperty());
-        mStateEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getLastEntity().getStateModel().nameProperty());
+        mStateEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getStateModel().nameProperty());
         mDescriptionEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().description_departmentProperty());
         mDescriptionEquipmentColumn.setCellFactory((TreeTableColumn<EquipmentInventoryModel, String> param) -> new GenericEditableTreeTableCell<>(
                 new TextFieldEditorBuilder()));
@@ -384,8 +383,8 @@ public class EditDepartmentController implements IUpdateUI {
                         -1,
                         new InventoryNumberModel(-1, ""),
                         new EquipmentModel(equipment.getEquipmentModel().getId(), equipment.getEquipmentModel().getName()),
-                        null);
-                emptyEquipment.getEntityList().add(new EquipmentStateModel(-1, new StateModel(-1, "")));
+                        null,
+                        new StateModel(-1, ""));
                 TreeItem<EquipmentInventoryModel> treeItemFirst = new TreeItem<>(emptyEquipment);
                 treeItemFirst.getChildren().add(new TreeItem<>(equipment));
                 rootItem.getChildren().add(treeItemFirst);

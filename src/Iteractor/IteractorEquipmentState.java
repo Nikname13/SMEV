@@ -1,10 +1,6 @@
 package Iteractor;
 
 import Model.Equipment.EquipmentInventoryModel;
-import Model.Equipment.EquipmentStateModel;
-import Model.Equipment.Equipments;
-
-import java.util.Random;
 
 public class IteractorEquipmentState {
 
@@ -15,11 +11,11 @@ public class IteractorEquipmentState {
 
     public void addNew(int idEquipment, int idEquipmentInventory, Object o) {
 /*        Random random=new Random();
-        Equipments.get().getEntity(idEquipment).getEquipmentInventory(idEquipmentInventory).addEquipmentState(new EquipmentStateModel(
+        Equipments.get().getEntity(idEquipment).getEquipmentInventory(idEquipmentInventory).addEquipmentStateLog(new EquipmentStateLogModel(
                 random.nextInt(((100-20)+1)+20),
-                ((EquipmentStateModel)o).getDescription(),
-                ((EquipmentStateModel) o).getStateModel(),
-                ((EquipmentStateModel) o).getDate()
+                ((EquipmentStateLogModel)o).getDescription(),
+                ((EquipmentStateLogModel) o).getStateModel(),
+                ((EquipmentStateLogModel) o).getDate()
         ));*/
     }
 

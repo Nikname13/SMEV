@@ -3,13 +3,17 @@ package Model.Equipment;
 import Model.Department.DepartmentModel;
 import Model.GenericModel;
 import Model.Inventory_number.InventoryNumberModel;
+import Model.State.StateModel;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
 
-public class EquipmentInventoryModel extends GenericModel<EquipmentStateModel>{
+import java.util.ArrayList;
+import java.util.List;
+
+public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel> {
 
     private int mGuaranty;
     private transient Image mAvatar;
@@ -17,23 +21,48 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateModel>{
     private InventoryNumberModel mInventoryNumber;
     private DepartmentModel mDepartmentModel;
     private EquipmentModel mEquipmentModel;
+    private StateModel mStateModel;
+    private List<EquipmentInventoryLogModel> mInventoryEditLog;
 
     public EquipmentInventoryModel(int id, InventoryNumberModel inventoryNumber, int guaranty, String description,
-                                   DepartmentModel departmentModel, EquipmentStateModel equipmentState, EquipmentModel equipmentModel) {
+                                   DepartmentModel departmentModel, EquipmentStateLogModel equipmentState, EquipmentModel equipmentModel, StateModel stateModel) {
         super(id);
-        addEntity(equipmentState);
+        // addEntity(equipmentState);
         mGuaranty = guaranty;
         mDescription = description;
         mInventoryNumber = inventoryNumber;
         mDepartmentModel = departmentModel;
         mEquipmentModel=equipmentModel;
+        mStateModel = stateModel;
     }
 
-    public EquipmentInventoryModel(int id,InventoryNumberModel inventoryNumber, EquipmentModel equipmentModel, DepartmentModel departmentModel){
+    public EquipmentInventoryModel(int id, InventoryNumberModel inventoryNumber, EquipmentModel equipmentModel, DepartmentModel departmentModel, StateModel state) {
         super(id);
         mInventoryNumber=inventoryNumber;
         mEquipmentModel=equipmentModel;
         mDepartmentModel=departmentModel;
+        mStateModel = state;
+    }
+
+    public List<EquipmentInventoryLogModel> getInventoryEditLog() {
+        return mInventoryEditLog;
+    }
+
+    public void setInventoryEditLog(List<EquipmentInventoryLogModel> inventoryEditLog) {
+        mInventoryEditLog = inventoryEditLog;
+    }
+
+    public void addInvenotryEditLof(EquipmentInventoryLogModel entry) {
+        if (mInventoryEditLog == null) mInventoryEditLog = new ArrayList<>();
+        mInventoryEditLog.add(entry);
+    }
+
+    public StateModel getStateModel() {
+        return mStateModel;
+    }
+
+    public void setStateModel(StateModel stateModel) {
+        mStateModel = stateModel;
     }
 
     public int getGuaranty() {

@@ -69,7 +69,7 @@ public class GenericModel<T> extends AbstractModel<GenericModel<T>> implements I
         if (getEntity(entity.hashCode()) == null)
             mEntityList.add(entity);
     }
-
+/*
     @Override
     public T getLastEntity() {
         //System.out.println("GET LAST ENTITY");
@@ -77,7 +77,7 @@ public class GenericModel<T> extends AbstractModel<GenericModel<T>> implements I
         return mEntityList.get(mEntityList.size()-1);
         }
         return null;
-    }
+    }*/
 
     @Override
     public void deleteEntity(T entity) {

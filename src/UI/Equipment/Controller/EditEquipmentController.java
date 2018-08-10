@@ -3,7 +3,6 @@ package UI.Equipment.Controller;
 import Model.Department.DepartmentModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Equipment.EquipmentModel;
-import Model.Equipment.EquipmentStateModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Parameter.ParameterModel;
 import Model.State.StateModel;
@@ -68,7 +67,7 @@ public class EditEquipmentController implements IUpdateUI {
         columnNameType.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         mDepartmentEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getDepartmentModel().nameProperty());
         mNumberEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getInventoryNumber().nameProperty());
-        mStateEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getLastEntity().getStateModel().nameProperty());
+        mStateEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getStateModel().nameProperty());
         mTreeTableEquipmentInventory.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipment(newValue)));
         initTextField();
         initTextArea();
@@ -152,8 +151,8 @@ public class EditEquipmentController implements IUpdateUI {
                         -1,
                         new InventoryNumberModel(equipment.getInventoryNumber().getId(), equipment.getInventoryNumber().getName()),
                         null,
-                        new DepartmentModel(-1,""));
-                emptyEquipment.getEntityList().add(new EquipmentStateModel(-1, new StateModel(-1, "")));
+                        new DepartmentModel(-1, ""),
+                        new StateModel(-1, ""));
                 TreeItem<EquipmentInventoryModel> treeItemFirst = new TreeItem<>(emptyEquipment);
                 treeItemFirst.getChildren().add(new TreeItem<>(equipment));
                 rootItem.getChildren().add(treeItemFirst);

@@ -26,7 +26,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     private static EquipmentModel sEquipmentModel;
     private static EquipmentInventoryModel sEquipmentInventoryModel;
     private static StateModel sStateModel;
-    private static EquipmentStateModel sEquipmentState;
+    private static EquipmentStateLogModel sEquipmentStateLog;
     private static EquipmentPresenter sEquipmentPresenter;
     private static DepartmentModel sDepartmentModel;
 
@@ -120,15 +120,15 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     }
 
 
-    public void addEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
-                                      DepartmentModel departmentModel, EquipmentStateModel equipmentState, EquipmentModel equipmentModel) {
-        new IteractorEquipmentInventory().addNew(new EquipmentInventoryModel(0, inventoryNumber, guaranty, description, Departments.get().getEntity(5), equipmentState, equipmentModel));
+    public void addEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description, EquipmentStateLogModel equipmentState, EquipmentModel equipmentModel, StateModel state) {
+
+        new IteractorEquipmentInventory().addNew(new EquipmentInventoryModel(0, inventoryNumber, guaranty, description, Departments.get().getEntity(1), equipmentState, equipmentModel, state));
     }
 
     public void editEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
-                                       DepartmentModel departmentModel, EquipmentStateModel equipmentState, EquipmentModel equipmentModel) {
+                                       DepartmentModel departmentModel, EquipmentStateLogModel equipmentState, EquipmentModel equipmentModel, StateModel state) {
         UpdateService.get().updateData(new IteractorEquipmentInventory().edit(new EquipmentInventoryModel(sEquipmentInventoryModel.getId(), inventoryNumber, guaranty,
-                description, departmentModel, equipmentState, equipmentModel)));
+                description, departmentModel, equipmentState, equipmentModel, state)));
         UpdateService.get().refreshControl(DepartmentModel.class);
     }
 
@@ -164,16 +164,20 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         //new IteractorEquipmentInventory().delete(eq_inv);
     }
 
-    public void addEquipmentState(String description, LocalDate date) {
-        sEquipmentState = new EquipmentStateModel(0, description, sStateModel, date);
+    public void addEquipmentStateLog(String state, String description, LocalDate date) {
+        sEquipmentStateLog = new EquipmentStateLogModel(0, state, description, date);
+        sEquipmentInventoryModel.setStateModel(sStateModel);
+        sEquipmentInventoryModel.addEntity(sEquipmentStateLog);
+        editEquipmentInventory(sEquipmentInventoryModel);
+        UpdateService.get().refreshControl(EquipmentInventoryModel.class);
     }
 
-    public EquipmentStateModel getEquipmentState() {
-        return sEquipmentState;
+    public EquipmentStateLogModel getEquipmentStateLog() {
+        return sEquipmentStateLog;
     }
 
-    public void setEquipmentState(EquipmentStateModel equipmentState) {
-        sEquipmentState = equipmentState;
+    public void setEquipmentStateLog(EquipmentStateLogModel equipmentState) {
+        sEquipmentStateLog = equipmentState;
     }
 
     public void addMovement(LocalDate date, String base, Object fromDepartment, Object toDepartment, Object fromWorker, Object toWorker, Object equipment) {

@@ -3,7 +3,6 @@ package UI.Equipment.Equipment_inventory.Controller;
 import Model.Department.DepartmentModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Equipment.EquipmentModel;
-import Model.Equipment.EquipmentStateModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.State.StateModel;
 import Presenter.EquipmentPresenter;
@@ -57,7 +56,7 @@ public class EquipmentInventoryController implements IUpdateUI{
 
     @FXML
     public void initialize(){
-        EquipmentPresenter.get().setEquipmentState(null);
+        EquipmentPresenter.get().setEquipmentStateLog(null);
         System.out.println("equipment inventory initialize");
         mBaseValidator.setJFXTextFields(mTextFieldGuaranty);
         mButtonSave.setFocusTraversable(false);
@@ -149,7 +148,7 @@ public class EquipmentInventoryController implements IUpdateUI{
         mComboBoxState.setConverter(new StringConverter<StateModel>() {
             @Override
             public String toString(StateModel object) {
-                System.out.println(object.getName());
+                //System.out.println(object.getName());
                 if(object!=null) return object.getName();
                 else return null;
             }
@@ -173,7 +172,7 @@ public class EquipmentInventoryController implements IUpdateUI{
 
             }
         });
-        mComboBoxState.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) ->selectedState());
+        mComboBoxState.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedState(newValue));
         mTextFieldGuaranty.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -203,17 +202,19 @@ public class EquipmentInventoryController implements IUpdateUI{
                     Integer.parseInt(mTextFieldGuaranty.getText()),
                     mTextAreaDescription.getText(),
                     getDepartment(),
-                    getState(),
-                    mEquipmentModel);
+                    null,
+                    mEquipmentModel,
+                    mComboBoxState.getValue());
         }
     }
 
-    private EquipmentStateModel getState() {
-        return (EquipmentPresenter.get().getEquipmentState() == null ? mEquipmentInventory.getLastEntity() : EquipmentPresenter.get().getEquipmentState());
-    }
 
     private DepartmentModel getDepartment() {
         return mDepartmentModel == null ? mEquipmentInventory.getDepartmentModel() : mDepartmentModel;
+    }
+
+    private StateModel getState() {
+        return EquipmentPresenter.get().getEquipmentStateLog() == null ? mEquipmentInventory.getStateModel() : EquipmentPresenter.get().getStateModel();
     }
 
     private void selectedDepartment() {
@@ -224,11 +225,12 @@ public class EquipmentInventoryController implements IUpdateUI{
         }
     }
 
-    private void selectedState(){
-        if (mComboBoxState.getSelectionModel().getSelectedIndex() != -1) {
+    private void selectedState(Object value) {
+        System.out.println(" selected focused " + mComboBoxState.focusedProperty().get());
+        if (mComboBoxState.getSelectionModel().getSelectedIndex() != -1 && mComboBoxState.focusedProperty().get()) {
+            EquipmentPresenter.get().setEquipmentStateLog(null);
             EquipmentPresenter.get().setStateModel(mComboBoxState.getValue());
             new Coordinator().goToAddEquipmentStateWindow((Stage) anchorPaneEquipmentInventory.getScene().getWindow());
-            mButtonSave.setVisible(true);
         }
     }
 
@@ -249,14 +251,14 @@ public class EquipmentInventoryController implements IUpdateUI{
             mTextFieldGuaranty.setText(String.valueOf(mEquipmentInventory.getGuaranty()));
             mTextAreaDescription.setText(mEquipmentInventory.getDescription());
             mComboBoxState.setItems(EquipmentPresenter.get().getObservableState());
-            mComboBoxState.getSelectionModel().select(mEquipmentInventory.getLastEntity().getStateModel());
+            mComboBoxState.getSelectionModel().select(mEquipmentInventory.getStateModel());
         }
     }
 
     @Override
     public void refreshControl(Class<?> updateClass) {
         if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
-            mComboBoxState.getSelectionModel().select(getState().getStateModel());
+            mComboBoxState.getSelectionModel().select(getState());
             mComboBoxDepartment.getSelectionModel().select(getDepartment());
         }
     }

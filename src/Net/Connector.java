@@ -15,12 +15,11 @@ import java.util.List;
 public class Connector {
 
 
-
-    private static HttpURLConnection connection(String uri, String method){
+    private static HttpURLConnection connection(String uri, String method) {
 
         try {
             URL url = new URL(uri);
-            HttpURLConnection connect=(HttpURLConnection) url.openConnection();
+            HttpURLConnection connect = (HttpURLConnection) url.openConnection();
             connect.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             //connect.setUseCaches(false);
             connect.setAllowUserInteraction(true);
@@ -29,13 +28,13 @@ public class Connector {
             connect.setRequestMethod(method);
 
             return connect;
-        }catch (IOException ex){
-            System.out.println("Exception connection "+ex);
+        } catch (IOException ex) {
+            System.out.println("Exception connection " + ex);
         }
         return null;
     }
 
-    private static String getJSON(HttpURLConnection connect){
+    private static String getJSON(HttpURLConnection connect) {
         try {
             System.out.println(" connect encoding ");
             BufferedReader br = new BufferedReader(new InputStreamReader(connect.getInputStream(), StandardCharsets.UTF_8));
@@ -45,8 +44,12 @@ public class Connector {
                 sb.append(line);
             }
             br.close();
-            System.out.println("out "+sb.toString());
+            System.out.println("out " + sb.toString());
             connect.disconnect();
+            if (sb.toString().startsWith("Error")) {
+                UpdateService.get().showError(sb.toString());
+                return "";
+            }
             return sb.toString();
         } catch (IOException ex) {
             System.out.println("ошибка");
@@ -55,45 +58,47 @@ public class Connector {
         }
     }
 
-    private static File getFile(HttpURLConnection connect, File file){
+    private static File getFile(HttpURLConnection connect, File file) {
         try {
             ReadableByteChannel rbc = Channels.newChannel(connect.getInputStream());
-            FileOutputStream fileOutputStream=new FileOutputStream(file);
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
             long filePosition = 0;
             long transferedBytes = fileOutputStream.getChannel().transferFrom(rbc, filePosition, Long.MAX_VALUE);
-            while(transferedBytes == Long.MAX_VALUE){
+            while (transferedBytes == Long.MAX_VALUE) {
                 filePosition += transferedBytes;
                 transferedBytes = fileOutputStream.getChannel().transferFrom(rbc, filePosition, Long.MAX_VALUE);
             }
             rbc.close();
             fileOutputStream.close();
             return file;
-        }catch (IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex);
             return null;
         }
     }
 
-    public static String get(String uri){
-        System.out.println("GET "+uri);
-        HttpURLConnection connect=connection(uri,"GET");
-
-        if(connect!=null) {
-                String json=getJSON(connect);
-                return json;
-            }
-                return "";
-        }
-    public static File get(String uri, File file){
-        HttpURLConnection connect=connection(uri,"GET");
-            System.out.println("Content-disposition "+connect.getHeaderField("Content-disposition"));
-            return getFile(connect,file);
+    public static File get(String uri, File file) {
+        HttpURLConnection connect = connection(uri, "GET");
+        System.out.println("Content-disposition " + connect.getHeaderField("Content-disposition"));
+        return getFile(connect, file);
     }
 
-    public static String post(String uri, String json){
-        System.out.println("POST "+json);
-        HttpURLConnection connect=connection(uri,"POST");
-        if(connect != null) {
+    public static String get(String uri) {
+        System.out.println("GET " + uri);
+        HttpURLConnection connect = connection(uri, "GET");
+
+        if (connect != null) {
+            String json = getJSON(connect);
+            return json;
+        }
+        return "";
+    }
+
+
+    public static String post(String uri, String json) {
+        System.out.println("POST " + json);
+        HttpURLConnection connect = connection(uri, "POST");
+        if (connect != null) {
             try {
                 OutputStream os = connect.getOutputStream();
                 os.write(json.getBytes(StandardCharsets.UTF_8));
@@ -105,17 +110,17 @@ public class Connector {
             }
         }
         System.out.println("Нет связи с сервером");
-            return null;
+        return null;
     }
 
-    public static int delete(String uri){
+    public static int delete(String uri) {
         System.out.println("DELETE " + uri);
-        HttpURLConnection connect = connection(uri,"DELETE");
-        if(connect != null) {
+        HttpURLConnection connect = connection(uri, "DELETE");
+        if (connect != null) {
             String s = getJSON(connect);
             if (!s.isEmpty()) {
                 System.out.println("Show dialog error " + s);
-                UpdateService.get().showError(s);
+                //UpdateService.get().showError(s);
                 return 0;
             } else {
                 return 200;
@@ -124,20 +129,20 @@ public class Connector {
         return 0;
     }
 
-    public static String put(String uri,String json){
-        System.out.println("PUT "+json);
-        HttpURLConnection connect=connection(uri,"PUT");
-        if(connect != null){
+    public static String put(String uri, String json) {
+        System.out.println("PUT " + json);
+        HttpURLConnection connect = connection(uri, "PUT");
+        if (connect != null) {
             try {
                 OutputStream os = connect.getOutputStream();
                 os.write(json.getBytes(StandardCharsets.UTF_8));
                 os.close();
                 String response = getJSON(connect);
-                int responseCode=connect.getResponseCode();
-                System.out.println(responseCode+" "+connect.getResponseMessage());
+                int responseCode = connect.getResponseCode();
+                System.out.println(responseCode + " " + connect.getResponseMessage());
                 return response;
-            }catch (Exception ex){
-                System.out.println("Exception PUT "+ex);
+            } catch (Exception ex) {
+                System.out.println("Exception PUT " + ex);
             }
         }
         return null;
@@ -147,20 +152,20 @@ public class Connector {
     static String boundary = "------------------------" + Long.toHexString(System.currentTimeMillis());
     String charset = "UTF-8";
 
-    public static String post(String uri, List<File> uploadFiles ) throws IOException {
+    public static String post(String uri, List<File> uploadFiles) throws IOException {
         URL url = new URL(uri);
-        HttpURLConnection connect=(HttpURLConnection) url.openConnection();
+        HttpURLConnection connect = (HttpURLConnection) url.openConnection();
         connect.setRequestMethod("POST");
         connect.setRequestProperty("Connection", "Keep-Alive");
         connect.setRequestProperty("Cache-Control", "no-cache");
-        connect.setRequestProperty("Content-Type", "multipart/form-data;boundary="+boundary);
+        connect.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
         //connect.setUseCaches(false);
         //connect.setAllowUserInteraction(true);
         connect.setDoOutput(true);
         connect.setDoInput(true);
 
-        DataOutputStream outputStream=new DataOutputStream(connect.getOutputStream());
-        for(File file:uploadFiles) {
+        DataOutputStream outputStream = new DataOutputStream(connect.getOutputStream());
+        for (File file : uploadFiles) {
             outputStream.writeBytes("--" + boundary + CRLF);
             outputStream.writeBytes("Content-Disposition: form-data;name=\"documents\";filename=\"" + file.getName() + "\"" + CRLF);
             //outputStream.writeBytes("Content-Type: text/plane"+CRLF);
@@ -169,16 +174,15 @@ public class Connector {
             outputStream.write(bytes);
             outputStream.writeBytes(CRLF);
         }
-        outputStream.writeBytes("--"+boundary+"--"+CRLF);
+        outputStream.writeBytes("--" + boundary + "--" + CRLF);
         outputStream.flush();
         outputStream.close();
         System.out.println(connect.getResponseMessage());
 
-        String response=getJSON(connect);
+        String response = getJSON(connect);
         connect.disconnect();
         return response;
     }
-
 
 
 }

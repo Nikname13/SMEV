@@ -273,7 +273,6 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
         equipment.setDescription_department(entity.getDescription_department());
         equipment.setGuaranty(entity.getGuaranty());
         equipment.setInventoryNumber(entity.getInventoryNumber());
-        equipment.addEntity(entity.getLastEntity());
     }
 
     @Override
