@@ -2,15 +2,14 @@ package Model.Worker;
 
 import Model.AbstractModel;
 import Model.Department.DepartmentModel;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import Model.Post.PostModel;
 
 public class WorkerModel extends AbstractModel {
 
-    private String mPost;
     private DepartmentModel mDepartmentModel;
+    private PostModel mPost;
 
-    public WorkerModel(int id, String name, String post, DepartmentModel department) {
+    public WorkerModel(int id, String name, PostModel post, DepartmentModel department) {
         super(id,name);
         mPost = post;
         setDepartmentModel(department);
@@ -20,23 +19,19 @@ public class WorkerModel extends AbstractModel {
         super(id, name);
     }
 
-    public String getPost() {
-        return mPost;
-    }
-
-    public void setPost(String post) {
-        mPost = post;
-    }
-
-    public StringProperty postProperty() {
-        return new SimpleStringProperty(mPost);
-    }
-
     public DepartmentModel getDepartmentModel() {
         return mDepartmentModel;
     }
 
     public void setDepartmentModel(DepartmentModel departmentModel) {
         mDepartmentModel = departmentModel;
+    }
+
+    public PostModel getPost() {
+        return mPost;
+    }
+
+    public void setPost(PostModel post) {
+        mPost = post;
     }
 }

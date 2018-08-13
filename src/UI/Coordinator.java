@@ -35,7 +35,7 @@ public class Coordinator {
         Parent page=FXMLLoader.load(getClass().getResource(fxml));
         Scene scene=rootStage.getScene();
         if(scene==null){
-            scene=new Scene(page,1366,1000);
+            scene = new Scene(page, 1000, 1000);
             rootStage.setScene(scene);
         }else{
             rootStage.getScene().setRoot(page);
@@ -260,11 +260,19 @@ public class Coordinator {
         }
     }
 
-    public void goToAddEquipmentStateWindow(Stage stage) {
+    public void goToEquipmentStateLog(Stage stage) {
         try{
-            windowSceneContent("Equipment/Equipment_inventory/Equipment_state/addEquipmentState.fxml", stage, "Новое состояние", 360.0, 355.0);
+            windowSceneContent("Equipment/Equipment_inventory/Equipment_state/addEquipmentStateLog.fxml", stage, "Новое состояние", 360.0, 355.0);
         }catch (Exception ex){
             System.out.println("Exeption goToAddEquipmnetWindow "+ex);
+        }
+    }
+
+    public void goToInventoryNumberLog(Stage stage) {
+        try {
+            windowSceneContent("Equipment/Equipment_inventory/Equipment_number/addInventoryNumberLog.fxml", stage, "Новый номер", 360.0, 355.0);
+        } catch (Throwable ex) {
+            System.out.println("Exception goToMoveEquipmentInventoryWindow " + ex);
         }
     }
 
@@ -371,7 +379,6 @@ public class Coordinator {
             System.out.println("Exception goToMoveEquipmentInventoryWindow "+ex);
         }
     }
-
 
 
 }

@@ -26,7 +26,9 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     private static EquipmentModel sEquipmentModel;
     private static EquipmentInventoryModel sEquipmentInventoryModel;
     private static StateModel sStateModel;
+    private static InventoryNumberModel sInventoryNumberModel;
     private static EquipmentStateLogModel sEquipmentStateLog;
+    private static EquipmentInventoryLogModel sEquipmentInventoryLogModel;
     private static EquipmentPresenter sEquipmentPresenter;
     private static DepartmentModel sDepartmentModel;
 
@@ -71,6 +73,14 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     public void setStateModel(Object stateModel) {
         sStateModel = (StateModel) stateModel;
+    }
+
+    public InventoryNumberModel getInventoryNumberModel() {
+        return sInventoryNumberModel;
+    }
+
+    public void setInventoryNumberModel(InventoryNumberModel inventoryNumberModel) {
+        sInventoryNumberModel = inventoryNumberModel;
     }
 
     public ObservableList<EquipmentModel> getObservableEquipment() {
@@ -178,6 +188,22 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     public void setEquipmentStateLog(EquipmentStateLogModel equipmentState) {
         sEquipmentStateLog = equipmentState;
+    }
+
+    public void addEquipmentInventoryLogModel(String description, LocalDate date) {
+        sEquipmentInventoryLogModel = new EquipmentInventoryLogModel(0, sInventoryNumberModel.getName(), sInventoryNumberModel.getId(), date, description);
+        sEquipmentInventoryModel.setInventoryNumber(sInventoryNumberModel);
+        sEquipmentInventoryModel.addInvenotryEditLof(sEquipmentInventoryLogModel);
+        editEquipmentInventory(sEquipmentInventoryModel);
+        UpdateService.get().refreshControl(EquipmentInventoryLogModel.class);
+    }
+
+    public EquipmentInventoryLogModel getEquipmentInventoryLogModel() {
+        return sEquipmentInventoryLogModel;
+    }
+
+    public void setEquipmentInventoryLogModel(EquipmentInventoryLogModel equipmentInventoryLogModel) {
+        sEquipmentInventoryLogModel = equipmentInventoryLogModel;
     }
 
     public void addMovement(LocalDate date, String base, Object fromDepartment, Object toDepartment, Object fromWorker, Object toWorker, Object equipment) {

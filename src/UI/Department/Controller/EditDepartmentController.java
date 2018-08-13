@@ -3,7 +3,6 @@ package UI.Department.Controller;
 import Model.AbstractModel;
 import Model.Area.AreaModel;
 import Model.Department.DepartmentModel;
-import Model.Department.PurchaseModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Equipment.EquipmentModel;
 import Model.Inventory_number.InventoryNumberModel;
@@ -63,9 +62,6 @@ public class EditDepartmentController implements IUpdateUI {
     private JFXListView<LocationModel> mListViewLocation;
 
     @FXML
-    private JFXListView<PurchaseModel> mListViewPurchase;
-
-    @FXML
     private JFXTextArea mTextAreaDescription;
 
     @FXML
@@ -91,7 +87,6 @@ public class EditDepartmentController implements IUpdateUI {
         initComboBoxArea();
         initTextAreaDescription();
         initRadioButton();
-        initPurchaseListView();
         initLocationListView();
         initWorkerListView();
         initPopup();
@@ -136,31 +131,6 @@ public class EditDepartmentController implements IUpdateUI {
         });
     }
 
-    private void initPurchaseListView() {
-        mListViewPurchase.setCellFactory(p -> new ListCell<>() {
-            @Override
-            protected void updateItem(PurchaseModel item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty) {
-                    setText(item.getDate().toString() + " " + item.getDescription());
-                } else setText(null);
-            }
-        });
-        mListViewPurchase.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                newValue.setDepartment(mDepartmentModel);
-                DepartmentPresenter.get().setSelectedObject(newValue);
-                DepartmentPresenter.get().setPurchaseModel(newValue);
-            }
-        }));
-        mListViewPurchase.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (newValue)
-                    DepartmentPresenter.get().setSelectedObject(mListViewPurchase.getSelectionModel().getSelectedItem());
-            }
-        });
-    }
 
     private void initTreeTableEquipmentInventory() {
         mNameEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getEquipmentModel().nameProperty());
@@ -201,7 +171,6 @@ public class EditDepartmentController implements IUpdateUI {
     }
 
     private void initWorkerListView() {
-
 
         mListViewWorker.setCellFactory(p -> new ListCell<>() {
             @Override
@@ -294,7 +263,6 @@ public class EditDepartmentController implements IUpdateUI {
 
     private void initPopup() {
         new BasePopup(mTreeTableEquipmentInventory, BasePopup.getEquipmentInventoryPopup());
-        new BasePopup(mListViewPurchase, BasePopup.getBaseListPopup());
         new BasePopup(mListViewLocation, BasePopup.getBaseListPopup());
         new BasePopup(mListViewWorker, BasePopup.getBaseListPopup());
     }
@@ -335,11 +303,6 @@ public class EditDepartmentController implements IUpdateUI {
         new Coordinator().goToAddLocationWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
     }
 
-    @FXML
-    private void onClickAddPurchase() {
-        DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
-        new Coordinator().goToAddPurchaseWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
-    }
 
     @FXML
     private void onClickDelete() {
@@ -409,7 +372,7 @@ public class EditDepartmentController implements IUpdateUI {
             mRadioButtonRenting.setSelected(mDepartmentModel.isRenting());
             mListViewWorker.setItems(mDepartmentModel.getObsWorkerList());
             mListViewLocation.setItems(mDepartmentModel.getObsLocationList());
-            mListViewPurchase.setItems(mDepartmentModel.getObservableEntityList());
+
             mComboBoxArea.setItems(DepartmentPresenter.get().getObservableArea());
             mComboBoxArea.getSelectionModel().select(mDepartmentModel.getAreaModel());
             setInvisibleEditButton();
@@ -441,9 +404,6 @@ public class EditDepartmentController implements IUpdateUI {
         }
         if (updateClass.getName().equals(LocationModel.class.getName())) {
             mListViewLocation.setItems(mDepartmentModel.getObsLocationList());
-        }
-        if (updateClass.getName().equals(PurchaseModel.class.getName())) {
-            mListViewPurchase.setItems(mDepartmentModel.getObservableEntityList());
         }
     }
 

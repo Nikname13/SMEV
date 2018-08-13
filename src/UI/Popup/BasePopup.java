@@ -13,6 +13,7 @@ public class BasePopup implements IUpdatePopup {
 
     private static String sEquipmentInventoryPopup = "/UI/Popup/equipmentInventoryPopup.fxml";
     private static String sBaseListPopup = "/UI/Popup/BaseListPopup.fxml";
+    private static String sDepartmentListPopup = "";
     private JFXPopup mPopup;
 
     public BasePopup(Node node, String resourceURL) {

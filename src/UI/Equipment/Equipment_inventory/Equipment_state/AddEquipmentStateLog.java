@@ -1,4 +1,4 @@
-package UI.Equipment.Equipment_inventory.Equipment_state.Controller;
+package UI.Equipment.Equipment_inventory.Equipment_state;
 
 import Presenter.EquipmentPresenter;
 import UI.Validator.ControllerValidator;
@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
-public class AddEquipmentState {
+public class AddEquipmentStateLog {
 
     @FXML
     private Label labelData;

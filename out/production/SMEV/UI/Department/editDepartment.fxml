@@ -36,7 +36,7 @@
             </children>
         </AnchorPane>
         <!--три кнопки док, конфиг и фото-->
-        <AnchorPane style="-fx-background-color: #ffffff;" prefHeight="190.0" prefWidth="200.0"
+        <AnchorPane style="-fx-background-color: #ffffff;" prefHeight="190.0" prefWidth="150.0"
                     AnchorPane.leftAnchor="460.0" AnchorPane.topAnchor="0.0">
             <children>
                 <JFXButton fx:id="mButtonDoc" ripplerFill="#40a85f" text="Документация" AnchorPane.leftAnchor="10.0"
@@ -49,54 +49,43 @@
         </AnchorPane>
         <!--аватар-->
         <AnchorPane style="-fx-background-color: #ffffff;" prefHeight="190.0" AnchorPane.topAnchor="0.0"
-                    AnchorPane.rightAnchor="10.0" AnchorPane.leftAnchor="670.0">
+                    AnchorPane.leftAnchor="620.0" prefWidth="360">
             <children>
                 <JFXButton AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.bottomAnchor="10.0"
                            prefWidth="340.0" style="-fx-background-color: #a8f1b3;"/>
-                <Label text="Адрес" AnchorPane.leftAnchor="360.0"
+            </children>
+        </AnchorPane>
+
+        <AnchorPane style="-fx-background-color: #ffffff;"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0" prefWidth="980.0" prefHeight="100.0">
+            <children>
+                <Label text="Адрес" AnchorPane.leftAnchor="10.0"
                        AnchorPane.topAnchor="10.0">
                     <font>
                         <Font size="10.0"/>
                     </font>
                 </Label>
-                <JFXListView fx:id="mListViewLocation" prefHeight="60.0" prefWidth="400.0" AnchorPane.leftAnchor="360.0"
-                             AnchorPane.topAnchor="33.0"/>
-                <JFXButton onAction="#onClickAddLocation" text="Добавить" AnchorPane.topAnchor="33.0"
-                           AnchorPane.leftAnchor="770.0" prefHeight="60.0"
-                           ripplerFill="#40a85f" prefWidth="100.0"/>
-                <Label text="Сотрудники" AnchorPane.leftAnchor="360.0"
-                       AnchorPane.topAnchor="98.0">
+                <JFXListView fx:id="mListViewLocation" prefHeight="60.0" prefWidth="395.0" AnchorPane.leftAnchor="10.0"
+                             AnchorPane.topAnchor="30.0"/>
+                <JFXButton onAction="#onClickAddLocation" text="Добавить" AnchorPane.topAnchor="30.0"
+                           AnchorPane.leftAnchor="415.0" prefHeight="60.0"
+                           ripplerFill="#40a85f" prefWidth="70.0"/>
+                <Label text="Сотрудники" AnchorPane.leftAnchor="530.0"
+                       AnchorPane.topAnchor="10.0">
                     <font>
                         <Font size="10.0"/>
                     </font>
                 </Label>
-                <JFXListView fx:id="mListViewWorker" prefHeight="60.0" prefWidth="400.0" AnchorPane.bottomAnchor="10.0"
-                             AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="120.0"/>
-                <JFXButton onAction="#onClickAddWorker" text="Добавить" AnchorPane.topAnchor="120.0"
-                           AnchorPane.leftAnchor="770.0" prefHeight="60.0"
-                           ripplerFill="#40a85f" prefWidth="100.0"/>
-
-
-                <!--<Button layoutX="408.0" layoutY="33.0" mnemonicParsing="false" onAction="#onClickDelete" text="delete"/>-->
-
+                <JFXListView fx:id="mListViewWorker" prefHeight="60.0" prefWidth="395.0" AnchorPane.bottomAnchor="10.0"
+                             AnchorPane.leftAnchor="495.0" AnchorPane.topAnchor="30.0"/>
+                <JFXButton onAction="#onClickAddWorker" text="Добавить" AnchorPane.topAnchor="30.0"
+                           AnchorPane.leftAnchor="900.0" prefHeight="60.0"
+                           ripplerFill="#40a85f" prefWidth="70.0"/>
             </children>
-        </AnchorPane>
-        <!--закупки-->
-        <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0" prefWidth="450.0">
-            <children>
-                <JFXButton mnemonicParsing="false" onAction="#onClickAddPurchase"
-                           text="Новая закупка" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
-                           AnchorPane.topAnchor="10.0" prefHeight="35.0" ripplerFill="#40a85f"/>
-                <JFXListView fx:id="mListViewPurchase" AnchorPane.topAnchor="55.0" AnchorPane.rightAnchor="10.0"
-                             AnchorPane.leftAnchor="10.0" AnchorPane.bottomAnchor="10.0">
-                </JFXListView>
 
-            </children>
         </AnchorPane>
-        <!--список оборудования-->
         <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.leftAnchor="460.0" AnchorPane.topAnchor="200.0" prefWidth="560">
+                    AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="310.0" prefWidth="560">
             <children>
                 <JFXTreeTableView fx:id="mTreeTableEquipmentInventory" prefHeight="200.0"
                                   AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0"
@@ -113,8 +102,8 @@
             </children>
         </AnchorPane>
         <!--информация об оборудовании-->
-        <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="1030.0" AnchorPane.topAnchor="200.0"
-                    AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0">
+        <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="570.0" AnchorPane.topAnchor="310.0"
+                    AnchorPane.bottomAnchor="0.0" prefWidth="410.0">
             <fx:include source="/UI/TabPane/tabPaneSecondLvl.fxml" AnchorPane.topAnchor="0"
                         AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0"
                         AnchorPane.rightAnchor="0"/>

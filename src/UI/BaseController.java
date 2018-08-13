@@ -12,4 +12,6 @@ public class BaseController {
             tabPane.getTabs().remove(tabPane.getSelectionModel().getSelectedIndex()-1);
         }
     }
+
+
 }
