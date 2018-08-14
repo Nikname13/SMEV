@@ -29,7 +29,7 @@ public class WorkersController {
     @FXML
     public void initialize(){
         firstColumn.setCellValueFactory(cellData->cellData.getValue().nameProperty());
-        secondColumn.setCellValueFactory(cellData->cellData.getValue().postProperty());
+        secondColumn.setCellValueFactory(cellData -> cellData.getValue().getPost().nameProperty());
         departmentColumn.setCellValueFactory(cellData->cellData.getValue().getDepartmentModel().nameProperty());
         tableViewWorkers.setItems(WorkerPresenter.get().getObservableWorkers());
         tableViewWorkers.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) ->delete(newValue) ));
@@ -38,7 +38,7 @@ public class WorkersController {
     private void delete(WorkerModel worker){
         mId=worker.getId();
         WorkerPresenter.get().setWorkerModel(worker);
-        WorkerPresenter.get().editWorker("new name", "new post", worker.getDepartmentModel());
+        // WorkerPresenter.get().editWorker("new name", "new post", worker.getDepartmentModel());
     }
 
     @FXML

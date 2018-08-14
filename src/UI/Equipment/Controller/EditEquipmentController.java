@@ -12,7 +12,7 @@ import Service.IUpdateUI;
 import Service.TabControllerService;
 import Service.UpdateService;
 import UI.Coordinator;
-import UI.TabPane.Controller.TabPaneSecondLvlController;
+import UI.TabPane.Controller.TabPaneSecondLvlTabController;
 import UI.Validator.BaseValidator;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -175,7 +175,7 @@ public class EditEquipmentController implements IUpdateUI {
             mTextAreaDescription.setText(sEquipmentModel.getDescription());
             //tableViewEquipment.setItems(sEquipmentModel.getObservableEqInventoryList());
             updateEquipmentTable(sEquipmentModel.getObservableEqInventoryList());
-            UpdateService.get().updateUI(TabPaneSecondLvlController.class);
+            UpdateService.get().updateUI(TabPaneSecondLvlTabController.class);
         }
     }
 

@@ -3,15 +3,15 @@ package UI.MainTabs;
 import Service.IUpdateUI;
 import Service.TabControllerService;
 import Service.UpdateService;
-import UI.BaseController;
+import UI.BaseTabController;
 import UI.Department.Controller.DepartmentsController;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 
-public class DepartmentTabController extends BaseController implements IUpdateUI {
+public class DepartmentTabTabController extends BaseTabController implements IUpdateUI {
 
-    public DepartmentTabController(){
+    public DepartmentTabTabController() {
         UpdateService.get().addListenerUI(this);
         TabControllerService.get().setListenerFirstTabPane((Tab nextTab)-> nextTab(nextTab,mDepartmentTabContainer));
     }

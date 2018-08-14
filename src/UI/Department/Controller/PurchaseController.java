@@ -32,7 +32,7 @@ public class PurchaseController {
 
 
     private void initPopup() {
-        new BasePopup(mListViewPurchase, BasePopup.getBaseListPopup());
+        new BasePopup(mListViewPurchase, BasePopup.getBaseListPopup(), null);
     }
 
 

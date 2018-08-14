@@ -324,6 +324,14 @@ public class Coordinator {
         }
     }
 
+    public void goToEditWorkerDepartmentWindow(Stage stage) {
+        try {
+            windowSceneContent("Worker/editWorker.fxml", stage, "Добавить сотрудника", 260.0, 300.0);
+        } catch (Exception ex) {
+            System.out.println("Exception goToEditWorkerDepartmentWindow " + ex);
+        }
+    }
+
     public void goToAddPurchaseWindow(Stage stage) {
         try {
             windowSceneContent("Department/addPurchase.fxml", stage, "Добавить закупку", 365.0, 360.0);

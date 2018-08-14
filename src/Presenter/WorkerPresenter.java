@@ -1,8 +1,11 @@
 package Presenter;
 
+import Iteractor.IteractorPost;
 import Iteractor.IteractorWorker;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
+import Model.Post.PostModel;
+import Model.Post.Posts;
 import Model.Worker.WorkerModel;
 import Model.Worker.Workers;
 import Service.IUpdateData;
@@ -31,24 +34,39 @@ public class WorkerPresenter extends BasePresenter implements IUpdateData {
         sWorkerModel = worker;
     }
 
-    public ObservableList<WorkerModel> getObservableWorkers(){
+    public ObservableList<WorkerModel> getObservableWorkers() {
         return Workers.get().getEntityList();
     }
 
-    public ObservableList<DepartmentModel> getObservableDepartment(){
+    public ObservableList<DepartmentModel> getObservableDepartment() {
         return Departments.get().getEntityList();
     }
 
-    public void addWorker(String name, String post, DepartmentModel department){
+    public ObservableList<PostModel> getObservablePost() {
+        return Posts.get().getEntityList();
+    }
+
+    public void addWorker(String name, PostModel post, DepartmentModel department) {
+        if (post.getId() == 0) {
+            post = addPost(post);
+        }
         UpdateService.get().updateData(new IteractorWorker().addNew(new WorkerModel(0, name, post, department)));
         UpdateService.get().updateControl(WorkerModel.class);
     }
 
-    public void editWorker(String name, String post, DepartmentModel department){
-        new IteractorWorker().edit(new WorkerModel(sWorkerModel.getId(), name, post, department));
+    public void editWorker(String name, PostModel post, DepartmentModel department) {
+        if (post.getId() == 0) {
+            post = addPost(post);
+        }
+        UpdateService.get().updateData(new IteractorWorker().edit(new WorkerModel(0, name, post, department)));
+        UpdateService.get().updateControl(WorkerModel.class);
     }
 
-    public void deleteWorker(int id){
+    public PostModel addPost(PostModel post) {
+        return new IteractorPost().addNew(post);
+    }
+
+    public void deleteWorker(int id) {
         new IteractorWorker().delete(id);
     }
 

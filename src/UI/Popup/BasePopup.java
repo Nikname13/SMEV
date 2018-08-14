@@ -16,19 +16,24 @@ public class BasePopup implements IUpdatePopup {
     private static String sDepartmentListPopup = "";
     private JFXPopup mPopup;
 
-    public BasePopup(Node node, String resourceURL) {
+    public BasePopup(Node node, String resourceURL, Runnable primaryClick) {
         UpdateService.get().addListenerPopup(this::hide);
         try {
             mPopup = new JFXPopup(FXMLLoader.load(getClass().getResource(resourceURL)));
             node.setOnMouseClicked(event -> {
                 if (event.getButton() == MouseButton.SECONDARY)
                     mPopup.show(node, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());
+                if (event.getButton() == MouseButton.PRIMARY) {
+                    if (primaryClick != null)
+                        primaryClick.run();
+                }
             });
         } catch (IOException ex) {
             System.out.println("Ошибка загрузки " + resourceURL);
             ex.printStackTrace();
         }
     }
+
 
     public static String getEquipmentInventoryPopup() {
         return sEquipmentInventoryPopup;

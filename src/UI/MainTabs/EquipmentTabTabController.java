@@ -3,15 +3,15 @@ package UI.MainTabs;
 import Service.IUpdateUI;
 import Service.TabControllerService;
 import Service.UpdateService;
-import UI.BaseController;
+import UI.BaseTabController;
 import UI.Equipment.Controller.EquipmentsController;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 
-public class EquipmentTabController extends BaseController implements IUpdateUI {
+public class EquipmentTabTabController extends BaseTabController implements IUpdateUI {
 
-    public EquipmentTabController() {
+    public EquipmentTabTabController() {
         UpdateService.get().addListenerUI(this);
     }
 

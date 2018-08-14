@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="UI.TabPane.Controller.TabPaneSecondLvlController"
+            fx:controller="UI.TabPane.Controller.TabPaneSecondLvlTabController"
             prefHeight="400.0" prefWidth="600.0">
     <JFXTabPane fx:id="mSecondLvlTabPane" side="LEFT" tabMaxWidth="0"
                 tabMinWidth="0" tabMinHeight="0" tabMaxHeight="0"

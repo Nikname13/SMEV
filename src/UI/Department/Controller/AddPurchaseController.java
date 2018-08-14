@@ -1,6 +1,7 @@
 package UI.Department.Controller;
 
 import Presenter.DepartmentPresenter;
+import UI.BaseController;
 import UI.Validator.BaseValidator;
 import UI.Validator.Pair;
 import com.jfoenix.controls.JFXDatePicker;
@@ -10,12 +11,11 @@ import com.jfoenix.validation.ValidationFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
 
-public class AddPurchaseController {
+public class AddPurchaseController extends BaseController {
 
     @FXML
     private JFXTextField mTextFieldURL;
@@ -58,18 +58,13 @@ public class AddPurchaseController {
             System.out.println("true");
             System.out.println(mTextFieldURL.getText());
             DepartmentPresenter.get().addPurchase(mTextFieldURL.getText().trim(), mTextAreaDescription.getText().trim(), mDatePicker.getValue());
-            close();
+            close(mAnchorPanePurchase);
         }
     }
 
     @FXML
     private void onClickCancel() {
-        close();
-    }
-
-    private void close() {
-        Stage stage = (Stage) mAnchorPanePurchase.getScene().getWindow();
-        stage.close();
+        close(mAnchorPanePurchase);
     }
 
 }

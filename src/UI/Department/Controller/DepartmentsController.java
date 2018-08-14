@@ -67,8 +67,13 @@ public class DepartmentsController implements IUpdateUI {
         });
     }
 
+    private static void primaryClickDepartment() {
+        TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditDepartmentResource()));
+        UpdateService.get().updateUI(DepartmentModel.class);
+    }
+
     private void initPopup() {
-        mPopup = new BasePopup(mDepartmentListView, BasePopup.getBaseListPopup());
+        mPopup = new BasePopup(mDepartmentListView, BasePopup.getBaseListPopup(), DepartmentsController::primaryClickDepartment);
 
     }
 
@@ -77,8 +82,7 @@ public class DepartmentsController implements IUpdateUI {
             DepartmentPresenter.get().setBasePopup(mPopup);
             DepartmentPresenter.get().setDepartmentModel(department);
             DepartmentPresenter.get().setSelectedObject(department);
-            TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditDepartmentResource()));
-            UpdateService.get().updateUI(DepartmentModel.class);
+
         }
     }
 

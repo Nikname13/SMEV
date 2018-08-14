@@ -4,16 +4,18 @@
 <?import com.jfoenix.validation.ValidationFacade?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPaneWorker" prefHeight="300.0" prefWidth="250.0"
-            xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Worker.Controller.AddWorkerController"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPaneEditWorker" prefHeight="300.0" prefWidth="250.0"
+            xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Worker.Controller.EditWorkerController"
             style="-fx-background-color: #ffffff;">
 
     <JFXTextField fx:id="mTextFieldName" promptText="ФИО" focusColor="#40a85f" labelFloat="true" prefWidth="200.0"
                   AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="30.0"/>
-    <ValidationFacade fx:id="mFacadePost" layoutX="20.0" layoutY="90.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="90.0">
+    <ValidationFacade fx:id="mFacadePost" layoutX="20.0" layoutY="90.0" AnchorPane.leftAnchor="20.0"
+                      AnchorPane.topAnchor="90.0">
         <control>
-            <JFXComboBox fx:id="mComboBoxPost" editable="true" promptText="Должность" focusColor="#40a85f" labelFloat="true" prefWidth="200.0"
-                         />
+            <JFXComboBox fx:id="mComboBoxPost" editable="true" promptText="Должность" focusColor="#40a85f"
+                         labelFloat="true" prefWidth="200.0"
+            />
         </control>
     </ValidationFacade>
     <Label fx:id="mErrorPost"/>
@@ -27,8 +29,10 @@
     <Label fx:id="mErrorDepartment"/>
     <JFXButton onAction="#onClickAdd" mnemonicParsing="false" text="Сохранить" ripplerFill="#40a85f" prefWidth="100.0"
                prefHeight="35.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="210.0"/>
-    <JFXButton onAction="#onClickCancel" mnemonicParsing="false" text="Отмена" ripplerFill="#40a85f" prefWidth="100.0" prefHeight="35.0"
+    <JFXButton onAction="#onClickCancel" mnemonicParsing="false" text="Отмена" ripplerFill="#40a85f" prefWidth="100.0"
+               prefHeight="35.0"
                AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="210.0"/>
 
 
 </AnchorPane>
+

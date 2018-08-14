@@ -3,14 +3,14 @@ package UI.TabPane.Controller;
 import Service.IUpdateUI;
 import Service.TabControllerService;
 import Service.UpdateService;
-import UI.BaseController;
+import UI.BaseTabController;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 
-public class TabPaneSecondLvlController extends BaseController implements IUpdateUI {
+public class TabPaneSecondLvlTabController extends BaseTabController implements IUpdateUI {
 
-    public TabPaneSecondLvlController() {
+    public TabPaneSecondLvlTabController() {
         System.out.println("second lvl controller");
         UpdateService.get().addListenerUI(this);
         TabControllerService.get().setListenerThirdTabPane(((Tab nextTab)->nextTab(nextTab,mSecondLvlTabPane)));

@@ -2,8 +2,8 @@ package UI;
 
 import Service.IErrorMessage;
 import Service.UpdateService;
-import UI.MainTabs.DepartmentTabController;
-import UI.MainTabs.EquipmentTabController;
+import UI.MainTabs.DepartmentTabTabController;
+import UI.MainTabs.EquipmentTabTabController;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
@@ -47,9 +47,11 @@ public class ExampleController implements IErrorMessage {
 
         switch (id){
             case "mDepartmentTab":
-                UpdateService.get().updateUI(DepartmentTabController.class); break;
+                UpdateService.get().updateUI(DepartmentTabTabController.class);
+                break;
             case "mEquipmentTab":
-                UpdateService.get().updateUI(EquipmentTabController.class); break;
+                UpdateService.get().updateUI(EquipmentTabTabController.class);
+                break;
             case "mSupplyTab": break;
             case "mMovementTab": break;
         }

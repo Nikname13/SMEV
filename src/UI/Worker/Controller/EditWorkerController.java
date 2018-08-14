@@ -2,6 +2,7 @@ package UI.Worker.Controller;
 
 import Model.Department.DepartmentModel;
 import Model.Post.PostModel;
+import Model.Worker.WorkerModel;
 import Presenter.WorkerPresenter;
 import UI.BaseController;
 import UI.Validator.BaseValidator;
@@ -13,41 +14,43 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-public class AddWorkerController extends BaseController {
+public class EditWorkerController extends BaseController {
 
     private BaseValidator mBaseValidator = new BaseValidator();
+    private boolean mSelectedFlag;
     private PostModel mPostModel;
-
+    private WorkerModel mWorkerModel;
     @FXML
     private JFXTextField mTextFieldName;
-
     @FXML
     private JFXComboBox<PostModel> mComboBoxPost;
-
     @FXML
     private JFXComboBox<DepartmentModel> mComboBoxDepartment;
-
     @FXML
     private ValidationFacade mFacadeDepartment, mFacadePost;
-
     @FXML
     private Label mErrorDepartment, mErrorPost;
+    @FXML
+    private AnchorPane mAnchorPaneEditWorker;
+
+    public EditWorkerController() {
+        mWorkerModel = WorkerPresenter.get().getWorkerModel();
+    }
 
     @FXML
-    private AnchorPane mAnchorPaneWorker;
-
-    @FXML
-    public void initialize(){
-        mBaseValidator.setValidationFacades(new Pair(mFacadeDepartment, mErrorDepartment), new Pair(mFacadePost, mErrorPost));
+    public void initialize() {
         mBaseValidator.setJFXTextFields(mTextFieldName);
-        initComboBoxDepartment(mComboBoxDepartment);
+        mBaseValidator.setValidationFacades(new Pair(mFacadePost, mErrorPost), new Pair(mFacadeDepartment, mErrorDepartment));
+        initTextField();
         initComboBoxPost(mComboBoxPost);
+        initComboBoxDepartment(mComboBoxDepartment);
     }
 
     @Override
     protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBoxDepartment) {
         super.initComboBoxDepartment(comboBoxDepartment);
         comboBoxDepartment.setItems(WorkerPresenter.get().getObservableDepartment());
+        mComboBoxDepartment.getSelectionModel().select(mWorkerModel.getDepartmentModel());
     }
 
     @Override
@@ -55,7 +58,9 @@ public class AddWorkerController extends BaseController {
         super.initComboBoxPost(comboBoxPost);
         comboBoxPost.setItems(WorkerPresenter.get().getObservablePost());
         mComboBoxPost.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedPost()));
+        mComboBoxPost.getSelectionModel().select(mWorkerModel.getPost());
     }
+
 
     private void selectedPost() {
         if (mComboBoxPost.getSelectionModel().selectedIndexProperty().get() != -1) {
@@ -64,21 +69,24 @@ public class AddWorkerController extends BaseController {
         }
     }
 
+    private void initTextField() {
+        mTextFieldName.setText(mWorkerModel.getName());
+    }
 
     @FXML
-    private void onClickAdd(){
+    private void onClickAdd() {
         if (mBaseValidator.validate()) {
             if (isSelectedPost()) {
-                WorkerPresenter.get().addWorker(mTextFieldName.getText(), mPostModel, mComboBoxDepartment.getValue());
+                WorkerPresenter.get().editWorker(mTextFieldName.getText(), mPostModel, mComboBoxDepartment.getValue());
             } else {
-                WorkerPresenter.get().addWorker(mTextFieldName.getText(), mComboBoxPost.getValue(), mComboBoxDepartment.getValue());
+                WorkerPresenter.get().editWorker(mTextFieldName.getText(), mComboBoxPost.getValue(), mComboBoxDepartment.getValue());
             }
-            close(mAnchorPaneWorker);
+            close(mAnchorPaneEditWorker);
         }
     }
 
     @FXML
     private void onClickCancel() {
-        close(mAnchorPaneWorker);
+        close(mAnchorPaneEditWorker);
     }
 }

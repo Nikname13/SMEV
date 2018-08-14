@@ -16,9 +16,10 @@ import Presenter.WorkerPresenter;
 import Service.IUpdateUI;
 import Service.TabControllerService;
 import Service.UpdateService;
+import UI.BaseController;
 import UI.Coordinator;
 import UI.Popup.BasePopup;
-import UI.TabPane.Controller.TabPaneSecondLvlController;
+import UI.TabPane.Controller.TabPaneSecondLvlTabController;
 import UI.Validator.BaseValidator;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
@@ -34,12 +35,12 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 
-public class EditDepartmentController implements IUpdateUI {
+public class EditDepartmentController extends BaseController implements IUpdateUI {
 
     private static DepartmentModel mDepartmentModel;
     private BaseValidator mBaseValidator = new BaseValidator();
+    private Stage mStage;
 
     public EditDepartmentController() {
         mDepartmentModel = DepartmentPresenter.get().getDepartmentModel();
@@ -74,7 +75,14 @@ public class EditDepartmentController implements IUpdateUI {
     private JFXButton mButtonUpdate;
 
     @FXML
-    private AnchorPane anchorPaneEditDepartment, mAnchorPaneBasicInfoDepartment;
+    private AnchorPane anchorPaneEditDepartment;
+
+    @FXML
+    private AnchorPane mAnchorPaneBasicInfoDepartment;
+
+    private static void selectedWorker() {
+        //new Coordinator().goToEditWorkerDepartmentWindow();
+    }
 
     @FXML
     public void initialize() {
@@ -84,7 +92,7 @@ public class EditDepartmentController implements IUpdateUI {
 
         initTextFields();
         initTreeTableEquipmentInventory();
-        initComboBoxArea();
+        initComboBoxArea(mComboBoxArea);
         initTextAreaDescription();
         initRadioButton();
         initLocationListView();
@@ -170,32 +178,8 @@ public class EditDepartmentController implements IUpdateUI {
 
     }
 
-    private void initWorkerListView() {
-
-        mListViewWorker.setCellFactory(p -> new ListCell<>() {
-            @Override
-            protected void updateItem(WorkerModel item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty) {
-                    setText(item.getName() + " " + item.getPost());
-                } else setText(null);
-            }
-        });
-        mListViewWorker.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                newValue.setDepartmentModel(mDepartmentModel);
-                WorkerPresenter.get().setWorkerModel(newValue);
-                WorkerPresenter.get().setSelectedObject(newValue);
-            }
-        }));
-        mListViewWorker.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (newValue)
-                    WorkerPresenter.get().setSelectedObject(mListViewWorker.getSelectionModel().getSelectedItem());
-            }
-        });
-
+    private Stage getStage() {
+        return (Stage) anchorPaneEditDepartment.getScene().getWindow();
     }
 
     private void initRadioButton() {
@@ -224,47 +208,38 @@ public class EditDepartmentController implements IUpdateUI {
         });
     }
 
-    private void initComboBoxArea() {
-        mComboBoxArea.setCellFactory(p -> new ListCell<>() {
+    private void initWorkerListView() {
+
+        mListViewWorker.setCellFactory(p -> new ListCell<>() {
             @Override
-            protected void updateItem(AreaModel item, boolean empty) {
+            protected void updateItem(WorkerModel item, boolean empty) {
                 super.updateItem(item, empty);
                 if (item != null && !empty) {
-                    setText(item.getName());
+                    setText(item.getName() + " " + item.getPost().getName());
                 } else setText(null);
             }
         });
-        mComboBoxArea.setConverter(new StringConverter<AreaModel>() {
-            @Override
-            public String toString(AreaModel object) {
-                if (object != null) return object.getName();
-                else return null;
+        mListViewWorker.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                newValue.setDepartmentModel(mDepartmentModel);
+                WorkerPresenter.get().setWorkerModel(newValue);
+                WorkerPresenter.get().setSelectedObject(newValue);
             }
-
-            @Override
-            public AreaModel fromString(String string) {
-                if (!string.isEmpty())
-                    return new AreaModel(-1, string);
-                else return null;
-            }
-        });
-        mComboBoxArea.setButtonCell(new ListCell<>(){
-            @Override
-            protected void updateItem(AreaModel item, boolean empty) {
-                if (item != null && !empty) {
-                    setText(item.getName());
-                } else setText(null);
-            }
-        });
-        mComboBoxArea.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
-            setVisibleEditButton();
         }));
+        mListViewWorker.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if (newValue)
+                    WorkerPresenter.get().setSelectedObject(mListViewWorker.getSelectionModel().getSelectedItem());
+            }
+        });
+
     }
 
     private void initPopup() {
-        new BasePopup(mTreeTableEquipmentInventory, BasePopup.getEquipmentInventoryPopup());
-        new BasePopup(mListViewLocation, BasePopup.getBaseListPopup());
-        new BasePopup(mListViewWorker, BasePopup.getBaseListPopup());
+        new BasePopup(mTreeTableEquipmentInventory, BasePopup.getEquipmentInventoryPopup(), null);
+        new BasePopup(mListViewLocation, BasePopup.getBaseListPopup(), null);
+        new BasePopup(mListViewWorker, BasePopup.getBaseListPopup(), EditDepartmentController::selectedWorker);
     }
 
     private void setVisibleEditButton() {
@@ -294,13 +269,13 @@ public class EditDepartmentController implements IUpdateUI {
     @FXML
     private void onClickAddWorker() {
         DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
-        new Coordinator().goToAddWorkerDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
+        new Coordinator().goToAddWorkerDepartmentWindow(getStage());
     }
 
     @FXML
     private void onClickAddLocation() {
         DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
-        new Coordinator().goToAddLocationWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
+        new Coordinator().goToAddLocationWindow(getStage());
     }
 
 
@@ -377,7 +352,7 @@ public class EditDepartmentController implements IUpdateUI {
             mComboBoxArea.getSelectionModel().select(mDepartmentModel.getAreaModel());
             setInvisibleEditButton();
             updateEquipmentTable(mDepartmentModel.getObsEquipmnetList());
-            UpdateService.get().updateUI(TabPaneSecondLvlController.class);
+            UpdateService.get().updateUI(TabPaneSecondLvlTabController.class);
 
         }
     }
@@ -397,7 +372,7 @@ public class EditDepartmentController implements IUpdateUI {
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
             updateEquipmentTable(mDepartmentModel.getObsEquipmnetList());
-            UpdateService.get().updateUI(TabPaneSecondLvlController.class);
+            UpdateService.get().updateUI(TabPaneSecondLvlTabController.class);
         }
         if (updateClass.getName().equals(WorkerModel.class.getName())) {
             mListViewWorker.setItems(mDepartmentModel.getObsWorkerList());
