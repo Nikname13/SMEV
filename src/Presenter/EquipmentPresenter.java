@@ -15,7 +15,7 @@ import Model.Type.TypeModel;
 import Model.Type.Types;
 import Model.Worker.WorkerModel;
 import Service.IUpdateData;
-import Service.UpdateService;
+import Service.LisenersService;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
@@ -33,7 +33,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     private static DepartmentModel sDepartmentModel;
 
     private EquipmentPresenter() {
-        UpdateService.get().addListenerData(this);
+        LisenersService.get().addListenerData(this);
     }
 
     public static EquipmentPresenter get() {
@@ -137,14 +137,14 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     public void editEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
                                        DepartmentModel departmentModel, EquipmentStateLogModel equipmentState, EquipmentModel equipmentModel, StateModel state) {
-        UpdateService.get().updateData(new IteractorEquipmentInventory().edit(new EquipmentInventoryModel(sEquipmentInventoryModel.getId(), inventoryNumber, guaranty,
+        LisenersService.get().updateData(new IteractorEquipmentInventory().edit(new EquipmentInventoryModel(sEquipmentInventoryModel.getId(), inventoryNumber, guaranty,
                 description, departmentModel, equipmentState, equipmentModel, state)));
-        UpdateService.get().refreshControl(DepartmentModel.class);
+        LisenersService.get().refreshControl(DepartmentModel.class);
     }
 
     public void editEquipmentInventory(EquipmentInventoryModel equipment) {
-        UpdateService.get().updateData(new IteractorEquipmentInventory().edit(equipment));
-        UpdateService.get().refreshControl(EquipmentInventoryModel.class);
+        LisenersService.get().updateData(new IteractorEquipmentInventory().edit(equipment));
+        LisenersService.get().refreshControl(EquipmentInventoryModel.class);
     }
 
 
@@ -162,7 +162,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         movement.addEntity(equipment);
         new IteractorMovement().addNew(movement);
         new IteractorEquipmentInventory().edit(equipment);
-        UpdateService.get().updateControl(EquipmentInventoryModel.class);
+        LisenersService.get().updateControl(EquipmentInventoryModel.class);
     }
 
     public void deleteEquipment() {
@@ -179,7 +179,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         sEquipmentInventoryModel.setStateModel(sStateModel);
         sEquipmentInventoryModel.addEntity(sEquipmentStateLog);
         editEquipmentInventory(sEquipmentInventoryModel);
-        UpdateService.get().refreshControl(EquipmentInventoryModel.class);
+        LisenersService.get().refreshControl(EquipmentInventoryModel.class);
     }
 
     public EquipmentStateLogModel getEquipmentStateLog() {
@@ -195,7 +195,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         sEquipmentInventoryModel.setInventoryNumber(sInventoryNumberModel);
         sEquipmentInventoryModel.addInvenotryEditLof(sEquipmentInventoryLogModel);
         editEquipmentInventory(sEquipmentInventoryModel);
-        UpdateService.get().refreshControl(EquipmentInventoryLogModel.class);
+        LisenersService.get().refreshControl(EquipmentInventoryLogModel.class);
     }
 
     public EquipmentInventoryLogModel getEquipmentInventoryLogModel() {
@@ -231,6 +231,6 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     }
 
     public void cancel() {
-        UpdateService.get().refreshControl(EquipmentInventoryModel.class);
+        LisenersService.get().refreshControl(EquipmentInventoryModel.class);
     }
 }

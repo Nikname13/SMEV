@@ -5,7 +5,7 @@ import com.jfoenix.controls.JFXListView;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 
-public class BaseListPopupController extends BasePopupController {
+public class DepartmentsListPopupController extends BasePopupController {
 
     @FXML
     private JFXListView<Node> mPopupList;
@@ -19,11 +19,13 @@ public class BaseListPopupController extends BasePopupController {
     protected void selectedPopupItem(Node node) {
         if (node != null) {
             switch (node.getId()) {
+                case "purchase":
+                    LisenersService.get().onMouseClick(node.getId());
+                    break;
                 case "delete":
                     LisenersService.get().delete();
                     break;
             }
         }
     }
-
 }

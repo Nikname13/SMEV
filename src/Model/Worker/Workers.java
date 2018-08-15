@@ -26,5 +26,6 @@ public class Workers extends GenericList<WorkerModel> {
         WorkerModel worker=Workers.get().getEntity(entity.getId());
         worker.setName(entity.getName());
         worker.setPost(entity.getPost());
+        worker.setDepartmentModel(entity.getDepartmentModel());
     }
 }

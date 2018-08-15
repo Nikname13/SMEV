@@ -25,6 +25,8 @@ public class EquipmentInventoryPopupController extends BasePopupController {
                 case "statusLog":
                     System.out.println(node.getId());
                     break;
+                case "inventoryLog":
+                    System.out.println(node.getId());
                 case "delete":
                     if (EquipmentPresenter.get().getEquipmentInventoryModel() != null)
                         EquipmentPresenter.get().deleteEquipmentInventory(EquipmentPresenter.get().getEquipmentInventoryModel());

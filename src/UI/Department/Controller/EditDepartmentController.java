@@ -13,9 +13,10 @@ import Presenter.DepartmentPresenter;
 import Presenter.EquipmentPresenter;
 import Presenter.LocationPresenter;
 import Presenter.WorkerPresenter;
+import Service.IOnMouseClick;
 import Service.IUpdateUI;
+import Service.LisenersService;
 import Service.TabControllerService;
-import Service.UpdateService;
 import UI.BaseController;
 import UI.Coordinator;
 import UI.Popup.BasePopup;
@@ -36,16 +37,13 @@ import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class EditDepartmentController extends BaseController implements IUpdateUI {
+public class EditDepartmentController extends BaseController implements IUpdateUI, IOnMouseClick {
 
     private static DepartmentModel mDepartmentModel;
     private BaseValidator mBaseValidator = new BaseValidator();
-    private Stage mStage;
-
-    public EditDepartmentController() {
-        mDepartmentModel = DepartmentPresenter.get().getDepartmentModel();
-        UpdateService.get().addListenerUI(this);
-    }
+    private static Stage sStage;
+    @FXML
+    private AnchorPane anchorPaneEditDepartment;
 
     @FXML
     private JFXTextField mTextFieldNumber, mTextFieldName;
@@ -74,22 +72,19 @@ public class EditDepartmentController extends BaseController implements IUpdateU
     @FXML
     private JFXButton mButtonUpdate;
 
-    @FXML
-    private AnchorPane anchorPaneEditDepartment;
+    public EditDepartmentController() {
+        mDepartmentModel = DepartmentPresenter.get().getDepartmentModel();
+        LisenersService.get().addListenerUI(this);
+    }
 
     @FXML
     private AnchorPane mAnchorPaneBasicInfoDepartment;
 
-    private static void selectedWorker() {
-        //new Coordinator().goToEditWorkerDepartmentWindow();
-    }
 
     @FXML
     public void initialize() {
         System.out.println("edit department initialize ");
-        mAnchorPaneBasicInfoDepartment.setPrefSize(450.0, 190.0);
         mButtonUpdate.setFocusTraversable(false);
-
         initTextFields();
         initTreeTableEquipmentInventory();
         initComboBoxArea(mComboBoxArea);
@@ -178,6 +173,10 @@ public class EditDepartmentController extends BaseController implements IUpdateU
 
     }
 
+    private static void selectedWorker() {
+
+    }
+
     private Stage getStage() {
         return (Stage) anchorPaneEditDepartment.getScene().getWindow();
     }
@@ -236,10 +235,14 @@ public class EditDepartmentController extends BaseController implements IUpdateU
 
     }
 
+    public void setStage(Stage stage) {
+        sStage = stage;
+    }
+
     private void initPopup() {
         new BasePopup(mTreeTableEquipmentInventory, BasePopup.getEquipmentInventoryPopup(), null);
         new BasePopup(mListViewLocation, BasePopup.getBaseListPopup(), null);
-        new BasePopup(mListViewWorker, BasePopup.getBaseListPopup(), EditDepartmentController::selectedWorker);
+        new BasePopup(mListViewWorker, BasePopup.getBaseListPopup(), this);
     }
 
     private void setVisibleEditButton() {
@@ -261,7 +264,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
                 EquipmentPresenter.get().setEquipmentModel(equipment.getEquipmentModel());
                 EquipmentPresenter.get().setSelectedObject(equipment);
                 TabControllerService.get().getListenerThirdTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
-                UpdateService.get().updateUI(EquipmentInventoryModel.class);
+                LisenersService.get().updateUI(EquipmentInventoryModel.class);
             }
         }
     }
@@ -352,7 +355,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
             mComboBoxArea.getSelectionModel().select(mDepartmentModel.getAreaModel());
             setInvisibleEditButton();
             updateEquipmentTable(mDepartmentModel.getObsEquipmnetList());
-            UpdateService.get().updateUI(TabPaneSecondLvlTabController.class);
+            LisenersService.get().updateUI(TabPaneSecondLvlTabController.class);
 
         }
     }
@@ -372,7 +375,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
             updateEquipmentTable(mDepartmentModel.getObsEquipmnetList());
-            UpdateService.get().updateUI(TabPaneSecondLvlTabController.class);
+            LisenersService.get().updateUI(TabPaneSecondLvlTabController.class);
         }
         if (updateClass.getName().equals(WorkerModel.class.getName())) {
             mListViewWorker.setItems(mDepartmentModel.getObsWorkerList());
@@ -382,4 +385,13 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         }
     }
 
+    @Override
+    public void primaryClick(String id) {
+        System.out.println("node id " + id);
+        switch (id) {
+            case "mListViewWorker":
+                new Coordinator().goToEditWorkerDepartmentWindow(getStage());
+                break;
+        }
+    }
 }

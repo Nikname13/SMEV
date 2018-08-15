@@ -3,9 +3,10 @@ package UI.Department.Controller;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
 import Presenter.DepartmentPresenter;
+import Service.IOnMouseClick;
 import Service.IUpdateUI;
+import Service.LisenersService;
 import Service.TabControllerService;
-import Service.UpdateService;
 import UI.Coordinator;
 import UI.Popup.BasePopup;
 import com.jfoenix.controls.JFXListView;
@@ -18,10 +19,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class DepartmentsController implements IUpdateUI {
+public class DepartmentsController implements IUpdateUI, IOnMouseClick {
 
     public DepartmentsController(){
-        UpdateService.get().addListenerUI(this);
+        LisenersService.get().addListenerUI(this);
     }
 
     private BasePopup mPopup;
@@ -37,6 +38,10 @@ public class DepartmentsController implements IUpdateUI {
 
     @FXML
     private StackPane mStackPane;
+
+    private Stage getStage() {
+        return (Stage) mStackPane.getScene().getWindow();
+    }
 
     @FXML
     public void initialize(){
@@ -67,13 +72,8 @@ public class DepartmentsController implements IUpdateUI {
         });
     }
 
-    private static void primaryClickDepartment() {
-        TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditDepartmentResource()));
-        UpdateService.get().updateUI(DepartmentModel.class);
-    }
-
     private void initPopup() {
-        mPopup = new BasePopup(mDepartmentListView, BasePopup.getBaseListPopup(), DepartmentsController::primaryClickDepartment);
+        mPopup = new BasePopup(mDepartmentListView, BasePopup.getDepartmentListPopup(), this);
 
     }
 
@@ -82,7 +82,8 @@ public class DepartmentsController implements IUpdateUI {
             DepartmentPresenter.get().setBasePopup(mPopup);
             DepartmentPresenter.get().setDepartmentModel(department);
             DepartmentPresenter.get().setSelectedObject(department);
-
+            TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditDepartmentResource()));
+            LisenersService.get().updateUI(DepartmentModel.class);
         }
     }
 
@@ -109,5 +110,14 @@ public class DepartmentsController implements IUpdateUI {
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(DepartmentModel.class.getName()))
             mDepartmentListView.setItems(DepartmentPresenter.get().getObservableDepartment());
+    }
+
+    @Override
+    public void primaryClick(String id) {
+        switch (id) {
+            case "purchase":
+                new Coordinator().goToPurchasesWindow(getStage());
+                break;
+        }
     }
 }

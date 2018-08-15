@@ -9,8 +9,8 @@ import Model.State.StateModel;
 import Model.Type.TypeModel;
 import Presenter.EquipmentPresenter;
 import Service.IUpdateUI;
+import Service.LisenersService;
 import Service.TabControllerService;
-import Service.UpdateService;
 import UI.Coordinator;
 import UI.TabPane.Controller.TabPaneSecondLvlTabController;
 import UI.Validator.BaseValidator;
@@ -31,7 +31,7 @@ public class EditEquipmentController implements IUpdateUI {
     private BaseValidator mBaseValidator = new BaseValidator();
 
     public EditEquipmentController() {
-        UpdateService.get().addListenerUI(this);
+        LisenersService.get().addListenerUI(this);
         sEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
     }
 
@@ -107,7 +107,7 @@ public class EditEquipmentController implements IUpdateUI {
             if (equipment != null && equipment.getId()!=-1) {
                 EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
                 TabControllerService.get().getListenerThirdTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
-                UpdateService.get().updateUI(EquipmentInventoryModel.class);
+                LisenersService.get().updateUI(EquipmentInventoryModel.class);
             }
             //new Coordinator().goToEquipentInventoryWindow((Stage) anchorPaneEditEquipment.getScene().getWindow());
         }
@@ -175,7 +175,7 @@ public class EditEquipmentController implements IUpdateUI {
             mTextAreaDescription.setText(sEquipmentModel.getDescription());
             //tableViewEquipment.setItems(sEquipmentModel.getObservableEqInventoryList());
             updateEquipmentTable(sEquipmentModel.getObservableEqInventoryList());
-            UpdateService.get().updateUI(TabPaneSecondLvlTabController.class);
+            LisenersService.get().updateUI(TabPaneSecondLvlTabController.class);
         }
     }
 

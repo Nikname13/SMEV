@@ -5,25 +5,9 @@
 <?import javafx.scene.layout.StackPane?>
 <JFXListView xmlns:fx="http://javafx.com/fxml/1" fx:id="mPopupList"
              styleClass="popup-list-view" xmlns="http://javafx.com/javafx/8"
-             fx:controller="UI.Popup.Controller.EquipmentInventoryPopupController">
-    <Label fx:id="moveLog">
-        Журнал перемещений
-        <graphic>
-            <StackPane styleClass="custom-jfx-list-view-icon-container">
-
-            </StackPane>
-        </graphic>
-    </Label>
-    <Label fx:id="statusLog">
-        Журнаял состояния
-        <graphic>
-            <StackPane styleClass="custom-jfx-list-view-icon-container">
-
-            </StackPane>
-        </graphic>
-    </Label>
-    <Label fx:id="inventoryLog">
-        Журнаял состояния
+             fx:controller="UI.Popup.Controller.DepartmentsListPopupController">
+    <Label fx:id="purchase">
+        Закупки
         <graphic>
             <StackPane styleClass="custom-jfx-list-view-icon-container">
 

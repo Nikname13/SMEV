@@ -1,6 +1,6 @@
 package Net;
 
-import Service.UpdateService;
+import Service.LisenersService;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -47,8 +47,8 @@ public class Connector {
             System.out.println("out " + sb.toString());
             connect.disconnect();
             if (sb.toString().startsWith("Error")) {
-                UpdateService.get().showError(sb.toString());
-                return "";
+                LisenersService.get().showError(sb.toString());
+                return null;
             }
             return sb.toString();
         } catch (IOException ex) {
@@ -118,9 +118,10 @@ public class Connector {
         HttpURLConnection connect = connection(uri, "DELETE");
         if (connect != null) {
             String s = getJSON(connect);
-            if (!s.isEmpty()) {
+            System.out.println("String s " + s);
+            if (s == null) {
                 System.out.println("Show dialog error " + s);
-                //UpdateService.get().showError(s);
+                //LisenersService.get().showError(s);
                 return 0;
             } else {
                 return 200;

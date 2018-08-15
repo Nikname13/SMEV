@@ -7,7 +7,7 @@ import Model.Inventory_number.InventoryNumberModel;
 import Model.State.StateModel;
 import Presenter.EquipmentPresenter;
 import Service.IUpdateUI;
-import Service.UpdateService;
+import Service.LisenersService;
 import UI.Coordinator;
 import UI.Validator.BaseValidator;
 import com.jfoenix.controls.JFXButton;
@@ -30,7 +30,7 @@ public class EquipmentInventoryController implements IUpdateUI{
     private BaseValidator mBaseValidator = new BaseValidator();
 
     public EquipmentInventoryController(){
-        UpdateService.get().addListenerUI(this);
+        LisenersService.get().addListenerUI(this);
     }
 
     @FXML

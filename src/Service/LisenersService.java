@@ -3,23 +3,21 @@ package Service;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpdateService {
+public class LisenersService {
 
     private List<IUpdateUI> mListenerUI = new ArrayList<>();
     private List<IUpdateData> mListenerData = new ArrayList<>();
     private List<IUpdatePopup> mListenerPopup = new ArrayList<>();
     private IErrorMessage mErrorListener;
+    private static LisenersService sLisenersService;
+    private IOnMouseClick mListenerOnMouseClick;
 
-
-
-    private static UpdateService sUpdateService;
-
-    public static UpdateService get(){
-        if(sUpdateService ==null){
-            sUpdateService =new UpdateService();
+    public static LisenersService get() {
+        if (sLisenersService == null) {
+            sLisenersService = new LisenersService();
 
         }
-        return sUpdateService;
+        return sLisenersService;
     }
 
     public List<IUpdateUI> getListenerUI() {
@@ -44,6 +42,15 @@ public class UpdateService {
 
     public void addListenerPopup(IUpdatePopup listener) {
         mListenerPopup.add(listener);
+    }
+
+    public IOnMouseClick getListenerOnMouseClick() {
+        return mListenerOnMouseClick;
+    }
+
+    public void setListenerOnMouseClick(IOnMouseClick listenerOnMouseClick) {
+        System.out.println("mouse listener " + listenerOnMouseClick);
+        mListenerOnMouseClick = listenerOnMouseClick;
     }
 
     public IErrorMessage getErrorListener() {
@@ -93,5 +100,9 @@ public class UpdateService {
 
     public void showError(String errorMessage) {
         mErrorListener.showError(errorMessage);
+    }
+
+    public void onMouseClick(String id) {
+        mListenerOnMouseClick.primaryClick(id);
     }
 }

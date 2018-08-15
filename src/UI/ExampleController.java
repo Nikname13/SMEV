@@ -1,7 +1,7 @@
 package UI;
 
 import Service.IErrorMessage;
-import Service.UpdateService;
+import Service.LisenersService;
 import UI.MainTabs.DepartmentTabTabController;
 import UI.MainTabs.EquipmentTabTabController;
 import com.jfoenix.controls.JFXDialog;
@@ -20,7 +20,7 @@ public class ExampleController implements IErrorMessage {
     private JFXTabPane mTabContainer;
 
     public ExampleController() {
-        UpdateService.get().setErrorListener(this::showError);
+        LisenersService.get().setErrorListener(this::showError);
     }
 
     @FXML
@@ -47,10 +47,10 @@ public class ExampleController implements IErrorMessage {
 
         switch (id){
             case "mDepartmentTab":
-                UpdateService.get().updateUI(DepartmentTabTabController.class);
+                LisenersService.get().updateUI(DepartmentTabTabController.class);
                 break;
             case "mEquipmentTab":
-                UpdateService.get().updateUI(EquipmentTabTabController.class);
+                LisenersService.get().updateUI(EquipmentTabTabController.class);
                 break;
             case "mSupplyTab": break;
             case "mMovementTab": break;

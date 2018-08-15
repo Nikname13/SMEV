@@ -1,8 +1,8 @@
 package UI.MainTabs;
 
 import Service.IUpdateUI;
+import Service.LisenersService;
 import Service.TabControllerService;
-import Service.UpdateService;
 import UI.BaseTabController;
 import UI.Equipment.Controller.EquipmentsController;
 import com.jfoenix.controls.JFXTabPane;
@@ -12,7 +12,7 @@ import javafx.scene.control.Tab;
 public class EquipmentTabTabController extends BaseTabController implements IUpdateUI {
 
     public EquipmentTabTabController() {
-        UpdateService.get().addListenerUI(this);
+        LisenersService.get().addListenerUI(this);
     }
 
     @FXML
@@ -27,7 +27,7 @@ public class EquipmentTabTabController extends BaseTabController implements IUpd
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             TabControllerService.get().setListenerFirstTabPane((Tab nextTab) -> nextTab(nextTab, mEquipmentTabContainer));
-            UpdateService.get().updateUI(EquipmentsController.class);
+            LisenersService.get().updateUI(EquipmentsController.class);
             mEquipmentTabContainer.getSelectionModel().select(0);
         }
     }

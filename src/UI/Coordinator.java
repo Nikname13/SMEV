@@ -340,6 +340,14 @@ public class Coordinator {
         }
     }
 
+    public void goToPurchasesWindow(Stage stage) {
+        try {
+            windowSceneContent("Department/purchases.fxml", stage, "Закупки", 365.0, 360.0);
+        } catch (Exception ex) {
+            System.out.println("Exeption goToPurchasesWindow " + ex);
+        }
+    }
+
     public void goToAddMovementWindow(Stage stage, double width, double height){
         try{
             windowSceneContent("Movement/addMovement.fxml",stage,"Новое перемещение", width, height);

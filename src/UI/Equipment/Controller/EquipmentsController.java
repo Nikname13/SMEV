@@ -4,8 +4,8 @@ import Model.AbstractModel;
 import Model.Equipment.EquipmentModel;
 import Presenter.EquipmentPresenter;
 import Service.IUpdateUI;
+import Service.LisenersService;
 import Service.TabControllerService;
-import Service.UpdateService;
 import UI.Coordinator;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class EquipmentsController implements IUpdateUI {
 
     public EquipmentsController() {
-        UpdateService.get().addListenerUI(this);
+        LisenersService.get().addListenerUI(this);
     }
 
     @FXML
@@ -87,7 +87,7 @@ public class EquipmentsController implements IUpdateUI {
                 System.out.println(equipment.getValue().getClass().getName());
                 EquipmentPresenter.get().setEquipmentModel(equipment.getValue());
                 TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditEquipmentResource()));
-                UpdateService.get().updateUI(EquipmentModel.class);
+                LisenersService.get().updateUI(EquipmentModel.class);
                 // new Coordinator().goToEditEquipmentWindow((Stage)mStackPaneEquipments.getScene().getWindow());
             }
         }

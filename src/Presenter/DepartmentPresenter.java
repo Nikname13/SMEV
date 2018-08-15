@@ -14,7 +14,7 @@ import Model.Location.Locations;
 import Model.Worker.WorkerModel;
 import Model.Worker.Workers;
 import Service.IUpdateData;
-import Service.UpdateService;
+import Service.LisenersService;
 import javafx.collections.ObservableList;
 
 import java.awt.*;
@@ -36,7 +36,7 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
     }
 
     private DepartmentPresenter() {
-        UpdateService.get().addListenerData(this);
+        LisenersService.get().addListenerData(this);
     }
 
     public DepartmentModel getDepartmentModel() {
@@ -86,12 +86,12 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
 
     public void editDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area) {
         new IteractorDepartment().edit(new DepartmentModel(sDepartmentModel.getId(), number, name, eleсtronicQ, renting, description, area));
-        UpdateService.get().refreshControl(Departments.class);
+        LisenersService.get().refreshControl(Departments.class);
     }
 
     public void addPurchase(String url, String description, LocalDate date) {
         new IteractorPurchase().addNew(new PurchaseModel(0, url, description, date, sDepartmentModel));
-        UpdateService.get().updateControl(PurchaseModel.class);
+        LisenersService.get().updateControl(PurchaseModel.class);
     }
 
     public void editPurchase() {
@@ -159,11 +159,11 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sDepartmentModel)) {
                 new IteractorDepartment().delete(sDepartmentModel.getId());
-                UpdateService.get().updateControl(DepartmentModel.class);
+                LisenersService.get().updateControl(DepartmentModel.class);
             }
             if (getSelectedObject().equals(sPurchaseModel)) {
                 new IteractorPurchase().delete(sPurchaseModel);
-                UpdateService.get().updateControl(PurchaseModel.class);
+                LisenersService.get().updateControl(PurchaseModel.class);
             }
         }
     }
