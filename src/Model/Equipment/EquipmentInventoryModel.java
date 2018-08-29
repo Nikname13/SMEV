@@ -1,5 +1,6 @@
 package Model.Equipment;
 
+import Iteractor.IteractorInventoryLog;
 import Model.Department.DepartmentModel;
 import Model.GenericModel;
 import Model.Inventory_number.InventoryNumberModel;
@@ -8,8 +9,11 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +38,8 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel
         mDepartmentModel = departmentModel;
         mEquipmentModel=equipmentModel;
         mStateModel = stateModel;
+        addInvenotryEditLog(new EquipmentInventoryLogModel(0, inventoryNumber.getName(),
+                inventoryNumber.getId(), LocalDate.now(), "Первый номер"));
     }
 
     public EquipmentInventoryModel(int id, InventoryNumberModel inventoryNumber, EquipmentModel equipmentModel, DepartmentModel departmentModel, StateModel state) {
@@ -45,16 +51,36 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel
     }
 
     public List<EquipmentInventoryLogModel> getInventoryEditLog() {
+        if (mInventoryEditLog == null) {
+            mInventoryEditLog = new ArrayList<>();
+            mInventoryEditLog = new IteractorInventoryLog().getList(getId());
+        }
         return mInventoryEditLog;
+    }
+
+    @Override
+    public List<EquipmentStateLogModel> getEntityList() {
+        if (super.getEntityList() == null) {
+            //setEntityList();
+        }
+        return null;
     }
 
     public void setInventoryEditLog(List<EquipmentInventoryLogModel> inventoryEditLog) {
         mInventoryEditLog = inventoryEditLog;
     }
 
-    public void addInvenotryEditLof(EquipmentInventoryLogModel entry) {
+    public void addInvenotryEditLog(EquipmentInventoryLogModel entry) {
         if (mInventoryEditLog == null) mInventoryEditLog = new ArrayList<>();
         mInventoryEditLog.add(entry);
+    }
+
+    public ObservableList<EquipmentInventoryLogModel> getObsInventoryLogList() {
+        ObservableList<EquipmentInventoryLogModel> list = FXCollections.observableArrayList();
+        for (EquipmentInventoryLogModel inventoryLog : getInventoryEditLog()) {
+            list.add(inventoryLog);
+        }
+        return list;
     }
 
     public StateModel getStateModel() {

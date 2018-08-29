@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:id="mAnchorPaneInventoryLog"
             xmlns="http://javafx.com/javafx"
-            fx:controller="UI.Equipment.Equipment_inventory.Equipment_number.AddInventoryNumberLog"
+            fx:controller="UI.Equipment.Equipment_inventory.Equipment_number.Controller.AddInventoryNumberLog"
             style="-fx-background-color: #ffffff;">
     <children>
         <Label fx:id="mLabelData" layoutX="192.0" layoutY="62.0" text="Label" AnchorPane.topAnchor="20.0"

@@ -87,12 +87,20 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         mButtonUpdate.setFocusTraversable(false);
         initTextFields();
         initTreeTableEquipmentInventory();
-        initComboBoxArea(mComboBoxArea);
+        initComboBoxArea(mComboBoxArea, true);
         initTextAreaDescription();
         initRadioButton();
         initLocationListView();
         initWorkerListView();
         initPopup();
+    }
+
+    private Stage getStage() {
+        return (Stage) anchorPaneEditDepartment.getScene().getWindow();
+    }
+
+    public void setStage(Stage stage) {
+        sStage = stage;
     }
 
     private void initTextFields() {
@@ -109,6 +117,16 @@ public class EditDepartmentController extends BaseController implements IUpdateU
                 setVisibleEditButton();
             }
         });
+    }
+
+    @Override
+    protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea, boolean isSelectionItem) {
+        super.initComboBoxArea(comboBoxArea, isSelectionItem);
+        comboBoxArea.getSelectionModel().selectedIndexProperty().addListener((observable -> selectedArea()));
+    }
+
+    private void selectedArea() {
+        setVisibleEditButton();
     }
 
     private void initLocationListView() {
@@ -133,7 +151,6 @@ public class EditDepartmentController extends BaseController implements IUpdateU
             }
         });
     }
-
 
     private void initTreeTableEquipmentInventory() {
         mNameEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getEquipmentModel().nameProperty());
@@ -171,14 +188,6 @@ public class EditDepartmentController extends BaseController implements IUpdateU
             }
         });
 
-    }
-
-    private static void selectedWorker() {
-
-    }
-
-    private Stage getStage() {
-        return (Stage) anchorPaneEditDepartment.getScene().getWindow();
     }
 
     private void initRadioButton() {
@@ -235,12 +244,8 @@ public class EditDepartmentController extends BaseController implements IUpdateU
 
     }
 
-    public void setStage(Stage stage) {
-        sStage = stage;
-    }
-
     private void initPopup() {
-        new BasePopup(mTreeTableEquipmentInventory, BasePopup.getEquipmentInventoryPopup(), null);
+        new BasePopup(mTreeTableEquipmentInventory, BasePopup.getEquipmentInventoryPopup(), this);
         new BasePopup(mListViewLocation, BasePopup.getBaseListPopup(), null);
         new BasePopup(mListViewWorker, BasePopup.getBaseListPopup(), this);
     }
@@ -280,7 +285,6 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
         new Coordinator().goToAddLocationWindow(getStage());
     }
-
 
     @FXML
     private void onClickDelete() {
@@ -336,7 +340,6 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         }
         mTreeTableEquipmentInventory.setRoot(rootItem);
         mTreeTableEquipmentInventory.setShowRoot(false);
-
     }
 
     @Override
@@ -391,6 +394,13 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         switch (id) {
             case "mListViewWorker":
                 new Coordinator().goToEditWorkerDepartmentWindow(getStage());
+                break;
+            case "inventoryLog":
+                System.out.println("inventory log " + EquipmentPresenter.get().getEquipmentInventoryModel().getInventoryEditLog());
+                new Coordinator().goToInventoryNumberLog(getStage());
+                break;
+            case "statusLog":
+                new Coordinator().goToEquipmentStateLog(getStage());
                 break;
         }
     }

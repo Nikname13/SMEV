@@ -260,7 +260,7 @@ public class Coordinator {
         }
     }
 
-    public void goToEquipmentStateLog(Stage stage) {
+    public void goToAddEquipmentStateLog(Stage stage) {
         try{
             windowSceneContent("Equipment/Equipment_inventory/Equipment_state/addEquipmentStateLog.fxml", stage, "Новое состояние", 360.0, 355.0);
         }catch (Exception ex){
@@ -268,11 +268,27 @@ public class Coordinator {
         }
     }
 
-    public void goToInventoryNumberLog(Stage stage) {
+    public void goToEquipmentStateLog(Stage stage) {
+        try {
+            windowSceneContent("Equipment/Equipment_inventory/Equipment_state/equipmentStateLog.fxml", stage, "Журнаял изменения состояния", 560.0, 355.0);
+        } catch (Exception ex) {
+            System.out.println("Exeption goToEquipmentStateLog " + ex);
+        }
+    }
+
+    public void goToAddInventoryNumberLog(Stage stage) {
         try {
             windowSceneContent("Equipment/Equipment_inventory/Equipment_number/addInventoryNumberLog.fxml", stage, "Новый номер", 360.0, 355.0);
         } catch (Throwable ex) {
-            System.out.println("Exception goToMoveEquipmentInventoryWindow " + ex);
+            System.out.println("Exception goToAddInventoryNumberLog " + ex);
+        }
+    }
+
+    public void goToInventoryNumberLog(Stage stage) {
+        try {
+            windowSceneContent("Equipment/Equipment_inventory/Equipment_number/inventoryLog.fxml", stage, "Журнал изменений номера", 560.0, 355.0);
+        } catch (Throwable ex) {
+            System.out.println("Exception goToAddInventoryNumberLog " + ex);
         }
     }
 

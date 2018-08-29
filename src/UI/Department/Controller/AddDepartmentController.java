@@ -53,7 +53,7 @@ public class AddDepartmentController extends BaseController {
         mFlagLocation=false;
         mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNumber);
         mBaseValidator.setValidationFacades(new Pair(mFacadeArea, mErrorArea), new Pair(mFacadeLocation, mErrorLocation));
-        initComboBoxArea(mComboBoxArea);
+        initComboBoxArea(mComboBoxArea, false);
         initComboBoxLocation(mComboBoxLocation);
 
     }
@@ -66,8 +66,8 @@ public class AddDepartmentController extends BaseController {
     }
 
     @Override
-    protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea) {
-        super.initComboBoxArea(comboBoxArea);
+    protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea, boolean isSelectionItem) {
+        super.initComboBoxArea(comboBoxArea, isSelectionItem);
         comboBoxArea.setItems(DepartmentPresenter.get().getObservableArea());
     }
 

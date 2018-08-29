@@ -62,7 +62,8 @@ public class BaseController {
 
     }
 
-    protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea) {
+    protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea, boolean isSelectionItem) {
+
         comboBoxArea.setCellFactory(p -> new ListCell<>() {
             @Override
             protected void updateItem(AreaModel item, boolean empty) {
@@ -85,7 +86,18 @@ public class BaseController {
                 return null;
             }
         });
-
+        if (isSelectionItem) {
+            comboBoxArea.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(AreaModel item, boolean empty) {
+                    if (item != null && !empty) {
+                        setText(item.getName());
+                    } else {
+                        setText(null);
+                    }
+                }
+            });
+        }
     }
 
     public boolean isSelectedPost() {

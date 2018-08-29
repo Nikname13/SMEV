@@ -1,8 +1,13 @@
 package Model.Equipment;
 
 import Model.AbstractModel;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class EquipmentInventoryLogModel extends AbstractModel {
 
@@ -43,5 +48,18 @@ public class EquipmentInventoryLogModel extends AbstractModel {
 
     public void setDescription(String description) {
         mDescription = description;
+    }
+
+    public StringProperty descriptionProperty() {
+        return new SimpleStringProperty(mDescription);
+    }
+
+    public ObjectProperty<LocalDate> dateProperty() {
+        return new SimpleObjectProperty<>(mDate);
+    }
+
+    public StringProperty dateToString() {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return new SimpleStringProperty((mDate).format(format));
     }
 }

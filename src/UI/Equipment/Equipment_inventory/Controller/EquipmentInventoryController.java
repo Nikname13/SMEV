@@ -171,7 +171,7 @@ public class EquipmentInventoryController implements IUpdateUI{
         if (mComboBoxNumber.getSelectionModel().getSelectedIndex() != -1 && mComboBoxNumber.focusedProperty().get()) {
             System.out.println("переход в модальное окно");
             EquipmentPresenter.get().setInventoryNumberModel(mComboBoxNumber.getValue());
-            new Coordinator().goToInventoryNumberLog((Stage) anchorPaneEquipmentInventory.getScene().getWindow());
+            new Coordinator().goToAddInventoryNumberLog((Stage) anchorPaneEquipmentInventory.getScene().getWindow());
 
         }
     }
@@ -255,7 +255,7 @@ public class EquipmentInventoryController implements IUpdateUI{
         if (mComboBoxState.getSelectionModel().getSelectedIndex() != -1 && mComboBoxState.focusedProperty().get()) {
             EquipmentPresenter.get().setEquipmentStateLog(null);
             EquipmentPresenter.get().setStateModel(mComboBoxState.getValue());
-            new Coordinator().goToEquipmentStateLog((Stage) anchorPaneEquipmentInventory.getScene().getWindow());
+            new Coordinator().goToAddEquipmentStateLog((Stage) anchorPaneEquipmentInventory.getScene().getWindow());
         }
     }
 

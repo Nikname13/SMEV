@@ -1,4 +1,4 @@
-package UI.Equipment.Equipment_inventory.Equipment_number;
+package UI.Equipment.Equipment_inventory.Equipment_number.Controller;
 
 import Presenter.EquipmentPresenter;
 import UI.Validator.BaseValidator;

@@ -2,6 +2,7 @@ package Model.Location;
 
 import Iteractor.IteractorLocation;
 import Model.GenericList;
+import javafx.collections.ObservableList;
 
 public class Locations extends GenericList<LocationModel> {
 
@@ -13,6 +14,12 @@ public class Locations extends GenericList<LocationModel> {
             new IteractorLocation().loadData();
         }
         return sLocations;
+    }
+
+    @Override
+    public ObservableList<LocationModel> getEntityList() {
+        new IteractorLocation().loadData();
+        return super.getEntityList();
     }
 
     @Override

@@ -44,7 +44,8 @@ public class LocationPresenter extends BasePresenter implements IUpdateData {
     }
 
     public void editLocation(LocationModel location){
-        new IteractorLocation().edit(location);
+        LisenersService.get().updateData(new IteractorLocation().edit(location));
+        LisenersService.get().updateControl(LocationModel.class);
     }
 
     public void delete(int id){

@@ -15,7 +15,7 @@
         </graphic>
     </Label>
     <Label fx:id="statusLog">
-        Журнаял состояния
+        Журнал состояния
         <graphic>
             <StackPane styleClass="custom-jfx-list-view-icon-container">
 
@@ -23,7 +23,7 @@
         </graphic>
     </Label>
     <Label fx:id="inventoryLog">
-        Журнаял состояния
+        Журнал изменения номера
         <graphic>
             <StackPane styleClass="custom-jfx-list-view-icon-container">
 

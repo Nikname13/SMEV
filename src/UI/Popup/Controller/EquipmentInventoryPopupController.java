@@ -1,6 +1,7 @@
 package UI.Popup.Controller;
 
 import Presenter.EquipmentPresenter;
+import Service.LisenersService;
 import com.jfoenix.controls.JFXListView;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -24,9 +25,12 @@ public class EquipmentInventoryPopupController extends BasePopupController {
                     break;
                 case "statusLog":
                     System.out.println(node.getId());
+                    LisenersService.get().onMouseClick(node.getId());
                     break;
                 case "inventoryLog":
                     System.out.println(node.getId());
+                    LisenersService.get().onMouseClick(node.getId());
+                    break;
                 case "delete":
                     if (EquipmentPresenter.get().getEquipmentInventoryModel() != null)
                         EquipmentPresenter.get().deleteEquipmentInventory(EquipmentPresenter.get().getEquipmentInventoryModel());

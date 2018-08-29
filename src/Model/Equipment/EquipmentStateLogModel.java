@@ -4,8 +4,8 @@ import Model.AbstractModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class EquipmentStateLogModel extends AbstractModel {
 
@@ -42,8 +42,8 @@ public class EquipmentStateLogModel extends AbstractModel {
         mDate = date;
     }
 
-    public StringProperty dateState(){
-        SimpleDateFormat format= new SimpleDateFormat("dd.MM.yyyy");
-        return new SimpleStringProperty(format.format(mDate));
+    public StringProperty dateToString() {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return new SimpleStringProperty((mDate).format(format));
     }
 }

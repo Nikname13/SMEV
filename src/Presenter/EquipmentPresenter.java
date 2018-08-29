@@ -130,9 +130,14 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     }
 
 
-    public void addEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description, EquipmentStateLogModel equipmentState, EquipmentModel equipmentModel, StateModel state) {
+    public void addEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
+                                      EquipmentStateLogModel equipmentState, EquipmentModel equipmentModel, StateModel state) {
 
-        new IteractorEquipmentInventory().addNew(new EquipmentInventoryModel(0, inventoryNumber, guaranty, description, Departments.get().getEntity(1), equipmentState, equipmentModel, state));
+        EquipmentInventoryModel equipment = new IteractorEquipmentInventory().addNew(new EquipmentInventoryModel(0, inventoryNumber, guaranty, description,
+                Departments.get().getEntity(1), equipmentState, equipmentModel, state));
+/*       equipment.addInvenotryEditLog(new EquipmentInventoryLogModel(0, equipment.getInventoryNumber().getName(),
+               equipment.getInventoryNumber().getId(), LocalDate.now(), "Первый номер"));*/
+
     }
 
     public void editEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
@@ -193,7 +198,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     public void addEquipmentInventoryLogModel(String description, LocalDate date) {
         sEquipmentInventoryLogModel = new EquipmentInventoryLogModel(0, sInventoryNumberModel.getName(), sInventoryNumberModel.getId(), date, description);
         sEquipmentInventoryModel.setInventoryNumber(sInventoryNumberModel);
-        sEquipmentInventoryModel.addInvenotryEditLof(sEquipmentInventoryLogModel);
+        sEquipmentInventoryModel.addInvenotryEditLog(sEquipmentInventoryLogModel);
         editEquipmentInventory(sEquipmentInventoryModel);
         LisenersService.get().refreshControl(EquipmentInventoryLogModel.class);
     }
