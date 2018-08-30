@@ -321,13 +321,14 @@ public class EditDepartmentController extends BaseController implements IUpdateU
                 if (treeEquipment.getValue().getEquipmentModel().getId() == equipment.getEquipmentModel().getId()) {
                     treeEquipment.getChildren().add(new TreeItem<>(equipment));
                     flag = true;
+                    treeEquipment.getValue().getEquipmentModel().setName(equipment.getEquipmentModel().getName() + " (" + treeEquipment.getChildren().size() + ")");
                 }
             }
             if (!flag) {
                 EquipmentInventoryModel emptyEquipment = new EquipmentInventoryModel(
                         -1,
                         new InventoryNumberModel(-1, ""),
-                        new EquipmentModel(equipment.getEquipmentModel().getId(), equipment.getEquipmentModel().getName()),
+                        new EquipmentModel(equipment.getEquipmentModel().getId(), equipment.getEquipmentModel().getName() + " (1)"),
                         null,
                         new StateModel(-1, ""));
                 TreeItem<EquipmentInventoryModel> treeItemFirst = new TreeItem<>(emptyEquipment);
@@ -396,7 +397,6 @@ public class EditDepartmentController extends BaseController implements IUpdateU
                 new Coordinator().goToEditWorkerDepartmentWindow(getStage());
                 break;
             case "inventoryLog":
-                System.out.println("inventory log " + EquipmentPresenter.get().getEquipmentInventoryModel().getInventoryEditLog());
                 new Coordinator().goToInventoryNumberLog(getStage());
                 break;
             case "statusLog":

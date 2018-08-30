@@ -12,6 +12,17 @@ public class EquipmentParameterModel extends AbstractModel {
         mParameterModel=parameter;
     }
 
+    public EquipmentParameterModel(int id, String name) {
+        super(id, name);
+    }
+
+    public EquipmentParameterModel(int id) {
+        super(id);
+    }
+
+    public EquipmentParameterModel() {
+    }
+
     public ParameterModel getParameterModel() {
         return mParameterModel;
     }

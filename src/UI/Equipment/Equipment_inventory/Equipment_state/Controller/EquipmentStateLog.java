@@ -4,6 +4,7 @@ import Model.Equipment.EquipmentStateLogModel;
 import Presenter.EquipmentPresenter;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 
@@ -24,5 +25,11 @@ public class EquipmentStateLog {
     }
 
     private void updateTable(ObservableList<EquipmentStateLogModel> equipmentList) {
+        TreeItem<EquipmentStateLogModel> rootItem = new TreeItem<>();
+        for (EquipmentStateLogModel log : equipmentList) {
+            rootItem.getChildren().add(new TreeItem<>(log));
+        }
+        mEquipmentStateLogTreeTable.setRoot(rootItem);
+        mEquipmentStateLogTreeTable.setShowRoot(false);
     }
 }

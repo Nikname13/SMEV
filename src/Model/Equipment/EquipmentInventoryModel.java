@@ -1,6 +1,7 @@
 package Model.Equipment;
 
 import Iteractor.IteractorInventoryLog;
+import Iteractor.IteractorStateLog;
 import Model.Department.DepartmentModel;
 import Model.GenericModel;
 import Model.Inventory_number.InventoryNumberModel;
@@ -60,10 +61,8 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel
 
     @Override
     public List<EquipmentStateLogModel> getEntityList() {
-        if (super.getEntityList() == null) {
-            //setEntityList();
-        }
-        return null;
+        setEntityList(new IteractorStateLog().getList(getId()));
+        return super.getEntityList();
     }
 
     public void setInventoryEditLog(List<EquipmentInventoryLogModel> inventoryEditLog) {

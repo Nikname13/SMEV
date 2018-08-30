@@ -206,7 +206,7 @@ public class Coordinator {
 
     public void goToAddEquipmentWindow(Stage stage, double width, double height){
         try {
-            windowSceneContent("Equipment/addEquipment.fxml",stage,"Новое оборудование", width, height);
+            windowSceneContent("Equipment/addEquipment.fxml", stage, "Новое оборудование", 550, 400);
         }catch (Exception ex){
             System.out.println("Exeption goToAddEquipmentWindow "+ex);
         }

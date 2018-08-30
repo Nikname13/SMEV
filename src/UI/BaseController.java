@@ -4,6 +4,7 @@ import Model.Area.AreaModel;
 import Model.Department.DepartmentModel;
 import Model.Location.LocationModel;
 import Model.Post.PostModel;
+import Model.Type.TypeModel;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -158,6 +159,43 @@ public class BaseController {
                 mSelectedPost = false;
             }
         });
+    }
+
+    protected void initComboBoxType(JFXComboBox<TypeModel> comboBoxType, boolean isSelectionItem) {
+        comboBoxType.setCellFactory(p -> new ListCell<>() {
+            @Override
+            protected void updateItem(TypeModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else setText(null);
+            }
+        });
+        comboBoxType.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(TypeModel object) {
+                if (object != null) return object.getName();
+                else return null;
+            }
+
+            @Override
+            public TypeModel fromString(String string) {
+                if (!string.isEmpty()) return new TypeModel(-1, string.trim());
+                return null;
+            }
+        });
+        if (isSelectionItem) {
+            comboBoxType.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(TypeModel item, boolean empty) {
+                    if (item != null && !empty) {
+                        setText(item.getName());
+                    } else {
+                        setText(null);
+                    }
+                }
+            });
+        }
     }
 
     protected void close(Node node) {

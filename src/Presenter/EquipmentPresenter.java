@@ -103,30 +103,33 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         return Departments.get().getEntityList();
     }
 
-    public void addEquipment(String name, String nameFact, String description, String config, Object typeModel, List<EquipmentParameterModel> values) {
+    public void addEquipment(String name, String nameFact, String description, Object typeModel, List<EquipmentParameterModel> values) {
         new IteractorEquipment().addNew(new EquipmentModel(
                 0,
                 name,
                 nameFact,
                 description,
-                config,
                 (TypeModel) typeModel,
                 values,
                 null
         ));
     }
 
-    public void editEquipment(String name, String nameFact, String description, String config, Object typeModel, List<EquipmentParameterModel> values) {
+    public void editEquipment(String name, String nameFact, String description, List<EquipmentParameterModel> values) {
         new IteractorEquipment().edit(new EquipmentModel(
                 sEquipmentModel.getId(),
                 name,
                 nameFact,
                 description,
-                config,
-                (TypeModel) typeModel,
+                sEquipmentModel.getTypeModel(),
                 values,
                 null
         ));
+    }
+
+    public void editEquipment(EquipmentModel equipment) {
+        new IteractorEquipment().edit(equipment);
+        //LisenersService.get().refreshControl(EquipmentModel.class);
     }
 
 

@@ -3,8 +3,8 @@ package UI.Equipment.Controller;
 import Model.Department.DepartmentModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Equipment.EquipmentModel;
+import Model.Equipment.EquipmentParameterModel;
 import Model.Inventory_number.InventoryNumberModel;
-import Model.Parameter.ParameterModel;
 import Model.State.StateModel;
 import Model.Type.TypeModel;
 import Presenter.EquipmentPresenter;
@@ -17,11 +17,17 @@ import UI.Validator.BaseValidator;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
+import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -48,10 +54,10 @@ public class EditEquipmentController implements IUpdateUI {
     private ComboBox<TypeModel> comboBoxType;
 
     @FXML
-    private TableView<ParameterModel> tableViewParameter;
+    private TreeTableView<EquipmentParameterModel> mTreeTableViewParameter;
 
     @FXML
-    private TableColumn<ParameterModel, String> columnNameType;
+    private TreeTableColumn<EquipmentParameterModel, String> mColumnNameParameter, mColumnValueParameter;
 
     @FXML
     private TreeTableView<EquipmentInventoryModel> mTreeTableEquipmentInventory;
@@ -64,13 +70,44 @@ public class EditEquipmentController implements IUpdateUI {
 
     @FXML
     public void initialize() {
-        columnNameType.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+
         mDepartmentEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getDepartmentModel().nameProperty());
         mNumberEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getInventoryNumber().nameProperty());
         mStateEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getStateModel().nameProperty());
         mTreeTableEquipmentInventory.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipment(newValue)));
         initTextField();
         initTextArea();
+        initTableVieParameter();
+    }
+
+    private void initTableVieParameter() {
+        mColumnNameParameter.setCellValueFactory(cellData -> cellData.getValue().getValue().getParameterModel().nameProperty());
+        mColumnValueParameter.setCellValueFactory(cellData -> cellData.getValue().getValue().nameProperty());
+        mColumnValueParameter.setCellFactory((TreeTableColumn<EquipmentParameterModel, String> param) -> new GenericEditableTreeTableCell<>(new TextFieldEditorBuilder()));
+        mColumnValueParameter.setOnEditCommit(new EventHandler<TreeTableColumn.CellEditEvent<EquipmentParameterModel, String>>() {
+            @Override
+            public void handle(TreeTableColumn.CellEditEvent<EquipmentParameterModel, String> event) {
+                TreeItem<EquipmentParameterModel> currentEditEquipment = mTreeTableViewParameter.getTreeItem(event.getTreeTablePosition().getRow());
+                currentEditEquipment.getValue().setName(event.getNewValue());
+                for (EquipmentParameterModel parameter : sEquipmentModel.getEntityList()) {
+                    if (parameter.getId() == currentEditEquipment.getValue().getId()) {
+                        parameter.setName(event.getNewValue());
+                    }
+                    System.out.println(parameter.getName());
+                }
+                EquipmentPresenter.get().editEquipment(sEquipmentModel);
+            }
+        });
+        mTreeTableViewParameter.setEditable(true);
+    }
+
+    private void updateTableParameter(ObservableList<EquipmentParameterModel> equipmentParameters) {
+        TreeItem<EquipmentParameterModel> rootItem = new TreeItem<>();
+        for (EquipmentParameterModel log : equipmentParameters) {
+            rootItem.getChildren().add(new TreeItem<>(log));
+        }
+        mTreeTableViewParameter.setRoot(rootItem);
+        mTreeTableViewParameter.setShowRoot(false);
     }
 
     private void initTextArea() {
@@ -127,8 +164,10 @@ public class EditEquipmentController implements IUpdateUI {
 
     @FXML
     private void onClickEdit() {
-        if (mBaseValidator.validate())
+        if (mBaseValidator.validate()) {
+            EquipmentPresenter.get().editEquipment(mTextFieldName.getText(), mTextFieldNameFact.getText(), mTextAreaDescription.getText(), null);
             setInvisibleEditButton();
+        }
     }
 
     @FXML
@@ -173,6 +212,7 @@ public class EditEquipmentController implements IUpdateUI {
             mTextFieldName.setText(sEquipmentModel.getName());
             mTextFieldNameFact.setText(sEquipmentModel.getNameFact());
             mTextAreaDescription.setText(sEquipmentModel.getDescription());
+            updateTableParameter(sEquipmentModel.getObservableEntityList());
             //tableViewEquipment.setItems(sEquipmentModel.getObservableEqInventoryList());
             updateEquipmentTable(sEquipmentModel.getObservableEqInventoryList());
             LisenersService.get().updateUI(TabPaneSecondLvlTabController.class);

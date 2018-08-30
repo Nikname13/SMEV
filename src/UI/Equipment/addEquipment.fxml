@@ -1,27 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.validation.ValidationFacade?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchorPaneEquipments" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Equipment.Controller.AddEquipmentController"
+            style="-fx-background-color: #ffffff;">
 
-<AnchorPane fx:id="anchorPaneEquipments" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Equipment.Controller.AddEquipmentController">
-
-    <TextField fx:id="textFieldName" layoutY="2.0" prefWidth="200.0" promptText="Введите наименование" />
-    <TextField fx:id="textFieldNameFact" layoutY="29.0" prefWidth="200.0" promptText="Введите наименование факт" />
-    <ComboBox fx:id="comboBoxType" layoutY="56.0" prefHeight="25.0" prefWidth="200.0" promptText="тип" />
-   <TextArea fx:id="textAreaDescription" layoutX="208.0" layoutY="106.0" prefHeight="82.0" prefWidth="378.0" promptText="Комментарий"/>
-   <TableView fx:id="tableViewParameter" layoutY="107.0" prefHeight="295.0" prefWidth="200.0">
-     <columns>
-       <TableColumn fx:id="columnNameType" prefWidth="200.0" text="C1" />
-     </columns>
-   </TableView>
-   <Button fx:id="buttonConfig" layoutX="222.0" layoutY="56.0" mnemonicParsing="false" onAction="#onClickButtonConfig" text="Конфиг" />
-   <Label fx:id="labelConfig" layoutX="509.0" layoutY="6.0" text="Label" />
-   <Button layoutX="371.0" layoutY="254.0" mnemonicParsing="false" text="add" onAction="#onClickAdd"/>
+    <JFXTextField fx:id="mTextFieldName" focusColor="#40a85f" labelFloat="true"
+                  prefHeight="25.0" prefWidth="250.0" promptText="Введите наименование" AnchorPane.topAnchor="30.0"
+                  AnchorPane.leftAnchor="20.0"/>
+    <JFXTextField fx:id="mTextFieldNameFact" focusColor="#40a85f" labelFloat="true"
+                  prefHeight="25.0" prefWidth="250.0" promptText="Введите наименование факт"
+                  AnchorPane.leftAnchor="20.0"
+                  AnchorPane.topAnchor="90.0"/>
+    <ValidationFacade fx:id="mFacadeType" layoutX="20.0" layoutY="150.0" AnchorPane.leftAnchor="20.0"
+                      AnchorPane.topAnchor="150.0">
+        <control>
+            <JFXComboBox fx:id="mComboBoxType" focusColor="#40a85f"
+                         prefHeight="25.0" prefWidth="250.0" promptText="Тип"/>
+        </control>
+    </ValidationFacade>
+    <Label fx:id="mErrorType"/>
+    <JFXTreeTableView fx:id="mTreeTableViewParameter" prefHeight="155.0"
+                      prefWidth="275.0" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="20.0">
+        <columns>
+            <TreeTableColumn fx:id="mColumnNameParameter" prefWidth="150.0" text="Параметр"/>
+            <TreeTableColumn fx:id="mColumnValueParameter" prefWidth="125.0" text="Значение"/>
+        </columns>
+    </JFXTreeTableView>
+    <JFXTextArea fx:id="mTextAreaDescription" focusColor="#40a85f" labelFloat="true"
+                 prefHeight="50.0" prefWidth="510.0" promptText="Комментарий"
+                 layoutX="20.0" layoutY="215.0" AnchorPane.leftAnchor="20.0"
+                 AnchorPane.topAnchor="215.0"/>
+    <JFXButton fx:id="buttonAdd" mnemonicParsing="false" onAction="#onClickAdd" prefWidth="120.0" prefHeight="35.0"
+               ripplerFill="#40a85f" text="Сохранить" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="290"/>
+    <JFXButton fx:id="buttonCancel" mnemonicParsing="false" ripplerFill="#40a85f" prefWidth="120.0"
+               prefHeight="35.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="290.0"
+               text="Отмена" onAction="#onClickCancel"/>
 
 </AnchorPane>

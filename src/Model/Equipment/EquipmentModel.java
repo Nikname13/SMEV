@@ -18,13 +18,13 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
     @Expose
     private List<EquipmentInventoryModel> mEqInventoryList;
 
-    public EquipmentModel(int id, String name, String nameFact, String description, String config,
+    public EquipmentModel(int id, String name, String nameFact, String description,
                           TypeModel typeModel, List<EquipmentParameterModel> valueList,
                           List<EquipmentInventoryModel> equipmentInventoryList) {
         super(id,name,valueList);
         mNameFact = nameFact;
         mDescription = description;
-        mConfig = config;
+        mConfig = "удалить конфиг";
         mTypeModel = typeModel;
         mEqInventoryList = equipmentInventoryList;
     }

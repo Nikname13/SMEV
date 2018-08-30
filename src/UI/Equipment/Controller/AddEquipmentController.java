@@ -4,84 +4,112 @@ import Model.Equipment.EquipmentParameterModel;
 import Model.Parameter.ParameterModel;
 import Model.Type.TypeModel;
 import Presenter.EquipmentPresenter;
+import UI.BaseController;
+import UI.Validator.BaseValidator;
+import UI.Validator.Pair;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
+import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
+import com.jfoenix.validation.ValidationFacade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 
-import java.util.ArrayList;
-import java.util.List;
 
+public class AddEquipmentController extends BaseController {
 
-public class AddEquipmentController {
-
-    private String mConfig;
-    private Object mType;
-    private List<EquipmentParameterModel> mValue;
+    private BaseValidator mBaseValidator = new BaseValidator();
+    private ObservableList<EquipmentParameterModel> mParameterModel;
+    @FXML
+    private JFXTextField mTextFieldName, mTextFieldNameFact;
 
     @FXML
-    private TextField textFieldName, textFieldNameFact;
+    private JFXTextArea mTextAreaDescription;
 
     @FXML
-    private TextArea textAreaDescription;
+    private JFXComboBox<TypeModel> mComboBoxType;
 
     @FXML
-    private Button buttonConfig;
+    private TreeTableView<EquipmentParameterModel> mTreeTableViewParameter;
 
     @FXML
-    private ComboBox<TypeModel> comboBoxType;
+    private TreeTableColumn<EquipmentParameterModel, String> mColumnNameParameter, mColumnValueParameter;
 
     @FXML
-    private TableView<ParameterModel> tableViewParameter;
+    private ValidationFacade mFacadeType;
 
     @FXML
-    private TableColumn<ParameterModel,String> columnNameType;
-
-    @FXML
-    private Label labelConfig;
+    private Label mErrorType;
 
     @FXML
     public void initialize(){
-        mValue=new ArrayList<>();
-        comboBoxType.setCellFactory(p->new ListCell<TypeModel>(){
+        mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNameFact);
+        mBaseValidator.setValidationFacades(new Pair(mFacadeType, mErrorType));
+        initComboBoxType(mComboBoxType, false);
+        initTableVieParameter();
+    }
+
+    private void initTableVieParameter() {
+        mColumnNameParameter.setCellValueFactory(cellData -> cellData.getValue().getValue().getParameterModel().nameProperty());
+        mColumnValueParameter.setCellValueFactory(cellData -> cellData.getValue().getValue().nameProperty());
+        mColumnValueParameter.setCellFactory((TreeTableColumn<EquipmentParameterModel, String> param) -> new GenericEditableTreeTableCell<>(new TextFieldEditorBuilder()));
+        mColumnValueParameter.setOnEditCommit(new EventHandler<TreeTableColumn.CellEditEvent<EquipmentParameterModel, String>>() {
             @Override
-            protected void updateItem(TypeModel type,boolean empty){
-                super.updateItem(type,empty);
-                if(type!=null && !empty){
-                    setText(type.getName());
-                }else{
-                    setText(null);
+            public void handle(TreeTableColumn.CellEditEvent<EquipmentParameterModel, String> event) {
+                TreeItem<EquipmentParameterModel> currentEditEquipment = mTreeTableViewParameter.getTreeItem(event.getTreeTablePosition().getRow());
+                currentEditEquipment.getValue().setName(event.getNewValue());
+                for (EquipmentParameterModel parameter : mParameterModel) {
+                    System.out.println(parameter.getName());
                 }
             }
         });
-        comboBoxType.setItems(EquipmentPresenter.get().getObservableType());
-        comboBoxType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedType(newValue));
-        columnNameType.setCellValueFactory(cellData->cellData.getValue().nameProperty());
-        tableViewParameter.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedParameter(newValue));
+        mTreeTableViewParameter.setEditable(true);
     }
 
-    private void selectedType(Object type){
-        tableViewParameter.setItems(((TypeModel) type).getObservableEntityList());
-        mType=type;
+    @Override
+    protected void initComboBoxType(JFXComboBox<TypeModel> comboBoxType, boolean isSelectionItem) {
+        super.initComboBoxType(comboBoxType, isSelectionItem);
+        mComboBoxType.setItems(EquipmentPresenter.get().getObservableType());
+        mComboBoxType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedType());
     }
 
-    private void selectedParameter(Object parameter){
-        mValue.add(new EquipmentParameterModel(0,"new value"+((ParameterModel)parameter).getId(),(ParameterModel)parameter));
+    private void selectedType() {
+        mParameterModel = FXCollections.observableArrayList();
+        for (ParameterModel parameter : mComboBoxType.getValue().getEntityList()) {
+            mParameterModel.add(new EquipmentParameterModel(0, "", parameter));
+        }
+        updateTableParameter(mParameterModel);
     }
 
-    @FXML
-    private void onClickButtonConfig(){
-        labelConfig.setText("configNew//....");
-        mConfig=labelConfig.getText();
+    private void updateTableParameter(ObservableList<EquipmentParameterModel> equipmentParameters) {
+        TreeItem<EquipmentParameterModel> rootItem = new TreeItem<>();
+        for (EquipmentParameterModel log : equipmentParameters) {
+            rootItem.getChildren().add(new TreeItem<>(log));
+        }
+        mTreeTableViewParameter.setRoot(rootItem);
+        mTreeTableViewParameter.setShowRoot(false);
     }
 
     @FXML
     private void onClickAdd(){
         EquipmentPresenter.get().addEquipment(
-                textFieldName.getText(),
-                textFieldNameFact.getText(),
-                textAreaDescription.getText(),
-                mConfig,
-                mType,
-                mValue
+                mTextFieldName.getText(),
+                mTextFieldNameFact.getText(),
+                mTextAreaDescription.getText(),
+                mComboBoxType.getValue(),
+                mParameterModel
         );
+    }
+
+    @FXML
+    public void onClickCancel() {
+
     }
 }

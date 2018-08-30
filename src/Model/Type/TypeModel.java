@@ -12,6 +12,10 @@ public class TypeModel extends GenericModel<ParameterModel> {
         super(id, name, entityList);
     }
 
+    public TypeModel(int id, String name) {
+        super(id, name);
+    }
+
     public TypeModel() {
     }
 

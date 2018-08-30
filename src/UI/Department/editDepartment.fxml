@@ -55,7 +55,7 @@
                            prefWidth="340.0" style="-fx-background-color: #a8f1b3;"/>
             </children>
         </AnchorPane>
-
+        <!--Адрес, сотрудники-->
         <AnchorPane style="-fx-background-color: #ffffff;"
                     AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0" prefWidth="980.0" prefHeight="100.0">
             <children>
@@ -82,8 +82,8 @@
                            AnchorPane.leftAnchor="900.0" prefHeight="60.0"
                            ripplerFill="#40a85f" prefWidth="70.0"/>
             </children>
-
         </AnchorPane>
+        <!--Список оборудования-->
         <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0"
                     AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="310.0" prefWidth="560">
             <children>
@@ -91,14 +91,13 @@
                                   AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0"
                                   AnchorPane.bottomAnchor="10.0">
                     <columns>
-                        <JFXTreeTableColumn fx:id="mNameEquipmentColumn" prefWidth="100.0" text="Наименование"/>
+                        <JFXTreeTableColumn fx:id="mNameEquipmentColumn" prefWidth="163.0" text="Наименование"/>
                         <JFXTreeTableColumn fx:id="mNumberEquipmentColumn" prefWidth="100.0" text="Номер"/>
                         <JFXTreeTableColumn fx:id="mStateEquipmentColumn" prefWidth="75.0" text="Состояние"/>
-                        <JFXTreeTableColumn fx:id="mDescriptionEquipmentColumn" prefWidth="263.0"
+                        <JFXTreeTableColumn fx:id="mDescriptionEquipmentColumn" prefWidth="200.0"
                                             text="Заметка для отдела"/>
                     </columns>
                 </JFXTreeTableView>
-
             </children>
         </AnchorPane>
         <!--информация об оборудовании-->
