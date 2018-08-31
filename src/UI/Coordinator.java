@@ -17,6 +17,7 @@ public class Coordinator {
         stage.setTitle(title);
         stage.setWidth(width);
         stage.setHeight(height);
+        stage.setMinHeight(height);
         double midX=rootStage.getX() + rootStage.getWidth() / 2;
         double midY=rootStage.getY() + rootStage.getHeight() / 2;
         stage.setX( midX- stage.getWidth() / 2);
@@ -206,7 +207,7 @@ public class Coordinator {
 
     public void goToAddEquipmentWindow(Stage stage, double width, double height){
         try {
-            windowSceneContent("Equipment/addEquipment.fxml", stage, "Новое оборудование", 550, 400);
+            windowSceneContent("Equipment/addEquipment.fxml", stage, "Новое оборудование", 410, 480);
         }catch (Exception ex){
             System.out.println("Exeption goToAddEquipmentWindow "+ex);
         }

@@ -9,6 +9,8 @@ import Model.Equipment.*;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Inventory_number.InventoryNumbers;
 import Model.Movement.MovementModel;
+import Model.Parameter.ParameterModel;
+import Model.Parameter.Parameters;
 import Model.State.StateModel;
 import Model.State.States;
 import Model.Type.TypeModel;
@@ -101,6 +103,10 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     public ObservableList<Model.Department.DepartmentModel> getObservableDepartment() {
         return Departments.get().getEntityList();
+    }
+
+    public ObservableList<ParameterModel> getObservableParameter() {
+        return Parameters.get().getEntityList();
     }
 
     public void addEquipment(String name, String nameFact, String description, Object typeModel, List<EquipmentParameterModel> values) {

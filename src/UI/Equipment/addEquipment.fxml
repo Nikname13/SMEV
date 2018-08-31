@@ -5,40 +5,55 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchorPaneEquipments" prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Equipment.Controller.AddEquipmentController"
-            style="-fx-background-color: #ffffff;">
-
-    <JFXTextField fx:id="mTextFieldName" focusColor="#40a85f" labelFloat="true"
-                  prefHeight="25.0" prefWidth="250.0" promptText="Введите наименование" AnchorPane.topAnchor="30.0"
-                  AnchorPane.leftAnchor="20.0"/>
-    <JFXTextField fx:id="mTextFieldNameFact" focusColor="#40a85f" labelFloat="true"
-                  prefHeight="25.0" prefWidth="250.0" promptText="Введите наименование факт"
-                  AnchorPane.leftAnchor="20.0"
-                  AnchorPane.topAnchor="90.0"/>
-    <ValidationFacade fx:id="mFacadeType" layoutX="20.0" layoutY="150.0" AnchorPane.leftAnchor="20.0"
-                      AnchorPane.topAnchor="150.0">
-        <control>
-            <JFXComboBox fx:id="mComboBoxType" focusColor="#40a85f"
-                         prefHeight="25.0" prefWidth="250.0" promptText="Тип"/>
-        </control>
-    </ValidationFacade>
-    <Label fx:id="mErrorType"/>
-    <JFXTreeTableView fx:id="mTreeTableViewParameter" prefHeight="155.0"
-                      prefWidth="275.0" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="20.0">
-        <columns>
-            <TreeTableColumn fx:id="mColumnNameParameter" prefWidth="150.0" text="Параметр"/>
-            <TreeTableColumn fx:id="mColumnValueParameter" prefWidth="125.0" text="Значение"/>
-        </columns>
-    </JFXTreeTableView>
-    <JFXTextArea fx:id="mTextAreaDescription" focusColor="#40a85f" labelFloat="true"
-                 prefHeight="50.0" prefWidth="510.0" promptText="Комментарий"
-                 layoutX="20.0" layoutY="215.0" AnchorPane.leftAnchor="20.0"
-                 AnchorPane.topAnchor="215.0"/>
-    <JFXButton fx:id="buttonAdd" mnemonicParsing="false" onAction="#onClickAdd" prefWidth="120.0" prefHeight="35.0"
-               ripplerFill="#40a85f" text="Сохранить" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="290"/>
-    <JFXButton fx:id="buttonCancel" mnemonicParsing="false" ripplerFill="#40a85f" prefWidth="120.0"
-               prefHeight="35.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="290.0"
-               text="Отмена" onAction="#onClickCancel"/>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPaneAddEquipment"
+            style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8"
+            fx:controller="UI.Equipment.Controller.AddEquipmentController">
+    <VBox>
+        <children>
+            <AnchorPane>
+                <children>
+                    <JFXTextField fx:id="mTextFieldName" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
+                                  prefWidth="350.0" promptText="Введите наименование" AnchorPane.leftAnchor="20.0"
+                                  AnchorPane.topAnchor="30.0"/>
+                    <JFXTextField fx:id="mTextFieldNameFact" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
+                                  prefWidth="350.0" promptText="Введите наименование факт" AnchorPane.leftAnchor="20.0"
+                                  AnchorPane.topAnchor="90.0"/>
+                    <ValidationFacade fx:id="mFacadeType" layoutX="20.0" layoutY="150.0" AnchorPane.leftAnchor="20.0"
+                                      AnchorPane.topAnchor="150.0">
+                        <control>
+                            <JFXComboBox fx:id="mComboBoxType" focusColor="#40a85f" prefHeight="25.0" prefWidth="350.0"
+                                         promptText="Тип"/>
+                        </control>
+                    </ValidationFacade>
+                    <Label fx:id="mErrorType"/>
+                </children>
+            </AnchorPane>
+            <AnchorPane style="-fx-background-color: #ffffff;">
+                <children>
+                    <JFXTreeTableView fx:id="mTreeTableViewParameter" maxHeight="350.0" prefWidth="350.0"
+                                      AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="20.0"
+                                      AnchorPane.rightAnchor="0" AnchorPane.topAnchor="5.0">
+                        <columns>
+                            <TreeTableColumn fx:id="mColumnNameParameter" prefWidth="150.0" text="Параметр"/>
+                            <TreeTableColumn fx:id="mColumnValueParameter" prefWidth="125.0" text="Значение"/>
+                        </columns>
+                    </JFXTreeTableView>
+                </children>
+            </AnchorPane>
+            <AnchorPane>
+                <children>
+                    <JFXTextArea fx:id="mTextAreaDescription" focusColor="#40a85f" labelFloat="true" prefHeight="50.0"
+                                 prefWidth="350.0" promptText="Комментарий" AnchorPane.leftAnchor="20.0"
+                                 AnchorPane.topAnchor="20.0"/>
+                    <JFXButton fx:id="buttonAdd" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="35.0"
+                               prefWidth="120.0" ripplerFill="#40a85f" text="Сохранить" AnchorPane.leftAnchor="20.0"
+                               AnchorPane.topAnchor="90."/>
+                    <JFXButton fx:id="buttonCancel" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="35.0"
+                               prefWidth="120.0" ripplerFill="#40a85f" text="Отмена" AnchorPane.leftAnchor="150.0"
+                               AnchorPane.topAnchor="90.0"/>
+                </children>
+            </AnchorPane>
+        </children>
+    </VBox>
 
 </AnchorPane>

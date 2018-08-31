@@ -3,6 +3,7 @@ package UI;
 import Model.Area.AreaModel;
 import Model.Department.DepartmentModel;
 import Model.Location.LocationModel;
+import Model.Parameter.ParameterModel;
 import Model.Post.PostModel;
 import Model.Type.TypeModel;
 import com.jfoenix.controls.JFXComboBox;
@@ -196,6 +197,44 @@ public class BaseController {
                 }
             });
         }
+    }
+
+    protected JFXComboBox initComboBoxParameter(JFXComboBox<ParameterModel> comboBox, boolean isSelectionItem) {
+        comboBox.setCellFactory(p -> new ListCell<>() {
+            @Override
+            protected void updateItem(ParameterModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else setText(null);
+            }
+        });
+        comboBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(ParameterModel object) {
+                if (object != null) return object.getName();
+                else return null;
+            }
+
+            @Override
+            public ParameterModel fromString(String string) {
+                if (!string.isEmpty()) return new ParameterModel(-1, string.trim());
+                return null;
+            }
+        });
+        if (isSelectionItem) {
+            comboBox.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(ParameterModel item, boolean empty) {
+                    if (item != null && !empty) {
+                        setText(item.getName());
+                    } else {
+                        setText(null);
+                    }
+                }
+            });
+        }
+        return comboBox;
     }
 
     protected void close(Node node) {

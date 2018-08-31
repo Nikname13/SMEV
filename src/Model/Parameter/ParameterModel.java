@@ -15,6 +15,10 @@ public class ParameterModel extends GenericModel<ValueParameterModel> {
         mIsValue = isValue;
     }
 
+    public ParameterModel(int id, String name) {
+        super(id, name);
+    }
+
     public ParameterModel() {
 
     }
