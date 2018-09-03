@@ -7,29 +7,37 @@ import Presenter.EquipmentPresenter;
 import UI.BaseController;
 import UI.Validator.BaseValidator;
 import UI.Validator.Pair;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
+import com.jfoenix.controls.events.JFXDialogEvent;
 import com.jfoenix.validation.ValidationFacade;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
 public class AddEquipmentController extends BaseController {
 
     private BaseValidator mBaseValidator = new BaseValidator();
-    private ObservableList<EquipmentParameterModel> mParameterModel;
+    private BaseValidator mBaseValidatorDialog = new BaseValidator();
+    private ObservableList<EquipmentParameterModel> mEquipmentParameterList;
+    private JFXDialog mDialog;
     private double mHeightStage;
+
     @FXML
     private JFXTextField mTextFieldName, mTextFieldNameFact;
 
@@ -52,59 +60,133 @@ public class AddEquipmentController extends BaseController {
     private Label mErrorType;
 
     @FXML
-    private AnchorPane mAnchorPaneAddEquipment;
+    private StackPane mStackPaneAddEquipment;
 
     @FXML
     public void initialize() {
-       /* mHeightStage=getStage().getHeight();
-        System.out.println("height stage "+mHeightStage);*/
         mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNameFact);
         mBaseValidator.setValidationFacades(new Pair(mFacadeType, mErrorType));
         initComboBoxType(mComboBoxType, false);
         initTableVieParameter();
-        updateTableParameter(mParameterModel);
+        updateTableParameter(mEquipmentParameterList);
     }
 
     private Stage getStage() {
-        return (Stage) mAnchorPaneAddEquipment.getScene().getWindow();
+        return (Stage) mStackPaneAddEquipment.getScene().getWindow();
     }
 
     private void initTableVieParameter() {
         mColumnNameParameter.setCellValueFactory(cellData -> cellData.getValue().getValue().getParameterModel().nameProperty());
-/*        mColumnNameParameter.setCellFactory((TreeTableColumn<EquipmentParameterModel, String> param) -> new EditableTreeTableCell<>(
-                new ComboBoxEditorBuilder(initComboBoxParameter(new JFXComboBox(EquipmentPresenter.get().getObservableParameter()), false))));*/
         mColumnValueParameter.setCellValueFactory(cellData -> cellData.getValue().getValue().nameProperty());
         mColumnValueParameter.setCellFactory((TreeTableColumn<EquipmentParameterModel, String> param) -> new GenericEditableTreeTableCell<>());
         mColumnValueParameter.setOnEditCommit(new EventHandler<TreeTableColumn.CellEditEvent<EquipmentParameterModel, String>>() {
             @Override
             public void handle(TreeTableColumn.CellEditEvent<EquipmentParameterModel, String> event) {
-/*                TreeItem<EquipmentParameterModel> currentEditEquipment = mTreeTableViewParameter.getTreeItem(event.getTreeTablePosition().getRow());
+                TreeItem<EquipmentParameterModel> currentEditEquipment = mTreeTableViewParameter.getTreeItem(event.getTreeTablePosition().getRow());
                 currentEditEquipment.getValue().setName(event.getNewValue());
-                for (EquipmentParameterModel parameter : mParameterModel) {
+                for (EquipmentParameterModel parameter : mEquipmentParameterList) {
                     System.out.println(parameter.getName());
-                }*/
+                }
             }
         });
-
+        mTreeTableViewParameter.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipmentParameter(newValue)));
     }
+
+
+    private void selectedEquipmentParameter(TreeItem<EquipmentParameterModel> newValue) {
+        System.out.println(newValue);
+        if (newValue != null && mEquipmentParameterList != null) {
+            if (newValue.getValue().getId() == -1) {
+                showDialog();
+            }
+        }
+    }
+
+    private void showDialog() {
+
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text("Выберите параметр"));
+
+        JFXComboBox<ParameterModel> comboBox = initComboBoxParameter(
+                new JFXComboBox(EquipmentPresenter.get().getObservableEquipmentParameter(mEquipmentParameterList)), false);
+        comboBox.setLabelFloat(true);
+        comboBox.setPromptText("Параметр");
+        comboBox.setFocusColor(Paint.valueOf("#40a85f"));
+        comboBox.setPrefWidth(200);
+
+        ValidationFacade facade = new ValidationFacade();
+        facade.setControl(comboBox);
+
+        Label errorLabel = new Label();
+        errorLabel.setFont(new Font(11));
+        errorLabel.setVisible(false);
+
+        mBaseValidatorDialog.setValidationFacades(new Pair(facade, errorLabel));
+
+        JFXTextField text = new JFXTextField();
+        text.setLabelFloat(true);
+        text.setPromptText("Значение");
+        text.setFocusColor(Paint.valueOf("#40a85f"));
+
+        Pane pane = new Pane();
+        pane.setPrefHeight(10.0);
+        pane.getChildren().add(facade);
+        pane.getChildren().add(errorLabel);
+
+        HBox box = new HBox();
+        box.getChildren().add(pane);
+        box.getChildren().add(text);
+        box.setSpacing(10);
+
+        JFXButton button = new JFXButton("Сохранить");
+        button.setRipplerFill(Paint.valueOf("#40a85f"));
+        button.setPrefHeight(35.0);
+
+        content.setBody(box);
+        content.setActions(button);
+
+        mDialog = new JFXDialog(mStackPaneAddEquipment, content, JFXDialog.DialogTransition.CENTER);
+        mDialog.show();
+        mDialog.setOnDialogOpened(new EventHandler<JFXDialogEvent>() {
+            @Override
+            public void handle(JFXDialogEvent event) {
+                mTreeTableViewParameter.getSelectionModel().clearSelection();
+            }
+        });
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (mBaseValidatorDialog.validate()) {
+                    mEquipmentParameterList.add(new EquipmentParameterModel(0, text.getText().trim(), comboBox.getValue()));
+                    updateTableParameter(mEquipmentParameterList);
+                    if (mTreeTableViewParameter.getPrefHeight() <= mTreeTableViewParameter.getMaxHeight())
+                        resizeHeightStage(mTreeTableViewParameter.getPrefHeight() - 100);
+                    mDialog.close();
+                }
+            }
+        });
+    }
+
 
     @Override
     protected void initComboBoxType(JFXComboBox<TypeModel> comboBoxType, boolean isSelectionItem) {
         super.initComboBoxType(comboBoxType, isSelectionItem);
         mComboBoxType.setItems(EquipmentPresenter.get().getObservableType());
         mComboBoxType.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> selectedType());
-
     }
 
     private void selectedType() {
-        mParameterModel = FXCollections.observableArrayList();
+        mEquipmentParameterList = FXCollections.observableArrayList();
         for (ParameterModel parameter : mComboBoxType.getValue().getEntityList()) {
-            mParameterModel.add(new EquipmentParameterModel(0, "", parameter));
+            mEquipmentParameterList.add(new EquipmentParameterModel(0, "", parameter));
         }
-        updateTableParameter(mParameterModel);
-        if (mParameterModel.size() >= 1)
+        updateTableParameter(mEquipmentParameterList);
+        if (mEquipmentParameterList.size() >= 1) {
+            System.out.println("resize -100");
             resizeHeightStage(mTreeTableViewParameter.getPrefHeight() - 100);
+        }
         else {
+            System.out.println("resize 0");
             resizeHeightStage(0);
         }
     }
@@ -119,7 +201,7 @@ public class AddEquipmentController extends BaseController {
             mTreeTableViewParameter.setEditable(true);
             newParameter = "Добавить параметр";
         }
-        rootItem.getChildren().add(new TreeItem<>(new EquipmentParameterModel(0, "", new ParameterModel(0, newParameter))));
+        rootItem.getChildren().add(new TreeItem<>(new EquipmentParameterModel(-1, "", new ParameterModel(0, newParameter))));
         mTreeTableViewParameter.setRoot(rootItem);
         mTreeTableViewParameter.setShowRoot(false);
         mTreeTableViewParameter.setVisible(true);
@@ -143,7 +225,7 @@ public class AddEquipmentController extends BaseController {
                     mTextFieldNameFact.getText(),
                     mTextAreaDescription.getText(),
                     mComboBoxType.getValue(),
-                    mParameterModel
+                    mEquipmentParameterList
             );
         }
     }

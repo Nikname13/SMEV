@@ -2,6 +2,7 @@ package UI;
 
 import Model.Area.AreaModel;
 import Model.Department.DepartmentModel;
+import Model.Equipment.EquipmentParameterModel;
 import Model.Location.LocationModel;
 import Model.Parameter.ParameterModel;
 import Model.Post.PostModel;
@@ -228,6 +229,45 @@ public class BaseController {
                 protected void updateItem(ParameterModel item, boolean empty) {
                     if (item != null && !empty) {
                         setText(item.getName());
+                    } else {
+                        setText(null);
+                    }
+                }
+            });
+        }
+        return comboBox;
+    }
+
+    protected JFXComboBox initComboBoxEquipmentParameter(JFXComboBox<EquipmentParameterModel> comboBox, boolean isSelectionItem) {
+        comboBox.setCellFactory(p -> new ListCell<>() {
+            @Override
+            protected void updateItem(EquipmentParameterModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getParameterModel().getName());
+                } else setText(null);
+            }
+        });
+        comboBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(EquipmentParameterModel object) {
+                if (object != null) return object.getParameterModel().getName();
+                else return null;
+            }
+
+            @Override
+            public EquipmentParameterModel fromString(String string) {
+                if (!string.trim().isEmpty())
+                    return new EquipmentParameterModel(-1, "", new ParameterModel(-1, string.trim()));
+                return null;
+            }
+        });
+        if (isSelectionItem) {
+            comboBox.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(EquipmentParameterModel item, boolean empty) {
+                    if (item != null && !empty) {
+                        setText(item.getParameterModel().getName());
                     } else {
                         setText(null);
                     }

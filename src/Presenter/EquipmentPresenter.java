@@ -18,6 +18,7 @@ import Model.Type.Types;
 import Model.Worker.WorkerModel;
 import Service.IUpdateData;
 import Service.LisenersService;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
@@ -107,6 +108,26 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     public ObservableList<ParameterModel> getObservableParameter() {
         return Parameters.get().getEntityList();
+    }
+
+    public ObservableList<ParameterModel> getObservableEquipmentParameter(List<EquipmentParameterModel> equipmentParameter) {
+        List<ParameterModel> list = getObservableParameter();
+        ObservableList<ParameterModel> obsList = FXCollections.observableArrayList();
+        System.out.println("getObsEquipParameter");
+        boolean flag = false;
+        for (ParameterModel parameter : list) {
+            for (EquipmentParameterModel eqParameter : equipmentParameter) {
+                if (parameter.getId() == eqParameter.getParameterModel().getId()) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                obsList.add(parameter);
+            }
+            flag = false;
+        }
+        return obsList;
     }
 
     public void addEquipment(String name, String nameFact, String description, Object typeModel, List<EquipmentParameterModel> values) {

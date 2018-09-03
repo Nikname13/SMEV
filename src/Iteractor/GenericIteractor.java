@@ -20,17 +20,17 @@ public class GenericIteractor<T> implements IIteractor<T> {
 
     private String sURI;
     private Class<T> mModel;
-    private Type mLlistType;
+    private Type mListType;
 
     public GenericIteractor(String uri, Class<T> model,Type listType) {
         sURI = uri;
         mModel=model;
-        mLlistType=listType;
+        mListType = listType;
     }
 
     @Override
     public void loadData() {
-        List<T> list= new Gson().fromJson(Connector.get(new URLBuilder(sURI).build()),mLlistType);
+        List<T> list = new Gson().fromJson(Connector.get(new URLBuilder(sURI).build()), mListType);
         if (list!=null) {
             ObservableList<T> entityList = FXCollections.observableArrayList();
             for (T parameter : list) {
@@ -114,7 +114,7 @@ public class GenericIteractor<T> implements IIteractor<T> {
     @Override
     public List<T> getList(int id) {
         URLBuilder url=new URLBuilder(sURI);
-        return new Gson().fromJson(Connector.get(url.withParam("id", String.valueOf(id)).build()),mLlistType);
+        return new Gson().fromJson(Connector.get(url.withParam("id", String.valueOf(id)).build()), mListType);
     }
 
     @Override
