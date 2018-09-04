@@ -17,10 +17,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableView;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -90,11 +89,25 @@ public class AddEquipmentController extends BaseController {
             }
         });
         mTreeTableViewParameter.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipmentParameter(newValue)));
+        mTreeTableViewParameter.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    System.out.println("secondary delete item");
+                    EquipmentParameterModel equipmentParameter = mTreeTableViewParameter.getSelectionModel().getSelectedItem().getValue();
+                    if (equipmentParameter.getId() != -1) {
+                        mEquipmentParameterList.remove(equipmentParameter);
+                        updateTableParameter(mEquipmentParameterList);
+                        resizeHeightStage();
+                    }
+                }
+            }
+        });
+        mTreeTableViewParameter.setTooltip(new Tooltip("ПКМ для удаления"));
     }
 
 
     private void selectedEquipmentParameter(TreeItem<EquipmentParameterModel> newValue) {
-        System.out.println(newValue);
         if (newValue != null && mEquipmentParameterList != null) {
             if (newValue.getValue().getId() == -1) {
                 showDialog();
@@ -105,7 +118,7 @@ public class AddEquipmentController extends BaseController {
     private void showDialog() {
 
         JFXDialogLayout content = new JFXDialogLayout();
-        content.setHeading(new Text("Выберите параметр"));
+        content.setHeading(new Text("Добавить параметр"));
 
         JFXComboBox<ParameterModel> comboBox = initComboBoxParameter(
                 new JFXComboBox(EquipmentPresenter.get().getObservableEquipmentParameter(mEquipmentParameterList)), false);
@@ -160,7 +173,7 @@ public class AddEquipmentController extends BaseController {
                     mEquipmentParameterList.add(new EquipmentParameterModel(0, text.getText().trim(), comboBox.getValue()));
                     updateTableParameter(mEquipmentParameterList);
                     if (mTreeTableViewParameter.getPrefHeight() <= mTreeTableViewParameter.getMaxHeight())
-                        resizeHeightStage(mTreeTableViewParameter.getPrefHeight() - 100);
+                        resizeHeightStage();
                     mDialog.close();
                 }
             }
@@ -181,14 +194,7 @@ public class AddEquipmentController extends BaseController {
             mEquipmentParameterList.add(new EquipmentParameterModel(0, "", parameter));
         }
         updateTableParameter(mEquipmentParameterList);
-        if (mEquipmentParameterList.size() >= 1) {
-            System.out.println("resize -100");
-            resizeHeightStage(mTreeTableViewParameter.getPrefHeight() - 100);
-        }
-        else {
-            System.out.println("resize 0");
-            resizeHeightStage(0);
-        }
+        resizeHeightStage();
     }
 
     private void updateTableParameter(ObservableList<EquipmentParameterModel> equipmentParameters) {
@@ -212,9 +218,12 @@ public class AddEquipmentController extends BaseController {
         System.out.println(mTreeTableViewParameter.getRoot().getChildren().size() + " " + mTreeTableViewParameter.getPrefHeight());
     }
 
-    private void resizeHeightStage(double height) {
-        getStage().setHeight(getStage().getMinHeight() + height);
-        System.out.println(getStage().heightProperty().toString());
+    private void resizeHeightStage() {
+        if (mEquipmentParameterList.size() >= 1) {
+            getStage().setHeight(getStage().getMinHeight() + (mTreeTableViewParameter.getPrefHeight() - 100));
+        } else {
+            getStage().setHeight(getStage().getMinHeight());
+        }
     }
 
     @FXML
@@ -227,11 +236,12 @@ public class AddEquipmentController extends BaseController {
                     mComboBoxType.getValue(),
                     mEquipmentParameterList
             );
+            close(mStackPaneAddEquipment);
         }
     }
 
     @FXML
     public void onClickCancel() {
-
+        close(mStackPaneAddEquipment);
     }
 }

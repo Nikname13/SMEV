@@ -390,6 +390,11 @@ public class EditDepartmentController extends BaseController implements IUpdateU
     }
 
     @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+
+    }
+
+    @Override
     public void primaryClick(String id) {
         System.out.println("node id " + id);
         switch (id) {

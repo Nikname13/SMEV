@@ -7,8 +7,12 @@ import Service.IUpdateUI;
 import Service.LisenersService;
 import Service.TabControllerService;
 import UI.Coordinator;
+import UI.Popup.BasePopup;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.TreeCell;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -19,15 +23,6 @@ public class EquipmentsController implements IUpdateUI {
     }
 
     @FXML
-    private TableView<EquipmentModel> tableViewEquipment;
-
-    @FXML
-    private TableColumn<EquipmentModel, String> nameColumn, nameFactColumn;
-
-    @FXML
-    private TableColumn<EquipmentModel, String> typeColumn;
-
-    @FXML
     private StackPane mStackPaneEquipments;
 
     @FXML
@@ -35,12 +30,31 @@ public class EquipmentsController implements IUpdateUI {
 
     @FXML
     public void initialize() {
-/*        tableViewEquipment.setItems(EquipmentPresenter.get().getObservableEquipment());
-        nameColumn.setCellValueFactory(cellData->cellData.getValue().nameProperty());
-        nameFactColumn.setCellValueFactory(cellData->cellData.getValue().nameFactProperty());
-        typeColumn.setCellValueFactory(cellData->cellData.getValue().getTypeModel().nameProperty());
-        tableViewEquipment.getSelectionModel().selectedItemProperty().addListenerUI((observable, oldValue, newValue) -> selectedEquipment(newValue));*/
+        initEquipmentTreeView();
+        initPopup();
+    }
 
+    private void initPopup() {
+        new BasePopup(mEquipmentTreeView, BasePopup.getBaseListPopup(), null);
+    }
+
+    private void initEquipmentTreeView() {
+        mEquipmentTreeView.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipment(newValue)));
+        mEquipmentTreeView.setCellFactory(p -> new TreeCell<>() {
+            @Override
+            protected void updateItem(AbstractModel<?> item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else {
+                    setText(null);
+                }
+            }
+        });
+        updateEquipmentTreeView();
+    }
+
+    private void updateEquipmentTreeView() {
         TreeItem<AbstractModel<?>> rootItem = new TreeItem<>();
         boolean flag = false;
         for (EquipmentModel equipment : EquipmentPresenter.get().getObservableEquipment()) {
@@ -60,35 +74,25 @@ public class EquipmentsController implements IUpdateUI {
         }
         mEquipmentTreeView.setRoot(rootItem);
         mEquipmentTreeView.setShowRoot(false);
-        mEquipmentTreeView.setCellFactory(p -> new TreeCell<>() {
-            @Override
-            protected void updateItem(AbstractModel<?> item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty) {
-                    setText(item.getName());
-                } else {
-                    setText(null);
-                }
-            }
-        });
-        mEquipmentTreeView.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipment(newValue)));
+
     }
+
 
     @FXML
     private void onClickAdd() {
-        new Coordinator().goToAddEquipmentWindow((Stage) mStackPaneEquipments.getScene().getWindow(), 100.0, 200.0);
+        new Coordinator().goToAddEquipmentWindow((Stage) mStackPaneEquipments.getScene().getWindow());
     }
 
     private void selectedEquipment(TreeItem<AbstractModel<?>> equipment) {
         System.out.println("select equipment");
         if (equipment != null) {
             if (equipment.getValue().getClass().getName().equals(EquipmentModel.class.getName())) {
-                System.out.println(" listener " + TabControllerService.get().getListenerFirstTabPane().getClass().getName());
-                System.out.println(equipment.getValue().getClass().getName());
+                EquipmentPresenter.get().setSelectedObject(equipment.getValue());
                 EquipmentPresenter.get().setEquipmentModel(equipment.getValue());
                 TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditEquipmentResource()));
                 LisenersService.get().updateUI(EquipmentModel.class);
-                // new Coordinator().goToEditEquipmentWindow((Stage)mStackPaneEquipments.getScene().getWindow());
+            } else {
+                EquipmentPresenter.get().setSelectedObject(null);
             }
         }
     }
@@ -107,6 +111,22 @@ public class EquipmentsController implements IUpdateUI {
 
     @Override
     public void updateControl(Class<?> updateClass) {
+        if (updateClass.getName().equals(EquipmentModel.class.getName())) {
+            updateEquipmentTreeView();
+        }
+    }
 
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+        if (updateClass.getName().equals(EquipmentModel.class.getName())) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    updateEquipmentTreeView();
+                    mEquipmentTreeView.getSelectionModel().select(new TreeItem<>((EquipmentModel) currentItem));
+                }
+            });
+
+        }
     }
 }

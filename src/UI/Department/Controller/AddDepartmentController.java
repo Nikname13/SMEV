@@ -81,6 +81,7 @@ public class AddDepartmentController extends BaseController {
     @FXML
     private void onClickAdd(){
         if (mBaseValidator.validate()) {
+            close(mAnchorPaneAddDepartment);
             if (isSelectedLocation()) {
               DepartmentPresenter.get().addDepartment(mTextFieldNumber.getText(),
                       mTextFieldName.getText(),
@@ -98,7 +99,7 @@ public class AddDepartmentController extends BaseController {
                       mComboBoxArea.getValue(),
                       mComboBoxLocation.getEditor().getText());
           }
-            close(mAnchorPaneAddDepartment);
+
         }
 
     }
@@ -107,10 +108,4 @@ public class AddDepartmentController extends BaseController {
     private void onClickCancel() {
         close(mAnchorPaneAddDepartment);
     }
-/*
-    private void close() {
-        Stage stage = (Stage) mAnchorPaneAddDepartment.getScene().getWindow();
-        stage.close();
-    }*/
-
 }

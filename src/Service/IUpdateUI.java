@@ -5,4 +5,6 @@ public interface IUpdateUI {
     void refreshControl(Class<?> updateClass);
     void updateControl(Class<?> updateClass);
 
+    void updateControl(Class<?> updateClass, Object currentItem);
+
 }

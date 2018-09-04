@@ -259,11 +259,6 @@ public class EquipmentInventoryController implements IUpdateUI{
         }
     }
 
-    @FXML
-    private void onClickDelete(){
-        EquipmentPresenter.get().deleteEquipmentInventory(mEquipmentInventory);
-    }
-
     @Override
     public void updateUI(Class<?> updateClass) {
         if(updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
@@ -292,6 +287,11 @@ public class EquipmentInventoryController implements IUpdateUI{
 
     @Override
     public void updateControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
 
     }
 }

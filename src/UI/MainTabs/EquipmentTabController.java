@@ -9,9 +9,9 @@ import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 
-public class EquipmentTabTabController extends BaseTabController implements IUpdateUI {
+public class EquipmentTabController extends BaseTabController implements IUpdateUI {
 
-    public EquipmentTabTabController() {
+    public EquipmentTabController() {
         LisenersService.get().addListenerUI(this);
     }
 
@@ -39,6 +39,11 @@ public class EquipmentTabTabController extends BaseTabController implements IUpd
 
     @Override
     public void updateControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
 
     }
 }

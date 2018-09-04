@@ -13,7 +13,6 @@ public class BasePopupController {
         list.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                System.out.println(oldValue + " " + list);
                 if (!oldValue) list.getSelectionModel().clearSelection();
             }
         });

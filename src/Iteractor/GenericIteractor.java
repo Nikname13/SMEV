@@ -76,7 +76,7 @@ public class GenericIteractor<T> implements IIteractor<T> {
     }
 
     @Override
-    public void delete(Set<Integer> idList) {
+    public boolean delete(Set<Integer> idList) {
         URLBuilder url=new URLBuilder(sURI);
         for(int id:idList){
             url.withParam("id",String.valueOf(id));
@@ -87,28 +87,33 @@ public class GenericIteractor<T> implements IIteractor<T> {
             }
         } else{
             System.out.println("Ошибка удаления");
+            return false;
         }
-
+        return true;
     }
 
     @Override
-    public void delete(int id) {
+    public boolean delete(int id) {
         URLBuilder url=new URLBuilder(sURI).withParam("id", String.valueOf(id));
         if(Connector.delete(url.build())==200){
             deleteEntity(id);
         }else{
             System.out.println("Ошибка удаления");
+            return false;
         }
+        return true;
     }
 
     @Override
-    public void delete(T entity) {
+    public boolean delete(T entity) {
         URLBuilder url=new URLBuilder(sURI).withParam("id", String.valueOf(entity.hashCode()));
         if(Connector.delete(url.build())==200){
             deleteEntity(entity);
         }else{
             System.out.println("Ошибка удаления");
+            return false;
         }
+        return true;
     }
 
     @Override

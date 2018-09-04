@@ -2,6 +2,7 @@ package Presenter;
 
 import Iteractor.IteractorEquipment;
 import Iteractor.IteractorEquipmentInventory;
+import Iteractor.IteractorEquipmentParameter;
 import Iteractor.IteractorMovement;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
@@ -18,6 +19,7 @@ import Model.Type.Types;
 import Model.Worker.WorkerModel;
 import Service.IUpdateData;
 import Service.LisenersService;
+import UI.MainTabs.EquipmentTabController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -131,7 +133,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     }
 
     public void addEquipment(String name, String nameFact, String description, Object typeModel, List<EquipmentParameterModel> values) {
-        new IteractorEquipment().addNew(new EquipmentModel(
+        LisenersService.get().updateControl(EquipmentModel.class, new IteractorEquipment().addNew(new EquipmentModel(
                 0,
                 name,
                 nameFact,
@@ -139,7 +141,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
                 (TypeModel) typeModel,
                 values,
                 null
-        ));
+        )));
     }
 
     public void editEquipment(String name, String nameFact, String description, List<EquipmentParameterModel> values) {
@@ -203,12 +205,6 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     public void deleteEquipment() {
     }
 
-    public void deleteEquipmentInventory(EquipmentInventoryModel eq_inv) {
-        System.out.println("delete " + eq_inv.getInventoryNumber().getName());
-        sEquipmentInventoryModel = null;
-        //new IteractorEquipmentInventory().delete(eq_inv);
-    }
-
     public void addEquipmentStateLog(String state, String description, LocalDate date) {
         sEquipmentStateLog = new EquipmentStateLogModel(0, state, description, date);
         sEquipmentInventoryModel.setStateModel(sStateModel);
@@ -262,10 +258,23 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
             if (getSelectedObject().equals(sEquipmentInventoryModel)) {
                 System.out.println("delete " + sEquipmentInventoryModel.getInventoryNumber().getName());
             }
+            if (getSelectedObject().equals(sEquipmentModel)) {
+                System.out.println("delete equipment");
+                if (new IteractorEquipment().delete(sEquipmentModel.getId())) {
+                    LisenersService.get().updateControl(EquipmentModel.class);
+                    LisenersService.get().updateUI(EquipmentTabController.class);
+                }
+            }
         }
     }
 
     public void cancel() {
         LisenersService.get().refreshControl(EquipmentInventoryModel.class);
+    }
+
+    public void deleteEquipmentParameter(EquipmentParameterModel equipmentParameter) {
+        System.out.println("equipmentParameterId " + equipmentParameter.getId());
+        new IteractorEquipmentParameter().delete(equipmentParameter.getId());
+        Equipments.get().getEntity(sEquipmentModel.getId()).getEntityList().remove(equipmentParameter);
     }
 }

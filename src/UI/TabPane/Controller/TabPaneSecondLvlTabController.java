@@ -40,4 +40,9 @@ public class TabPaneSecondLvlTabController extends BaseTabController implements 
     public void updateControl(Class<?> updateClass) {
 
     }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+
+    }
 }

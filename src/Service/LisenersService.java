@@ -77,7 +77,12 @@ public class LisenersService {
         for (IUpdateUI listener : getListenerUI()) {
             listener.updateControl(updateClass);
         }
+    }
 
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+        for (IUpdateUI listener : getListenerUI()) {
+            listener.updateControl(updateClass, currentItem);
+        }
     }
 
     public void updateData(Object object) {

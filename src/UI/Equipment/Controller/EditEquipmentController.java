@@ -5,36 +5,46 @@ import Model.Equipment.EquipmentInventoryModel;
 import Model.Equipment.EquipmentModel;
 import Model.Equipment.EquipmentParameterModel;
 import Model.Inventory_number.InventoryNumberModel;
+import Model.Parameter.ParameterModel;
 import Model.State.StateModel;
 import Model.Type.TypeModel;
 import Presenter.EquipmentPresenter;
 import Service.IUpdateUI;
 import Service.LisenersService;
 import Service.TabControllerService;
+import UI.BaseController;
 import UI.Coordinator;
 import UI.TabPane.Controller.TabPaneSecondLvlTabController;
 import UI.Validator.BaseValidator;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+import UI.Validator.Pair;
+import com.jfoenix.controls.*;
 import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
+import com.jfoenix.controls.events.JFXDialogEvent;
+import com.jfoenix.validation.ValidationFacade;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class EditEquipmentController implements IUpdateUI {
+public class EditEquipmentController extends BaseController implements IUpdateUI {
 
     private static EquipmentModel sEquipmentModel;
     private BaseValidator mBaseValidator = new BaseValidator();
+    private BaseValidator mBaseValidatorDialog = new BaseValidator();
+    private ObservableList<EquipmentParameterModel> mEquipmentParameterList;
 
     public EditEquipmentController() {
         LisenersService.get().addListenerUI(this);
@@ -66,7 +76,7 @@ public class EditEquipmentController implements IUpdateUI {
     private TreeTableColumn<EquipmentInventoryModel, String> mDepartmentEquipmentColumn, mNumberEquipmentColumn, mStateEquipmentColumn, mDescriptionEquipmentColumn;
 
     @FXML
-    private AnchorPane anchorPaneEditEquipment;
+    private StackPane mStackPaneEditEquipment;
 
     @FXML
     public void initialize() {
@@ -98,7 +108,95 @@ public class EditEquipmentController implements IUpdateUI {
                 EquipmentPresenter.get().editEquipment(sEquipmentModel);
             }
         });
+        mTreeTableViewParameter.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    System.out.println("secondary delete item");
+                    EquipmentParameterModel equipmentParameter = mTreeTableViewParameter.getSelectionModel().getSelectedItem().getValue();
+                    if (equipmentParameter.getId() != -1) {
+                        mEquipmentParameterList.remove(equipmentParameter);
+                        sEquipmentModel.setEntityList(mEquipmentParameterList);
+                        EquipmentPresenter.get().deleteEquipmentParameter(equipmentParameter);
+                        updateTableParameter(mEquipmentParameterList);
+                    }
+                }
+            }
+        });
+        mTreeTableViewParameter.setTooltip(new Tooltip("ПКМ для удаления"));
         mTreeTableViewParameter.setEditable(true);
+        mTreeTableViewParameter.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedParameter(newValue)));
+    }
+
+    private void selectedParameter(TreeItem<EquipmentParameterModel> newValue) {
+        if (newValue != null) {
+            if (newValue.getValue().getId() == -1) {
+                createDialog();
+            }
+        }
+    }
+
+    private void createDialog() {
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text("Добавить параметр"));
+
+        JFXComboBox<ParameterModel> comboBox = initComboBoxParameter(
+                new JFXComboBox(EquipmentPresenter.get().getObservableEquipmentParameter(mEquipmentParameterList)), false);
+        comboBox.setLabelFloat(true);
+        comboBox.setPromptText("Параметр");
+        comboBox.setFocusColor(Paint.valueOf("#40a85f"));
+        comboBox.setPrefWidth(200);
+
+        ValidationFacade facade = new ValidationFacade();
+        facade.setControl(comboBox);
+
+        Label errorLabel = new Label();
+        errorLabel.setFont(new Font(11));
+        errorLabel.setVisible(false);
+
+        mBaseValidatorDialog.setValidationFacades(new Pair(facade, errorLabel));
+
+        JFXTextField text = new JFXTextField();
+        text.setLabelFloat(true);
+        text.setPromptText("Значение");
+        text.setFocusColor(Paint.valueOf("#40a85f"));
+
+        Pane pane = new Pane();
+        pane.setPrefHeight(10.0);
+        pane.getChildren().add(facade);
+        pane.getChildren().add(errorLabel);
+
+        HBox box = new HBox();
+        box.getChildren().add(pane);
+        box.getChildren().add(text);
+        box.setSpacing(10);
+
+        JFXButton button = new JFXButton("Сохранить");
+        button.setRipplerFill(Paint.valueOf("#40a85f"));
+        button.setPrefHeight(35.0);
+
+        content.setBody(box);
+        content.setActions(button);
+        JFXDialog dialog = new JFXDialog(mStackPaneEditEquipment, content, JFXDialog.DialogTransition.TOP);
+        dialog.setOnDialogOpened(new EventHandler<JFXDialogEvent>() {
+            @Override
+            public void handle(JFXDialogEvent event) {
+                mTreeTableViewParameter.getSelectionModel().clearSelection();
+            }
+        });
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (mBaseValidatorDialog.validate()) {
+                    mEquipmentParameterList.add(new EquipmentParameterModel(0, text.getText().trim(), comboBox.getValue()));
+                    sEquipmentModel.setEntityList(mEquipmentParameterList);
+                    EquipmentPresenter.get().editEquipment(sEquipmentModel);
+                    updateTableParameter(mEquipmentParameterList);
+                    dialog.close();
+                }
+            }
+        });
+        dialog.show();
     }
 
     private void updateTableParameter(ObservableList<EquipmentParameterModel> equipmentParameters) {
@@ -106,6 +204,7 @@ public class EditEquipmentController implements IUpdateUI {
         for (EquipmentParameterModel log : equipmentParameters) {
             rootItem.getChildren().add(new TreeItem<>(log));
         }
+        rootItem.getChildren().add(new TreeItem<>(new EquipmentParameterModel(-1, "", new ParameterModel(-1, "Добавить параметр"))));
         mTreeTableViewParameter.setRoot(rootItem);
         mTreeTableViewParameter.setShowRoot(false);
     }
@@ -139,14 +238,14 @@ public class EditEquipmentController implements IUpdateUI {
     }
 
     private void selectedEquipment(TreeItem<EquipmentInventoryModel> treeEquipment) {
-        if(treeEquipment!=null) {
-            EquipmentInventoryModel equipment=treeEquipment.getValue();
-            if (equipment != null && equipment.getId()!=-1) {
+        if (treeEquipment != null) {
+            EquipmentInventoryModel equipment = treeEquipment.getValue();
+            if (equipment != null && equipment.getId() != -1) {
                 EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
                 TabControllerService.get().getListenerThirdTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
                 LisenersService.get().updateUI(EquipmentInventoryModel.class);
             }
-            //new Coordinator().goToEquipentInventoryWindow((Stage) anchorPaneEditEquipment.getScene().getWindow());
+            //new Coordinator().goToEquipentInventoryWindow((Stage) mStackPaneEditEquipment.getScene().getWindow());
         }
     }
 
@@ -172,7 +271,7 @@ public class EditEquipmentController implements IUpdateUI {
 
     @FXML
     private void onClickAddEquipmentInventory() {
-        new Coordinator().goToAddEquipmentInventoryWindow((Stage) anchorPaneEditEquipment.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToAddEquipmentInventoryWindow((Stage) mStackPaneEditEquipment.getScene().getWindow(), 100.0, 200.0);
     }
 
     private void updateEquipmentTable(ObservableList<EquipmentInventoryModel> equipmentList) {
@@ -207,12 +306,12 @@ public class EditEquipmentController implements IUpdateUI {
     @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(EquipmentModel.class.getName())) {
+            mEquipmentParameterList = sEquipmentModel.getObservableEntityList();
             sEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
-            sEquipmentModel.getEntityList(); // первое обращение в базу для загрузки оборудования
             mTextFieldName.setText(sEquipmentModel.getName());
             mTextFieldNameFact.setText(sEquipmentModel.getNameFact());
             mTextAreaDescription.setText(sEquipmentModel.getDescription());
-            updateTableParameter(sEquipmentModel.getObservableEntityList());
+            updateTableParameter(mEquipmentParameterList);
             //tableViewEquipment.setItems(sEquipmentModel.getObservableEqInventoryList());
             updateEquipmentTable(sEquipmentModel.getObservableEqInventoryList());
             LisenersService.get().updateUI(TabPaneSecondLvlTabController.class);
@@ -226,6 +325,11 @@ public class EditEquipmentController implements IUpdateUI {
 
     @Override
     public void updateControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
 
     }
 

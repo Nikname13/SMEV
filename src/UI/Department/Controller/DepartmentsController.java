@@ -10,6 +10,7 @@ import Service.TabControllerService;
 import UI.Coordinator;
 import UI.Popup.BasePopup;
 import com.jfoenix.controls.JFXListView;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -110,6 +111,19 @@ public class DepartmentsController implements IUpdateUI, IOnMouseClick {
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(DepartmentModel.class.getName()))
             mDepartmentListView.setItems(DepartmentPresenter.get().getObservableDepartment());
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+        if (updateClass.getName().equals(DepartmentModel.class.getName())) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    mDepartmentListView.getSelectionModel().select((DepartmentModel) currentItem);
+                    mDepartmentListView.getFocusModel().getFocusedIndex();
+                }
+            });
+        }
     }
 
     @Override

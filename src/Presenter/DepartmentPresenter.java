@@ -72,16 +72,16 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
     }
 
     public void addDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area, String address) {
-        /*new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));*/
-        new IteractorLocation().addNew(new LocationModel(-1, address,
-                new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area))));
+        DepartmentModel department = new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));
+        new IteractorLocation().addNew(new LocationModel(-1, address, department));
+        LisenersService.get().updateControl(DepartmentModel.class, department);
     }
 
     public void addDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area, LocationModel address) {
-        /*new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));*/
         DepartmentModel department = new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));
         address.addLocation(department);
         new IteractorLocation().edit(address);
+        LisenersService.get().updateControl(DepartmentModel.class, department);
     }
 
     public void editDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area) {
@@ -158,11 +158,11 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
     public void delete() {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sDepartmentModel)) {
-                new IteractorDepartment().delete(sDepartmentModel.getId());
+                if (new IteractorDepartment().delete(sDepartmentModel.getId()))
                 LisenersService.get().updateControl(DepartmentModel.class);
             }
             if (getSelectedObject().equals(sPurchaseModel)) {
-                new IteractorPurchase().delete(sPurchaseModel);
+                if (new IteractorPurchase().delete(sPurchaseModel))
                 LisenersService.get().updateControl(PurchaseModel.class);
             }
         }

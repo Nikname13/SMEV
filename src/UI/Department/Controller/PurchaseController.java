@@ -91,4 +91,9 @@ public class PurchaseController extends BaseController implements IUpdateUI {
             mListViewPurchase.setItems(mDepartmentModel.getObservableEntityList());
         }
     }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+
+    }
 }

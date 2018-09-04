@@ -9,9 +9,9 @@ import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 
-public class DepartmentTabTabController extends BaseTabController implements IUpdateUI {
+public class DepartmentTabController extends BaseTabController implements IUpdateUI {
 
-    public DepartmentTabTabController() {
+    public DepartmentTabController() {
         LisenersService.get().addListenerUI(this);
         TabControllerService.get().setListenerFirstTabPane((Tab nextTab)-> nextTab(nextTab,mDepartmentTabContainer));
     }
@@ -41,6 +41,11 @@ public class DepartmentTabTabController extends BaseTabController implements IUp
 
     @Override
     public void updateControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
 
     }
 }

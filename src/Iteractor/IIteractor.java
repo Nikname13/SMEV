@@ -17,9 +17,12 @@ public interface IIteractor<T> {
      T addNew(T entity);
 
     T edit(T entity);
-     void delete(Set<Integer> idList);
-     void delete(int id);
-     void delete(T entity);
+
+    boolean delete(Set<Integer> idList);
+
+    boolean delete(int id);
+
+    boolean delete(T entity);
      List<T> getList(int id);
      List<FileDumpModel> uploadFile(int id, List<File> files, String type) throws IOException;
      List<FileDumpModel> getFiles(int id, String type);

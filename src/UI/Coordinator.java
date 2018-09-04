@@ -161,7 +161,7 @@ public class Coordinator {
         try {
             windowSceneContent("Type/addType.fxml",stage,"Новый тип", width, height);
         }catch (Exception ex){
-            System.out.println("Exeption goToAddTypeWindow "+ex);
+            System.out.println("Exception goToAddTypeWindow " + ex);
         }
     }
 
@@ -169,7 +169,7 @@ public class Coordinator {
         try {
             windowSceneContent("Type/editType.fxml",stage,"Тип", width, height);
         }catch (Exception ex){
-            System.out.println("Exeption goToEditType "+ex);
+            System.out.println("Exception goToEditType " + ex);
         }
     }
 
@@ -177,7 +177,7 @@ public class Coordinator {
         try {
             windowSceneContent("Supply/supplys.fxml",stage,"Поставки", width, height);
         }catch (Exception ex){
-            System.out.println("Exeption goToSupplysWindow "+ex);
+            System.out.println("Exception goToSupplysWindow " + ex);
         }
     }
 
@@ -185,7 +185,7 @@ public class Coordinator {
         try {
             windowSceneContent("Supply/addSupply.fxml",stage,"Новая поставка", width, height);
         }catch (Exception ex){
-            System.out.println("Exeption goToAddSupplyWindow "+ex);
+            System.out.println("Exception goToAddSupplyWindow " + ex);
         }
     }
 
@@ -201,15 +201,15 @@ public class Coordinator {
         try {
             windowSceneContent("Equipment/equipments.fxml",stage,"Оборудование", width, height);
         }catch (Exception ex){
-            System.out.println("Exeption goToEquipmentsWindow "+ex);
+            System.out.println("Exception goToEquipmentsWindow " + ex);
         }
     }
 
-    public void goToAddEquipmentWindow(Stage stage, double width, double height){
+    public void goToAddEquipmentWindow(Stage stage) {
         try {
             windowSceneContent("Equipment/addEquipment.fxml", stage, "Новое оборудование", 410, 480);
         }catch (Exception ex){
-            System.out.println("Exeption goToAddEquipmentWindow "+ex);
+            System.out.println("Exception goToAddEquipmentWindow " + ex);
         }
     }
 
@@ -217,7 +217,7 @@ public class Coordinator {
         try {
             windowSceneContent("Equipment/editEquipment.fxml",stage,"оборудование", width, height);
         }catch (Exception ex){
-            System.out.println("Exeption goToEditEquipmentWindow "+ex);
+            System.out.println("Exception goToEditEquipmentWindow " + ex);
         }
     }
 
@@ -233,7 +233,7 @@ public class Coordinator {
         try {
             windowSceneContent("Inventory_number/addInventoryNumber.fxml",stage,"Новый номер", width, height);
         }catch (Exception ex){
-            System.out.println("Exeption goToAddInventoryNumber "+ex);
+            System.out.println("Exception goToAddInventoryNumber " + ex);
         }
     }
 
@@ -249,7 +249,7 @@ public class Coordinator {
         try {
             windowSceneContent("Equipment/Equipment_inventory/equipmentInventory.fxml",stage,"Конкретное оборудование", width, height);
         }catch (Exception ex){
-            System.out.println("Exeption goToEquipmentInventiryWindow "+ex);
+            System.out.println("Exception goToEquipmentInventiryWindow " + ex);
         }
     }
 
@@ -265,7 +265,7 @@ public class Coordinator {
         try{
             windowSceneContent("Equipment/Equipment_inventory/Equipment_state/addEquipmentStateLog.fxml", stage, "Новое состояние", 360.0, 355.0);
         }catch (Exception ex){
-            System.out.println("Exeption goToAddEquipmnetWindow "+ex);
+            System.out.println("Exception goToAddEquipmnetWindow " + ex);
         }
     }
 
@@ -273,7 +273,7 @@ public class Coordinator {
         try {
             windowSceneContent("Equipment/Equipment_inventory/Equipment_state/equipmentStateLog.fxml", stage, "Журнаял изменения состояния", 560.0, 355.0);
         } catch (Exception ex) {
-            System.out.println("Exeption goToEquipmentStateLog " + ex);
+            System.out.println("Exception goToEquipmentStateLog " + ex);
         }
     }
 
@@ -297,7 +297,7 @@ public class Coordinator {
         try {
             windowSceneContent("Department/departments.fxml",stage,"Отделы", width, height);
         }catch (Exception ex){
-            System.out.println("Exeption goToDepartmentsWindow "+ex);
+            System.out.println("Exception goToDepartmentsWindow " + ex);
         }
     }
 
@@ -313,7 +313,7 @@ public class Coordinator {
         try {
             windowSceneContent("Department/editDepartment.fxml",stage,"Отдел", width, height);
         }catch (Exception ex){
-            System.out.println("Exeption goToEditDepartmentWindow "+ex);
+            System.out.println("Exception goToEditDepartmentWindow " + ex);
         }
     }
 
@@ -321,7 +321,7 @@ public class Coordinator {
         try {
             windowSceneContent("Department/DepartmentFiles/filesDepartment.fxml", stage, "файлы", 100.0, 200.0);
         }catch (Exception ex){
-            System.out.println("Exeption goToFilesDepartmentWindow "+ex);
+            System.out.println("Exception goToFilesDepartmentWindow " + ex);
         }
     }
 
@@ -329,7 +329,7 @@ public class Coordinator {
         try {
             windowSceneContent("Department/DepartmentFiles/photoDepartment.fxml", stage, "Фото", 100.0, 200.0);
         }catch (Exception ex){
-            System.out.println("Exeption goToPhotoDepartmentWindow "+ex);
+            System.out.println("Exception goToPhotoDepartmentWindow " + ex);
         }
     }
 
@@ -353,7 +353,7 @@ public class Coordinator {
         try {
             windowSceneContent("Department/addPurchase.fxml", stage, "Добавить закупку", 365.0, 360.0);
         }catch (Exception ex){
-            System.out.println("Exeption goToAddPurchaseWindow "+ex);
+            System.out.println("Exception goToAddPurchaseWindow " + ex);
         }
     }
 
@@ -361,7 +361,7 @@ public class Coordinator {
         try {
             windowSceneContent("Department/purchases.fxml", stage, "Закупки", 365.0, 360.0);
         } catch (Exception ex) {
-            System.out.println("Exeption goToPurchasesWindow " + ex);
+            System.out.println("Exception goToPurchasesWindow " + ex);
         }
     }
 
@@ -369,7 +369,7 @@ public class Coordinator {
         try{
             windowSceneContent("Movement/addMovement.fxml",stage,"Новое перемещение", width, height);
         }catch (Exception ex){
-            System.out.println("Exeption goToAddMovementWindow "+ex);
+            System.out.println("Exception goToAddMovementWindow " + ex);
         }
     }
 
@@ -377,7 +377,7 @@ public class Coordinator {
         try {
             windowSceneContent("Movement/movements.fxml",stage,"Перемещения", width, height);
         }catch (Exception ex){
-            System.out.println("Exeption goToMovementsWindow "+ex);
+            System.out.println("Exception goToMovementsWindow " + ex);
         }
     }
 
