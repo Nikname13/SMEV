@@ -15,7 +15,7 @@ import javafx.scene.control.ListCell;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-public class BaseController {
+public abstract class BaseController {
 
     private boolean mSelectedLocation;
     private boolean mSelectedPost;

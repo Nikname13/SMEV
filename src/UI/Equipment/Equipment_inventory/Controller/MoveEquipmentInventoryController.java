@@ -4,6 +4,7 @@ import Model.Department.DepartmentModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Worker.WorkerModel;
 import Presenter.EquipmentPresenter;
+import UI.BaseController;
 import UI.Validator.BaseValidator;
 import UI.Validator.Pair;
 import com.jfoenix.controls.JFXComboBox;
@@ -14,10 +15,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-public class MoveEquipmentInventoryController {
+public class MoveEquipmentInventoryController extends BaseController {
 
     private EquipmentInventoryModel mEquipment;
     private DepartmentModel mDepartment;
@@ -209,18 +209,13 @@ public class MoveEquipmentInventoryController {
                     mComboBoxWorkerFrom.getValue(),
                     mComboBoxWorkerTo.getValue(),
                     mTextAreaBase.getText());
-            close();
+            close(mAnchorPaneMoveEquipment);
         }
     }
 
     @FXML
     private void onClickCancel() {
         EquipmentPresenter.get().cancel();
-        close();
-    }
-
-    private void close() {
-        Stage stage = (Stage) mAnchorPaneMoveEquipment.getScene().getWindow();
-        stage.close();
+        close(mAnchorPaneMoveEquipment);
     }
 }

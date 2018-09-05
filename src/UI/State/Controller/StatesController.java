@@ -33,7 +33,7 @@ public class StatesController {
 
     @FXML
     private void onClickAdd(){
-        new Coordinator().goToAddStateWindow((Stage)anchorPaneState.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToAddStateWindow((Stage) anchorPaneState.getScene().getWindow(), 100.0, 200.0);
     }
 
     private void editState(Object state){

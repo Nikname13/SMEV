@@ -103,7 +103,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
                     if (parameter.getId() == currentEditEquipment.getValue().getId()) {
                         parameter.setName(event.getNewValue());
                     }
-                    System.out.println(parameter.getName());
+
                 }
                 EquipmentPresenter.get().editEquipment(sEquipmentModel);
             }
@@ -264,7 +264,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
     @FXML
     private void onClickEdit() {
         if (mBaseValidator.validate()) {
-            EquipmentPresenter.get().editEquipment(mTextFieldName.getText(), mTextFieldNameFact.getText(), mTextAreaDescription.getText(), null);
+            EquipmentPresenter.get().editEquipment(mTextFieldName.getText(), mTextFieldNameFact.getText(), mTextAreaDescription.getText(), mEquipmentParameterList);
             setInvisibleEditButton();
         }
     }

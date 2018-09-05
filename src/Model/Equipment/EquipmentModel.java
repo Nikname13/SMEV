@@ -1,22 +1,23 @@
 package Model.Equipment;
 
-import Iteractor.IteractorEquipment;
+import Iteractor.IteractorEquipmentInventory;
+import Iteractor.IteractorEquipmentParameter;
 import Model.GenericModel;
 import Model.Type.TypeModel;
-import com.google.gson.annotations.Expose;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
 
-    private String mNameFact, mDescription, mConfig;
+    private String mNameFact, mDescription;
     private TypeModel mTypeModel;
-    @Expose
-    private List<EquipmentInventoryModel> mEqInventoryList;
+
+    private transient List<EquipmentInventoryModel> mEqInventoryList;
 
     public EquipmentModel(int id, String name, String nameFact, String description,
                           TypeModel typeModel, List<EquipmentParameterModel> valueList,
@@ -24,7 +25,6 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
         super(id,name,valueList);
         mNameFact = nameFact;
         mDescription = description;
-        mConfig = "удалить конфиг";
         mTypeModel = typeModel;
         mEqInventoryList = equipmentInventoryList;
     }
@@ -37,8 +37,9 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
 
 
     public List<EquipmentInventoryModel> getEquipmentInventoryList() {
-        if(!isLoad()){
-            new IteractorEquipment().loadData(getId());
+        if (mEqInventoryList == null) {
+            mEqInventoryList = new ArrayList<>();
+            mEqInventoryList = new IteractorEquipmentInventory().getList(getId(), "equipment");
         }
         return mEqInventoryList;
     }
@@ -57,20 +58,19 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
     public void setEquipmentInventoryList(List<EquipmentInventoryModel> eqInvList) {
         mEqInventoryList = eqInvList;
     }
+
     @Override
     public List<EquipmentParameterModel> getEntityList(){
-        if(!isLoad()){
-            new IteractorEquipment().loadData(getId());
+        if (mEntityList == null) {
+            mEntityList = new ArrayList<>();
+            mEntityList = new IteractorEquipmentParameter().getList(getId());
         }
-        return super.getEntityList();
+        return mEntityList;
     }
 
     public ObservableList<EquipmentInventoryModel> getObservableEqInventoryList() {
-        if(mEqInventoryList == null){
-            getEquipmentInventoryList();
-        }
         ObservableList<EquipmentInventoryModel> obsList=FXCollections.observableArrayList();
-        for(EquipmentInventoryModel value:mEqInventoryList){
+        for (EquipmentInventoryModel value : getEquipmentInventoryList()) {
             obsList.add(value);
         }
         return obsList;
@@ -92,14 +92,6 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
         mDescription = description;
     }
 
-    public String getConfig() {
-        return mConfig;
-    }
-
-    public void setConfig(String config) {
-        mConfig = config;
-    }
-
     public void addEquipmentInventory(EquipmentInventoryModel value){
         mEqInventoryList.add(value);
     }
@@ -110,10 +102,6 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
 
     public StringProperty descriptionProperty() {
         return new SimpleStringProperty(mDescription);
-    }
-
-    public StringProperty configProperty() {
-        return new SimpleStringProperty(mConfig);
     }
 
     public TypeModel getTypeModel() {

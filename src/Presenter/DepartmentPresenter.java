@@ -167,4 +167,11 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
             }
         }
     }
+
+    @Override
+    public void loadEntity(int id) {
+        if (!sDepartmentModel.isLoad()) {
+            new IteractorDepartment().loadData(id);
+        }
+    }
 }

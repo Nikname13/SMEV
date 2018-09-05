@@ -154,6 +154,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
                 values,
                 null
         ));
+        LisenersService.get().updateControl(EquipmentModel.class);
     }
 
     public void editEquipment(EquipmentModel equipment) {
@@ -276,5 +277,12 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         System.out.println("equipmentParameterId " + equipmentParameter.getId());
         new IteractorEquipmentParameter().delete(equipmentParameter.getId());
         Equipments.get().getEntity(sEquipmentModel.getId()).getEntityList().remove(equipmentParameter);
+    }
+
+    @Override
+    public void loadEntity(int id) {
+        if (!sEquipmentModel.isLoad()) {
+            new IteractorEquipment().loadData(id);
+        }
     }
 }

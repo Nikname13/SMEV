@@ -3,7 +3,7 @@ package Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class GenericList<T> implements IGenericList<T>{
+public abstract class GenericList<T> implements IGenericList<T> {
 
     private ObservableList<T> mEntityList;
 
@@ -48,13 +48,9 @@ public class GenericList<T> implements IGenericList<T>{
     }
 
     @Override
-    public void update() {
-        System.out.println("Метод не переопределен");
-    }
+    public abstract void update();
 
     @Override
-    public void replace(T entity) {
-        System.out.println("Метод не переопределен");
-    }
+    public abstract void replace(T entity);
 
 }

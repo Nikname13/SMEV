@@ -7,10 +7,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GenericModel<T> extends AbstractModel<GenericModel<T>> implements IGenericModel<T>, Serializable {
+public abstract class GenericModel<T> extends AbstractModel<GenericModel<T>> implements IGenericModel<T>, Serializable {
 
 
-    private List<T> mEntityList;
+    protected List<T> mEntityList;
     private transient boolean mIsLoad;
 
     public GenericModel(int id, String name, List<T> entityList) {
@@ -69,15 +69,6 @@ public class GenericModel<T> extends AbstractModel<GenericModel<T>> implements I
         if (getEntity(entity.hashCode()) == null)
             mEntityList.add(entity);
     }
-/*
-    @Override
-    public T getLastEntity() {
-        //System.out.println("GET LAST ENTITY");
-        if(mEntityList != null){
-        return mEntityList.get(mEntityList.size()-1);
-        }
-        return null;
-    }*/
 
     @Override
     public void deleteEntity(T entity) {
@@ -86,7 +77,6 @@ public class GenericModel<T> extends AbstractModel<GenericModel<T>> implements I
 
     @Override
     public void deleteEntity(int id) {
-
     }
 
     @Override

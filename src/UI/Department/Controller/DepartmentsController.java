@@ -80,9 +80,10 @@ public class DepartmentsController implements IUpdateUI, IOnMouseClick {
 
     private void selectedDepartment(DepartmentModel department) {
         if(department!=null) {
-            DepartmentPresenter.get().setBasePopup(mPopup);
+            //DepartmentPresenter.get().setBasePopup(mPopup);
             DepartmentPresenter.get().setDepartmentModel(department);
             DepartmentPresenter.get().setSelectedObject(department);
+            DepartmentPresenter.get().loadEntity(department.getId());
             TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditDepartmentResource()));
             LisenersService.get().updateUI(DepartmentModel.class);
         }

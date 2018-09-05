@@ -24,6 +24,8 @@ public interface IIteractor<T> {
 
     boolean delete(T entity);
      List<T> getList(int id);
+
+    List<T> getList(int id, String nameField);
      List<FileDumpModel> uploadFile(int id, List<File> files, String type) throws IOException;
      List<FileDumpModel> getFiles(int id, String type);
      File downloadFile(int id, String type, String path, File file);

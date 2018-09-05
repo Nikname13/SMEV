@@ -6,7 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 
-public class BasePopupController {
+public abstract class BasePopupController {
 
     protected void init(JFXListView<Node> list) {
         list.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedPopupItem(newValue)));

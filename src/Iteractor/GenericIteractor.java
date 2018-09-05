@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class GenericIteractor<T> implements IIteractor<T> {
+public abstract class GenericIteractor<T> implements IIteractor<T> {
 
     private String sURI;
     private Class<T> mModel;
@@ -120,6 +120,12 @@ public class GenericIteractor<T> implements IIteractor<T> {
     public List<T> getList(int id) {
         URLBuilder url=new URLBuilder(sURI);
         return new Gson().fromJson(Connector.get(url.withParam("id", String.valueOf(id)).build()), mListType);
+    }
+
+    @Override
+    public List<T> getList(int id, String nameField) {
+        URLBuilder url = new URLBuilder(sURI);
+        return new Gson().fromJson(Connector.get(url.withParam("id", String.valueOf(id)).withParam("type", nameField).build()), mListType);
     }
 
     @Override

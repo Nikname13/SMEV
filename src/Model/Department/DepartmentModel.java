@@ -1,7 +1,9 @@
 package Model.Department;
 
 import Iteractor.IteractorDepartment;
+import Iteractor.IteractorEquipmentInventory;
 import Iteractor.IteractorLocation;
+import Iteractor.IteractorWorker;
 import Model.Area.AreaModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.FileDumpModel;
@@ -59,7 +61,7 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
         return super.getEntityList();
     }
 
-    public ObservableList<EquipmentInventoryModel> getObsEquipmnetList() {
+    public ObservableList<EquipmentInventoryModel> getObsEquipmentList() {
         ObservableList<EquipmentInventoryModel> equipmentList = FXCollections.observableArrayList();
         for (EquipmentInventoryModel equipment : getEquipmentList()) {
             equipmentList.add(equipment);
@@ -68,8 +70,9 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     }
 
     public List<EquipmentInventoryModel> getEquipmentList() {
-        if (!isLoad()) {
-            new IteractorDepartment().loadData(getId());
+        if (mEquipmentList == null) {
+            mEquipmentList = new ArrayList<>();
+            mEquipmentList = new IteractorEquipmentInventory().getList(getId(), "department");
         }
         return mEquipmentList;
     }
@@ -159,8 +162,9 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     }
 
     public List<WorkerModel> getWorkerList() {
-        if (!isLoad()) {
-            new IteractorDepartment().loadData(getId());
+        if (mWorkerList == null) {
+            mWorkerList = new ArrayList<>();
+            mWorkerList = new IteractorWorker().getList(getId());
         }
         return mWorkerList;
     }

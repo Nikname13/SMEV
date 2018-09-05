@@ -3,7 +3,7 @@ package UI;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
-public class BaseTabController {
+public abstract class BaseTabController {
 
     public void nextTab(Tab nextTab, TabPane tabPane) {
         tabPane.getTabs().add(nextTab);

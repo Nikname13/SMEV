@@ -86,4 +86,9 @@ public class WorkerPresenter extends BasePresenter implements IUpdateData {
             }
         }
     }
+
+    @Override
+    void loadEntity(int id) {
+
+    }
 }

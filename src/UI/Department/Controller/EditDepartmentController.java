@@ -358,7 +358,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
             mComboBoxArea.setItems(DepartmentPresenter.get().getObservableArea());
             mComboBoxArea.getSelectionModel().select(mDepartmentModel.getAreaModel());
             setInvisibleEditButton();
-            updateEquipmentTable(mDepartmentModel.getObsEquipmnetList());
+            updateEquipmentTable(mDepartmentModel.getObsEquipmentList());
             LisenersService.get().updateUI(TabPaneSecondLvlTabController.class);
 
         }
@@ -378,7 +378,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
     @Override
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
-            updateEquipmentTable(mDepartmentModel.getObsEquipmnetList());
+            updateEquipmentTable(mDepartmentModel.getObsEquipmentList());
             LisenersService.get().updateUI(TabPaneSecondLvlTabController.class);
         }
         if (updateClass.getName().equals(WorkerModel.class.getName())) {

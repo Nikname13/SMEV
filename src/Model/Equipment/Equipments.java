@@ -30,7 +30,6 @@ public class Equipments extends GenericList<EquipmentModel> {
         model.setName(entity.getName());
         model.setNameFact(entity.getNameFact());
         model.setTypeModel(entity.getTypeModel());
-        model.setConfig(entity.getConfig());
         model.setDescription(entity.getDescription());
         model.setEquipmentInventoryList(entity.getEquipmentInventoryList());
         model.setEntityList(entity.getEntityList());
