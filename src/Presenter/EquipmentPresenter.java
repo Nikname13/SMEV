@@ -188,16 +188,16 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     public void moveEquipmentInventory(EquipmentInventoryModel equipment, DepartmentModel toDepartment, WorkerModel fromWorker, WorkerModel toWorker, String base) {
 
-        Departments.get().getEntity(toDepartment.getId()).setLoad(false);
+/*        Departments.get().getEntity(toDepartment.getId()).setLoad(false);
         Departments.get().getEntity(equipment.getDepartmentModel().getId()).setLoad(false);
-        Equipments.get().getEntity(equipment.getEquipmentModel().getId()).setLoad(false);
+        Equipments.get().getEntity(equipment.getEquipmentModel().getId()).setLoad(false);*/
         MovementModel movement = new MovementModel(0, LocalDate.now(), base);
-        movement.addDepartment(equipment.getDepartmentModel());
-        movement.addDepartment(toDepartment);
-        equipment.setDepartmentModel(toDepartment);
-        movement.addWorker(fromWorker);
-        movement.addWorker(toWorker);
-        movement.addEntity(equipment);
+        movement.addDepartment(movement.newMovementDepartment(equipment.getDepartmentModel()));
+        movement.addDepartment(movement.newMovementDepartment(toDepartment));
+        equipment.setDepartmentModel(toDepartment);//назначение нового отдела дла оборудования
+        movement.addWorker(movement.newMovementWorker(fromWorker));
+        movement.addWorker(movement.newMovementWorker(toWorker));
+        movement.addEntity(movement.newMovementEquipment(equipment));
         new IteractorMovement().addNew(movement);
         new IteractorEquipmentInventory().edit(equipment);
         LisenersService.get().updateControl(EquipmentInventoryModel.class);

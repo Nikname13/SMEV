@@ -53,6 +53,11 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
         super(id, name);
     }
 
+    public DepartmentModel(int id, String name, String number) {
+        super(id, name);
+        mNumber = number;
+    }
+
     @Override
     public List<PurchaseModel> getEntityList() {
         if (!isLoad()) {
