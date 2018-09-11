@@ -168,9 +168,8 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
         EquipmentInventoryModel equipment = new IteractorEquipmentInventory().addNew(new EquipmentInventoryModel(0, inventoryNumber, guaranty, description,
                 Departments.get().getEntity(1), equipmentState, equipmentModel, state));
-/*       equipment.addInvenotryEditLog(new EquipmentInventoryLogModel(0, equipment.getInventoryNumber().getName(),
-               equipment.getInventoryNumber().getId(), LocalDate.now(), "Первый номер"));*/
-
+        LisenersService.get().updateData(equipment);
+        LisenersService.get().updateData(EquipmentInventoryModel.class);
     }
 
     public void editEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
@@ -188,9 +187,9 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     public void moveEquipmentInventory(EquipmentInventoryModel equipment, DepartmentModel toDepartment, WorkerModel fromWorker, WorkerModel toWorker, String base) {
 
-/*        Departments.get().getEntity(toDepartment.getId()).setLoad(false);
-        Departments.get().getEntity(equipment.getDepartmentModel().getId()).setLoad(false);
-        Equipments.get().getEntity(equipment.getEquipmentModel().getId()).setLoad(false);*/
+        Departments.get().getEntity(toDepartment.getId()).setEquipmentList(null);
+        Departments.get().getEntity(equipment.getDepartmentModel().getId()).setEquipmentList(null);
+        Equipments.get().getEntity(equipment.getEquipmentModel().getId()).setEquipmentInventoryList(null);
         MovementModel movement = new MovementModel(0, LocalDate.now(), base);
         movement.addDepartment(movement.newMovementDepartment(equipment.getDepartmentModel()));
         movement.addDepartment(movement.newMovementDepartment(toDepartment));
@@ -225,7 +224,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     public void addEquipmentInventoryLogModel(String description, LocalDate date) {
         sEquipmentInventoryLogModel = new EquipmentInventoryLogModel(0, sInventoryNumberModel.getName(), sInventoryNumberModel.getId(), date, description);
         sEquipmentInventoryModel.setInventoryNumber(sInventoryNumberModel);
-        sEquipmentInventoryModel.addInvenotryEditLog(sEquipmentInventoryLogModel);
+        sEquipmentInventoryModel.addInventoryEditLog(sEquipmentInventoryLogModel);
         editEquipmentInventory(sEquipmentInventoryModel);
         LisenersService.get().refreshControl(EquipmentInventoryLogModel.class);
     }
@@ -284,5 +283,13 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         if (!sEquipmentModel.isLoad()) {
             new IteractorEquipment().loadData(id);
         }
+    }
+
+    public ObservableList<MovementModel> getEquipmentMovementsLog(int id) {
+        ObservableList<MovementModel> list = FXCollections.observableArrayList();
+        for (MovementModel movement : new IteractorMovement().getList(id, "equipment")) {
+            list.add(movement);
+        }
+        return list;
     }
 }

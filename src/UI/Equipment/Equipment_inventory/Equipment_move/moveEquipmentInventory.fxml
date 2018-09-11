@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPaneMoveEquipment" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/8.0.121"
-            fx:controller="UI.Equipment.Equipment_inventory.Controller.MoveEquipmentInventoryController"
+            fx:controller="UI.Equipment.Equipment_inventory.Equipment_move.Controller.MoveEquipmentInventoryController"
             style="-fx-background-color: #ffffff;">
     <children>
         <JFXTextField fx:id="mTextFieldDepartment" prefWidth="200.0" promptText="Из отдела" focusColor="#40a85f"

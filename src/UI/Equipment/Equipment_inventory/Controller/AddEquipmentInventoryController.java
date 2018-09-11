@@ -4,8 +4,12 @@ import Model.Equipment.EquipmentModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.State.StateModel;
 import Presenter.EquipmentPresenter;
+import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class AddEquipmentInventoryController {
@@ -21,13 +25,10 @@ public class AddEquipmentInventoryController {
     private TextField textFieldGuaranty;
 
     @FXML
-    private Label labelPhotos, labelDepartment, labelName;
-
-    @FXML
     private ComboBox<StateModel> comboBoxState;
 
     @FXML
-    private ComboBox<InventoryNumberModel> comboBoxInventory;
+    private JFXComboBox<InventoryNumberModel> mComboBoxInventory;
 
     @FXML
     private TextArea textAreaDescription;
@@ -36,8 +37,7 @@ public class AddEquipmentInventoryController {
     private AnchorPane anchorPaneEquipmentInventory;
 
     public void initialize(){
-        labelName.setText(mEquipment.getName());
-        comboBoxInventory.setCellFactory(p->new ListCell<InventoryNumberModel>(){
+        mComboBoxInventory.setCellFactory(p -> new ListCell<InventoryNumberModel>() {
             @Override
             protected void updateItem(InventoryNumberModel inventory, boolean empty){
                 super.updateItem(inventory,empty);
@@ -48,8 +48,8 @@ public class AddEquipmentInventoryController {
                 }
             }
         });
-        comboBoxInventory.setItems(EquipmentPresenter.get().getObservableInventory());
-        comboBoxInventory.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedInventory(newValue)));
+        mComboBoxInventory.setItems(EquipmentPresenter.get().getObservableInventory());
+        mComboBoxInventory.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedInventory(newValue)));
         comboBoxState.setCellFactory(p-> new ListCell<StateModel>(){
             @Override
             protected void updateItem(StateModel state, boolean empty){

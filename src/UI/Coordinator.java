@@ -253,9 +253,9 @@ public class Coordinator {
         }
     }
 
-    public void goToAddEquipmentInventoryWindow(Stage stage, double width, double height){
+    public void goToAddEquipmentInventoryWindow(Stage stage) {
         try {
-            windowSceneContent("Equipment/Equipment_inventory/addEquipmentInventory.fxml",stage,"Новое оборудование", width, height);
+            windowSceneContent("Equipment/Equipment_inventory/addEquipmentInventory.fxml", stage, "Новое оборудование", 410, 480);
         }catch (Exception ex){
             System.out.println("Exception goToAddEquipmentInventoryWindow "+ex);
         }
@@ -407,9 +407,17 @@ public class Coordinator {
 
     public void goToMoveEquipmentInventoryWindow(Stage stage) {
         try {
-            windowSceneContent("Equipment/Equipment_inventory/moveEquipmentInventory.fxml", stage, "Перемещение", 480.0, 375.0);
+            windowSceneContent("Equipment/Equipment_inventory/Equipment_move/moveEquipmentInventory.fxml", stage, "Перемещение", 480.0, 375.0);
         }catch (Throwable ex){
             System.out.println("Exception goToMoveEquipmentInventoryWindow "+ex);
+        }
+    }
+
+    public void goToMovementsEquipmentInventoryLog(Stage stage) {
+        try {
+            windowSceneContent("Equipment/Equipment_inventory/Equipment_move/movementsEquipmentLog.fxml", stage, "Журнал перемещений", 560.0, 355.0);
+        } catch (Throwable ex) {
+            System.out.println("Exception goToMovementsEquipmentInventoryLog " + ex);
         }
     }
 

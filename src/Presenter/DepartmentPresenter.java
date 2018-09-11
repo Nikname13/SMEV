@@ -136,11 +136,11 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
         System.out.println(object.getClass() + " " + EquipmentInventoryModel.class);
         if (object.getClass().equals(EquipmentInventoryModel.class)) {
             EquipmentInventoryModel equipment = (EquipmentInventoryModel) object;
-            setLoadFalse(equipment.getDepartmentModel().getId());
+            Departments.get().getEntity(equipment.getDepartmentModel().getId()).setEquipmentList(null);
         }
         if (object.getClass().equals(WorkerModel.class)) {
             WorkerModel workerModel = (WorkerModel) object;
-            setLoadFalse(workerModel.getDepartmentModel().getId());
+            Departments.get().getEntity(workerModel.getDepartmentModel().getId()).setWorkerList(null);
         }
         if (object.getClass().equals(LocationModel.class)) {
             LocationModel locationModel = (LocationModel) object;

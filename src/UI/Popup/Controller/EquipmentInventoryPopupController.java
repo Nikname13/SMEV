@@ -21,6 +21,7 @@ public class EquipmentInventoryPopupController extends BasePopupController {
             switch (node.getId()) {
                 case "moveLog":
                     System.out.println(node.getId());
+                    LisenersService.get().onMouseClick(node.getId());
                     break;
                 case "statusLog":
                     System.out.println(node.getId());

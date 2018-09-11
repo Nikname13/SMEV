@@ -119,7 +119,7 @@ public abstract class GenericIteractor<T> implements IIteractor<T> {
     @Override
     public List<T> getList(int id) {
         URLBuilder url=new URLBuilder(sURI);
-        return new Gson().fromJson(Connector.get(url.withParam("id", String.valueOf(id)).build()), mListType);
+        return new Gson().fromJson(Connector.get(url.withParam("id", String.valueOf(id)).withParam("type", "default").build()), mListType);
     }
 
     @Override

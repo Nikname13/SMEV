@@ -271,7 +271,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
 
     @FXML
     private void onClickAddEquipmentInventory() {
-        new Coordinator().goToAddEquipmentInventoryWindow((Stage) mStackPaneEditEquipment.getScene().getWindow(), 100.0, 200.0);
+        new Coordinator().goToAddEquipmentInventoryWindow((Stage) mStackPaneEditEquipment.getScene().getWindow());
     }
 
     private void updateEquipmentTable(ObservableList<EquipmentInventoryModel> equipmentList) {

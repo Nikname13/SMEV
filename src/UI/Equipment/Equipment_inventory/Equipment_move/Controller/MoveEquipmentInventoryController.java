@@ -1,4 +1,4 @@
-package UI.Equipment.Equipment_inventory.Controller;
+package UI.Equipment.Equipment_inventory.Equipment_move.Controller;
 
 import Model.Department.DepartmentModel;
 import Model.Equipment.EquipmentInventoryModel;

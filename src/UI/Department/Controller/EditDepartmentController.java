@@ -287,11 +287,6 @@ public class EditDepartmentController extends BaseController implements IUpdateU
     }
 
     @FXML
-    private void onClickDelete() {
-        DepartmentPresenter.get().deleteDepartment(mDepartmentModel.getId());
-    }
-
-    @FXML
     private void onClickEdit() {
         if (mBaseValidator.validate()) {
             setInvisibleEditButton();
@@ -406,6 +401,9 @@ public class EditDepartmentController extends BaseController implements IUpdateU
                 break;
             case "statusLog":
                 new Coordinator().goToEquipmentStateLog(getStage());
+                break;
+            case "moveLog":
+                new Coordinator().goToMovementsEquipmentInventoryLog(getStage());
                 break;
         }
     }

@@ -43,7 +43,7 @@
                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
             <children>
                 <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                      AnchorPane.topAnchor="0.0">
+                      AnchorPane.topAnchor="0.0" spacing="10">
                     <children>
                         <AnchorPane style="-fx-background-color: #ffffff;">
                             <Button text="Добавить" prefHeight="35" prefWidth="425" onAction="#onClickAddEquipmentInventory"/>

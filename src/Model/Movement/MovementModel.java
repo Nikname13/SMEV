@@ -6,10 +6,13 @@ import Model.GenericModel;
 import Model.Worker.WorkerModel;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +44,11 @@ public class MovementModel extends GenericModel<MovementEquipment> {
 
     public ObjectProperty<LocalDate> dateProperty() {
         return new SimpleObjectProperty<>(mDate);
+    }
+
+    public StringProperty dateToString() {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return new SimpleStringProperty((mDate).format(format));
     }
 
     public List<MovementWorker> getWorkerList() {
