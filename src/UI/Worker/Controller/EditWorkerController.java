@@ -13,6 +13,7 @@ import com.jfoenix.validation.ValidationFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class EditWorkerController extends BaseController {
 
@@ -43,14 +44,19 @@ public class EditWorkerController extends BaseController {
         mBaseValidator.setValidationFacades(new Pair(mFacadePost, mErrorPost), new Pair(mFacadeDepartment, mErrorDepartment));
         initTextField();
         initComboBoxPost(mComboBoxPost);
-        initComboBoxDepartment(mComboBoxDepartment);
+        initComboBoxDepartment(mComboBoxDepartment, true);
     }
 
     @Override
-    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBoxDepartment) {
-        super.initComboBoxDepartment(comboBoxDepartment);
-        comboBoxDepartment.setItems(WorkerPresenter.get().getObservableDepartment());
-        mComboBoxDepartment.getSelectionModel().select(mWorkerModel.getDepartmentModel());
+    protected Stage getStage() {
+        return null;
+    }
+
+    @Override
+    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem) {
+        super.initComboBoxDepartment(comboBox, isSelectionItem);
+        comboBox.setItems(WorkerPresenter.get().getObservableDepartment());
+        comboBox.getSelectionModel().select(mWorkerModel.getDepartmentModel());
     }
 
     @Override

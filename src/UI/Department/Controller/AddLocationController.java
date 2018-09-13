@@ -12,6 +12,7 @@ import com.jfoenix.validation.ValidationFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class AddLocationController extends BaseController {
 
@@ -38,6 +39,11 @@ public class AddLocationController extends BaseController {
     public void initialize() {
         mBaseValidator.setValidationFacades(new Pair(mFacadeLocation, mErrorLocation));
         initComboBoxLocation(mComboBoxLocation);
+    }
+
+    @Override
+    protected Stage getStage() {
+        return null;
     }
 
     @Override

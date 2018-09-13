@@ -26,7 +26,11 @@ public class ControllerValidator {
             RequiredFieldValidator validator = getRequiredValidator();
             response.add(text);
             text.getValidators().add(validator);
-            validator.setMessage("Поле не может быть пустым");
+            if (text.getWidth() >= 160) {
+                validator.setMessage("Поле не может быть пустым");
+            } else {
+                //validator.setIcon(new Image);
+            }
             text.focusedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {

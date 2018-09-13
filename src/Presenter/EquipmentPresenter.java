@@ -164,10 +164,9 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
 
     public void addEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
-                                      EquipmentStateLogModel equipmentState, EquipmentModel equipmentModel, StateModel state) {
-
+                                      EquipmentStateLogModel equipmentState, EquipmentModel equipmentModel, StateModel state, int count) {
         EquipmentInventoryModel equipment = new IteractorEquipmentInventory().addNew(new EquipmentInventoryModel(0, inventoryNumber, guaranty, description,
-                Departments.get().getEntity(1), equipmentState, equipmentModel, state));
+                Departments.get().getEntity(1), equipmentState, equipmentModel, state), count);
         LisenersService.get().updateData(equipment);
         LisenersService.get().updateData(EquipmentInventoryModel.class);
     }

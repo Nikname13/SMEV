@@ -11,6 +11,7 @@ import com.jfoenix.validation.ValidationFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
@@ -67,4 +68,8 @@ public class AddPurchaseController extends BaseController {
         close(mAnchorPanePurchase);
     }
 
+    @Override
+    protected Stage getStage() {
+        return null;
+    }
 }

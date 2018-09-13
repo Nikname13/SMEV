@@ -12,6 +12,7 @@ import com.jfoenix.validation.ValidationFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class AddWorkerController extends BaseController {
 
@@ -40,14 +41,19 @@ public class AddWorkerController extends BaseController {
     public void initialize(){
         mBaseValidator.setValidationFacades(new Pair(mFacadeDepartment, mErrorDepartment), new Pair(mFacadePost, mErrorPost));
         mBaseValidator.setJFXTextFields(mTextFieldName);
-        initComboBoxDepartment(mComboBoxDepartment);
+        initComboBoxDepartment(mComboBoxDepartment, false);
         initComboBoxPost(mComboBoxPost);
     }
 
     @Override
-    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBoxDepartment) {
-        super.initComboBoxDepartment(comboBoxDepartment);
-        comboBoxDepartment.setItems(WorkerPresenter.get().getObservableDepartment());
+    protected Stage getStage() {
+        return null;
+    }
+
+    @Override
+    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem) {
+        super.initComboBoxDepartment(comboBox, isSelectionItem);
+        comboBox.setItems(WorkerPresenter.get().getObservableDepartment());
     }
 
     @Override

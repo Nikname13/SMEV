@@ -1,39 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.*?>
 <?import com.jfoenix.validation.ValidationFacade?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/8.0.121"
             fx:controller="UI.Equipment.Equipment_inventory.Controller.AddEquipmentInventoryController"
-            fx:id="anchorPaneEquipmentInventory" style="-fx-background-color: #ffffff;">
+            fx:id="mAnchorPaneEquipmentInventory" style="-fx-background-color: #ffffff;">
 
     <children>
-        <ValidationFacade fx:id="mFacadeInventory" layoutX="20.0" layoutY="60.0" AnchorPane.leftAnchor="20.0">
+        <ValidationFacade fx:id="mFacadeNumber" layoutX="20.0" layoutY="60.0" AnchorPane.leftAnchor="20.0">
             <control>
                 <JFXComboBox fx:id="mComboBoxInventory" focusColor="#40a85f" prefHeight="25.0" prefWidth="250.0"
-                             promptText="Инвентарный номер"/>
+                             promptText="Инвентарный номер" labelFloat="true"/>
             </control>
         </ValidationFacade>
-        <Label fx:id="mErrorInventory"/>
-        <ValidationFacade fx:id="mFacadeState" layoutX="20.0" layoutY="120.0" AnchorPane.leftAnchor="20.0">
+        <Label fx:id="mErrorNumber"/>
+        <JFXTextField fx:id="mTextFieldCount" focusColor="#41a65d" labelFloat="true" layoutX="260.0"
+                      AnchorPane.topAnchor="60.0" AnchorPane.rightAnchor="20.0"
+                      prefHeight="25.0" prefWidth="55.0" promptText="Количество" visible="false"/>
+        <ValidationFacade fx:id="mFacadeState" layoutX="20.0" layoutY="120.0" AnchorPane.leftAnchor="20.0"
+                          AnchorPane.rightAnchor="90.0">
             <control>
-                <JFXComboBox fx:id="mComboBoxState" focusColor="#40a85f" prefHeight="25.0" prefWidth="180.0"
-                             promptText="Состояние"/>
+                <JFXComboBox fx:id="mComboBoxState" focusColor="#40a85f" prefHeight="25.0" prefWidth="250.0"
+                             promptText="Состояние" labelFloat="true"/>
             </control>
         </ValidationFacade>
         <Label fx:id="mErrorState"/>
-        <JFXTextField fx:id="mTextFieldName" focusColor="#41a65d" labelFloat="true" AnchorPane.leftAnchor="210.0"
-                      AnchorPane.topAnchor="120.0"
-                      prefHeight="25.0" prefWidth="60.0" promptText="Количество"/>
-        <TextField fx:id="textFieldGuaranty" layoutX="193.0" layoutY="83.0" prefHeight="25.0" prefWidth="64.0" promptText="гарантия" />
-        <Label fx:id="labelPhotos" layoutX="523.0" layoutY="18.0" text="photo" />
-        <ComboBox fx:id="comboBoxState" layoutX="14.0" layoutY="151.0" prefHeight="25.0" prefWidth="243.0" promptText="состояние" />
-        <TextArea fx:id="textAreaDescription" layoutX="14.0" layoutY="186.0" prefHeight="200.0" prefWidth="243.0" />
-        <Label fx:id="labelDepartment" layoutX="14.0" layoutY="18.0" text="department" />
-        <Button layoutX="282.0" layoutY="188.0" mnemonicParsing="false" onAction="#onClickAdd" text="add" />
+        <JFXTextField fx:id="mTextFieldGuaranty" focusColor="#41a65d" labelFloat="true" layoutX="210.0"
+                      AnchorPane.topAnchor="120.0" AnchorPane.rightAnchor="20.0"
+                      prefHeight="25.0" prefWidth="55.0" promptText="Гарантия"/>
+        <JFXTextArea fx:id="mTextAreaDescription" focusColor="#41a65d" labelFloat="true" layoutX="20.0" layoutY="185.0"
+                     prefHeight="100.0" prefWidth="250.0" promptText="Комментарий" wrapText="true"
+                     AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"/>
+        <JFXButton fx:id="buttonAdd" mnemonicParsing="false" onAction="#onClickAdd" prefWidth="120.0" prefHeight="35.0"
+                   ripplerFill="#40a85f" text="Сохранить" AnchorPane.topAnchor="305" AnchorPane.rightAnchor="150.0"/>
+        <JFXButton fx:id="buttonCancel" mnemonicParsing="false" ripplerFill="#40a85f" prefWidth="120.0"
+                   prefHeight="35.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="305.0"
+                   text="Отмена" onAction="#onClickCancel"/>
     </children>
 
 </AnchorPane>

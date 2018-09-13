@@ -4,78 +4,132 @@ import Model.Equipment.EquipmentModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.State.StateModel;
 import Presenter.EquipmentPresenter;
+import UI.BaseController;
+import UI.Validator.BaseValidator;
+import UI.Validator.Pair;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.ValidationFacade;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-public class AddEquipmentInventoryController {
+public class AddEquipmentInventoryController extends BaseController {
 
     private EquipmentModel mEquipment;
-    private InventoryNumberModel mInventory;
-    private StateModel mState;
+    private BaseValidator mBaseValidator = new BaseValidator();
+
     public AddEquipmentInventoryController(){
         mEquipment=EquipmentPresenter.get().getEquipmentModel();
     }
 
     @FXML
-    private TextField textFieldGuaranty;
+    private JFXTextField mTextFieldGuaranty, mTextFieldCount;
 
     @FXML
-    private ComboBox<StateModel> comboBoxState;
+    private JFXComboBox<StateModel> mComboBoxState;
 
     @FXML
     private JFXComboBox<InventoryNumberModel> mComboBoxInventory;
 
     @FXML
-    private TextArea textAreaDescription;
+    private JFXTextArea mTextAreaDescription;
 
     @FXML
-    private AnchorPane anchorPaneEquipmentInventory;
+    private ValidationFacade mFacadeNumber, mFacadeState;
+
+    @FXML
+    private Label mErrorNumber, mErrorState;
+
+    @FXML
+    private AnchorPane mAnchorPaneEquipmentInventory;
 
     public void initialize(){
-        mComboBoxInventory.setCellFactory(p -> new ListCell<InventoryNumberModel>() {
+        initComboBoxNumber(mComboBoxInventory, false);
+        initComboBoxState(mComboBoxState, false);
+        initTextFieldCount();
+        mBaseValidator.setJFXTextFields(mTextFieldCount, mTextFieldGuaranty);
+        mBaseValidator.setValidationFacades(new Pair(mFacadeNumber, mErrorNumber), new Pair(mFacadeState, mErrorState));
+    }
+
+    private void initTextFieldCount() {
+        mTextFieldCount.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            protected void updateItem(InventoryNumberModel inventory, boolean empty){
-                super.updateItem(inventory,empty);
-                if(inventory!=null && !empty){
-                    setText(inventory.getName());
-                }else {
-                    setText(null);
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                System.out.println(newValue);
+                if (!newValue.isEmpty()) {
+                    if (!newValue.matches("^[1-9]+([0-9]+$)?")) {
+                        mTextFieldCount.setText(oldValue);
+                        return;
+                    }
+                    int number = Integer.parseInt(newValue);
+                    if (number <= 100) {
+                        return;
+                    }
+                    mTextFieldCount.setText(oldValue);
                 }
             }
         });
-        mComboBoxInventory.setItems(EquipmentPresenter.get().getObservableInventory());
-        mComboBoxInventory.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedInventory(newValue)));
-        comboBoxState.setCellFactory(p-> new ListCell<StateModel>(){
-            @Override
-            protected void updateItem(StateModel state, boolean empty){
-                super.updateItem(state,empty);
-                if(state!=null && !empty){
-                    setText(state.getName());
-                }else {
-                    setText(null);
-                }
-            }
-        });
-        comboBoxState.setItems(EquipmentPresenter.get().getObservableState());
+    }
+
+    @Override
+    protected Stage getStage() {
+        return (Stage) mAnchorPaneEquipmentInventory.getScene().getWindow();
+    }
+
+    @Override
+    protected void initComboBoxNumber(JFXComboBox<InventoryNumberModel> comboBox, boolean isSelectionItem) {
+        super.initComboBoxNumber(comboBox, isSelectionItem);
+        comboBox.setItems(EquipmentPresenter.get().getObservableInventory());
+        comboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedInventory(newValue)));
     }
 
     private void selectedInventory(InventoryNumberModel inventory){
-        mInventory=inventory;
+        if (inventory != null) {
+            if (inventory.isGroup()) {
+                mTextFieldCount.setVisible(true);
+                resizeWidthStage();
+            } else {
+                mTextFieldCount.setVisible(false);
+                resizeWidthStage();
+            }
+        }
+    }
+
+    @Override
+    protected void initComboBoxState(JFXComboBox<StateModel> comboBox, boolean isSelectionItem) {
+        super.initComboBoxState(comboBox, isSelectionItem);
+        comboBox.setItems(EquipmentPresenter.get().getObservableState());
+    }
+
+    private void resizeWidthStage() {
+        if (mTextFieldCount.isVisible()) {
+            getStage().setWidth(getStage().getMinWidth() + (mTextFieldCount.getWidth() + 15));
+        } else {
+            getStage().setWidth(getStage().getMinWidth());
+        }
     }
 
     @FXML
     private void onClickAdd(){
-        EquipmentPresenter.get().addEquipmentInventory(
-                mInventory,
-                Integer.parseInt(textFieldGuaranty.getText()),
-                textAreaDescription.getText(),
-                null,
-                mEquipment,
-                comboBoxState.getValue());
+        if (mBaseValidator.validate()) {
+            System.out.println("true");
+            EquipmentPresenter.get().addEquipmentInventory(
+                    mComboBoxInventory.getValue(),
+                    Integer.parseInt(mTextFieldGuaranty.getText()),
+                    mTextAreaDescription.getText(),
+                    null,
+                    mEquipment,
+                    mComboBoxState.getValue(),
+                    mTextFieldCount.isVisible() ? Integer.parseInt(mTextFieldCount.getText()) : 1);
+        }
+    }
+
+    @FXML
+    private void onClickCancel() {
     }
 }

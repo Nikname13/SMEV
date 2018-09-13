@@ -70,10 +70,6 @@ public class AddEquipmentController extends BaseController {
         updateTableParameter(mEquipmentParameterList);
     }
 
-    private Stage getStage() {
-        return (Stage) mStackPaneAddEquipment.getScene().getWindow();
-    }
-
     private void initTableVieParameter() {
         mColumnNameParameter.setCellValueFactory(cellData -> cellData.getValue().getValue().getParameterModel().nameProperty());
         mColumnValueParameter.setCellValueFactory(cellData -> cellData.getValue().getValue().nameProperty());
@@ -180,6 +176,11 @@ public class AddEquipmentController extends BaseController {
         });
     }
 
+
+    @Override
+    protected Stage getStage() {
+        return (Stage) mStackPaneAddEquipment.getScene().getWindow();
+    }
 
     @Override
     protected void initComboBoxType(JFXComboBox<TypeModel> comboBoxType, boolean isSelectionItem) {

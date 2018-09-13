@@ -72,7 +72,7 @@ public class PurchaseController extends BaseController implements IUpdateUI {
     @FXML
     private void onClickAddPurchase() {
         DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
-        new Coordinator().goToAddPurchaseWindow((Stage) mAnchorPanePurchase.getScene().getWindow());
+        new Coordinator().goToAddPurchaseWindow(getStage());
     }
 
     @Override
@@ -95,5 +95,10 @@ public class PurchaseController extends BaseController implements IUpdateUI {
     @Override
     public void updateControl(Class<?> updateClass, Object currentItem) {
 
+    }
+
+    @Override
+    protected Stage getStage() {
+        return (Stage) mAnchorPanePurchase.getScene().getWindow();
     }
 }

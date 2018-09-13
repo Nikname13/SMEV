@@ -8,6 +8,7 @@ import Model.State.StateModel;
 import Presenter.EquipmentPresenter;
 import Service.IUpdateUI;
 import Service.LisenersService;
+import UI.BaseController;
 import UI.Coordinator;
 import UI.Validator.BaseValidator;
 import com.jfoenix.controls.JFXButton;
@@ -17,12 +18,10 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 
-public class EquipmentInventoryController implements IUpdateUI{
+public class EquipmentInventoryController extends BaseController implements IUpdateUI {
 
     private EquipmentInventoryModel mEquipmentInventory;
     private EquipmentModel mEquipmentModel;
@@ -58,9 +57,9 @@ public class EquipmentInventoryController implements IUpdateUI{
     public void initialize(){
         System.out.println("equipment inventory initialize");
         mButtonSave.setFocusTraversable(false);
-        initComboBoxDepartment();
-        initComboBoxNumber();
-        initComboBoxState();
+        initComboBoxDepartment(mComboBoxDepartment, true);
+        initComboBoxNumber(mComboBoxNumber, true);
+        initComboBoxState(mComboBoxState, true);
         initTextField();
         initTextArea();
     }
@@ -84,136 +83,36 @@ public class EquipmentInventoryController implements IUpdateUI{
         });
     }
 
-    private void initComboBoxState() {
-        mComboBoxState.setCellFactory(p -> new ListCell<>() {
-            @Override
-            protected void updateItem(StateModel state, boolean empty) {
-                super.updateItem(state, empty);
-                if (state != null && !empty) {
-                    setText(state.getName());
-                }else {
-                    setText(null);
-                }
-            }
-        });
-        mComboBoxState.setConverter(new StringConverter<StateModel>() {
-            @Override
-            public String toString(StateModel object) {
-                //System.out.println(object.getName());
-                if(object!=null) return object.getName();
-                else return null;
-            }
-
-            @Override
-            public StateModel fromString(String string) {
-                if (!string.trim().isEmpty())
-                    return new StateModel(-1, string);
-                else return null;
-            }
-        });
-        mComboBoxState.setButtonCell(new ListCell<>() {
-            @Override
-            protected void updateItem(StateModel item, boolean empty) {
-                /*super.updateItem(item, empty);*/
-                if (item != null && !empty) {
-                    setText(item.getName());
-                } else {
-                    setText(null);
-                }
-
-            }
-        });
-        mComboBoxState.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedState());
+    @Override
+    protected void initComboBoxState(JFXComboBox<StateModel> comboBox, boolean isSelectionItem) {
+        super.initComboBoxState(comboBox, isSelectionItem);
+        comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedState());
     }
 
-    private void initComboBoxNumber() {
-        mComboBoxNumber.setCellFactory(p->new ListCell<>(){
-            @Override
-            protected void updateItem(InventoryNumberModel item, boolean empty) {
-                super.updateItem(item, empty);
-                if(item!=null && !empty){
-                    setText(item.getName());
-                }else {
-                    setText(null);
-                }
-            }
-        });
-        mComboBoxNumber.setConverter(new StringConverter<InventoryNumberModel>() {
-            @Override
-            public String toString(InventoryNumberModel object) {
-                if(object!=null) return object.getName();
-                else return null;
-            }
-
-            @Override
-            public InventoryNumberModel fromString(String string) {
-                if (!string.trim().isEmpty())
-                    return new InventoryNumberModel(-1, string);
-                else return null;
-            }
-        });
-        mComboBoxNumber.setButtonCell(new ListCell<>(){
-            @Override
-            protected void updateItem(InventoryNumberModel item, boolean empty) {
-                /*super.updateItem(item, empty);*/
-                if(item!=null && !empty){
-                    setText(item.getName());
-                }else {
-                    setText(null);
-                }
-
-            }
-        });
-        mComboBoxNumber.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedNumber()));
+    @Override
+    protected void initComboBoxNumber(JFXComboBox<InventoryNumberModel> comboBox, boolean isSelectionItem) {
+        super.initComboBoxNumber(comboBox, isSelectionItem);
+        comboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedNumber()));
     }
 
     private void selectedNumber() {
         if (mComboBoxNumber.getSelectionModel().getSelectedIndex() != -1 && mComboBoxNumber.focusedProperty().get()) {
             System.out.println("переход в модальное окно");
             EquipmentPresenter.get().setInventoryNumberModel(mComboBoxNumber.getValue());
-            new Coordinator().goToAddInventoryNumberLog((Stage) anchorPaneEquipmentInventory.getScene().getWindow());
+            new Coordinator().goToAddInventoryNumberLog(getStage());
 
         }
     }
 
-    private void initComboBoxDepartment() {
-        mComboBoxDepartment.setCellFactory(p -> new ListCell<>() {
-            @Override
-            protected void updateItem(DepartmentModel item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty) {
-                    setText(item.getName());
-                }else {
-                    setText(null);
-                }
-            }
-        });
-        mComboBoxDepartment.setButtonCell(new ListCell<>() {
-            @Override
-            protected void updateItem(DepartmentModel item, boolean empty) {
-                /*super.updateItem(item, empty);*/
-                if(item!=null && !empty){
-                    setText(item.getName());
-                }else {
-                    setText(null);
-                }
-            }
-        });
-        mComboBoxDepartment.setConverter(new StringConverter<DepartmentModel>() {
-            @Override
-            public String toString(DepartmentModel object) {
-                if (object != null) return object.getName();
-                else return null;
-            }
+    @Override
+    protected Stage getStage() {
+        return (Stage) anchorPaneEquipmentInventory.getScene().getWindow();
+    }
 
-            @Override
-            public DepartmentModel fromString(String string) {
-                if (!string.trim().isEmpty())
-                    return new DepartmentModel(-1, string);
-                else return null;
-            }
-        });
-        mComboBoxDepartment.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment()));
+    @Override
+    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem) {
+        super.initComboBoxDepartment(comboBox, isSelectionItem);
+        comboBox.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment()));
     }
 
     @FXML

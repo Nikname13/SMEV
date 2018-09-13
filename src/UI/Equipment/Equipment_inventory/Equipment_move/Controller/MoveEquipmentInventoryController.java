@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 public class MoveEquipmentInventoryController extends BaseController {
@@ -217,5 +218,10 @@ public class MoveEquipmentInventoryController extends BaseController {
     private void onClickCancel() {
         EquipmentPresenter.get().cancel();
         close(mAnchorPaneMoveEquipment);
+    }
+
+    @Override
+    protected Stage getStage() {
+        return null;
     }
 }

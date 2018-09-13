@@ -18,6 +18,7 @@ public class Coordinator {
         stage.setWidth(width);
         stage.setHeight(height);
         stage.setMinHeight(height);
+        stage.setMinWidth(width);
         double midX=rootStage.getX() + rootStage.getWidth() / 2;
         double midY=rootStage.getY() + rootStage.getHeight() / 2;
         stage.setX( midX- stage.getWidth() / 2);
@@ -207,7 +208,7 @@ public class Coordinator {
 
     public void goToAddEquipmentWindow(Stage stage) {
         try {
-            windowSceneContent("Equipment/addEquipment.fxml", stage, "Новое оборудование", 410, 480);
+            windowSceneContent("Equipment/addEquipment.fxml", stage, "Новое оборудование", 410, 485);
         }catch (Exception ex){
             System.out.println("Exception goToAddEquipmentWindow " + ex);
         }
@@ -249,13 +250,13 @@ public class Coordinator {
         try {
             windowSceneContent("Equipment/Equipment_inventory/equipmentInventory.fxml",stage,"Конкретное оборудование", width, height);
         }catch (Exception ex){
-            System.out.println("Exception goToEquipmentInventiryWindow " + ex);
+            System.out.println("Exception goToEquipmentInventoryWindow " + ex);
         }
     }
 
     public void goToAddEquipmentInventoryWindow(Stage stage) {
         try {
-            windowSceneContent("Equipment/Equipment_inventory/addEquipmentInventory.fxml", stage, "Новое оборудование", 410, 480);
+            windowSceneContent("Equipment/Equipment_inventory/addEquipmentInventory.fxml", stage, "Новое оборудование", 305.0, 395);
         }catch (Exception ex){
             System.out.println("Exception goToAddEquipmentInventoryWindow "+ex);
         }

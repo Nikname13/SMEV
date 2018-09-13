@@ -3,9 +3,11 @@ package UI;
 import Model.Area.AreaModel;
 import Model.Department.DepartmentModel;
 import Model.Equipment.EquipmentParameterModel;
+import Model.Inventory_number.InventoryNumberModel;
 import Model.Location.LocationModel;
 import Model.Parameter.ParameterModel;
 import Model.Post.PostModel;
+import Model.State.StateModel;
 import Model.Type.TypeModel;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.beans.value.ChangeListener;
@@ -19,6 +21,8 @@ public abstract class BaseController {
 
     private boolean mSelectedLocation;
     private boolean mSelectedPost;
+
+    protected abstract Stage getStage();
 
     public boolean isSelectedLocation() {
         return mSelectedLocation;
@@ -111,8 +115,8 @@ public abstract class BaseController {
         mSelectedPost = selectedPost;
     }
 
-    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBoxDepartment) {
-        comboBoxDepartment.setCellFactory(p -> new ListCell<DepartmentModel>() {
+    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem) {
+        comboBox.setCellFactory(p -> new ListCell<DepartmentModel>() {
             @Override
             protected void updateItem(DepartmentModel item, boolean empty) {
                 super.updateItem(item, empty);
@@ -123,6 +127,31 @@ public abstract class BaseController {
                 }
             }
         });
+        comboBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(DepartmentModel object) {
+                if (object != null) return object.getName();
+                else return null;
+            }
+
+            @Override
+            public DepartmentModel fromString(String string) {
+                if (!string.isEmpty()) return new DepartmentModel(-1, string.trim());
+                return null;
+            }
+        });
+        if (isSelectionItem) {
+            comboBox.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(DepartmentModel item, boolean empty) {
+                    if (item != null && !empty) {
+                        setText(item.getName());
+                    } else {
+                        setText(null);
+                    }
+                }
+            });
+        }
     }
 
     protected void initComboBoxPost(JFXComboBox<PostModel> comboBoxPost) {
@@ -275,6 +304,82 @@ public abstract class BaseController {
             });
         }
         return comboBox;
+    }
+
+    protected void initComboBoxNumber(JFXComboBox<InventoryNumberModel> comboBox, boolean isSelectionItem) {
+        comboBox.setCellFactory(p -> new ListCell<>() {
+            @Override
+            protected void updateItem(InventoryNumberModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else setText(null);
+            }
+        });
+        comboBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(InventoryNumberModel object) {
+                if (object != null) return object.getName();
+                else return null;
+            }
+
+            @Override
+            public InventoryNumberModel fromString(String string) {
+                if (!string.trim().isEmpty())
+                    return new InventoryNumberModel(-1, "");
+                return null;
+            }
+        });
+        if (isSelectionItem) {
+            comboBox.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(InventoryNumberModel item, boolean empty) {
+                    if (item != null && !empty) {
+                        setText(item.getName());
+                    } else {
+                        setText(null);
+                    }
+                }
+            });
+        }
+    }
+
+    protected void initComboBoxState(JFXComboBox<StateModel> comboBox, boolean isSelectionItem) {
+        comboBox.setCellFactory(p -> new ListCell<>() {
+            @Override
+            protected void updateItem(StateModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else setText(null);
+            }
+        });
+        comboBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(StateModel object) {
+                if (object != null) return object.getName();
+                else return null;
+            }
+
+            @Override
+            public StateModel fromString(String string) {
+                if (!string.trim().isEmpty())
+                    return new StateModel(-1, "");
+                return null;
+            }
+        });
+        if (isSelectionItem) {
+            comboBox.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(StateModel item, boolean empty) {
+                    if (item != null && !empty) {
+                        setText(item.getName());
+                    } else {
+                        setText(null);
+                    }
+                }
+            });
+        }
     }
 
     protected void close(Node node) {

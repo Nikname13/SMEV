@@ -64,6 +64,19 @@ public abstract class GenericIteractor<T> implements IIteractor<T> {
     }
 
     @Override
+    public T addNew(T entity, int count) {
+        URLBuilder url = new URLBuilder(sURI).withParam("count", String.valueOf(count));
+        String json = Connector.post(url.build(), getGson(entity));
+        if (json != null) {
+            setEntity(new Gson().fromJson(json, mModel));
+            return new Gson().fromJson(json, mModel);
+        } else {
+            System.out.println("Ошибка при добавлении записи");
+            return null;
+        }
+    }
+
+    @Override
     public T edit(T entity) {
         String json=Connector.put(new URLBuilder(sURI).build(),getGson(entity));
         if(json != null) {

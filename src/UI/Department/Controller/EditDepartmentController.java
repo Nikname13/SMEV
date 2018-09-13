@@ -95,10 +95,6 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         initPopup();
     }
 
-    private Stage getStage() {
-        return (Stage) anchorPaneEditDepartment.getScene().getWindow();
-    }
-
     public void setStage(Stage stage) {
         sStage = stage;
     }
@@ -117,6 +113,11 @@ public class EditDepartmentController extends BaseController implements IUpdateU
                 setVisibleEditButton();
             }
         });
+    }
+
+    @Override
+    protected Stage getStage() {
+        return (Stage) anchorPaneEditDepartment.getScene().getWindow();
     }
 
     @Override

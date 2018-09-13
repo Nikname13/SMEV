@@ -16,6 +16,8 @@ public interface IIteractor<T> {
      void loadData(int id);
      T addNew(T entity);
 
+    T addNew(T entity, int count);
+
     T edit(T entity);
 
     boolean delete(Set<Integer> idList);

@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class AddDepartmentController extends BaseController {
 
@@ -56,6 +57,11 @@ public class AddDepartmentController extends BaseController {
         initComboBoxArea(mComboBoxArea, false);
         initComboBoxLocation(mComboBoxLocation);
 
+    }
+
+    @Override
+    protected Stage getStage() {
+        return null;
     }
 
     @Override

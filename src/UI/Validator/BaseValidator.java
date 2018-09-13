@@ -95,12 +95,12 @@ public class BaseValidator {
         boolean flag = true;
         if (mJFXTextFields != null) {
             for (JFXTextField textField : mJFXTextFields) {
-                if (!textField.validate()) flag = false;
+                if (!textField.validate() && textField.isVisible()) flag = false;
             }
         }
         if (mJFXTextAreas != null) {
             for (JFXTextArea textArea : mJFXTextAreas) {
-                if (!textArea.validate()) flag = false;
+                if (!textArea.validate() && textArea.isVisible()) flag = false;
             }
         }
         if (mValidationFacades != null) {
