@@ -16,7 +16,7 @@ public interface IIteractor<T> {
      void loadData(int id);
      T addNew(T entity);
 
-    T addNew(T entity, int count);
+    List<T> addNew(List<T> entity);
 
     T edit(T entity);
 

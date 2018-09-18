@@ -51,25 +51,26 @@ public abstract class GenericIteractor<T> implements IIteractor<T> {
         return new GsonBuilder().create().toJson(entity);
     }
 
-    @Override
-    public T addNew(T entity) {
-        String json=Connector.post(new URLBuilder(sURI).build(), getGson(entity));
-        if(json!=null){
-            setEntity(new Gson().fromJson(json,mModel));
-            return new Gson().fromJson(json,mModel);
-        }else{
-            System.out.println("Ошибка при добавлении записи");
-            return null;
-        }
+    public String getGson(List<T> entity) {
+        return new GsonBuilder().create().toJson(entity);
     }
 
     @Override
-    public T addNew(T entity, int count) {
-        URLBuilder url = new URLBuilder(sURI).withParam("count", String.valueOf(count));
-        String json = Connector.post(url.build(), getGson(entity));
+    public T addNew(T entity) {
+        List<T> list = new ArrayList();
+        list.add(entity);
+        return addNew(list).iterator().next();
+    }
+
+    @Override
+    public List<T> addNew(List<T> entityList) {
+        String json = Connector.post(new URLBuilder(sURI).build(), getGson(entityList));
         if (json != null) {
-            setEntity(new Gson().fromJson(json, mModel));
-            return new Gson().fromJson(json, mModel);
+            List<T> list = new Gson().fromJson(json, mListType);
+            for (T entity : list) {
+                setEntity(entity);
+            }
+            return list;
         } else {
             System.out.println("Ошибка при добавлении записи");
             return null;

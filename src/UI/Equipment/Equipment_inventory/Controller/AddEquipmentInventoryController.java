@@ -90,13 +90,9 @@ public class AddEquipmentInventoryController extends BaseController {
 
     private void selectedInventory(InventoryNumberModel inventory){
         if (inventory != null) {
-            if (inventory.isGroup()) {
-                mTextFieldCount.setVisible(true);
+            mTextFieldCount.setText("");
+            mTextFieldCount.setVisible(inventory.isGroup());
                 resizeWidthStage();
-            } else {
-                mTextFieldCount.setVisible(false);
-                resizeWidthStage();
-            }
         }
     }
 
@@ -125,7 +121,7 @@ public class AddEquipmentInventoryController extends BaseController {
                     null,
                     mEquipment,
                     mComboBoxState.getValue(),
-                    mTextFieldCount.isVisible() ? Integer.parseInt(mTextFieldCount.getText()) : 1);
+                    mComboBoxInventory.getValue().isGroup() ? Integer.parseInt(mTextFieldCount.getText()) : 1);
         }
     }
 

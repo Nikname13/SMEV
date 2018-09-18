@@ -24,6 +24,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EquipmentPresenter extends BasePresenter implements IUpdateData {
@@ -165,10 +166,14 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     public void addEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
                                       EquipmentStateLogModel equipmentState, EquipmentModel equipmentModel, StateModel state, int count) {
-        EquipmentInventoryModel equipment = new IteractorEquipmentInventory().addNew(new EquipmentInventoryModel(0, inventoryNumber, guaranty, description,
-                Departments.get().getEntity(1), equipmentState, equipmentModel, state), count);
-        LisenersService.get().updateData(equipment);
-        LisenersService.get().updateData(EquipmentInventoryModel.class);
+        List<EquipmentInventoryModel> list = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            list.add(new EquipmentInventoryModel(0, inventoryNumber, guaranty, description,
+                    Departments.get().getEntity(1), equipmentState, equipmentModel, state));
+        }
+        new IteractorEquipmentInventory().addNew(list);
+        /*LisenersService.get().updateData(equipment);
+        LisenersService.get().updateData(EquipmentInventoryModel.class);*/
     }
 
     public void editEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
