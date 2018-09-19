@@ -7,6 +7,7 @@
            fx:controller="UI.Equipment.Controller.EditEquipmentController">
     <AnchorPane>
     <children>
+        <!--основная информация-->
         <AnchorPane prefHeight="260.0" prefWidth="220.0" AnchorPane.leftAnchor="0.0"
                     AnchorPane.topAnchor="0.0" style="-fx-background-color: #ffffff;">
             <children>
@@ -26,6 +27,7 @@
 
             </children>
         </AnchorPane>
+        <!--таблица с параметрами-->
         <AnchorPane AnchorPane.leftAnchor="230.0" prefWidth="300.0" prefHeight="260.0"
                     style="-fx-background-color: #ffffff;">
             <children>
@@ -39,27 +41,30 @@
                 </JFXTreeTableView>
             </children>
         </AnchorPane>
+        <!--оборудование-->
         <AnchorPane AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="270.0">
             <children>
                 <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                       AnchorPane.topAnchor="0.0" spacing="10">
                     <children>
-                        <AnchorPane style="-fx-background-color: #ffffff;">
-                            <Button text="Добавить" prefHeight="35" prefWidth="425" onAction="#onClickAddEquipmentInventory"/>
-                            <TreeTableView fx:id="mTreeTableEquipmentInventory" prefHeight="200.0" prefWidth="425.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                           AnchorPane.rightAnchor="0.0"
-                                           AnchorPane.topAnchor="37.0">
+                        <!--список оборудования-->
+                        <AnchorPane style="-fx-background-color: #ffffff;" prefWidth="530.0" minWidth="530.0">
+                            <JFXButton onAction="#onClickAddEquipmentInventory" text="Добавить" ripplerFill="#40a85f" prefHeight="35" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                            <JFXTreeTableView fx:id="mTreeTableEquipmentInventory" prefHeight="200.0" prefWidth="530.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+                                           AnchorPane.rightAnchor="10.0"
+                                           AnchorPane.topAnchor="55.0">
                                 <columns>
-                                    <TreeTableColumn fx:id="mNumberEquipmentColumn" prefWidth="100.0" text="Номер" />
-                                    <TreeTableColumn fx:id="mDepartmentEquipmentColumn" prefWidth="100.0" text="Отдел" />
-                                    <TreeTableColumn fx:id="mStateEquipmentColumn" prefWidth="75.0" text="Состояние" />
-                                    <TreeTableColumn fx:id="mDescriptionEquipmentColumn" prefWidth="150.0" text="Комментарий" />
+                                    <JFXTreeTableColumn fx:id="mNumberEquipmentColumn" prefWidth="182.0" text="Номер" />
+                                    <JFXTreeTableColumn fx:id="mDepartmentEquipmentColumn" prefWidth="100.0" text="Отдел" />
+                                    <JFXTreeTableColumn fx:id="mStateEquipmentColumn" prefWidth="75.0" text="Состояние" />
+                                    <JFXTreeTableColumn fx:id="mDescriptionEquipmentColumn" prefWidth="150.0" text="Комментарий" />
                                 </columns>
-                            </TreeTableView>
+                            </JFXTreeTableView>
                         </AnchorPane>
-                        <AnchorPane>
-                            <fx:include source="/UI/TabPane/tabPaneSecondLvl.fxml" AnchorPane.topAnchor="37.0"
+                        <!--детализация оборудования-->
+                        <AnchorPane prefWidth="350.0" maxWidth="350.0">
+                            <fx:include source="/UI/TabPane/tabPaneSecondLvl.fxml" AnchorPane.topAnchor="0.0"
                                         AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0"
                                         AnchorPane.rightAnchor="0"/>
                         </AnchorPane>

@@ -1,5 +1,6 @@
 package UI.Popup;
 
+import Presenter.BasePresenter;
 import Service.IOnMouseClick;
 import Service.IUpdatePopup;
 import Service.LisenersService;
@@ -22,13 +23,15 @@ public class BasePopup implements IUpdatePopup {
         try {
             mPopup = new JFXPopup(FXMLLoader.load(getClass().getResource(resourceURL)));
             node.setOnMouseClicked(event -> {
-                if (event.getButton() == MouseButton.SECONDARY) {
-                    LisenersService.get().setListenerOnMouseClick(primaryClick);
-                    mPopup.show(node, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());
-                }
-                if (event.getButton() == MouseButton.PRIMARY) {
-                    if (primaryClick != null)
-                        primaryClick.primaryClick(node.getId());
+                if (BasePresenter.getSelectedObject() != null) {
+                    if (event.getButton() == MouseButton.SECONDARY) {
+                        LisenersService.get().setListenerOnMouseClick(primaryClick);
+                        mPopup.show(node, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());
+                    }
+                    if (event.getButton() == MouseButton.PRIMARY) {
+                        if (primaryClick != null)
+                            primaryClick.primaryClick(node.getId());
+                    }
                 }
             });
         } catch (IOException ex) {

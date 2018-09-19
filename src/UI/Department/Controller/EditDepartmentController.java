@@ -271,6 +271,8 @@ public class EditDepartmentController extends BaseController implements IUpdateU
                 EquipmentPresenter.get().setSelectedObject(equipment);
                 TabControllerService.get().getListenerThirdTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
                 LisenersService.get().updateUI(EquipmentInventoryModel.class);
+            } else {
+                EquipmentPresenter.get().setSelectedObject(null);
             }
         }
     }
@@ -309,30 +311,68 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         new Coordinator().goToPhotoDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
     }
 
+    private EquipmentInventoryModel getEmptySecondLvlEquipment(EquipmentInventoryModel equipment) {
+        return new EquipmentInventoryModel(
+                -1,
+                new InventoryNumberModel(equipment.getInventoryNumber().getId(), equipment.getInventoryNumber().getName()),
+                new EquipmentModel(-1, equipment.getEquipmentModel().getName()),
+                null,
+                new StateModel(-1, ""));
+    }
+
+    private EquipmentInventoryModel getEmptyRootEquipment(EquipmentInventoryModel equipment) {
+        return new EquipmentInventoryModel(
+                -1,
+                new InventoryNumberModel(-1, ""),
+                new EquipmentModel(equipment.getEquipmentModel().getId(), equipment.getEquipmentModel().getName() + " (1)"),
+                null,
+                new StateModel(-1, ""));
+    }
+
+    private int getSizeItem(TreeItem<EquipmentInventoryModel> item) {
+        int size = 0;
+        for (TreeItem<EquipmentInventoryModel> rootEquipment : item.getChildren()) {
+            size += rootEquipment.getChildren().size();
+        }
+        return size;
+    }
+
     private void updateEquipmentTable(ObservableList<EquipmentInventoryModel> equipmentList) {
         TreeItem<EquipmentInventoryModel> rootItem = new TreeItem<>();
-        boolean flag = false;
+        boolean firstLvlFlag = false;
+        boolean secondLvlFlag = false;
         for (EquipmentInventoryModel equipment : equipmentList) {
-            for (TreeItem<EquipmentInventoryModel> treeEquipment : rootItem.getChildren()) {
-                if (treeEquipment.getValue().getEquipmentModel().getId() == equipment.getEquipmentModel().getId()) {
-                    treeEquipment.getChildren().add(new TreeItem<>(equipment));
-                    flag = true;
-                    treeEquipment.getValue().getEquipmentModel().setName(equipment.getEquipmentModel().getName() + " (" + treeEquipment.getChildren().size() + ")");
+            for (TreeItem<EquipmentInventoryModel> rootEquipment : rootItem.getChildren()) {
+                if (rootEquipment.getValue().getEquipmentModel().getId() == equipment.getEquipmentModel().getId()) {
+                    for (TreeItem<EquipmentInventoryModel> secondLvlEquipment : rootEquipment.getChildren()) {
+                        if (secondLvlEquipment.getValue().getInventoryNumber().getId() == equipment.getInventoryNumber().getId()) {
+                            secondLvlFlag = true;
+                            secondLvlEquipment.getChildren().add(new TreeItem<>(equipment));
+                            secondLvlEquipment.getValue().getEquipmentModel().setName(equipment.getEquipmentModel().getName() + " (" + secondLvlEquipment.getChildren().size() + ")");
+                            break;
+                        }
+                    }
+                    if (!secondLvlFlag) {
+                        TreeItem<EquipmentInventoryModel> treeItemSecond = new TreeItem<>(getEmptySecondLvlEquipment(equipment));
+                        treeItemSecond.getChildren().add(new TreeItem<>(equipment));
+                        rootEquipment.getChildren().add(treeItemSecond);
+                    } else {
+                        secondLvlFlag = false;
+                    }
+                    firstLvlFlag = true;
+                    rootEquipment.getValue().getEquipmentModel().setName(equipment.getEquipmentModel().getName() + " (" + getSizeItem(rootEquipment) + ")");
+                    break;
                 }
             }
-            if (!flag) {
-                EquipmentInventoryModel emptyEquipment = new EquipmentInventoryModel(
-                        -1,
-                        new InventoryNumberModel(-1, ""),
-                        new EquipmentModel(equipment.getEquipmentModel().getId(), equipment.getEquipmentModel().getName() + " (1)"),
-                        null,
-                        new StateModel(-1, ""));
-                TreeItem<EquipmentInventoryModel> treeItemFirst = new TreeItem<>(emptyEquipment);
-                treeItemFirst.getChildren().add(new TreeItem<>(equipment));
+            if (!firstLvlFlag) {
+                TreeItem<EquipmentInventoryModel> treeItemFirst = new TreeItem<>(getEmptyRootEquipment(equipment));
+                TreeItem<EquipmentInventoryModel> treeItemSecond = new TreeItem<>(getEmptySecondLvlEquipment(equipment));
+                treeItemSecond.getChildren().add(new TreeItem<>(equipment));
+                treeItemFirst.getChildren().add(treeItemSecond);
                 rootItem.getChildren().add(treeItemFirst);
 
             } else {
-                flag = false;
+                firstLvlFlag = false;
             }
         }
         mTreeTableEquipmentInventory.setRoot(rootItem);

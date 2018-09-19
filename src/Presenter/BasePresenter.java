@@ -4,7 +4,7 @@ public abstract class BasePresenter {
 
     private static Object sSelectedObject;
 
-    public Object getSelectedObject() {
+    public static Object getSelectedObject() {
         return sSelectedObject;
     }
 

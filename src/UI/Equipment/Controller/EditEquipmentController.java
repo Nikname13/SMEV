@@ -9,11 +9,13 @@ import Model.Parameter.ParameterModel;
 import Model.State.StateModel;
 import Model.Type.TypeModel;
 import Presenter.EquipmentPresenter;
+import Service.IOnMouseClick;
 import Service.IUpdateUI;
 import Service.LisenersService;
 import Service.TabControllerService;
 import UI.BaseController;
 import UI.Coordinator;
+import UI.Popup.BasePopup;
 import UI.TabPane.Controller.TabPaneSecondLvlTabController;
 import UI.Validator.BaseValidator;
 import UI.Validator.Pair;
@@ -39,7 +41,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class EditEquipmentController extends BaseController implements IUpdateUI {
+public class EditEquipmentController extends BaseController implements IUpdateUI, IOnMouseClick {
 
     private static EquipmentModel sEquipmentModel;
     private BaseValidator mBaseValidator = new BaseValidator();
@@ -80,14 +82,23 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
 
     @FXML
     public void initialize() {
-
-        mDepartmentEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getDepartmentModel().nameProperty());
-        mNumberEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getInventoryNumber().nameProperty());
-        mStateEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getStateModel().nameProperty());
-        mTreeTableEquipmentInventory.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipment(newValue)));
+        initTableViewEquipment();
         initTextField();
         initTextArea();
         initTableVieParameter();
+        initPopup();
+    }
+
+    private void initPopup() {
+        new BasePopup(mTreeTableEquipmentInventory, BasePopup.getEquipmentInventoryPopup(), this);
+    }
+
+    private void initTableViewEquipment() {
+        mDepartmentEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getDepartmentModel().nameProperty());
+        mNumberEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getInventoryNumber().nameProperty());
+        mStateEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getStateModel().nameProperty());
+        mDescriptionEquipmentColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().descriptionProperty());
+        mTreeTableEquipmentInventory.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipment(newValue)));
     }
 
     private void initTableVieParameter() {
@@ -242,8 +253,11 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
             EquipmentInventoryModel equipment = treeEquipment.getValue();
             if (equipment != null && equipment.getId() != -1) {
                 EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
+                EquipmentPresenter.get().setSelectedObject(equipment);
                 TabControllerService.get().getListenerThirdTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
                 LisenersService.get().updateUI(EquipmentInventoryModel.class);
+            } else {
+                EquipmentPresenter.get().setSelectedObject(null);
             }
             //new Coordinator().goToEquipentInventoryWindow((Stage) mStackPaneEditEquipment.getScene().getWindow());
         }
@@ -282,6 +296,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
                 if (treeEquipment.getValue().getInventoryNumber().getId() == equipment.getInventoryNumber().getId()) {
                     treeEquipment.getChildren().add(new TreeItem<>(equipment));
                     flag = true;
+                    treeEquipment.getValue().getInventoryNumber().setName(equipment.getInventoryNumber().getName() + " (" + treeEquipment.getChildren().size() + ")");
                 }
             }
             if (!flag) {
@@ -325,7 +340,9 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
 
     @Override
     public void updateControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
+            updateEquipmentTable(sEquipmentModel.getObservableEqInventoryList());
+        }
     }
 
     @Override
@@ -336,5 +353,23 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
     @Override
     protected Stage getStage() {
         return (Stage) mStackPaneEditEquipment.getScene().getWindow();
+    }
+
+    @Override
+    public void primaryClick(String id) {
+        switch (id) {
+            case "mListViewWorker":
+                new Coordinator().goToEditWorkerDepartmentWindow(getStage());
+                break;
+            case "inventoryLog":
+                new Coordinator().goToInventoryNumberLog(getStage());
+                break;
+            case "statusLog":
+                new Coordinator().goToEquipmentStateLog(getStage());
+                break;
+            case "moveLog":
+                new Coordinator().goToMovementsEquipmentInventoryLog(getStage());
+                break;
+        }
     }
 }

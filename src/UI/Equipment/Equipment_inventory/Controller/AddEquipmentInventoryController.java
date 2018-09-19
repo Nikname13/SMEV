@@ -122,10 +122,12 @@ public class AddEquipmentInventoryController extends BaseController {
                     mEquipment,
                     mComboBoxState.getValue(),
                     mComboBoxInventory.getValue().isGroup() ? Integer.parseInt(mTextFieldCount.getText()) : 1);
+            close(mAnchorPaneEquipmentInventory);
         }
     }
 
     @FXML
     private void onClickCancel() {
+        close(mAnchorPaneEquipmentInventory);
     }
 }

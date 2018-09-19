@@ -17,7 +17,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("example.fxml"));
         Parent root = loader.load();
-        primaryStage.setWidth(1376);
+        primaryStage.setWidth(1250);
         primaryStage.setHeight(1000);
         primaryStage.setMaximized(true);
         Scene scene = new Scene(root);

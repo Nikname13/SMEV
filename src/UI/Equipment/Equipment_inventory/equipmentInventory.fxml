@@ -9,30 +9,32 @@
             style="-fx-background-color: #ffffff;">
     <children>
 
-                <JFXButton AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="30.0" prefHeight="160.0"
-                           prefWidth="250.0" style="-fx-background-color: #a8f1b3;"/>
+        <JFXButton AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+                   prefHeight="160.0"
+                   prefWidth="250.0" style="-fx-background-color: #a8f1b3;"/>
                 <JFXButton prefHeight="45.0" prefWidth="120.0" ripplerFill="#40a85f" text="Фотографии"
-                           AnchorPane.topAnchor="200.0" AnchorPane.leftAnchor="30.0"/>
+                           AnchorPane.topAnchor="180.0" AnchorPane.leftAnchor="10.0"/>
                 <JFXButton prefHeight="45.0" text="Конфиги" prefWidth="120.0" ripplerFill="#40a85f"
-                           AnchorPane.topAnchor="200.0"
-                           AnchorPane.leftAnchor="160.0"/>
+                           AnchorPane.topAnchor="180.0"
+                           AnchorPane.leftAnchor="140.0"/>
 
                 <JFXComboBox fx:id="mComboBoxDepartment" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
                              prefWidth="243.0" promptText="Отдел"
-                             AnchorPane.topAnchor="275.0" AnchorPane.leftAnchor="30.0"/>
+                             AnchorPane.topAnchor="255.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"/>
                 <JFXComboBox fx:id="mComboBoxNumber" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
                              prefWidth="243.0" promptText="Номер"
-                             AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="335.0"/>
+                             AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="315.0" AnchorPane.rightAnchor="10.0"/>
                 <JFXTextField fx:id="mTextFieldGuaranty" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
                               prefWidth="243.0"
-                              promptText="Гарантия" AnchorPane.topAnchor="395.0" AnchorPane.leftAnchor="30.0"
+                              promptText="Гарантия" AnchorPane.topAnchor="375.0" AnchorPane.leftAnchor="10.0"
+                              AnchorPane.rightAnchor="10.0"
                               text="guaranty"/>
                 <JFXComboBox fx:id="mComboBoxState" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
                              prefWidth="244.0" promptText="Состояние"
-                             AnchorPane.topAnchor="455.0" AnchorPane.leftAnchor="30.0"/>
+                             AnchorPane.topAnchor="435.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"/>
                 <JFXTextArea fx:id="mTextAreaDescription" focusColor="#40a85f" labelFloat="true" prefHeight="50.0"
-                             prefWidth="250.0" promptText="Комментарий к оборудованию" AnchorPane.topAnchor="515.0"
-                             AnchorPane.leftAnchor="30.0"/>
+                             prefWidth="250.0" promptText="Комментарий к оборудованию" AnchorPane.topAnchor="495.0"
+                             AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"/>
                 <!--        <JFXTextArea fx:id="mTextAreaDescriptionDepartment" focusColor="#40a85f" labelFloat="true" prefHeight="50.0"
                                      prefWidth="250.0" promptText="Заметка для отдела" AnchorPane.topAnchor="605.0"
                                      AnchorPane.leftAnchor="30.0"/>-->

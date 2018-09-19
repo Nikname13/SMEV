@@ -37,7 +37,7 @@ public class Coordinator {
         Parent page=FXMLLoader.load(getClass().getResource(fxml));
         Scene scene=rootStage.getScene();
         if(scene==null){
-            scene = new Scene(page, 1000, 1000);
+            scene = new Scene(page, 100, 100);
             rootStage.setScene(scene);
         }else{
             rootStage.getScene().setRoot(page);

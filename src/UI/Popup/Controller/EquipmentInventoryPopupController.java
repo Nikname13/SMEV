@@ -32,8 +32,7 @@ public class EquipmentInventoryPopupController extends BasePopupController {
                     LisenersService.get().onMouseClick(node.getId());
                     break;
                 case "delete":
-/*                    if (EquipmentPresenter.get().getEquipmentInventoryModel() != null)
-                        EquipmentPresenter.get().deleteEquipmentInventory(EquipmentPresenter.get().getEquipmentInventoryModel());*/
+                    LisenersService.get().delete();
                     break;
             }
         }

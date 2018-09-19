@@ -171,9 +171,9 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
             list.add(new EquipmentInventoryModel(0, inventoryNumber, guaranty, description,
                     Departments.get().getEntity(1), equipmentState, equipmentModel, state));
         }
-        new IteractorEquipmentInventory().addNew(list);
-        /*LisenersService.get().updateData(equipment);
-        LisenersService.get().updateData(EquipmentInventoryModel.class);*/
+        EquipmentInventoryModel equipment = new IteractorEquipmentInventory().addNew(list).iterator().next();
+        LisenersService.get().updateData(equipment);
+        LisenersService.get().updateControl(EquipmentInventoryModel.class);
     }
 
     public void editEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
@@ -190,7 +190,6 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
 
     public void moveEquipmentInventory(EquipmentInventoryModel equipment, DepartmentModel toDepartment, WorkerModel fromWorker, WorkerModel toWorker, String base) {
-
         Departments.get().getEntity(toDepartment.getId()).setEquipmentList(null);
         Departments.get().getEntity(equipment.getDepartmentModel().getId()).setEquipmentList(null);
         Equipments.get().getEntity(equipment.getEquipmentModel().getId()).setEquipmentInventoryList(null);
@@ -251,7 +250,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
             EquipmentInventoryModel equipment = (EquipmentInventoryModel) object;
             EquipmentModel equipmentModel = Equipments.get().getEntity(equipment.getEquipmentModel().getId());
             if (equipmentModel != null) {
-                equipmentModel.setLoad(false);
+                equipmentModel.setEquipmentInventoryList(null);
             }
         }
     }
@@ -261,6 +260,10 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sEquipmentInventoryModel)) {
                 System.out.println("delete " + sEquipmentInventoryModel.getInventoryNumber().getName());
+                if (new IteractorEquipmentInventory().delete(sEquipmentInventoryModel.getId())) {
+                    LisenersService.get().updateData(sEquipmentInventoryModel);
+                    LisenersService.get().updateControl(EquipmentInventoryModel.class);
+                }
             }
             if (getSelectedObject().equals(sEquipmentModel)) {
                 System.out.println("delete equipment");
