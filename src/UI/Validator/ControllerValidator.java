@@ -26,7 +26,8 @@ public class ControllerValidator {
             RequiredFieldValidator validator = getRequiredValidator();
             response.add(text);
             text.getValidators().add(validator);
-            if (text.getWidth() >= 160) {
+            System.out.println("width " + text.getPrefWidth() + "id " + text.getId());
+            if (text.getPrefWidth() >= 160) {
                 validator.setMessage("Поле не может быть пустым");
             } else {
                 //validator.setIcon(new Image);

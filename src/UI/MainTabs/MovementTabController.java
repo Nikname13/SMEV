@@ -1,36 +1,35 @@
 package UI.MainTabs;
 
-import Model.Equipment.EquipmentModel;
+import Model.Movement.MovementModel;
 import Service.IUpdateUI;
 import Service.LisenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
-import UI.Equipment.Controller.EquipmentsController;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 
-public class EquipmentTabController extends BaseTabController implements IUpdateUI {
+public class MovementTabController extends BaseTabController implements IUpdateUI {
 
-    public EquipmentTabController() {
+    @FXML
+    private JFXTabPane mMovementTabContainer;
+
+    public MovementTabController() {
         LisenersService.get().addListenerUI(this);
     }
 
     @FXML
-    private JFXTabPane mEquipmentTabContainer;
+    public void initialize() {
 
-    @FXML
-    public void initialize(){
-        System.out.println("equipmentTab initialize");
     }
 
     @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
-            TabControllerService.get().setListenerFirstTabPane((Tab nextTab) -> nextTab(nextTab, mEquipmentTabContainer));
-            LisenersService.get().updateUI(EquipmentsController.class);
-            LisenersService.get().updateControl(EquipmentModel.class);
-            mEquipmentTabContainer.getSelectionModel().select(0);
+            TabControllerService.get().setListenerFirstTabPane((Tab nextTab) -> nextTab(nextTab, mMovementTabContainer));
+            //LisenersService.get().updateUI(EquipmentsController.class);
+            LisenersService.get().updateControl(MovementModel.class);
+            mMovementTabContainer.getSelectionModel().select(0);
         }
     }
 

@@ -30,17 +30,14 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel
     private List<EquipmentInventoryLogModel> mInventoryEditLog;
 
     public EquipmentInventoryModel(int id, InventoryNumberModel inventoryNumber, int guaranty, String description,
-                                   DepartmentModel departmentModel, EquipmentStateLogModel equipmentState, EquipmentModel equipmentModel, StateModel stateModel) {
+                                   DepartmentModel departmentModel, EquipmentModel equipmentModel, StateModel stateModel) {
         super(id);
-        // addEntity(equipmentState);
         mGuaranty = guaranty;
         mDescription = description;
         mInventoryNumber = inventoryNumber;
         mDepartmentModel = departmentModel;
         mEquipmentModel=equipmentModel;
         mStateModel = stateModel;
-        addInventoryEditLog(new EquipmentInventoryLogModel(0, inventoryNumber.getName(),
-                inventoryNumber.getId(), LocalDate.now(), "Первый номер"));
     }
 
     public EquipmentInventoryModel(int id, InventoryNumberModel inventoryNumber, EquipmentModel equipmentModel, DepartmentModel departmentModel, StateModel state) {
@@ -54,6 +51,11 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel
     public List<EquipmentInventoryLogModel> getInventoryEditLog() {
             mInventoryEditLog = new IteractorInventoryLog().getList(getId());
         return mInventoryEditLog;
+    }
+
+    public void addFirstInventoryNumber() {
+        addInventoryEditLog(new EquipmentInventoryLogModel(0, mInventoryNumber.getName(),
+                mInventoryNumber.getId(), LocalDate.now(), "Первый номер"));
     }
 
     @Override

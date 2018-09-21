@@ -51,7 +51,7 @@ public class EquipmentsController implements IUpdateUI {
                 }
             }
         });
-        updateEquipmentTreeView();
+        //updateEquipmentTreeView();
     }
 
     private void updateEquipmentTreeView() {

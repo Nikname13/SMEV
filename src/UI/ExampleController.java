@@ -4,6 +4,7 @@ import Service.IErrorMessage;
 import Service.LisenersService;
 import UI.MainTabs.DepartmentTabController;
 import UI.MainTabs.EquipmentTabController;
+import UI.MainTabs.MovementTabController;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
@@ -53,7 +54,9 @@ public class ExampleController implements IErrorMessage {
                 LisenersService.get().updateUI(EquipmentTabController.class);
                 break;
             case "mSupplyTab": break;
-            case "mMovementTab": break;
+            case "mMovementTab":
+                LisenersService.get().updateUI(MovementTabController.class);
+                break;
         }
     }
 

@@ -21,6 +21,7 @@ public class MovementModel extends GenericModel<MovementEquipment> {
     private LocalDate mDate;
     private List<MovementWorker> mWorkerList;
     private List<MovementDepartment> mDepartmentList;
+    private transient String mDisplayDate;
 
     public MovementModel(int id, LocalDate date, String base){
         super(id, base);
@@ -32,6 +33,14 @@ public class MovementModel extends GenericModel<MovementEquipment> {
         mDate = date;
         setWorkerList(workerList);
         setDepartmentList(departmentList);
+    }
+
+    public String getDisplayDate() {
+        return mDisplayDate;
+    }
+
+    public void setDisplayDate(String displayDate) {
+        mDisplayDate = displayDate;
     }
 
     public LocalDate getDate() {
@@ -47,8 +56,12 @@ public class MovementModel extends GenericModel<MovementEquipment> {
     }
 
     public StringProperty dateToString() {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return new SimpleStringProperty((mDate).format(format));
+        if (mDisplayDate == null) {
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            return new SimpleStringProperty((mDate).format(format));
+        } else {
+            return new SimpleStringProperty(mDisplayDate);
+        }
     }
 
     public List<MovementWorker> getWorkerList() {

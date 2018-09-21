@@ -9,8 +9,9 @@
             style="-fx-background-color: #ffffff;">
     <children>
 
-                <JFXButton AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" prefHeight="160.0"
-                           prefWidth="250.0" style="-fx-background-color: #a8f1b3;"/>
+        <JFXButton AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+                   prefHeight="160.0"
+                   prefWidth="250.0" style="-fx-background-color: #a8f1b3;"/>
                 <JFXButton prefHeight="45.0" prefWidth="120.0" ripplerFill="#40a85f" text="Фотографии"
                            AnchorPane.topAnchor="180.0" AnchorPane.leftAnchor="10.0"/>
                 <JFXButton prefHeight="45.0" text="Конфиги" prefWidth="120.0" ripplerFill="#40a85f"
@@ -25,7 +26,8 @@
                              AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="315.0" AnchorPane.rightAnchor="10.0"/>
                 <JFXTextField fx:id="mTextFieldGuaranty" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
                               prefWidth="243.0"
-                              promptText="Гарантия" AnchorPane.topAnchor="375.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+                              promptText="Гарантия" AnchorPane.topAnchor="375.0" AnchorPane.leftAnchor="10.0"
+                              AnchorPane.rightAnchor="10.0"
                               text="guaranty"/>
                 <JFXComboBox fx:id="mComboBoxState" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
                              prefWidth="244.0" promptText="Состояние"

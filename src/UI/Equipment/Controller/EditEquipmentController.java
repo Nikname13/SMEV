@@ -335,7 +335,9 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
 
     @Override
     public void refreshControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
+            mTreeTableEquipmentInventory.refresh();
+        }
     }
 
     @Override

@@ -6,7 +6,6 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import com.google.gson.reflect.TypeToken;
-import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
@@ -33,23 +32,4 @@ public class IteractorEquipmentInventory extends GenericIteractor<EquipmentInven
         }).create().toJson(entity);
     }
 
-    @Override
-    public void setList(ObservableList<EquipmentInventoryModel> list) {
-        super.setList(list);
-    }
-
-    @Override
-    public void setEntity(EquipmentInventoryModel entity) {
-/*        EquipmentModel equipment=Equipments.get().getEntity(entity.getEquipmentModel().getId());
-        if(Equipments.get().getEntity(entity.getEquipmentModel().getId()).getEquipmentInventory(entity)!=null){
-           // equipment.replace(entity);
-        }else{
-            equipment.addEquipmentInventory(entity);
-        }*/
-    }
-
-    @Override
-    public void deleteEntity(EquipmentInventoryModel entity) {
-        super.deleteEntity(entity);
-    }
 }

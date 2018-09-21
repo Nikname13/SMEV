@@ -23,12 +23,13 @@
                             AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"/>
             </AnchorPane>
         </Tab>
-        <Tab fx:id="mSupplyTab" text="Поставки">
+        <Tab fx:id="mMovementTab" text="Перемещение">
             <AnchorPane>
-
+                <fx:include source="MainTabs/movementTab.fxml" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+                            AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"/>
             </AnchorPane>
         </Tab>
-        <Tab fx:id="mMovementTab" text="Перемещение">
+        <Tab fx:id="mSupplyTab" text="Поставки">
             <AnchorPane>
 
             </AnchorPane>

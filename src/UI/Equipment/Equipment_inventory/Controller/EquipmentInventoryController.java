@@ -124,7 +124,6 @@ public class EquipmentInventoryController extends BaseController implements IUpd
                     Integer.parseInt(mTextFieldGuaranty.getText()),
                     mTextAreaDescription.getText(),
                     getDepartment(),
-                    null,
                     mEquipmentModel,
                     mComboBoxState.getValue());
         }

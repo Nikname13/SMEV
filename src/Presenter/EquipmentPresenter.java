@@ -164,12 +164,13 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     }
 
 
-    public void addEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
-                                      EquipmentStateLogModel equipmentState, EquipmentModel equipmentModel, StateModel state, int count) {
+    public void addEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description, EquipmentModel equipmentModel, StateModel state, int count) {
         List<EquipmentInventoryModel> list = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            list.add(new EquipmentInventoryModel(0, inventoryNumber, guaranty, description,
-                    Departments.get().getEntity(1), equipmentState, equipmentModel, state));
+            EquipmentInventoryModel equip = new EquipmentInventoryModel(0, inventoryNumber, guaranty, description,
+                    Departments.get().getEntity(1), equipmentModel, state);
+            equip.addFirstInventoryNumber();
+            list.add(equip);
         }
         EquipmentInventoryModel equipment = new IteractorEquipmentInventory().addNew(list).iterator().next();
         LisenersService.get().updateData(equipment);
@@ -177,10 +178,21 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     }
 
     public void editEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
-                                       DepartmentModel departmentModel, EquipmentStateLogModel equipmentState, EquipmentModel equipmentModel, StateModel state) {
-        LisenersService.get().updateData(new IteractorEquipmentInventory().edit(new EquipmentInventoryModel(sEquipmentInventoryModel.getId(), inventoryNumber, guaranty,
-                description, departmentModel, equipmentState, equipmentModel, state)));
-        LisenersService.get().refreshControl(DepartmentModel.class);
+                                       DepartmentModel departmentModel, EquipmentModel equipmentModel, StateModel state) {
+        /*      */
+        EquipmentInventoryModel newEquipment = new IteractorEquipmentInventory().edit(new EquipmentInventoryModel(sEquipmentInventoryModel.getId(), inventoryNumber, guaranty,
+                description, departmentModel, equipmentModel, state));
+        if (newEquipment != null) {
+            //LisenersService.get().updateData(newEquipment);
+            sEquipmentInventoryModel.setInventoryNumber(inventoryNumber);
+            sEquipmentInventoryModel.setGuaranty(guaranty);
+            sEquipmentInventoryModel.setDescription(description);
+            sEquipmentInventoryModel.setDepartmentModel(departmentModel);
+            sEquipmentInventoryModel.setEquipmentModel(equipmentModel);
+            sEquipmentInventoryModel.setStateModel(state);
+            LisenersService.get().updateData(newEquipment);
+            LisenersService.get().refreshControl(EquipmentInventoryModel.class);
+        }
     }
 
     public void editEquipmentInventory(EquipmentInventoryModel equipment) {

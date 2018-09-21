@@ -118,7 +118,6 @@ public class AddEquipmentInventoryController extends BaseController {
                     mComboBoxInventory.getValue(),
                     Integer.parseInt(mTextFieldGuaranty.getText()),
                     mTextAreaDescription.getText(),
-                    null,
                     mEquipment,
                     mComboBoxState.getValue(),
                     mComboBoxInventory.getValue().isGroup() ? Integer.parseInt(mTextFieldCount.getText()) : 1);
