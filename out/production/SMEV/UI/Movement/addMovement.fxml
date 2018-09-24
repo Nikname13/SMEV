@@ -6,14 +6,87 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Movement.Controller.AddMovementController">
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.ValidationFacade?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import com.jfoenix.controls.JFXTreeTableColumn?>
+<?import javafx.scene.control.TreeTableColumn?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mStackPaneAddMovement" prefHeight="400.0" prefWidth="600.0"
+           xmlns="http://javafx.com/javafx/8.0.121"
+           fx:controller="UI.Movement.Controller.AddMovementController"
+           style="-fx-background-color: #ffffff;">
    <children>
-      <Label fx:id="dateLabel" layoutX="14.0" layoutY="14.0" text="date" />
-      <Label fx:id="fromLabel" layoutX="12.0" layoutY="31.0" text="department" />
-      <ComboBox fx:id="comboBoxDepartment" layoutX="12.0" layoutY="48.0" prefWidth="150.0" promptText="department" />
-      <TextArea fx:id="textAreaBase" layoutX="12.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button layoutX="423.0" layoutY="259.0" mnemonicParsing="false" text="Button" onAction="#onClickAdd"/>
-      <ComboBox fx:id="comboBoxDepartmentWorker" layoutX="423.0" layoutY="61.0" prefWidth="150.0" />
-      <ComboBox fx:id="comboBoxSmevWorker" layoutX="423.0" layoutY="101.0" prefWidth="150.0" />
+      <VBox>
+         <children>
+            <AnchorPane>
+               <children>
+                  <ValidationFacade fx:id="mFacadeDepartmentFrom" layoutX="20.0" layoutY="30.0" AnchorPane.topAnchor="30.0"
+                                    AnchorPane.leftAnchor="20.0">
+                     <control>
+                        <JFXComboBox fx:id="mComboBoxDepartmentFrom" focusColor="#40a85f" labelFloat="true" prefWidth="200.0"
+                                     promptText="Из отдела:"/>
+                     </control>
+                  </ValidationFacade>
+                  <Label fx:id="mErrorDepartmentFrom"/>
+                  <ValidationFacade fx:id="mFacadeWorkerFrom" layoutX="240.0" layoutY="30.0" AnchorPane.topAnchor="30.0"
+                                    AnchorPane.leftAnchor="240.0">
+                     <control>
+                        <JFXComboBox fx:id="mComboBoxWorkerFrom" focusColor="#40a85f" labelFloat="true" prefWidth="200.0"
+                                     promptText="Сотрудник"/>
+                     </control>
+                  </ValidationFacade>
+                  <Label fx:id="mErrorWorkerFrom"/>
+                  <ValidationFacade fx:id="mFacadeDepartmentTo" layoutX="20.0" layoutY="90.0" AnchorPane.leftAnchor="20.0"
+                                    AnchorPane.topAnchor="90.0">
+                     <control>
+                        <JFXComboBox fx:id="mComboBoxDepartment" focusColor="#40a85f" labelFloat="true" prefWidth="200.0"
+                                     promptText="В отдел:"/>
+                     </control>
+                  </ValidationFacade>
+                  <Label fx:id="mErrorDepartmentTo"/>
+                  <ValidationFacade fx:id="mFacadeWorkerTo" layoutX="240.0" layoutY="90.0" AnchorPane.leftAnchor="240.0"
+                                    AnchorPane.topAnchor="90.0">
+                     <control>
+                        <JFXComboBox fx:id="mComboBoxWorkerTo" focusColor="#40a85f" labelFloat="true" prefWidth="200.0"
+                                     promptText="Сотрудник"/>
+                     </control>
+                  </ValidationFacade>
+                  <Label fx:id="mErrorWorkerTo"/>
+               </children>
+            </AnchorPane>
+            <AnchorPane>
+               <children>
+                  <JFXTreeTableView fx:id="mTreeTableViewParameter" maxHeight="355.0" prefWidth="350.0"
+                                    minWidth="350.0"
+                                    AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="20.0"
+                                    AnchorPane.rightAnchor="20.0"
+                                    AnchorPane.topAnchor="5.0">
+                     <columns>
+                        <TreeTableColumn fx:id="mColumnNameParameter" prefWidth="200.0" text="Наименование"/>
+                        <TreeTableColumn fx:id="mColumnValueParameter" prefWidth="200.0" text="Инвентарный номер"/>
+                     </columns>
+                  </JFXTreeTableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane>
+               <children>
+                  <JFXTextArea fx:id="mTextAreaBase" focusColor="#40a85f" promptText="Обоснование для перемещения"
+                               labelFloat="true" prefHeight="100.0" prefWidth="420.0" AnchorPane.leftAnchor="20.0"
+                               AnchorPane.topAnchor="30.0"/>
+                  <JFXButton onAction="#onClickAdd" text="Переместить" ripplerFill="#40a85f" AnchorPane.rightAnchor="130.0"
+                             AnchorPane.topAnchor="150.0" prefWidth="100.0"
+                             prefHeight="35.0"/>
+                  <JFXButton onAction="#onClickCancel" text="Отмена" ripplerFill="#40a85f" AnchorPane.rightAnchor="20.0"
+                             AnchorPane.topAnchor="150.0" prefWidth="100.0"
+                             prefHeight="35.0"/>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
    </children>
-</AnchorPane>
+</StackPane>

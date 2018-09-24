@@ -7,13 +7,14 @@
             xmlns="http://javafx.com/javafx"
             fx:controller="UI.MainTabs.MovementTabController"
 >
+
     <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
                 AnchorPane.bottomAnchor="10.0" prefWidth="500.0" minWidth="500.0" maxWidth="500.0">
         <fx:include source="/UI/Movement/movements.fxml" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10.0"
                     AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0"/>
     </AnchorPane>
     <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0"
-                AnchorPane.leftAnchor="270.0">
+                AnchorPane.leftAnchor="520.0">
         <JFXTabPane fx:id="mMovementTabContainer" side="LEFT" tabMaxWidth="0" tabMinWidth="0"
                     tabMinHeight="0" tabMaxHeight="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
                     AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">

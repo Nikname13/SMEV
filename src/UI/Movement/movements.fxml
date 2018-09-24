@@ -7,11 +7,12 @@
 <?import javafx.scene.layout.*?>
 <StackPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
            xmlns="http://javafx.com/javafx/8.0.121"
+           fx:id="mStackPaneMovement"
            fx:controller="UI.Movement.Controller.MovementsController">
     <children>
         <AnchorPane>
             <children>
-                <JFXButton ripplerFill="#40a85f" style="-fx-background-color: #a8f1b3;"
+                <JFXButton onAction="#onClickAdd" ripplerFill="#40a85f" style="-fx-background-color: #a8f1b3;"
                            mnemonicParsing="false"
                            text="Новое оборудование" prefHeight="35.0" AnchorPane.leftAnchor="0.0"
                            AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0"/>

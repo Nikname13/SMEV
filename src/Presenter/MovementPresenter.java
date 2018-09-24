@@ -1,5 +1,6 @@
 package Presenter;
 
+import Iteractor.IteractorMovement;
 import Model.Movement.MovementModel;
 import Model.Movement.Movements;
 import Service.IUpdateData;
@@ -35,8 +36,8 @@ public class MovementPresenter extends BasePresenter implements IUpdateData {
 
 
     @Override
-    void loadEntity(int id) {
-
+    public void loadEntity(int id) {
+        new IteractorMovement().loadData(id);
     }
 
     @Override

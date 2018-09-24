@@ -116,6 +116,7 @@ public class MovementModel extends GenericModel<MovementEquipment> {
     }
 
     public MovementEquipment newMovementEquipment(EquipmentInventoryModel equipment) {
-        return new MovementEquipment(0, equipment.getEquipmentModel().getNameFact(), equipment.getInventoryNumber().getName(), equipment.getId());
+        return new MovementEquipment(0, equipment.getEquipmentModel().getNameFact(), equipment.getInventoryNumber().getName(),
+                equipment.getEquipmentModel().getTypeModel().getName(), equipment.getId());
     }
 }

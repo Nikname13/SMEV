@@ -12,7 +12,7 @@ public class TabControllerService {
 
     private ITabSelected mListenerFirstTabPane, mListenerSecondTabPane;
     private static TabControllerService sTabControllerService;
-    private ResourceModel mEditDepartmentResource,mEquipmentInventoryResource, mEditEquipmentResource, mEmptyTab;
+    private ResourceModel mEditDepartmentResource, mEquipmentInventoryResource, mEditEquipmentResource, mEmptyTab, mDetailsMovementResource;
     private List<Tab> mTabList;
 
     public static TabControllerService get(){
@@ -27,6 +27,7 @@ public class TabControllerService {
         mEquipmentInventoryResource=new ResourceModel("/UI/Equipment/Equipment_inventory/equipmentInventory.fxml","anchorPaneEquipmentInventory");
         mEditEquipmentResource=new ResourceModel("/UI/Equipment/editEquipment.fxml", "anchorPaneEditEquipment");
         mEmptyTab=new ResourceModel("/UI/TabPane/emptyTab.fxml", "emptyTab.fxml");
+        mDetailsMovementResource = new ResourceModel("/UI/Movement/detailsMovement.fxml", "mDetailsAnchorPane");
     }
 
     public ITabSelected getListenerFirstTabPane() {
@@ -72,5 +73,9 @@ public class TabControllerService {
 
     public ResourceModel getEditEquipmentResource() {
         return mEditEquipmentResource;
+    }
+
+    public ResourceModel getDetailsMovementResource() {
+        return mDetailsMovementResource;
     }
 }

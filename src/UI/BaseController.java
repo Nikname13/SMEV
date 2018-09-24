@@ -9,6 +9,7 @@ import Model.Parameter.ParameterModel;
 import Model.Post.PostModel;
 import Model.State.StateModel;
 import Model.Type.TypeModel;
+import Model.Worker.WorkerModel;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -372,6 +373,44 @@ public abstract class BaseController {
             comboBox.setButtonCell(new ListCell<>() {
                 @Override
                 protected void updateItem(StateModel item, boolean empty) {
+                    if (item != null && !empty) {
+                        setText(item.getName());
+                    } else {
+                        setText(null);
+                    }
+                }
+            });
+        }
+    }
+
+    protected void initComboBoxWorker(JFXComboBox<WorkerModel> comboBox, boolean isSelectionItem) {
+        comboBox.setCellFactory(p -> new ListCell<>() {
+            @Override
+            protected void updateItem(WorkerModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else setText(null);
+            }
+        });
+        comboBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(WorkerModel object) {
+                if (object != null) return object.getName();
+                else return null;
+            }
+
+            @Override
+            public WorkerModel fromString(String string) {
+                if (!string.trim().isEmpty())
+                    return new WorkerModel(-1, "");
+                return null;
+            }
+        });
+        if (isSelectionItem) {
+            comboBox.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(WorkerModel item, boolean empty) {
                     if (item != null && !empty) {
                         setText(item.getName());
                     } else {

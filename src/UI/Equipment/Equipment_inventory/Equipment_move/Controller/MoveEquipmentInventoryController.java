@@ -13,10 +13,8 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.ValidationFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 
 public class MoveEquipmentInventoryController extends BaseController {
 
@@ -51,153 +49,41 @@ public class MoveEquipmentInventoryController extends BaseController {
                 new Pair(mFacadeWorkerTo, mErrorWorkerTo),
                 new Pair(mFacadeDepartmentTo, mErrorDepartmentTo));
         mBaseValidator.setJFXTextAreas(mTextAreaBase);
+
+        initComboBoxDepartment(mComboBoxDepartment, true);
+        initComboBoxWorker(mComboBoxWorkerFrom, true);
+        initComboBoxWorker(mComboBoxWorkerTo, true);
+        setWorker();
+
         mTextFieldDepartment.setText(mEquipment.getDepartmentModel().getName());
-        mComboBoxDepartment.setCellFactory(p -> new ListCell<DepartmentModel>() {
-            @Override
-            protected void updateItem(DepartmentModel item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty) {
-                    setText(item.getName());
-                } else {
-                    setText(null);
-                }
-            }
-        });
-        mComboBoxDepartment.setButtonCell(new ListCell<>() {
-            @Override
-            protected void updateItem(DepartmentModel item, boolean empty) {
-                if (item != null && !empty) {
-                    setText(item.getName());
-                } else {
-                    setText(null);
-                }
-                this.setVisible(!empty);
-            }
-        });
-        mComboBoxDepartment.setConverter(new StringConverter<DepartmentModel>() {
-            @Override
-            public String toString(DepartmentModel object) {
-                if (object != null) return object.getName();
-                return null;
-            }
+    }
 
-            @Override
-            public DepartmentModel fromString(String string) {
-                if (!string.trim().isEmpty())
-                    return new DepartmentModel(-1, string);
-                return null;
-            }
-        });
-        mComboBoxDepartment.setItems(EquipmentPresenter.get().getObservableDepartment());
-        mComboBoxDepartment.getSelectionModel().select(EquipmentPresenter.get().getDepartmentModel());
-        mComboBoxDepartment.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment(newValue)));
-        mComboBoxWorkerFrom.setCellFactory((p -> new ListCell<WorkerModel>() {
-            @Override
-            protected void updateItem(WorkerModel item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty) {
-                    setText(item.getName());
-                } else {
-                    setText(null);
-                }
-            }
-        }));
-        mComboBoxWorkerTo.setCellFactory(p -> new ListCell<WorkerModel>() {
-            @Override
-            protected void updateItem(WorkerModel item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty) {
-                    setText(item.getName());
-                } else {
-                    setText(null);
-                }
-            }
-        });
-        mComboBoxWorkerTo.setConverter(new StringConverter<WorkerModel>() {
-            @Override
-            public String toString(WorkerModel object) {
-                if (object != null) object.getName();
-                return null;
-            }
-
-            @Override
-            public WorkerModel fromString(String string) {
-                if (!string.trim().isEmpty()) return new WorkerModel(-1, string);
-                return null;
-            }
-        });
-        setButtonCellWorkerTo();
+    private void setWorker() {
         mComboBoxWorkerTo.setItems(mDepartment.getObsWorkerList());
         mComboBoxWorkerTo.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> {
             mBaseValidator.validateFacade(mFacadeWorkerTo);
         }));
         setWorkerTo();
-        mComboBoxWorkerFrom.setCellFactory(p -> new ListCell<WorkerModel>() {
-            @Override
-            protected void updateItem(WorkerModel item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty) {
-                    setText(item.getName());
-                } else {
-                    setText(null);
-                }
-
-            }
-        });
-        mComboBoxWorkerFrom.setConverter(new StringConverter<WorkerModel>() {
-            @Override
-            public String toString(WorkerModel object) {
-                if (object != null) object.getName();
-                return null;
-            }
-
-            @Override
-            public WorkerModel fromString(String string) {
-                if (!string.trim().isEmpty()) return new WorkerModel(-1, string);
-                return null;
-            }
-        });
-        mComboBoxWorkerFrom.setButtonCell(new ListCell<>() {
-            @Override
-            protected void updateItem(WorkerModel item, boolean empty) {
-                if (item != null && !empty) {
-                    setText(item.getName());
-                } else {
-                    setText(null);
-                }
-                this.setVisible(!empty);
-            }
-        });
-
         mComboBoxWorkerFrom.setItems(mEquipment.getDepartmentModel().getObsWorkerList());
         mComboBoxWorkerFrom.getSelectionModel().selectFirst();
     }
 
-    private void setWorkerTo() {
-        mComboBoxWorkerTo.getSelectionModel().selectFirst();
-
+    @Override
+    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem) {
+        super.initComboBoxDepartment(comboBox, isSelectionItem);
+        comboBox.setItems(EquipmentPresenter.get().getObservableDepartment());
+        comboBox.getSelectionModel().select(EquipmentPresenter.get().getDepartmentModel());
+        comboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment(newValue)));
     }
 
-    private void setButtonCellWorkerTo() {
-        mComboBoxWorkerTo.setButtonCell(new ListCell<>() {
-            @Override
-            protected void updateItem(WorkerModel item, boolean empty) {
-                System.out.println("item= " + item + " empty= " + empty);
-                if (item != null && !empty) {
-                    setText(item.getName());
-                } else {
-                    setText(null);
-                }
-                this.setVisible(!empty);
-            }
-        });
+    private void setWorkerTo() {
+        mComboBoxWorkerTo.getSelectionModel().selectFirst();
     }
 
     private void selectedDepartment(DepartmentModel department) {
         System.out.println("select department");
         mComboBoxWorkerTo.setItems(department.getObsWorkerList());
         mComboBoxWorkerTo.getEditor().requestFocus();
-        setButtonCellWorkerTo();
         setWorkerTo();
     }
 
