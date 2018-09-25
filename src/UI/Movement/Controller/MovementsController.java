@@ -3,7 +3,7 @@ package UI.Movement.Controller;
 import Model.Movement.MovementModel;
 import Presenter.MovementPresenter;
 import Service.IUpdateUI;
-import Service.LisenersService;
+import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseController;
 import UI.Coordinator;
@@ -29,7 +29,7 @@ public class MovementsController extends BaseController implements IUpdateUI {
     private StackPane mStackPaneMovement;
 
     public MovementsController() {
-        LisenersService.get().addListenerUI(this);
+        ListenersService.get().addListenerUI(this);
     }
 
     @FXML
@@ -51,7 +51,7 @@ public class MovementsController extends BaseController implements IUpdateUI {
                 MovementPresenter.get().setSelectedObject(movement);
                 MovementPresenter.get().loadEntity(movement.getId());
                 TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getDetailsMovementResource()));
-                LisenersService.get().updateUI(MovementModel.class);
+                ListenersService.get().updateUI(MovementModel.class);
             }
         }
     }

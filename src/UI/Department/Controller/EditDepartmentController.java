@@ -15,7 +15,7 @@ import Presenter.LocationPresenter;
 import Presenter.WorkerPresenter;
 import Service.IOnMouseClick;
 import Service.IUpdateUI;
-import Service.LisenersService;
+import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseController;
 import UI.Coordinator;
@@ -74,7 +74,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
 
     public EditDepartmentController() {
         mDepartmentModel = DepartmentPresenter.get().getDepartmentModel();
-        LisenersService.get().addListenerUI(this);
+        ListenersService.get().addListenerUI(this);
     }
 
     @FXML
@@ -270,7 +270,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
                 EquipmentPresenter.get().setEquipmentModel(equipment.getEquipmentModel());
                 EquipmentPresenter.get().setSelectedObject(equipment);
                 TabControllerService.get().getListenerThirdTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
-                LisenersService.get().updateUI(EquipmentInventoryModel.class);
+                ListenersService.get().updateUI(EquipmentInventoryModel.class);
             } else {
                 EquipmentPresenter.get().setSelectedObject(null);
             }
@@ -395,7 +395,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
             mComboBoxArea.getSelectionModel().select(mDepartmentModel.getAreaModel());
             setInvisibleEditButton();
             updateEquipmentTable(mDepartmentModel.getObsEquipmentList());
-            LisenersService.get().updateUI(TabPaneSecondLvlTabController.class);
+            ListenersService.get().updateUI(TabPaneSecondLvlTabController.class);
 
         }
     }
@@ -415,7 +415,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
             updateEquipmentTable(mDepartmentModel.getObsEquipmentList());
-            LisenersService.get().updateUI(TabPaneSecondLvlTabController.class);
+            ListenersService.get().updateUI(TabPaneSecondLvlTabController.class);
         }
         if (updateClass.getName().equals(WorkerModel.class.getName())) {
             mListViewWorker.setItems(mDepartmentModel.getObsWorkerList());

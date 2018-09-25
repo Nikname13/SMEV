@@ -2,14 +2,12 @@ package Presenter;
 
 import Iteractor.IteractorSupply;
 import Model.Provider.ProviderModel;
-import Model.Provider.Providers;
 import Model.Supply.SupplyModel;
 import Model.Supply.Supplys;
-import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
 
-public class SupplyPresenter {
+public class SupplyPresenter extends BasePresenter {
 
     private static SupplyModel sSupplyModel;
 
@@ -21,13 +19,6 @@ public class SupplyPresenter {
         sSupplyModel = (SupplyModel) supplyModel;
     }
 
-    public ObservableList<SupplyModel> getObservableSupply(){
-        return Supplys.get().getEntityList();
-    }
-
-    public ObservableList<ProviderModel> getObservableProvider(){
-        return Providers.get().getEntityList();
-    }
 
     public void addSupply(String number, String typeSupply, LocalDate dateSupply, String description, String documentation, Object provider ){
         new IteractorSupply().addNew(new SupplyModel(0,number,typeSupply,dateSupply,description,documentation, (ProviderModel)provider));
@@ -43,5 +34,10 @@ public class SupplyPresenter {
 
     public void update(){
         Supplys.get().update();
+    }
+
+    @Override
+    void loadEntity(int id) {
+
     }
 }

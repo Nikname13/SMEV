@@ -2,7 +2,7 @@ package UI.MainTabs;
 
 import Model.Equipment.EquipmentModel;
 import Service.IUpdateUI;
-import Service.LisenersService;
+import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
 import UI.Equipment.Controller.EquipmentsController;
@@ -13,7 +13,7 @@ import javafx.scene.control.Tab;
 public class EquipmentTabController extends BaseTabController implements IUpdateUI {
 
     public EquipmentTabController() {
-        LisenersService.get().addListenerUI(this);
+        ListenersService.get().addListenerUI(this);
     }
 
     @FXML
@@ -28,8 +28,8 @@ public class EquipmentTabController extends BaseTabController implements IUpdate
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             TabControllerService.get().setListenerFirstTabPane((Tab nextTab) -> nextTab(nextTab, mEquipmentTabContainer));
-            LisenersService.get().updateUI(EquipmentsController.class);
-            LisenersService.get().updateControl(EquipmentModel.class);
+            ListenersService.get().updateUI(EquipmentsController.class);
+            ListenersService.get().updateControl(EquipmentModel.class);
             mEquipmentTabContainer.getSelectionModel().select(0);
         }
     }

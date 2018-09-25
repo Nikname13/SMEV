@@ -7,7 +7,7 @@ import Model.Inventory_number.InventoryNumberModel;
 import Model.State.StateModel;
 import Presenter.EquipmentPresenter;
 import Service.IUpdateUI;
-import Service.LisenersService;
+import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
 import UI.Validator.BaseValidator;
@@ -29,7 +29,7 @@ public class EquipmentInventoryController extends BaseController implements IUpd
     private BaseValidator mBaseValidator = new BaseValidator();
 
     public EquipmentInventoryController(){
-        LisenersService.get().addListenerUI(this);
+        ListenersService.get().addListenerUI(this);
     }
 
     @FXML

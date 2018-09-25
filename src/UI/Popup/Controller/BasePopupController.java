@@ -1,6 +1,6 @@
 package UI.Popup.Controller;
 
-import Service.LisenersService;
+import Service.ListenersService;
 import com.jfoenix.controls.JFXListView;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,7 +17,7 @@ public abstract class BasePopupController {
             }
         });
         list.setOnMouseClicked(event -> {
-            LisenersService.get().hidePopup();
+            ListenersService.get().hidePopup();
         });
     }
 

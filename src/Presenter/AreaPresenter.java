@@ -3,22 +3,17 @@ package Presenter;
 import Iteractor.IteractorArea;
 import Model.Area.AreaModel;
 import Model.Area.Areas;
-import javafx.collections.ObservableList;
 
-public class AreaPresenter {
+public class AreaPresenter extends BasePresenter {
 
     private static AreaModel mArea;
 
     public void setArea(Object area){
-        this.mArea=(AreaModel) area;
+        mArea = (AreaModel) area;
     }
 
     public static AreaModel getArea() {
         return mArea;
-    }
-
-    public ObservableList<AreaModel> getObservableArea(){
-        return Areas.get().getEntityList();
     }
 
     public void addArea(String name){
@@ -35,5 +30,10 @@ public class AreaPresenter {
 
     public void update(){
        Areas.get().update();
+    }
+
+    @Override
+    void loadEntity(int id) {
+
     }
 }

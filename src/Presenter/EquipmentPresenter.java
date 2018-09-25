@@ -8,17 +8,13 @@ import Model.Department.DepartmentModel;
 import Model.Department.Departments;
 import Model.Equipment.*;
 import Model.Inventory_number.InventoryNumberModel;
-import Model.Inventory_number.InventoryNumbers;
 import Model.Movement.MovementModel;
 import Model.Parameter.ParameterModel;
-import Model.Parameter.Parameters;
 import Model.State.StateModel;
-import Model.State.States;
 import Model.Type.TypeModel;
-import Model.Type.Types;
 import Model.Worker.WorkerModel;
 import Service.IUpdateData;
-import Service.LisenersService;
+import Service.ListenersService;
 import UI.MainTabs.EquipmentTabController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,7 +35,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     private static DepartmentModel sDepartmentModel;
 
     private EquipmentPresenter() {
-        LisenersService.get().addListenerData(this);
+        ListenersService.get().addListenerData(this);
     }
 
     public static EquipmentPresenter get() {
@@ -89,36 +85,11 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         sInventoryNumberModel = inventoryNumberModel;
     }
 
-    public ObservableList<EquipmentModel> getObservableEquipment() {
-        return Equipments.get().getEntityList();
-    }
-
-    public ObservableList<TypeModel> getObservableType() {
-        return Types.get().getEntityList();
-    }
-
-    public ObservableList<StateModel> getObservableState() {
-        return States.get().getEntityList();
-    }
-
-    public ObservableList<InventoryNumberModel> getObservableInventory() {
-        return InventoryNumbers.get().getEntityList();
-    }
-
-    public ObservableList<Model.Department.DepartmentModel> getObservableDepartment() {
-        return Departments.get().getEntityList();
-    }
-
-    public ObservableList<ParameterModel> getObservableParameter() {
-        return Parameters.get().getEntityList();
-    }
-
     public ObservableList<ParameterModel> getObservableEquipmentParameter(List<EquipmentParameterModel> equipmentParameter) {
-        List<ParameterModel> list = getObservableParameter();
         ObservableList<ParameterModel> obsList = FXCollections.observableArrayList();
         System.out.println("getObsEquipParameter");
         boolean flag = false;
-        for (ParameterModel parameter : list) {
+        for (ParameterModel parameter : getObservableParameter()) {
             for (EquipmentParameterModel eqParameter : equipmentParameter) {
                 if (parameter.getId() == eqParameter.getParameterModel().getId()) {
                     flag = true;
@@ -134,7 +105,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     }
 
     public void addEquipment(String name, String nameFact, String description, Object typeModel, List<EquipmentParameterModel> values) {
-        LisenersService.get().updateControl(EquipmentModel.class, new IteractorEquipment().addNew(new EquipmentModel(
+        ListenersService.get().updateControl(EquipmentModel.class, new IteractorEquipment().addNew(new EquipmentModel(
                 0,
                 name,
                 nameFact,
@@ -155,12 +126,12 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
                 values,
                 null
         ));
-        LisenersService.get().updateControl(EquipmentModel.class);
+        ListenersService.get().updateControl(EquipmentModel.class);
     }
 
     public void editEquipment(EquipmentModel equipment) {
         new IteractorEquipment().edit(equipment);
-        //LisenersService.get().refreshControl(EquipmentModel.class);
+        //ListenersService.get().refreshControl(EquipmentModel.class);
     }
 
 
@@ -173,8 +144,8 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
             list.add(equip);
         }
         EquipmentInventoryModel equipment = new IteractorEquipmentInventory().addNew(list).iterator().next();
-        LisenersService.get().updateData(equipment);
-        LisenersService.get().updateControl(EquipmentInventoryModel.class);
+        ListenersService.get().updateData(equipment);
+        ListenersService.get().updateControl(EquipmentInventoryModel.class);
     }
 
     public void editEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
@@ -183,21 +154,21 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         EquipmentInventoryModel newEquipment = new IteractorEquipmentInventory().edit(new EquipmentInventoryModel(sEquipmentInventoryModel.getId(), inventoryNumber, guaranty,
                 description, departmentModel, equipmentModel, state));
         if (newEquipment != null) {
-            //LisenersService.get().updateData(newEquipment);
+            //ListenersService.get().updateData(newEquipment);
             sEquipmentInventoryModel.setInventoryNumber(inventoryNumber);
             sEquipmentInventoryModel.setGuaranty(guaranty);
             sEquipmentInventoryModel.setDescription(description);
             sEquipmentInventoryModel.setDepartmentModel(departmentModel);
             sEquipmentInventoryModel.setEquipmentModel(equipmentModel);
             sEquipmentInventoryModel.setStateModel(state);
-            LisenersService.get().updateData(newEquipment);
-            LisenersService.get().refreshControl(EquipmentInventoryModel.class);
+            ListenersService.get().updateData(newEquipment);
+            ListenersService.get().refreshControl(EquipmentInventoryModel.class);
         }
     }
 
     public void editEquipmentInventory(EquipmentInventoryModel equipment) {
-        LisenersService.get().updateData(new IteractorEquipmentInventory().edit(equipment));
-        LisenersService.get().refreshControl(EquipmentInventoryModel.class);
+        ListenersService.get().updateData(new IteractorEquipmentInventory().edit(equipment));
+        ListenersService.get().refreshControl(EquipmentInventoryModel.class);
     }
 
 
@@ -214,7 +185,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         movement.addEntity(movement.newMovementEquipment(equipment));
         new IteractorMovement().addNew(movement);
         new IteractorEquipmentInventory().edit(equipment);
-        LisenersService.get().updateControl(EquipmentInventoryModel.class);
+        ListenersService.get().updateControl(EquipmentInventoryModel.class);
     }
 
     public void deleteEquipment() {
@@ -225,7 +196,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         sEquipmentInventoryModel.setStateModel(sStateModel);
         sEquipmentInventoryModel.addEntity(sEquipmentStateLog);
         editEquipmentInventory(sEquipmentInventoryModel);
-        LisenersService.get().refreshControl(EquipmentInventoryModel.class);
+        ListenersService.get().refreshControl(EquipmentInventoryModel.class);
     }
 
     public EquipmentStateLogModel getEquipmentStateLog() {
@@ -241,7 +212,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
         sEquipmentInventoryModel.setInventoryNumber(sInventoryNumberModel);
         sEquipmentInventoryModel.addInventoryEditLog(sEquipmentInventoryLogModel);
         editEquipmentInventory(sEquipmentInventoryModel);
-        LisenersService.get().refreshControl(EquipmentInventoryLogModel.class);
+        ListenersService.get().refreshControl(EquipmentInventoryLogModel.class);
     }
 
     public EquipmentInventoryLogModel getEquipmentInventoryLogModel() {
@@ -273,22 +244,22 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
             if (getSelectedObject().equals(sEquipmentInventoryModel)) {
                 System.out.println("delete " + sEquipmentInventoryModel.getInventoryNumber().getName());
                 if (new IteractorEquipmentInventory().delete(sEquipmentInventoryModel.getId())) {
-                    LisenersService.get().updateData(sEquipmentInventoryModel);
-                    LisenersService.get().updateControl(EquipmentInventoryModel.class);
+                    ListenersService.get().updateData(sEquipmentInventoryModel);
+                    ListenersService.get().updateControl(EquipmentInventoryModel.class);
                 }
             }
             if (getSelectedObject().equals(sEquipmentModel)) {
                 System.out.println("delete equipment");
                 if (new IteractorEquipment().delete(sEquipmentModel.getId())) {
-                    LisenersService.get().updateControl(EquipmentModel.class);
-                    LisenersService.get().updateUI(EquipmentTabController.class);
+                    ListenersService.get().updateControl(EquipmentModel.class);
+                    ListenersService.get().updateUI(EquipmentTabController.class);
                 }
             }
         }
     }
 
     public void cancel() {
-        LisenersService.get().refreshControl(EquipmentInventoryModel.class);
+        ListenersService.get().refreshControl(EquipmentInventoryModel.class);
     }
 
     public void deleteEquipmentParameter(EquipmentParameterModel equipmentParameter) {

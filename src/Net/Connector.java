@@ -1,6 +1,6 @@
 package Net;
 
-import Service.LisenersService;
+import Service.ListenersService;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -47,7 +47,7 @@ public class Connector {
             System.out.println("out " + sb.toString());
             connect.disconnect();
             if (sb.toString().startsWith("Error")) {
-                LisenersService.get().showError(sb.toString());
+                ListenersService.get().showError(sb.toString());
                 return null;
             }
             return sb.toString();
@@ -121,7 +121,7 @@ public class Connector {
             System.out.println("String s " + s);
             if (s == null) {
                 System.out.println("Show dialog error " + s);
-                //LisenersService.get().showError(s);
+                //ListenersService.get().showError(s);
                 return 0;
             } else {
                 return 200;

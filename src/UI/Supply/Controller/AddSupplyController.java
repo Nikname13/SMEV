@@ -2,7 +2,6 @@ package UI.Supply.Controller;
 
 import Model.Provider.ProviderModel;
 import Presenter.SupplyPresenter;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -41,7 +40,7 @@ public class AddSupplyController {
                 }
             }
         });
-        providerBox.setItems(new SupplyPresenter().getObservableProvider());
+        // providerBox.setItems(new SupplyPresenter().getObservableProvider());
         providerBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->providerListener(newValue) );
         group.selectedToggleProperty().addListener((observable, oldValue, newValue) -> selectedBurron(newValue));
     }

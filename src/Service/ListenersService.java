@@ -3,21 +3,21 @@ package Service;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LisenersService {
+public class ListenersService {
 
     private List<IUpdateUI> mListenerUI = new ArrayList<>();
     private List<IUpdateData> mListenerData = new ArrayList<>();
     private List<IUpdatePopup> mListenerPopup = new ArrayList<>();
     private IErrorMessage mErrorListener;
-    private static LisenersService sLisenersService;
+    private static ListenersService sListenersService;
     private IOnMouseClick mListenerOnMouseClick;
 
-    public static LisenersService get() {
-        if (sLisenersService == null) {
-            sLisenersService = new LisenersService();
+    public static ListenersService get() {
+        if (sListenersService == null) {
+            sListenersService = new ListenersService();
 
         }
-        return sLisenersService;
+        return sListenersService;
     }
 
     public List<IUpdateUI> getListenerUI() {

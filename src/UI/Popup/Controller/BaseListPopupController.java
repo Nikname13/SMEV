@@ -1,6 +1,6 @@
 package UI.Popup.Controller;
 
-import Service.LisenersService;
+import Service.ListenersService;
 import com.jfoenix.controls.JFXListView;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -20,7 +20,7 @@ public class BaseListPopupController extends BasePopupController {
         if (node != null) {
             switch (node.getId()) {
                 case "delete":
-                    LisenersService.get().delete();
+                    ListenersService.get().delete();
                     break;
             }
         }

@@ -2,13 +2,11 @@ package Presenter;
 
 import Iteractor.IteractorInventoryNumber;
 import Model.Inventory_number.InventoryNumberModel;
-import Model.Inventory_number.InventoryNumbers;
 import Model.Supply.SupplyModel;
-import javafx.collections.ObservableList;
 
 import java.util.Set;
 
-public class InventoryNumberPresenter {
+public class InventoryNumberPresenter extends BasePresenter {
 
     private static InventoryNumberModel sInventoryNumberModel;
 
@@ -18,10 +16,6 @@ public class InventoryNumberPresenter {
 
     public void setInventoryNumberModel(InventoryNumberModel inventoryNumberModel) {
         sInventoryNumberModel = inventoryNumberModel;
-    }
-
-    public ObservableList<InventoryNumberModel> getObservableInventoryN(){
-        return InventoryNumbers.get().getEntityList();
     }
 
     public void addInventoryNumber(String number, Object supply, boolean group, String description){
@@ -43,6 +37,11 @@ public class InventoryNumberPresenter {
     }
 
     public void delete(Set<Integer> id){
+
+    }
+
+    @Override
+    void loadEntity(int id) {
 
     }
 }

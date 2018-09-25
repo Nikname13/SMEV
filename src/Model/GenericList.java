@@ -15,6 +15,16 @@ public abstract class GenericList<T> implements IGenericList<T> {
         return mEntityList;
     }
 
+    public ObservableList<T> getEntityListWithout(T entityExcluding) {
+        ObservableList<T> list = FXCollections.observableArrayList();
+        for (T entity : mEntityList) {
+            if (entity.hashCode() != entityExcluding.hashCode()) {
+                list.add(entity);
+            }
+        }
+        return list;
+    }
+
     public void setEntityList(ObservableList<T> entityList) {
         mEntityList = entityList;
     }

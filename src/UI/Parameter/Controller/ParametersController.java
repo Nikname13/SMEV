@@ -4,7 +4,6 @@ import Model.Parameter.ParameterModel;
 import Presenter.ParametersPresenter;
 import UI.Coordinator;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -29,7 +28,7 @@ public class ParametersController {
     public void initialize() {
         System.out.println("init");
         firstColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        tableViewParameters.setItems(new ParametersPresenter().getObservableParameters());
+        // tableViewParameters.setItems(new ParametersPresenter().getObservableParameters());
         tableViewParameters.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> editParameter(newValue));
     }
 

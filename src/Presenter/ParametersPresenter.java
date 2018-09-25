@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class ParametersPresenter  {
+public class ParametersPresenter extends BasePresenter {
 
     private static ParameterModel mParameter;
     private static IUpdateUI updateListener;
 
     public void setParameter(Object parameter) {
-        this.mParameter = (ParameterModel) parameter;
+        mParameter = (ParameterModel) parameter;
     }
 
     public void addListener(IUpdateUI listener) {
@@ -27,10 +27,6 @@ public class ParametersPresenter  {
 
     public ParameterModel getParameter() {
         return mParameter;
-    }
-
-    public ObservableList<ParameterModel> getObservableParameters() {
-        return Parameters.get().getEntityList();
     }
 
     public void addParameter(String name, boolean isValue, List<Object> valuesParameter) {
@@ -95,5 +91,10 @@ public class ParametersPresenter  {
 
     public void update() {
         Parameters.get().update();
+    }
+
+    @Override
+    void loadEntity(int id) {
+
     }
 }

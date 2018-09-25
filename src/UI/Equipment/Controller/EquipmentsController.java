@@ -4,7 +4,7 @@ import Model.AbstractModel;
 import Model.Equipment.EquipmentModel;
 import Presenter.EquipmentPresenter;
 import Service.IUpdateUI;
-import Service.LisenersService;
+import Service.ListenersService;
 import Service.TabControllerService;
 import UI.Coordinator;
 import UI.Popup.BasePopup;
@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 public class EquipmentsController implements IUpdateUI {
 
     public EquipmentsController() {
-        LisenersService.get().addListenerUI(this);
+        ListenersService.get().addListenerUI(this);
     }
 
     @FXML
@@ -90,7 +90,7 @@ public class EquipmentsController implements IUpdateUI {
                 EquipmentPresenter.get().setSelectedObject(equipment.getValue());
                 EquipmentPresenter.get().setEquipmentModel(equipment.getValue());
                 TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditEquipmentResource()));
-                LisenersService.get().updateUI(EquipmentModel.class);
+                ListenersService.get().updateUI(EquipmentModel.class);
             } else {
                 EquipmentPresenter.get().setSelectedObject(null);
             }

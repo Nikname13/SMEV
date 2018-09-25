@@ -1,7 +1,7 @@
 package UI.TabPane.Controller;
 
 import Service.IUpdateUI;
-import Service.LisenersService;
+import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
 import com.jfoenix.controls.JFXTabPane;
@@ -12,7 +12,7 @@ public class TabPaneSecondLvlTabController extends BaseTabController implements 
 
     public TabPaneSecondLvlTabController() {
         System.out.println("second lvl controller");
-        LisenersService.get().addListenerUI(this);
+        ListenersService.get().addListenerUI(this);
         TabControllerService.get().setListenerThirdTabPane(((Tab nextTab)->nextTab(nextTab,mSecondLvlTabPane)));
     }
 

@@ -3,10 +3,8 @@ package Presenter;
 import Iteractor.IteractorLocation;
 import Model.Department.DepartmentModel;
 import Model.Location.LocationModel;
-import Model.Location.Locations;
 import Service.IUpdateData;
-import Service.LisenersService;
-import javafx.collections.ObservableList;
+import Service.ListenersService;
 
 public class LocationPresenter extends BasePresenter implements IUpdateData {
 
@@ -19,7 +17,7 @@ public class LocationPresenter extends BasePresenter implements IUpdateData {
     }
 
     private LocationPresenter() {
-        LisenersService.get().addListenerData(this);
+        ListenersService.get().addListenerData(this);
     }
 
     public LocationModel getLocation(){
@@ -30,13 +28,9 @@ public class LocationPresenter extends BasePresenter implements IUpdateData {
         sLocationModel=location;
     }
 
-    public ObservableList<LocationModel> getObservableLocations(){
-        return Locations.get().getEntityList();
-    }
-
     public void addLocation(String address, DepartmentModel department){
-        LisenersService.get().updateData(new IteractorLocation().addNew(new LocationModel(0, address, department)));
-        LisenersService.get().updateControl(LocationModel.class);
+        ListenersService.get().updateData(new IteractorLocation().addNew(new LocationModel(0, address, department)));
+        ListenersService.get().updateControl(LocationModel.class);
     }
 
     public void editLocation(String address, DepartmentModel department){
@@ -44,8 +38,8 @@ public class LocationPresenter extends BasePresenter implements IUpdateData {
     }
 
     public void editLocation(LocationModel location){
-        LisenersService.get().updateData(new IteractorLocation().edit(location));
-        LisenersService.get().updateControl(LocationModel.class);
+        ListenersService.get().updateData(new IteractorLocation().edit(location));
+        ListenersService.get().updateControl(LocationModel.class);
     }
 
     public void delete(int id){
@@ -63,7 +57,7 @@ public class LocationPresenter extends BasePresenter implements IUpdateData {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sLocationModel)) {
                 System.out.println("delete " + sLocationModel.getName() + "  " + sLocationModel.getDepartmentList());
-                LisenersService.get().updateData(sLocationModel);
+                ListenersService.get().updateData(sLocationModel);
                 for (DepartmentModel departmentModel : sLocationModel.getDepartmentList()) {
                     if (departmentModel.getId() == DepartmentPresenter.get().getDepartmentModel().getId()) {
                         sLocationModel.getDepartmentList().remove(departmentModel);
@@ -71,7 +65,7 @@ public class LocationPresenter extends BasePresenter implements IUpdateData {
                     }
                 }
                 new IteractorLocation().edit(sLocationModel);
-                LisenersService.get().updateControl(LocationModel.class);
+                ListenersService.get().updateControl(LocationModel.class);
             }
         }
     }

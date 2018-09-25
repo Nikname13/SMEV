@@ -16,6 +16,7 @@ public class Departments extends GenericList<DepartmentModel> {
         return sDepartments;
     }
 
+
     @Override
     public void update() {
         clear();

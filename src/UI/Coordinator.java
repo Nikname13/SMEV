@@ -368,7 +368,7 @@ public class Coordinator {
 
     public void goToAddMovementWindow(Stage stage) {
         try{
-            windowSceneContent("Movement/addMovement.fxml", stage, "Новое перемещение", 480, 550);
+            windowSceneContent("Movement/addMovement.fxml", stage, "Новое перемещение", 480, 490);
         }catch (Exception ex){
             System.out.println("Exception goToAddMovementWindow " + ex);
         }

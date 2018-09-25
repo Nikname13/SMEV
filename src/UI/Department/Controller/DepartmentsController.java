@@ -5,7 +5,7 @@ import Model.Department.Departments;
 import Presenter.DepartmentPresenter;
 import Service.IOnMouseClick;
 import Service.IUpdateUI;
-import Service.LisenersService;
+import Service.ListenersService;
 import Service.TabControllerService;
 import UI.Coordinator;
 import UI.Popup.BasePopup;
@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 public class DepartmentsController implements IUpdateUI, IOnMouseClick {
 
     public DepartmentsController(){
-        LisenersService.get().addListenerUI(this);
+        ListenersService.get().addListenerUI(this);
     }
 
     private BasePopup mPopup;
@@ -85,7 +85,7 @@ public class DepartmentsController implements IUpdateUI, IOnMouseClick {
             DepartmentPresenter.get().setSelectedObject(department);
             DepartmentPresenter.get().loadEntity(department.getId());
             TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditDepartmentResource()));
-            LisenersService.get().updateUI(DepartmentModel.class);
+            ListenersService.get().updateUI(DepartmentModel.class);
         }
     }
 

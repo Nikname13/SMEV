@@ -4,7 +4,7 @@ import Model.Department.DepartmentModel;
 import Model.Department.PurchaseModel;
 import Presenter.DepartmentPresenter;
 import Service.IUpdateUI;
-import Service.LisenersService;
+import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
 import UI.Popup.BasePopup;
@@ -27,7 +27,7 @@ public class PurchaseController extends BaseController implements IUpdateUI {
     private AnchorPane mAnchorPanePurchase;
 
     public PurchaseController() {
-        LisenersService.get().addListenerUI(this);
+        ListenersService.get().addListenerUI(this);
         mDepartmentModel = DepartmentPresenter.get().getDepartmentModel();
     }
 

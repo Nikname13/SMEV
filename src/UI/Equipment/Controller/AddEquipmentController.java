@@ -35,7 +35,6 @@ public class AddEquipmentController extends BaseController {
     private BaseValidator mBaseValidatorDialog = new BaseValidator();
     private ObservableList<EquipmentParameterModel> mEquipmentParameterList;
     private JFXDialog mDialog;
-    private double mHeightStage;
 
     @FXML
     private JFXTextField mTextFieldName, mTextFieldNameFact;
@@ -211,7 +210,7 @@ public class AddEquipmentController extends BaseController {
         rootItem.getChildren().add(new TreeItem<>(new EquipmentParameterModel(-1, "", new ParameterModel(0, newParameter))));
         mTreeTableViewParameter.setRoot(rootItem);
         mTreeTableViewParameter.setShowRoot(false);
-        mTreeTableViewParameter.setVisible(true);
+        //mTreeTableViewParameter.setVisible(true);
         mTreeTableViewParameter.setFixedCellSize(50);
         mTreeTableViewParameter.prefHeightProperty().bind(Bindings.size(mTreeTableViewParameter.getRoot().getChildren())
                 .multiply(mTreeTableViewParameter.getFixedCellSize()).add(55));
@@ -220,11 +219,13 @@ public class AddEquipmentController extends BaseController {
     }
 
     private void resizeHeightStage() {
+        System.out.println("before height Stage " + getStage().getHeight() + " height Table " + mTreeTableViewParameter.getPrefHeight());
         if (mEquipmentParameterList.size() >= 1) {
-            getStage().setHeight(getStage().getMinHeight() + (mTreeTableViewParameter.getPrefHeight() - 100));
+            getStage().setHeight(getStage().getMinHeight() + (mTreeTableViewParameter.getPrefHeight() - mTreeTableViewParameter.getMinHeight()));
         } else {
             getStage().setHeight(getStage().getMinHeight());
         }
+        System.out.println("after height Stage " + getStage().getHeight() + " height Table " + mTreeTableViewParameter.getPrefHeight());
     }
 
     @FXML

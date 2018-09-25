@@ -31,6 +31,7 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
 
     public EquipmentModel(int id, String name){
         super(id,name);
+        mNameFact = name;
     }
 
     public EquipmentModel(){}

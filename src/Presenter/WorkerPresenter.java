@@ -3,14 +3,10 @@ package Presenter;
 import Iteractor.IteractorPost;
 import Iteractor.IteractorWorker;
 import Model.Department.DepartmentModel;
-import Model.Department.Departments;
 import Model.Post.PostModel;
-import Model.Post.Posts;
 import Model.Worker.WorkerModel;
-import Model.Worker.Workers;
 import Service.IUpdateData;
-import Service.LisenersService;
-import javafx.collections.ObservableList;
+import Service.ListenersService;
 
 public class WorkerPresenter extends BasePresenter implements IUpdateData {
 
@@ -18,7 +14,7 @@ public class WorkerPresenter extends BasePresenter implements IUpdateData {
     private static WorkerPresenter sWorkerPresenter;
 
     private WorkerPresenter() {
-        LisenersService.get().addListenerData(this);
+        ListenersService.get().addListenerData(this);
     }
 
     public static WorkerPresenter get() {
@@ -34,33 +30,21 @@ public class WorkerPresenter extends BasePresenter implements IUpdateData {
         sWorkerModel = worker;
     }
 
-    public ObservableList<WorkerModel> getObservableWorkers() {
-        return Workers.get().getEntityList();
-    }
-
-    public ObservableList<DepartmentModel> getObservableDepartment() {
-        return Departments.get().getEntityList();
-    }
-
-    public ObservableList<PostModel> getObservablePost() {
-        return Posts.get().getEntityList();
-    }
-
     public void addWorker(String name, PostModel post, DepartmentModel department) {
         if (post.getId() == 0) {
             post = addPost(post);
         }
-        LisenersService.get().updateData(new IteractorWorker().addNew(new WorkerModel(0, name, post, department)));
-        LisenersService.get().updateControl(WorkerModel.class);
+        ListenersService.get().updateData(new IteractorWorker().addNew(new WorkerModel(0, name, post, department)));
+        ListenersService.get().updateControl(WorkerModel.class);
     }
 
     public void editWorker(String name, PostModel post, DepartmentModel department) {
         if (post.getId() == 0) {
             post = addPost(post);
         }
-        LisenersService.get().updateData(sWorkerModel);
-        LisenersService.get().updateData(new IteractorWorker().edit(new WorkerModel(sWorkerModel.getId(), name, post, department)));
-        LisenersService.get().updateControl(WorkerModel.class);
+        ListenersService.get().updateData(sWorkerModel);
+        ListenersService.get().updateData(new IteractorWorker().edit(new WorkerModel(sWorkerModel.getId(), name, post, department)));
+        ListenersService.get().updateControl(WorkerModel.class);
     }
 
     public PostModel addPost(PostModel post) {
@@ -82,7 +66,7 @@ public class WorkerPresenter extends BasePresenter implements IUpdateData {
             if (getSelectedObject().equals(sWorkerModel)) {
                 System.out.println("delete " + sWorkerModel.getDepartmentModel().getId() + " hashCode " + sWorkerModel.hashCode());
                 new IteractorWorker().delete(sWorkerModel);
-                LisenersService.get().updateControl(WorkerModel.class);
+                ListenersService.get().updateControl(WorkerModel.class);
             }
         }
     }

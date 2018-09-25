@@ -2,7 +2,7 @@ package UI.MainTabs;
 
 import Model.Movement.MovementModel;
 import Service.IUpdateUI;
-import Service.LisenersService;
+import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
 import com.jfoenix.controls.JFXTabPane;
@@ -15,7 +15,7 @@ public class MovementTabController extends BaseTabController implements IUpdateU
     private JFXTabPane mMovementTabContainer;
 
     public MovementTabController() {
-        LisenersService.get().addListenerUI(this);
+        ListenersService.get().addListenerUI(this);
     }
 
     @FXML
@@ -27,8 +27,8 @@ public class MovementTabController extends BaseTabController implements IUpdateU
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             TabControllerService.get().setListenerFirstTabPane((Tab nextTab) -> nextTab(nextTab, mMovementTabContainer));
-            //LisenersService.get().updateUI(EquipmentsController.class);
-            LisenersService.get().updateControl(MovementModel.class);
+            //ListenersService.get().updateUI(EquipmentsController.class);
+            ListenersService.get().updateControl(MovementModel.class);
             mMovementTabContainer.getSelectionModel().select(0);
         }
     }

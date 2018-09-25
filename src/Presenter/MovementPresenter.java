@@ -1,10 +1,14 @@
 package Presenter;
 
 import Iteractor.IteractorMovement;
+import Model.Department.DepartmentModel;
+import Model.Department.Departments;
+import Model.Equipment.EquipmentInventoryModel;
+import Model.Equipment.SelectedEquipmentInventoryShell;
 import Model.Movement.MovementModel;
-import Model.Movement.Movements;
 import Service.IUpdateData;
-import Service.LisenersService;
+import Service.ListenersService;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class MovementPresenter extends BasePresenter implements IUpdateData {
@@ -12,7 +16,7 @@ public class MovementPresenter extends BasePresenter implements IUpdateData {
     private static MovementModel sMovementModel;
 
     private MovementPresenter() {
-        LisenersService.get().addListenerData(this);
+        ListenersService.get().addListenerData(this);
     }
 
     public static MovementPresenter get() {
@@ -30,8 +34,35 @@ public class MovementPresenter extends BasePresenter implements IUpdateData {
         sMovementModel = movementModel;
     }
 
-    public ObservableList<MovementModel> getObservableMovement(){
-        return Movements.get().getEntityList();
+    public ObservableList<DepartmentModel> getObservableDepartmentWithout(DepartmentModel department) {
+        return Departments.get().getEntityListWithout(department);
+    }
+
+    public ObservableList<SelectedEquipmentInventoryShell> getEquipmentInventoryList(DepartmentModel department, ObservableList<EquipmentInventoryModel> listExcluding) {
+        System.out.println("ololo blat");
+        ObservableList<SelectedEquipmentInventoryShell> list = FXCollections.observableArrayList();
+        if (listExcluding != null) {
+            boolean flag = false;
+            for (EquipmentInventoryModel equipment : Departments.get().getEntity(department.getId()).getEquipmentList()) {
+                for (EquipmentInventoryModel equipmentExcluding : listExcluding) {
+                    if (equipment.getId() == equipmentExcluding.getId()) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag) {
+                    list.add(new SelectedEquipmentInventoryShell(equipment));
+                } else {
+                    flag = true;
+                }
+            }
+            return list;
+        } else {
+            for (EquipmentInventoryModel equipment : Departments.get().getEntity(department.getId()).getEquipmentList()) {
+                list.add(new SelectedEquipmentInventoryShell(equipment));
+            }
+            return list;
+        }
     }
 
 

@@ -2,15 +2,13 @@ package Presenter;
 
 import Iteractor.IteractorType;
 import Model.Parameter.ParameterModel;
-import Model.Parameter.Parameters;
 import Model.Type.TypeModel;
 import Model.Type.Types;
-import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TypePresenter {
+public class TypePresenter extends BasePresenter {
 
     private static TypeModel sTypeModel;
 
@@ -20,14 +18,6 @@ public class TypePresenter {
 
     public void setTypeModel(Object type) {
         sTypeModel = (TypeModel) type;
-    }
-
-    public ObservableList<TypeModel> getObservableType(){
-        return Types.get().getEntityList();
-    }
-
-    public ObservableList<ParameterModel> getObservableParameter(){
-        return Parameters.get().getEntityList();
     }
 
     public void addType(String name, List<Object> parameters){
@@ -63,5 +53,10 @@ public class TypePresenter {
 
     public void update(){
         Types.get().update();
+    }
+
+    @Override
+    void loadEntity(int id) {
+
     }
 }

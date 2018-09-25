@@ -1,7 +1,7 @@
 package UI.MainTabs;
 
 import Service.IUpdateUI;
-import Service.LisenersService;
+import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
 import UI.Department.Controller.DepartmentsController;
@@ -12,7 +12,7 @@ import javafx.scene.control.Tab;
 public class DepartmentTabController extends BaseTabController implements IUpdateUI {
 
     public DepartmentTabController() {
-        LisenersService.get().addListenerUI(this);
+        ListenersService.get().addListenerUI(this);
         TabControllerService.get().setListenerFirstTabPane((Tab nextTab)-> nextTab(nextTab,mDepartmentTabContainer));
     }
 
@@ -29,7 +29,7 @@ public class DepartmentTabController extends BaseTabController implements IUpdat
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             TabControllerService.get().setListenerFirstTabPane((Tab nextTab) -> nextTab(nextTab, mDepartmentTabContainer));
-            LisenersService.get().updateUI(DepartmentsController.class);
+            ListenersService.get().updateUI(DepartmentsController.class);
             mDepartmentTabContainer.getSelectionModel().select(0);
         }
     }

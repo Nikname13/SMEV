@@ -48,6 +48,12 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel
         mStateModel = state;
     }
 
+    public EquipmentInventoryModel(int id, EquipmentModel equipment, InventoryNumberModel inventoryNumber) {
+        super(id);
+        mEquipmentModel = equipment;
+        mInventoryNumber = inventoryNumber;
+    }
+
     public List<EquipmentInventoryLogModel> getInventoryEditLog() {
             mInventoryEditLog = new IteractorInventoryLog().getList(getId());
         return mInventoryEditLog;

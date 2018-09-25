@@ -31,7 +31,7 @@ public class WorkersController {
         firstColumn.setCellValueFactory(cellData->cellData.getValue().nameProperty());
         secondColumn.setCellValueFactory(cellData -> cellData.getValue().getPost().nameProperty());
         departmentColumn.setCellValueFactory(cellData->cellData.getValue().getDepartmentModel().nameProperty());
-        tableViewWorkers.setItems(WorkerPresenter.get().getObservableWorkers());
+        tableViewWorkers.setItems(WorkerPresenter.get().getObservableWorker());
         tableViewWorkers.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) ->delete(newValue) ));
     }
 

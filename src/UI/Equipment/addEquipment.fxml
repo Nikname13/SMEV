@@ -30,7 +30,8 @@
             </AnchorPane>
             <AnchorPane style="-fx-background-color: #ffffff;">
                 <children>
-                    <JFXTreeTableView fx:id="mTreeTableViewParameter" maxHeight="355.0" prefWidth="350.0"
+                    <JFXTreeTableView fx:id="mTreeTableViewParameter" minHeight="105.0" maxHeight="355.0"
+                                      prefWidth="350.0"
                                       minWidth="350.0"
                                       AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="20.0"
                                       AnchorPane.rightAnchor="20.0"

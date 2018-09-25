@@ -3,7 +3,7 @@ package UI.Popup;
 import Presenter.BasePresenter;
 import Service.IOnMouseClick;
 import Service.IUpdatePopup;
-import Service.LisenersService;
+import Service.ListenersService;
 import com.jfoenix.controls.JFXPopup;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,13 +19,13 @@ public class BasePopup implements IUpdatePopup {
     private JFXPopup mPopup;
 
     public BasePopup(Node node, String resourceURL, IOnMouseClick primaryClick) {
-        LisenersService.get().addListenerPopup(this::hide);
+        ListenersService.get().addListenerPopup(this::hide);
         try {
             mPopup = new JFXPopup(FXMLLoader.load(getClass().getResource(resourceURL)));
             node.setOnMouseClicked(event -> {
                 if (BasePresenter.getSelectedObject() != null) {
                     if (event.getButton() == MouseButton.SECONDARY) {
-                        LisenersService.get().setListenerOnMouseClick(primaryClick);
+                        ListenersService.get().setListenerOnMouseClick(primaryClick);
                         mPopup.show(node, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());
                     }
                     if (event.getButton() == MouseButton.PRIMARY) {

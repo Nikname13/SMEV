@@ -11,7 +11,7 @@ import Model.Type.TypeModel;
 import Presenter.EquipmentPresenter;
 import Service.IOnMouseClick;
 import Service.IUpdateUI;
-import Service.LisenersService;
+import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseController;
 import UI.Coordinator;
@@ -49,7 +49,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
     private ObservableList<EquipmentParameterModel> mEquipmentParameterList;
 
     public EditEquipmentController() {
-        LisenersService.get().addListenerUI(this);
+        ListenersService.get().addListenerUI(this);
         sEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
     }
 
@@ -255,7 +255,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
                 EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
                 EquipmentPresenter.get().setSelectedObject(equipment);
                 TabControllerService.get().getListenerThirdTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
-                LisenersService.get().updateUI(EquipmentInventoryModel.class);
+                ListenersService.get().updateUI(EquipmentInventoryModel.class);
             } else {
                 EquipmentPresenter.get().setSelectedObject(null);
             }
@@ -329,7 +329,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
             updateTableParameter(mEquipmentParameterList);
             //tableViewEquipment.setItems(sEquipmentModel.getObservableEqInventoryList());
             updateEquipmentTable(sEquipmentModel.getObservableEqInventoryList());
-            LisenersService.get().updateUI(TabPaneSecondLvlTabController.class);
+            ListenersService.get().updateUI(TabPaneSecondLvlTabController.class);
         }
     }
 

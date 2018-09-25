@@ -3,24 +3,19 @@ package Presenter;
 import Iteractor.IteractorState;
 import Model.State.StateModel;
 import Model.State.States;
-import javafx.collections.ObservableList;
 
 import java.util.Set;
 
-public class StatePresenter {
+public class StatePresenter extends BasePresenter {
 
     private static StateModel mState;
 
     public void setState(Object state){
-        this.mState=(StateModel)state;
+        mState = (StateModel) state;
     }
 
     public static StateModel getState() {
         return mState;
-    }
-
-    public ObservableList<StateModel> getObservableState(){
-        return States.get().getEntityList();
     }
 
     public void addState(String name){
@@ -41,5 +36,10 @@ public class StatePresenter {
 
     public void update(){
         States.get().update();
+    }
+
+    @Override
+    void loadEntity(int id) {
+
     }
 }

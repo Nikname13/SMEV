@@ -36,7 +36,7 @@
                                     AnchorPane.leftAnchor="20.0"
                                     AnchorPane.topAnchor="90.0">
                      <control>
-                        <JFXComboBox fx:id="mComboBoxDepartment" focusColor="#40a85f" labelFloat="true"
+                        <JFXComboBox fx:id="mComboBoxDepartmentTo" focusColor="#40a85f" labelFloat="true"
                                      prefWidth="200.0"
                                      promptText="В отдел:"/>
                      </control>
@@ -54,14 +54,14 @@
             </AnchorPane>
             <AnchorPane>
                <children>
-                  <JFXTreeTableView fx:id="mTreeTableViewParameter" maxHeight="355.0" prefWidth="350.0"
+                  <JFXTreeTableView fx:id="mTreeTableEquipment" minHeight="105.0" maxHeight="355.0" prefWidth="350.0"
                                     minWidth="350.0"
                                     AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="20.0"
                                     AnchorPane.rightAnchor="20.0"
                                     AnchorPane.topAnchor="5.0">
                      <columns>
-                        <TreeTableColumn fx:id="mColumnName" prefWidth="200.0" text="Наименование"/>
-                        <TreeTableColumn fx:id="mColumnValueParameter" prefWidth="200.0" text="Инвентарный номер"/>
+                        <TreeTableColumn fx:id="mNameColumn" prefWidth="200.0" text="Наименование"/>
+                        <TreeTableColumn fx:id="mInventoryNumberColumn" prefWidth="200.0" text="Инвентарный номер"/>
                      </columns>
                   </JFXTreeTableView>
                </children>

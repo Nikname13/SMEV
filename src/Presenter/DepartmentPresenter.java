@@ -4,18 +4,14 @@ import Iteractor.IteractorDepartment;
 import Iteractor.IteractorLocation;
 import Iteractor.IteractorPurchase;
 import Model.Area.AreaModel;
-import Model.Area.Areas;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
 import Model.Department.PurchaseModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Location.LocationModel;
-import Model.Location.Locations;
 import Model.Worker.WorkerModel;
-import Model.Worker.Workers;
 import Service.IUpdateData;
-import Service.LisenersService;
-import javafx.collections.ObservableList;
+import Service.ListenersService;
 
 import java.awt.*;
 import java.io.File;
@@ -36,7 +32,7 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
     }
 
     private DepartmentPresenter() {
-        LisenersService.get().addListenerData(this);
+        ListenersService.get().addListenerData(this);
     }
 
     public DepartmentModel getDepartmentModel() {
@@ -55,43 +51,28 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
         sPurchaseModel = purchaseModel;
     }
 
-    public ObservableList<DepartmentModel> getObservableDepartment() {
-        return Departments.get().getEntityList();
-    }
-
-    public ObservableList<WorkerModel> getObservableWorker() {
-        return Workers.get().getEntityList();
-    }
-
-    public ObservableList<AreaModel> getObservableArea() {
-        return Areas.get().getEntityList();
-    }
-
-    public ObservableList<LocationModel> getObservableLocation() {
-        return Locations.get().getEntityList();
-    }
 
     public void addDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area, String address) {
         DepartmentModel department = new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));
         new IteractorLocation().addNew(new LocationModel(-1, address, department));
-        LisenersService.get().updateControl(DepartmentModel.class, department);
+        ListenersService.get().updateControl(DepartmentModel.class, department);
     }
 
     public void addDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area, LocationModel address) {
         DepartmentModel department = new IteractorDepartment().addNew(new DepartmentModel(0, number, name, eleсtronicQ, renting, description, area));
         address.addLocation(department);
         new IteractorLocation().edit(address);
-        LisenersService.get().updateControl(DepartmentModel.class, department);
+        ListenersService.get().updateControl(DepartmentModel.class, department);
     }
 
     public void editDepartment(String number, String name, boolean eleсtronicQ, boolean renting, String description, AreaModel area) {
         new IteractorDepartment().edit(new DepartmentModel(sDepartmentModel.getId(), number, name, eleсtronicQ, renting, description, area));
-        LisenersService.get().refreshControl(Departments.class);
+        ListenersService.get().refreshControl(Departments.class);
     }
 
     public void addPurchase(String url, String description, LocalDate date) {
         new IteractorPurchase().addNew(new PurchaseModel(0, url, description, date, sDepartmentModel));
-        LisenersService.get().updateControl(PurchaseModel.class);
+        ListenersService.get().updateControl(PurchaseModel.class);
     }
 
     public void editPurchase() {
@@ -159,11 +140,11 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sDepartmentModel)) {
                 if (new IteractorDepartment().delete(sDepartmentModel.getId()))
-                LisenersService.get().updateControl(DepartmentModel.class);
+                    ListenersService.get().updateControl(DepartmentModel.class);
             }
             if (getSelectedObject().equals(sPurchaseModel)) {
                 if (new IteractorPurchase().delete(sPurchaseModel))
-                LisenersService.get().updateControl(PurchaseModel.class);
+                    ListenersService.get().updateControl(PurchaseModel.class);
             }
         }
     }

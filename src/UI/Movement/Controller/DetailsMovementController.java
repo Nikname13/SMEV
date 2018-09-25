@@ -4,7 +4,7 @@ import Model.Movement.MovementEquipment;
 import Model.Movement.MovementModel;
 import Presenter.MovementPresenter;
 import Service.IUpdateUI;
-import Service.LisenersService;
+import Service.ListenersService;
 import UI.BaseController;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -29,7 +29,7 @@ public class DetailsMovementController extends BaseController implements IUpdate
     private TreeTableColumn<MovementEquipment, String> mNameColumn, mTypeColumn, mInventoryNumberColumn;
 
     public DetailsMovementController() {
-        LisenersService.get().addListenerUI(this);
+        ListenersService.get().addListenerUI(this);
     }
 
     @FXML

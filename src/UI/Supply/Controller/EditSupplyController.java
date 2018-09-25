@@ -49,7 +49,7 @@ public class EditSupplyController {
                 }
             }
         });
-        providerBox.setItems(new SupplyPresenter().getObservableProvider());
+        // providerBox.setItems(new SupplyPresenter().getObservableProvider());
         providerBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->providerListener(newValue) );
         group.selectedToggleProperty().addListener((observable, oldValue, newValue) -> selectedButton(newValue));
 

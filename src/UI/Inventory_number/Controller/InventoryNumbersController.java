@@ -29,7 +29,7 @@ public class InventoryNumbersController {
         numberInventoryColumn.setCellValueFactory(cellData->cellData.getValue().nameProperty());
         numberSupplyColumn.setCellValueFactory(cellData->cellData.getValue().getSupply().nameProperty());
         groupColumn.setCellValueFactory(cellData->cellData.getValue().groupProperty());
-        tableViewNumber.setItems(new InventoryNumberPresenter().getObservableInventoryN());
+        // tableViewNumber.setItems(new InventoryNumberPresenter().getObservableInventoryN());
         tableViewNumber.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) ->edit(newValue)));
 
     }

@@ -1,6 +1,6 @@
 package UI.Popup.Controller;
 
-import Service.LisenersService;
+import Service.ListenersService;
 import com.jfoenix.controls.JFXListView;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -20,10 +20,10 @@ public class DepartmentsListPopupController extends BasePopupController {
         if (node != null) {
             switch (node.getId()) {
                 case "purchase":
-                    LisenersService.get().onMouseClick(node.getId());
+                    ListenersService.get().onMouseClick(node.getId());
                     break;
                 case "delete":
-                    LisenersService.get().delete();
+                    ListenersService.get().delete();
                     break;
             }
         }
