@@ -4,6 +4,7 @@ import Model.Department.DepartmentModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Worker.WorkerModel;
 import Presenter.EquipmentPresenter;
+import Presenter.MovementPresenter;
 import UI.BaseController;
 import UI.Validator.BaseValidator;
 import UI.Validator.Pair;
@@ -45,9 +46,9 @@ public class MoveEquipmentInventoryController extends BaseController {
     @FXML
     public void initialize() {
         mBaseValidator.setValidationFacades(
-                new Pair(mFacadeWorkerFrom, mErrorWorkerFrom),
-                new Pair(mFacadeWorkerTo, mErrorWorkerTo),
-                new Pair(mFacadeDepartmentTo, mErrorDepartmentTo));
+                new Pair(mFacadeWorkerFrom, mErrorWorkerFrom, mComboBoxWorkerFrom),
+                new Pair(mFacadeWorkerTo, mErrorWorkerTo, mComboBoxWorkerTo),
+                new Pair(mFacadeDepartmentTo, mErrorDepartmentTo, mComboBoxDepartment));
         mBaseValidator.setJFXTextAreas(mTextAreaBase);
 
         initComboBoxDepartment(mComboBoxDepartment, true);
@@ -90,7 +91,7 @@ public class MoveEquipmentInventoryController extends BaseController {
     @FXML
     private void onClickMove() {
         if (mBaseValidator.validate()) {
-            EquipmentPresenter.get().moveEquipmentInventory(
+            MovementPresenter.get().moveEquipmentInventory(
                     mEquipment,
                     mDepartment,
                     mComboBoxWorkerFrom.getValue(),

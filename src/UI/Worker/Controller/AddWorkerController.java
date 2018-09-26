@@ -39,7 +39,7 @@ public class AddWorkerController extends BaseController {
 
     @FXML
     public void initialize(){
-        mBaseValidator.setValidationFacades(new Pair(mFacadeDepartment, mErrorDepartment), new Pair(mFacadePost, mErrorPost));
+        mBaseValidator.setValidationFacades(new Pair(mFacadeDepartment, mErrorDepartment, mComboBoxDepartment), new Pair(mFacadePost, mErrorPost, mComboBoxPost));
         mBaseValidator.setJFXTextFields(mTextFieldName);
         initComboBoxDepartment(mComboBoxDepartment, false);
         initComboBoxPost(mComboBoxPost);

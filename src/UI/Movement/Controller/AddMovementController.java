@@ -6,7 +6,6 @@ import Model.Equipment.EquipmentModel;
 import Model.Equipment.SelectedEquipmentInventoryShell;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Worker.WorkerModel;
-import Presenter.EquipmentPresenter;
 import Presenter.MovementPresenter;
 import UI.BaseController;
 import UI.Validator.BaseValidator;
@@ -23,6 +22,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
@@ -35,6 +36,7 @@ public class AddMovementController extends BaseController {
     private ObservableList<EquipmentInventoryModel> mEquipmentInventoryList;
     private JFXDialog mDialog;
     private TableView<SelectedEquipmentInventoryShell> mTableEquipmentDialog;
+    private Pair mErrorTable;
     @FXML
     private JFXComboBox<DepartmentModel> mComboBoxDepartmentFrom, mComboBoxDepartmentTo;
     @FXML
@@ -44,7 +46,7 @@ public class AddMovementController extends BaseController {
     @FXML
     private ValidationFacade mFacadeWorkerFrom, mFacadeWorkerTo, mFacadeDepartmentTo, mFacadeDepartmentFrom;
     @FXML
-    private Label mErrorWorkerFrom, mErrorWorkerTo, mErrorDepartmentTo, mErrorDepartmentFrom;
+    private Label mErrorWorkerFrom, mErrorWorkerTo, mErrorDepartmentTo, mErrorDepartmentFrom, mErrorEquipment;
     @FXML
     private TreeTableView<EquipmentInventoryModel> mTreeTableEquipment;
     @FXML
@@ -56,10 +58,10 @@ public class AddMovementController extends BaseController {
     public void initialize(){
         mEquipmentInventoryList = FXCollections.observableArrayList();
         mBaseValidator.setValidationFacades(
-                new Pair(mFacadeDepartmentFrom, mErrorDepartmentFrom),
-                new Pair(mFacadeDepartmentTo, mErrorDepartmentTo),
-                new Pair(mFacadeWorkerFrom, mErrorWorkerFrom),
-                new Pair(mFacadeWorkerTo, mErrorWorkerTo)
+                new Pair(mFacadeDepartmentFrom, mErrorDepartmentFrom, mComboBoxDepartmentFrom),
+                new Pair(mFacadeDepartmentTo, mErrorDepartmentTo, mComboBoxDepartmentTo),
+                new Pair(mFacadeWorkerFrom, mErrorWorkerFrom, mComboBoxWorkerFrom),
+                new Pair(mFacadeWorkerTo, mErrorWorkerTo, mComboBoxWorkerTo)
         );
         mBaseValidator.setJFXTextAreas(mTextAreaBase);
         initComboBoxDepartment(mComboBoxDepartmentFrom, false);
@@ -84,7 +86,7 @@ public class AddMovementController extends BaseController {
         mTreeTableEquipment.setFixedCellSize(50);
         mTreeTableEquipment.prefHeightProperty().bind(Bindings.size(mTreeTableEquipment.getRoot().getChildren())
                 .multiply(mTreeTableEquipment.getFixedCellSize()).add(55));
-        System.out.println("prefHeight equipment = " + mTreeTableEquipment.getPrefHeight());
+        if (mEquipmentInventoryList.size() >= 1) mErrorTable.getErrorLabel().setVisible(false);
     }
 
     private void initTableView() {
@@ -93,9 +95,24 @@ public class AddMovementController extends BaseController {
         mTreeTableEquipment.setTooltip(new Tooltip("ПКМ для удаления"));
         mTreeTableEquipment.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedEquipment(newValue));
         mTreeTableEquipment.setEditable(true);
+        mErrorTable = new Pair(mTreeTableEquipment, mErrorEquipment, "Необходимо добавить оборудование");
+        mTreeTableEquipment.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    EquipmentInventoryModel equipment = mTreeTableEquipment.getSelectionModel().getSelectedItem().getValue();
+                    if (equipment.getId() != -1) {
+                        mEquipmentInventoryList.remove(equipment);
+                        updateTableView(mEquipmentInventoryList);
+                        resizeHeightStage(mTreeTableEquipment.getPrefHeight());
+                    }
+                }
+            }
+        });
     }
 
     private void selectedEquipment(TreeItem<EquipmentInventoryModel> newValue) {
+        System.out.println("selected tree table");
         if (newValue != null) {
             if (newValue.getValue().getId() == -1 && mComboBoxDepartmentFrom.getValue() != null) {
                 showDialog();
@@ -129,23 +146,21 @@ public class AddMovementController extends BaseController {
                 }
                 updateTableView(mEquipmentInventoryList);
                 if (mTreeTableEquipment.getPrefHeight() <= mTreeTableEquipment.getMaxHeight()) {
-                    System.out.println("if prefHeight= " + mTreeTableEquipment.getPrefHeight());
-                    resizeHeightStage();
+                    resizeHeightStage(mTreeTableEquipment.getPrefHeight());
+                } else {
+                    resizeHeightStage(mTreeTableEquipment.getMaxHeight());
                 }
-
                 mDialog.close();
             }
         });
     }
 
-    private void resizeHeightStage() {
-        System.out.println(" before height Stage " + getStage().getHeight() + "height Table " + mTreeTableEquipment.getPrefHeight());
+    private void resizeHeightStage(double tableHeight) {
         if (mEquipmentInventoryList.size() >= 1) {
-            getStage().setHeight(getStage().getMinHeight() + (mTreeTableEquipment.getPrefHeight() - mTreeTableEquipment.getMinHeight()));
+            getStage().setHeight(getStage().getMinHeight() + (tableHeight - mTreeTableEquipment.getMinHeight()));
         } else {
             getStage().setHeight(getStage().getMinHeight());
         }
-        System.out.println("after height Stage " + getStage().getHeight() + "height Table " + mTreeTableEquipment.getPrefHeight());
     }
 
     private TableView<SelectedEquipmentInventoryShell> initDialogTableView() {
@@ -201,20 +216,37 @@ public class AddMovementController extends BaseController {
             mComboBoxWorkerFrom.setItems(department.getObsWorkerList());
             mComboBoxWorkerFrom.getSelectionModel().selectFirst();
             updateTableView(mEquipmentInventoryList);
-            resizeHeightStage();
+            resizeHeightStage(mTreeTableEquipment.getPrefHeight());
         }
     }
 
     @FXML
     private void onClickAdd(){
-        if (mBaseValidator.validate()) {
-
+        if (validate()) {
+            MovementPresenter.get().moveEquipmentInventory(mEquipmentInventoryList,
+                    mComboBoxDepartmentTo.getValue(),
+                    mComboBoxWorkerFrom.getValue(),
+                    mComboBoxWorkerTo.getValue(),
+                    mTextAreaBase.getText());
+            close(mStackPaneAddMovement);
         }
+    }
+
+    private boolean validate() {
+        boolean flag = true;
+        if (mEquipmentInventoryList.size() < 1) {
+            flag = false;
+            mErrorTable.getErrorLabel().setVisible(true);
+        }
+        if (!mBaseValidator.validate()) {
+            flag = false;
+        }
+        return flag;
     }
 
     @FXML
     private void onClickCancel() {
-        EquipmentPresenter.get().cancel();
+        close(mStackPaneAddMovement);
     }
 
     @Override

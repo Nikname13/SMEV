@@ -12,7 +12,6 @@ import Model.Movement.MovementModel;
 import Model.Parameter.ParameterModel;
 import Model.State.StateModel;
 import Model.Type.TypeModel;
-import Model.Worker.WorkerModel;
 import Service.IUpdateData;
 import Service.ListenersService;
 import UI.MainTabs.EquipmentTabController;
@@ -169,23 +168,6 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
     public void editEquipmentInventory(EquipmentInventoryModel equipment) {
         ListenersService.get().updateData(new IteractorEquipmentInventory().edit(equipment));
         ListenersService.get().refreshControl(EquipmentInventoryModel.class);
-    }
-
-
-    public void moveEquipmentInventory(EquipmentInventoryModel equipment, DepartmentModel toDepartment, WorkerModel fromWorker, WorkerModel toWorker, String base) {
-        Departments.get().getEntity(toDepartment.getId()).setEquipmentList(null);
-        Departments.get().getEntity(equipment.getDepartmentModel().getId()).setEquipmentList(null);
-        Equipments.get().getEntity(equipment.getEquipmentModel().getId()).setEquipmentInventoryList(null);
-        MovementModel movement = new MovementModel(0, LocalDate.now(), base);
-        movement.addDepartment(movement.newMovementDepartment(equipment.getDepartmentModel()));
-        movement.addDepartment(movement.newMovementDepartment(toDepartment));
-        equipment.setDepartmentModel(toDepartment);//назначение нового отдела дла оборудования
-        movement.addWorker(movement.newMovementWorker(fromWorker));
-        movement.addWorker(movement.newMovementWorker(toWorker));
-        movement.addEntity(movement.newMovementEquipment(equipment));
-        new IteractorMovement().addNew(movement);
-        new IteractorEquipmentInventory().edit(equipment);
-        ListenersService.get().updateControl(EquipmentInventoryModel.class);
     }
 
     public void deleteEquipment() {

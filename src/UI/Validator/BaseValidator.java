@@ -55,6 +55,19 @@ public class BaseValidator {
                     }
                 }
             });
+            if (validationFacade.getControl() != null) {
+                validationFacade.getControl().getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                        if (ControllerValidator.validationFacade(facade)) {
+                            validationFacade.getErrorLabel().setVisible(false);
+                        } else {
+                            validationFacade.getErrorLabel().setVisible(true);
+                        }
+                    }
+                });
+            }
+
         }
     }
 

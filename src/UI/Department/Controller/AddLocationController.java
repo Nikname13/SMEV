@@ -37,7 +37,7 @@ public class AddLocationController extends BaseController {
 
     @FXML
     public void initialize() {
-        mBaseValidator.setValidationFacades(new Pair(mFacadeLocation, mErrorLocation));
+        mBaseValidator.setValidationFacades(new Pair(mFacadeLocation, mErrorLocation, mComboBoxLocation));
         initComboBoxLocation(mComboBoxLocation);
     }
 

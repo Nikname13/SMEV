@@ -41,7 +41,7 @@ public class EditWorkerController extends BaseController {
     @FXML
     public void initialize() {
         mBaseValidator.setJFXTextFields(mTextFieldName);
-        mBaseValidator.setValidationFacades(new Pair(mFacadePost, mErrorPost), new Pair(mFacadeDepartment, mErrorDepartment));
+        mBaseValidator.setValidationFacades(new Pair(mFacadePost, mErrorPost, mComboBoxPost), new Pair(mFacadeDepartment, mErrorDepartment, mComboBoxDepartment));
         initTextField();
         initComboBoxPost(mComboBoxPost);
         initComboBoxDepartment(mComboBoxDepartment, true);

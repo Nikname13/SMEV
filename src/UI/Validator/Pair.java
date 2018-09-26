@@ -1,14 +1,27 @@
 package UI.Validator;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.ValidationFacade;
 import javafx.scene.control.Label;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.paint.Color;
 
 public class Pair {
     private Label mErrorLabel;
     private ValidationFacade mValidationFacade;
     private JFXTextField mJFXTextField;
+    private JFXComboBox mControl;
+    private TreeTableView mTreeTableView;
+
+    public Pair(ValidationFacade facade, Label errorLabel, JFXComboBox control) {
+        mValidationFacade = facade;
+        mControl = control;
+        mErrorLabel = errorLabel;
+        mErrorLabel.setLayoutX(facade.getLayoutX());
+        mErrorLabel.setLayoutY(facade.getLayoutY() + 30.0);
+        setDefaultPropertyLabel("");
+    }
 
     public Pair(ValidationFacade facade, Label errorLabel) {
         mValidationFacade = facade;
@@ -23,6 +36,14 @@ public class Pair {
         mErrorLabel = errorLabel;
         mErrorLabel.setLayoutX(textField.getLayoutX());
         mErrorLabel.setLayoutY(textField.getLayoutY() + 30.0);
+        setDefaultPropertyLabel(errorMessage);
+    }
+
+    public Pair(TreeTableView treeTableView, Label errorLabel, String errorMessage) {
+        mTreeTableView = treeTableView;
+        mErrorLabel = errorLabel;
+        mErrorLabel.setLayoutX(treeTableView.getLayoutX());
+        mErrorLabel.setLayoutY(treeTableView.getLayoutY() + treeTableView.getPrefHeight() + 10);
         setDefaultPropertyLabel(errorMessage);
     }
 
@@ -56,5 +77,13 @@ public class Pair {
 
     public void setJFXTextField(JFXTextField JFXTextField) {
         mJFXTextField = JFXTextField;
+    }
+
+    public JFXComboBox getControl() {
+        return mControl;
+    }
+
+    public void setControl(JFXComboBox control) {
+        mControl = control;
     }
 }

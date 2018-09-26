@@ -1,15 +1,21 @@
 package Presenter;
 
+import Iteractor.IteractorEquipmentInventory;
 import Iteractor.IteractorMovement;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
 import Model.Equipment.EquipmentInventoryModel;
+import Model.Equipment.Equipments;
 import Model.Equipment.SelectedEquipmentInventoryShell;
 import Model.Movement.MovementModel;
+import Model.Worker.WorkerModel;
 import Service.IUpdateData;
 import Service.ListenersService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class MovementPresenter extends BasePresenter implements IUpdateData {
     private static MovementPresenter sMovementPresenter;
@@ -39,7 +45,6 @@ public class MovementPresenter extends BasePresenter implements IUpdateData {
     }
 
     public ObservableList<SelectedEquipmentInventoryShell> getEquipmentInventoryList(DepartmentModel department, ObservableList<EquipmentInventoryModel> listExcluding) {
-        System.out.println("ololo blat");
         ObservableList<SelectedEquipmentInventoryShell> list = FXCollections.observableArrayList();
         if (listExcluding != null) {
             boolean flag = false;
@@ -52,9 +57,8 @@ public class MovementPresenter extends BasePresenter implements IUpdateData {
                 }
                 if (!flag) {
                     list.add(new SelectedEquipmentInventoryShell(equipment));
-                } else {
-                    flag = true;
                 }
+                flag = false;
             }
             return list;
         } else {
@@ -63,6 +67,49 @@ public class MovementPresenter extends BasePresenter implements IUpdateData {
             }
             return list;
         }
+    }
+
+    public void moveEquipmentInventory(EquipmentInventoryModel equipment, DepartmentModel toDepartment, WorkerModel fromWorker, WorkerModel toWorker, String base) {
+        DepartmentModel fromDepartment = equipment.getDepartmentModel();
+        MovementModel movement = new MovementModel(0, LocalDate.now(), base);
+        updateDepartment(fromDepartment, toDepartment);
+        updateEquipment(equipment, toDepartment);
+        movement.addEntity(movement.newMovementEquipment(equipment));
+        move(movement, fromDepartment, toDepartment, fromWorker, toWorker, base);
+        new IteractorEquipmentInventory().edit(equipment);
+        ListenersService.get().updateControl(EquipmentInventoryModel.class);
+    }
+
+    public void moveEquipmentInventory(List<EquipmentInventoryModel> equipments, DepartmentModel toDepartment, WorkerModel fromWorker, WorkerModel toWorker, String base) {
+        DepartmentModel fromDepartment = equipments.get(0).getDepartmentModel();
+        updateDepartment(fromDepartment, toDepartment);
+        MovementModel movement = new MovementModel(0, LocalDate.now(), base);
+        for (EquipmentInventoryModel equipment : equipments) {
+            updateEquipment(equipment, toDepartment);
+            movement.addEntity(movement.newMovementEquipment(equipment));
+        }
+        move(movement, fromDepartment, toDepartment, fromWorker, toWorker, base);
+        new IteractorEquipmentInventory().edit(equipments);
+        ListenersService.get().updateControl(EquipmentInventoryModel.class);
+        ListenersService.get().updateControl(MovementModel.class);
+    }
+
+    private void move(MovementModel movement, DepartmentModel fromDepartment, DepartmentModel toDepartment, WorkerModel fromWorker, WorkerModel toWorker, String base) {
+        movement.addDepartment(movement.newMovementDepartment(fromDepartment));
+        movement.addDepartment(movement.newMovementDepartment(toDepartment));
+        movement.addWorker(movement.newMovementWorker(fromWorker));
+        movement.addWorker(movement.newMovementWorker(toWorker));
+        new IteractorMovement().addNew(movement);
+    }
+
+    private void updateEquipment(EquipmentInventoryModel equipment, DepartmentModel toDepartment) {
+        Equipments.get().getEntity(equipment.getEquipmentModel().getId()).setEquipmentInventoryList(null);
+        equipment.setDepartmentModel(toDepartment);//назначение нового отдела дла оборудования
+    }
+
+    private void updateDepartment(DepartmentModel fromDepartment, DepartmentModel toDepartment) {
+        Departments.get().getEntity(toDepartment.getId()).setEquipmentList(null);
+        Departments.get().getEntity(fromDepartment.getId()).setEquipmentList(null);
     }
 
 

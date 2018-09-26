@@ -53,7 +53,7 @@ public class AddEquipmentInventoryController extends BaseController {
         initComboBoxState(mComboBoxState, false);
         initTextFieldCount();
         mBaseValidator.setJFXTextFields(mTextFieldCount, mTextFieldGuaranty);
-        mBaseValidator.setValidationFacades(new Pair(mFacadeNumber, mErrorNumber), new Pair(mFacadeState, mErrorState));
+        mBaseValidator.setValidationFacades(new Pair(mFacadeNumber, mErrorNumber, mComboBoxInventory), new Pair(mFacadeState, mErrorState, mComboBoxState));
     }
 
     private void initTextFieldCount() {

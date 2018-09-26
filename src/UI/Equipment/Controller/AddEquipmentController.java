@@ -63,7 +63,7 @@ public class AddEquipmentController extends BaseController {
     @FXML
     public void initialize() {
         mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNameFact);
-        mBaseValidator.setValidationFacades(new Pair(mFacadeType, mErrorType));
+        mBaseValidator.setValidationFacades(new Pair(mFacadeType, mErrorType, mComboBoxType));
         initComboBoxType(mComboBoxType, false);
         initTableVieParameter();
         updateTableParameter(mEquipmentParameterList);
@@ -129,7 +129,7 @@ public class AddEquipmentController extends BaseController {
         errorLabel.setFont(new Font(11));
         errorLabel.setVisible(false);
 
-        mBaseValidatorDialog.setValidationFacades(new Pair(facade, errorLabel));
+        mBaseValidatorDialog.setValidationFacades(new Pair(facade, errorLabel, comboBox));
 
         JFXTextField text = new JFXTextField();
         text.setLabelFloat(true);
@@ -210,22 +210,18 @@ public class AddEquipmentController extends BaseController {
         rootItem.getChildren().add(new TreeItem<>(new EquipmentParameterModel(-1, "", new ParameterModel(0, newParameter))));
         mTreeTableViewParameter.setRoot(rootItem);
         mTreeTableViewParameter.setShowRoot(false);
-        //mTreeTableViewParameter.setVisible(true);
         mTreeTableViewParameter.setFixedCellSize(50);
         mTreeTableViewParameter.prefHeightProperty().bind(Bindings.size(mTreeTableViewParameter.getRoot().getChildren())
                 .multiply(mTreeTableViewParameter.getFixedCellSize()).add(55));
 
-        System.out.println(mTreeTableViewParameter.getRoot().getChildren().size() + " " + mTreeTableViewParameter.getPrefHeight());
     }
 
     private void resizeHeightStage() {
-        System.out.println("before height Stage " + getStage().getHeight() + " height Table " + mTreeTableViewParameter.getPrefHeight());
         if (mEquipmentParameterList.size() >= 1) {
             getStage().setHeight(getStage().getMinHeight() + (mTreeTableViewParameter.getPrefHeight() - mTreeTableViewParameter.getMinHeight()));
         } else {
             getStage().setHeight(getStage().getMinHeight());
         }
-        System.out.println("after height Stage " + getStage().getHeight() + " height Table " + mTreeTableViewParameter.getPrefHeight());
     }
 
     @FXML

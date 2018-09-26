@@ -90,6 +90,22 @@ public abstract class GenericIteractor<T> implements IIteractor<T> {
     }
 
     @Override
+    public List<T> edit(List<T> entityList) {
+        String url = new URLBuilder(sURI).withParam("type", "0").build();
+        String json = Connector.put(url, getGson(entityList));
+        if (json != null) {
+            List<T> list = new Gson().fromJson(json, mListType);
+            for (T entity : list) {
+                setEntity(entity);
+            }
+            return list;
+        } else {
+            System.out.println("Ошибка при обновлении записи");
+            return null;
+        }
+    }
+
+    @Override
     public boolean delete(Set<Integer> idList) {
         URLBuilder url=new URLBuilder(sURI);
         for(int id:idList){

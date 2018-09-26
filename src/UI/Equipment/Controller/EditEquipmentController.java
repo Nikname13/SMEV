@@ -165,7 +165,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
         errorLabel.setFont(new Font(11));
         errorLabel.setVisible(false);
 
-        mBaseValidatorDialog.setValidationFacades(new Pair(facade, errorLabel));
+        mBaseValidatorDialog.setValidationFacades(new Pair(facade, errorLabel, comboBox));
 
         JFXTextField text = new JFXTextField();
         text.setLabelFloat(true);

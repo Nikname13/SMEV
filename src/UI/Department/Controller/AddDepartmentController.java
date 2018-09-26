@@ -53,7 +53,7 @@ public class AddDepartmentController extends BaseController {
     public void initialize(){
         mFlagLocation=false;
         mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNumber);
-        mBaseValidator.setValidationFacades(new Pair(mFacadeArea, mErrorArea), new Pair(mFacadeLocation, mErrorLocation));
+        mBaseValidator.setValidationFacades(new Pair(mFacadeArea, mErrorArea, mComboBoxArea), new Pair(mFacadeLocation, mErrorLocation, mComboBoxLocation));
         initComboBoxArea(mComboBoxArea, false);
         initComboBoxLocation(mComboBoxLocation);
 
