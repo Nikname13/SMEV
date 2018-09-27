@@ -14,7 +14,7 @@ import Model.State.StateModel;
 import Model.Type.TypeModel;
 import Service.IUpdateData;
 import Service.ListenersService;
-import UI.MainTabs.EquipmentTabController;
+import UI.MainTabs.Controller.EquipmentTabController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

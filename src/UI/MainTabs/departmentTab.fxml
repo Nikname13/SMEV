@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="UI.MainTabs.DepartmentTabController"
+            fx:controller="UI.MainTabs.Controller.DepartmentTabController"
             fx:id="splitPaneDepartmentTab">
     <children>
         <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"

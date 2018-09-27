@@ -24,7 +24,7 @@ public class AreasController {
     private TableColumn<AreaModel,String> firstColumn;
 
     @FXML
-    private AnchorPane anchorPaneArea;
+    private AnchorPane mAnchorPaneArea;
 
     @FXML
     public void initialize(){
@@ -47,6 +47,6 @@ public class AreasController {
 
     @FXML
     private void onClickAdd(){
-        new Coordinator().goToAddAreaWindow((Stage)anchorPaneArea.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToAddAreaWindow((Stage) mAnchorPaneArea.getScene().getWindow(), 100.0, 200.0);
     }
 }

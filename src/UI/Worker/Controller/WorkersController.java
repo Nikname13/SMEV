@@ -24,7 +24,7 @@ public class WorkersController {
     private TableColumn<WorkerModel,String> firstColumn, secondColumn, departmentColumn;
 
     @FXML
-    private AnchorPane anchorPaneWorkers;
+    private AnchorPane mAnchorPaneWorkers;
 
     @FXML
     public void initialize(){
@@ -51,6 +51,6 @@ public class WorkersController {
 
     @FXML
     private void onClickAdd(){
-        new Coordinator().goToAddWorkerWindow((Stage)anchorPaneWorkers.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToAddWorkerWindow((Stage) mAnchorPaneWorkers.getScene().getWindow(), 100.0, 200.0);
     }
 }

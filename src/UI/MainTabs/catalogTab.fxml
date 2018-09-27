@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
+            fx:controller="UI.MainTabs.Controller.CatalogTabController"
+>
+
+    <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
+                AnchorPane.bottomAnchor="10.0" prefWidth="300.0" minWidth="300.0" maxWidth="300.0">
+        <JFXListView fx:id="mListView" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0"
+                     AnchorPane.topAnchor="0">
+            <Label fx:id="mInventoryNumber" prefHeight="50">Инвентарный номер</Label>
+            <Label fx:id="mParameter" prefHeight="50">Параметры</Label>
+            <Label fx:id="mProvider" prefHeight="50">Поставщики</Label>
+            <Label fx:id="mArea" prefHeight="50">Районы</Label>
+            <Label fx:id="mState" prefHeight="50">Состояние</Label>
+            <Label fx:id="mWorker" prefHeight="50">Сотрудники</Label>
+            <Label fx:id="mType" prefHeight="50">Тип оборудования</Label>
+        </JFXListView>
+    </AnchorPane>
+    <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0"
+                AnchorPane.leftAnchor="320.0">
+        <JFXTabPane fx:id="mCatalogTabContainer" side="LEFT" tabMaxWidth="10" tabMinWidth="10"
+                    tabMinHeight="10" tabMaxHeight="10" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+                    AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">
+            <Tab>
+                <VBox fx:id="emptyBox"/>
+            </Tab>
+        </JFXTabPane>
+    </AnchorPane>
+</AnchorPane>

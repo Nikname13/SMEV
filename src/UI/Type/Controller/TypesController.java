@@ -22,7 +22,7 @@ public class TypesController {
     private TableColumn<TypeModel,String> firstColumn;
 
     @FXML
-    private AnchorPane anchorPaneTypes;
+    private AnchorPane mAnchorPaneTypes;
 
     @FXML
     public void initialize(){
@@ -33,11 +33,11 @@ public class TypesController {
 
     private void editType(Object type){
         new TypePresenter().setTypeModel(type);
-        new Coordinator().goToEditTypeWindow((Stage)anchorPaneTypes.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToEditTypeWindow((Stage) mAnchorPaneTypes.getScene().getWindow(), 100.0, 200.0);
     }
 
     @FXML
     private void onClickAdd(){
-        new Coordinator().goToAddTypeWindow((Stage) anchorPaneTypes.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToAddTypeWindow((Stage) mAnchorPaneTypes.getScene().getWindow(), 100.0, 200.0);
     }
 }

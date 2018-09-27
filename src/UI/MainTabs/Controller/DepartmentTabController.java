@@ -1,4 +1,4 @@
-package UI.MainTabs;
+package UI.MainTabs.Controller;
 
 import Service.IUpdateUI;
 import Service.ListenersService;

@@ -12,7 +12,11 @@ public class TabControllerService {
 
     private ITabSelected mListenerFirstTabPane, mListenerSecondTabPane;
     private static TabControllerService sTabControllerService;
-    private ResourceModel mEditDepartmentResource, mEquipmentInventoryResource, mEditEquipmentResource, mEmptyTab, mDetailsMovementResource;
+    private ResourceModel mEditDepartmentResource, mEquipmentInventoryResource, mEditEquipmentResource,
+            mEmptyTab, mDetailsMovementResource, mInventoryNumberResource,
+            mParameterResource, mProviderResource, mAreaResource,
+            mStateResource, mWorkerResource, mTypeResource,
+            mSupplyResource;
     private List<Tab> mTabList;
 
     public static TabControllerService get(){
@@ -28,6 +32,14 @@ public class TabControllerService {
         mEditEquipmentResource=new ResourceModel("/UI/Equipment/editEquipment.fxml", "anchorPaneEditEquipment");
         mEmptyTab=new ResourceModel("/UI/TabPane/emptyTab.fxml", "emptyTab.fxml");
         mDetailsMovementResource = new ResourceModel("/UI/Movement/detailsMovement.fxml", "mDetailsAnchorPane");
+        mInventoryNumberResource = new ResourceModel("/UI/Inventory_number/inventoryNumbers.fxml", "mAnchorPaneInventoryNumber");
+        mParameterResource = new ResourceModel("/UI/Parameter/parameters.fxml", "mAnchorPaneParameters");
+        mProviderResource = new ResourceModel("/UI/Provider/providers.fxml", "mAnchorPaneProviders");
+        mAreaResource = new ResourceModel("/UI/Area/areas.fxml", "mAnchorPaneArea");
+        mStateResource = new ResourceModel("/UI/State/states.fxml", "mAnchorPaneState");
+        mWorkerResource = new ResourceModel("/UI/Worker/workers.fxml", "mAnchorPaneWorkers");
+        mTypeResource = new ResourceModel("/UI/Type/types.fxml", "mAnchorPaneTypes");
+        mSupplyResource = new ResourceModel("/UI/Supply/supplys.fxml", "mAnchorPaneSupply");
     }
 
     public ITabSelected getListenerFirstTabPane() {
@@ -77,5 +89,37 @@ public class TabControllerService {
 
     public ResourceModel getDetailsMovementResource() {
         return mDetailsMovementResource;
+    }
+
+    public ResourceModel getInventoryNumberResource() {
+        return mInventoryNumberResource;
+    }
+
+    public ResourceModel getParameterResource() {
+        return mParameterResource;
+    }
+
+    public ResourceModel getProviderResource() {
+        return mProviderResource;
+    }
+
+    public ResourceModel getAreaResource() {
+        return mAreaResource;
+    }
+
+    public ResourceModel getStateResource() {
+        return mStateResource;
+    }
+
+    public ResourceModel getWorkerResource() {
+        return mWorkerResource;
+    }
+
+    public ResourceModel getTypeResource() {
+        return mTypeResource;
+    }
+
+    public ResourceModel getSupplyResource() {
+        return mSupplyResource;
     }
 }

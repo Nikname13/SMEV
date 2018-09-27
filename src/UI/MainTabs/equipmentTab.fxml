@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
-            fx:controller="UI.MainTabs.EquipmentTabController">
+            fx:controller="UI.MainTabs.Controller.EquipmentTabController">
     <children>
         <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
                     AnchorPane.bottomAnchor="10.0" prefWidth="250.0" minWidth="250.0" maxWidth="250.0">

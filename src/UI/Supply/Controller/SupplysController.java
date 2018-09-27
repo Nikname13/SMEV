@@ -21,7 +21,7 @@ public class SupplysController {
     private TableColumn<SupplyModel,String> dateColumn;
 
     @FXML
-    private AnchorPane anchorPaneSupplys;
+    private AnchorPane mAnchorPaneSupply;
 
     @FXML
     public void initialize(){
@@ -35,11 +35,11 @@ public class SupplysController {
 
     @FXML
     private void onClickAdd(){
-        new Coordinator().goToAddSupplyWindow((Stage)anchorPaneSupplys.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToAddSupplyWindow((Stage) mAnchorPaneSupply.getScene().getWindow(), 100.0, 200.0);
     }
 
     private void editSupply(Object supply){
         new SupplyPresenter().setSupplyModel(supply);
-        new Coordinator().goToEditSupplyWindow((Stage)anchorPaneSupplys.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToEditSupplyWindow((Stage) mAnchorPaneSupply.getScene().getWindow(), 100.0, 200.0);
     }
 }

@@ -22,7 +22,7 @@ public class ParametersController {
     private TableColumn<ParameterModel, String> firstColumn;
 
     @FXML
-    private AnchorPane anchorPaneParameters;
+    private AnchorPane mAnchorPaneParameters;
 
     @FXML
     public void initialize() {
@@ -34,13 +34,13 @@ public class ParametersController {
 
     @FXML
     private void onClickAdd() {
-        new Coordinator().goToAddParameterWindow((Stage) anchorPaneParameters.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToAddParameterWindow((Stage) mAnchorPaneParameters.getScene().getWindow(), 100.0, 200.0);
 
     }
 
     private void editParameter(Object o) {
         new ParametersPresenter().setParameter(o);
-        new Coordinator().goToEditParameterWindow((Stage) anchorPaneParameters.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToEditParameterWindow((Stage) mAnchorPaneParameters.getScene().getWindow(), 100.0, 200.0);
         System.out.println("editParameter");
     }
 

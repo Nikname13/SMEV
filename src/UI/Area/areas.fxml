@@ -7,7 +7,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="UI.Area.Controller.AreasController"
-            prefHeight="400.0" prefWidth="600.0" fx:id="anchorPaneArea">
+            prefHeight="400.0" prefWidth="600.0" fx:id="mAnchorPaneArea">
 
     <TableView fx:id="tableViewArea" prefHeight="400.0" prefWidth="199.0">
         <columns>

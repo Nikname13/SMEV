@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
-            fx:controller="UI.MainTabs.MovementTabController"
+            fx:controller="UI.MainTabs.Controller.MovementTabController"
 >
 
     <AnchorPane style="-fx-background-color: #ffffff;" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"

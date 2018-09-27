@@ -18,7 +18,7 @@ public class ProvidersController {
     private TableColumn<ProviderModel,String> firstColumn, secondColumn;
 
     @FXML
-    private AnchorPane anchorPaneProviders;
+    private AnchorPane mAnchorPaneProviders;
 
     @FXML
     public void initialize()
@@ -38,6 +38,6 @@ public class ProvidersController {
 
     @FXML
     private void onClickAdd(){
-        new Coordinator().goToAddProviderWindow((Stage)anchorPaneProviders.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToAddProviderWindow((Stage) mAnchorPaneProviders.getScene().getWindow(), 100.0, 200.0);
     }
 }

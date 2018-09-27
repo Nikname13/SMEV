@@ -51,7 +51,6 @@ public class DetailsMovementController extends BaseController implements IUpdate
     @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(MovementModel.class.getName())) {
-            System.out.println("update movement");
             mMovementModel = MovementPresenter.get().getMovementModel();
             mTextFieldDepartmentFrom.setText(mMovementModel.getDepartmentList().get(0).getName());
             mTextFieldDepartmentTo.setText(mMovementModel.getDepartmentList().get(1).getName());

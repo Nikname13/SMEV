@@ -22,7 +22,7 @@ public class StatesController {
     private TableColumn<StateModel,String> firstColumn;
 
     @FXML
-    private AnchorPane anchorPaneState;
+    private AnchorPane mAnchorPaneState;
 
     @FXML
     public void initialize(){
@@ -33,7 +33,7 @@ public class StatesController {
 
     @FXML
     private void onClickAdd(){
-        new Coordinator().goToAddStateWindow((Stage) anchorPaneState.getScene().getWindow(), 100.0, 200.0);
+        new Coordinator().goToAddStateWindow((Stage) mAnchorPaneState.getScene().getWindow(), 100.0, 200.0);
     }
 
     private void editState(Object state){

@@ -22,7 +22,7 @@ public class InventoryNumbersController {
     private TableColumn<InventoryNumberModel,Boolean> groupColumn;
 
     @FXML
-    private AnchorPane anchorPanelInventoryNumber;
+    private AnchorPane mAnchorPaneInventoryNumber;
 
     public void initialize(){
         System.out.println("inventoryNumber");
@@ -36,12 +36,12 @@ public class InventoryNumbersController {
 
     private void edit(InventoryNumberModel entity){
         new InventoryNumberPresenter().setInventoryNumberModel(entity);
-        new Coordinator().goToEditInventoryNumber((Stage)anchorPanelInventoryNumber.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToEditInventoryNumber((Stage) mAnchorPaneInventoryNumber.getScene().getWindow(), 100.0, 200.0);
 
     }
 
     @FXML
     private void onClickAdd(){
-        new Coordinator().goToAddInventoryNumberWindow((Stage)anchorPanelInventoryNumber.getScene().getWindow(),100.0,200.0);
+        new Coordinator().goToAddInventoryNumberWindow((Stage) mAnchorPaneInventoryNumber.getScene().getWindow(), 100.0, 200.0);
     }
 }

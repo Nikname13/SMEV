@@ -2,9 +2,10 @@ package UI;
 
 import Service.IErrorMessage;
 import Service.ListenersService;
-import UI.MainTabs.DepartmentTabController;
-import UI.MainTabs.EquipmentTabController;
-import UI.MainTabs.MovementTabController;
+import UI.MainTabs.Controller.CatalogTabController;
+import UI.MainTabs.Controller.DepartmentTabController;
+import UI.MainTabs.Controller.EquipmentTabController;
+import UI.MainTabs.Controller.MovementTabController;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
@@ -56,6 +57,9 @@ public class ExampleController implements IErrorMessage {
             case "mSupplyTab": break;
             case "mMovementTab":
                 ListenersService.get().updateUI(MovementTabController.class);
+                break;
+            case "mCatalogTab":
+                ListenersService.get().updateUI(CatalogTabController.class);
                 break;
         }
     }
