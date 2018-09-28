@@ -60,14 +60,14 @@ public class TabControllerService {
 
     public Tab getNextTab(ResourceModel resource) {
         if(mTabList==null) mTabList=new ArrayList<>();
-/*        for(Tab tab:mTabList){
+        for (Tab tab : mTabList) {
             if(tab.getContent().getId().equals(resource.getId())) return tab;
-        }*/
+        }
         try {
             Tab nextTab=new Tab();
             nextTab.setContent(FXMLLoader.load(getClass().getResource(resource.getURL())));
             nextTab.getContent().minHeight(1000.0);
-           // mTabList.add(nextTab);
+            mTabList.add(nextTab);
             return nextTab;
         }catch (IOException ex){
             System.out.println("ошибка доступа к fxml");

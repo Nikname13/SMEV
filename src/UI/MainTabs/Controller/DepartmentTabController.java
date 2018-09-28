@@ -22,7 +22,6 @@ public class DepartmentTabController extends BaseTabController implements IUpdat
     @FXML
     public void initialize(){
         System.out.println("department tab initialize");
-
     }
 
     @Override

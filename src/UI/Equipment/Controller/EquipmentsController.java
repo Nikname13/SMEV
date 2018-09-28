@@ -30,6 +30,7 @@ public class EquipmentsController implements IUpdateUI {
 
     @FXML
     public void initialize() {
+        System.out.println("init equipment");
         initEquipmentTreeView();
         initPopup();
     }

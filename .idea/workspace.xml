@@ -9,54 +9,37 @@
     <bookmark url="file://$PROJECT_DIR$/src/UI/Equipment/editEquipment.fxml" line="71" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="-доработан интерфейс перемещения оборудования">
-      <change afterPath="$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/MainTabs/catalogTab.fxml" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="-создан интерфейс для просмотра справочников">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/GenericIteractor$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/GenericIteractor$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/GenericIteractor$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/GenericIteractor$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/GenericIteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/GenericIteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IIteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IIteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Model/GenericModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Model/GenericModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Presenter/EquipmentPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Presenter/EquipmentPresenter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Coordinator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Coordinator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/AddDepartmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/AddDepartmentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/AddLocationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/AddLocationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Equipment/Controller/AddEquipmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Equipment/Controller/AddEquipmentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Equipment/Equipment_inventory/Controller/AddEquipmentInventoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Equipment/Equipment_inventory/Controller/AddEquipmentInventoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Service/TabControllerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Service/TabControllerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Area/Controller/AreasController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Area/Controller/AreasController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Area/areas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Area/areas.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/ExampleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/ExampleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Inventory_number/Controller/InventoryNumbersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Inventory_number/Controller/InventoryNumbersController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Inventory_number/inventoryNumbers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Inventory_number/inventoryNumbers.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/MainTabs/departmentTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/MainTabs/departmentTab.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/MainTabs/equipmentTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/MainTabs/equipmentTab.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/MainTabs/sampleFxml.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/MainTabs/sampleFxml.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Movement/Controller/AddMovementController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Movement/Controller/AddMovementController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Worker/Controller/AddWorkerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Worker/Controller/AddWorkerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Parameter/Controller/ParametersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Parameter/Controller/ParametersController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Parameter/parameters.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Parameter/parameters.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Provider/Controller/ProvidersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Provider/Controller/ProvidersController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Provider/providers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Provider/providers.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/State/Controller/StatesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/State/Controller/StatesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/State/states.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/State/states.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Supply/Controller/SupplysController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Supply/Controller/SupplysController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Supply/supplys.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Supply/supplys.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Type/Controller/TypesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Type/Controller/TypesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Type/types.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Type/types.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Worker/Controller/WorkersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Worker/Controller/WorkersController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Worker/workers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Worker/workers.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/example.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/example.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Presenter/EquipmentPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presenter/EquipmentPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Net/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Net/Connector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/TabControllerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/TabControllerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Area/Controller/AreasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Area/Controller/AreasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Area/areas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Area/areas.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/ExampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/ExampleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Inventory_number/Controller/InventoryNumbersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Inventory_number/Controller/InventoryNumbersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Inventory_number/inventoryNumbers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Inventory_number/inventoryNumbers.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainTabs/DepartmentTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MainTabs/Controller/DepartmentTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainTabs/EquipmentTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MainTabs/Controller/EquipmentTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainTabs/MovementTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MainTabs/Controller/MovementTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainTabs/departmentTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MainTabs/departmentTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainTabs/equipmentTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MainTabs/equipmentTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainTabs/movementTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MainTabs/movementTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainTabs/sampleFxml.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MainTabs/sampleFxml.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Movement/Controller/DetailsMovementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Movement/Controller/DetailsMovementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Parameter/Controller/ParametersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Parameter/Controller/ParametersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Parameter/parameters.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Parameter/parameters.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Provider/Controller/ProvidersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Provider/Controller/ProvidersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Provider/providers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Provider/providers.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/State/Controller/StatesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/State/Controller/StatesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/State/states.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/State/states.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Supply/Controller/SupplysController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Supply/Controller/SupplysController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Supply/supplys.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Supply/supplys.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Type/Controller/TypesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Type/Controller/TypesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Type/types.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Type/types.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Worker/Controller/WorkersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Worker/Controller/WorkersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Worker/workers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Worker/workers.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/example.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/example.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/BaseTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/BaseTabController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Department/Controller/DepartmentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Department/Controller/DepartmentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Equipment/Controller/EquipmentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Equipment/Controller/EquipmentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/MainTabs/Controller/DepartmentTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MainTabs/Controller/DepartmentTabController.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -225,7 +208,7 @@
             <file pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/UI/example.fxml">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="612">
+                  <state relative-caret-position="561">
                     <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
                   </state>
                 </provider>
@@ -235,8 +218,8 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/UI/MainTabs/catalogTab.fxml">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="510">
-                    <caret line="30" column="35" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+                  <state relative-caret-position="459">
+                    <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
                   </state>
                 </provider>
                 <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -263,13 +246,13 @@
         <counts>
           <entry key="class" value="16" />
           <entry key="fxml" value="130" />
-          <entry key="java" value="1466" />
+          <entry key="java" value="1473" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="16" />
-          <entry key="JAVA" value="1466" />
+          <entry key="JAVA" value="1473" />
           <entry key="XML" value="130" />
         </counts>
       </usages-collector>
@@ -278,15 +261,15 @@
           <entry key="class" value="12" />
           <entry key="dummy" value="51" />
           <entry key="fxml" value="3908" />
-          <entry key="java" value="33030" />
-          <entry key="txt" value="1281" />
+          <entry key="java" value="33416" />
+          <entry key="txt" value="1327" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="12" />
-          <entry key="JAVA" value="33030" />
-          <entry key="PLAIN_TEXT" value="1332" />
+          <entry key="JAVA" value="33416" />
+          <entry key="PLAIN_TEXT" value="1378" />
           <entry key="XML" value="3908" />
         </counts>
       </usages-collector>
@@ -297,41 +280,96 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Service/TabControllerService.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Iteractor/GenericIteractor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="19" column="31" lean-forward="true" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+            <state relative-caret-position="187">
+              <caret line="83" selection-start-line="83" selection-end-line="83" />
               <folding>
-                <element signature="e#3971#3972#0" expanded="true" />
-                <element signature="e#4012#4013#0" expanded="true" />
-                <element signature="e#4062#4063#0" expanded="true" />
-                <element signature="e#4102#4103#0" expanded="true" />
-                <element signature="e#4148#4149#0" expanded="true" />
-                <element signature="e#4184#4185#0" expanded="true" />
-                <element signature="e#4231#4232#0" expanded="true" />
-                <element signature="e#4268#4269#0" expanded="true" />
-                <element signature="e#4316#4317#0" expanded="true" />
-                <element signature="e#4354#4355#0" expanded="true" />
-                <element signature="e#4400#4401#0" expanded="true" />
-                <element signature="e#4436#4437#0" expanded="true" />
-                <element signature="e#4484#4485#0" expanded="true" />
-                <element signature="e#4522#4523#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1409#1410#0" expanded="true" />
+                <element signature="e#1473#1474#0" expanded="true" />
+                <element signature="e#1518#1519#0" expanded="true" />
+                <element signature="e#1582#1583#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/Department/Controller/EditDepartmentController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="79" column="9" lean-forward="true" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Service/TabControllerService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="64" column="9" lean-forward="true" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+              <folding>
+                <element signature="e#3452#3453#0" expanded="true" />
+                <element signature="e#3498#3499#0" expanded="true" />
+                <element signature="e#3559#3560#0" expanded="true" />
+                <element signature="e#3609#3610#0" expanded="true" />
+                <element signature="e#3664#3665#0" expanded="true" />
+                <element signature="e#3709#3710#0" expanded="true" />
+                <element signature="e#3766#3767#0" expanded="true" />
+                <element signature="e#3813#3814#0" expanded="true" />
+                <element signature="e#3870#3871#0" expanded="true" />
+                <element signature="e#3917#3918#0" expanded="true" />
+                <element signature="e#3968#3969#0" expanded="true" />
+                <element signature="e#4009#4010#0" expanded="true" />
+                <element signature="e#4059#4060#0" expanded="true" />
+                <element signature="e#4099#4100#0" expanded="true" />
+                <element signature="e#4145#4146#0" expanded="true" />
+                <element signature="e#4181#4182#0" expanded="true" />
+                <element signature="e#4228#4229#0" expanded="true" />
+                <element signature="e#4265#4266#0" expanded="true" />
+                <element signature="e#4313#4314#0" expanded="true" />
+                <element signature="e#4351#4352#0" expanded="true" />
+                <element signature="e#4397#4398#0" expanded="true" />
+                <element signature="e#4433#4434#0" expanded="true" />
+                <element signature="e#4481#4482#0" expanded="true" />
+                <element signature="e#4519#4520#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Net/Connector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="37" column="13" lean-forward="true" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="75" column="47" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
+            <state relative-caret-position="255">
+              <caret line="15" column="51" lean-forward="true" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#560#561#0" expanded="true" />
                 <element signature="e#618#619#0" expanded="true" />
+                <element signature="e#697#698#0" expanded="true" />
+                <element signature="e#723#724#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Service/ITabSelected.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -339,72 +377,53 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UI/BaseTabController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+            <state relative-caret-position="442">
+              <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UI/Supply/Controller/SupplysController.java">
+        <entry file="file://$PROJECT_DIR$/src/UI/MainTabs/Controller/DepartmentTabController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="11" column="55" selection-start-line="11" selection-start-column="55" selection-end-line="11" selection-end-column="55" />
+              <folding>
+                <element signature="e#712#713#0" expanded="true" />
+                <element signature="e#775#776#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/Department/Controller/DepartmentsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+              <folding>
+                <element signature="method#initListViewDepartments#0;class#DepartmentsController#0" />
+                <element signature="method#refreshControl#0;class#DepartmentsController#0" />
+                <element signature="method#updateControl#0;class#DepartmentsController#0" />
+                <element signature="method#updateControl#1;class#DepartmentsController#0" />
+                <element signature="method#primaryClick#0;class#DepartmentsController#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/Equipment/Controller/EquipmentsController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="23" column="40" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UI/Type/Controller/TypesController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="24" column="39" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UI/Worker/Controller/WorkersController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="26" column="41" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UI/State/Controller/StatesController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="24" column="39" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UI/Area/areas.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="63" lean-forward="true" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UI/Area/Controller/AreasController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="26" column="38" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UI/Provider/Controller/ProvidersController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="20" column="43" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="43" />
+              <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
+              <folding>
+                <element signature="method#updateEquipmentTreeView#0;class#EquipmentsController#0" />
+                <element signature="method#selectedEquipment#0;class#EquipmentsController#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -444,11 +463,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Presenter/BasePresenter.java" />
-        <option value="$PROJECT_DIR$/src/Presenter/WorkerPresenter.java" />
-        <option value="$PROJECT_DIR$/src/Presenter/InventoryNumberPresenter.java" />
-        <option value="$PROJECT_DIR$/src/Presenter/ParametersPresenter.java" />
-        <option value="$PROJECT_DIR$/src/Presenter/ProviderPresenter.java" />
         <option value="$PROJECT_DIR$/src/Presenter/StatePresenter.java" />
         <option value="$PROJECT_DIR$/src/Presenter/SupplyPresenter.java" />
         <option value="$PROJECT_DIR$/src/Presenter/TypePresenter.java" />
@@ -492,9 +506,14 @@
         <option value="$PROJECT_DIR$/src/UI/Worker/Controller/WorkersController.java" />
         <option value="$PROJECT_DIR$/src/UI/Type/Controller/TypesController.java" />
         <option value="$PROJECT_DIR$/src/UI/Supply/Controller/SupplysController.java" />
-        <option value="$PROJECT_DIR$/src/Service/TabControllerService.java" />
         <option value="$PROJECT_DIR$/src/UI/MainTabs/catalogTab.fxml" />
+        <option value="$PROJECT_DIR$/src/UI/MainTabs/Controller/DepartmentTabController.java" />
+        <option value="$PROJECT_DIR$/src/Service/TabControllerService.java" />
+        <option value="$PROJECT_DIR$/src/Net/Connector.java" />
+        <option value="$PROJECT_DIR$/src/UI/Department/Controller/DepartmentsController.java" />
+        <option value="$PROJECT_DIR$/src/UI/Equipment/Controller/EquipmentsController.java" />
         <option value="$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java" />
+        <option value="$PROJECT_DIR$/src/UI/BaseTabController.java" />
       </list>
     </option>
   </component>
@@ -620,6 +639,12 @@
               <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
               <item name="SMEV" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Net" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Presenter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -669,6 +694,21 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="UI" type="462c0819:PsiDirectoryNode" />
               <item name="Department" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="Equipment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="Equipment" type="462c0819:PsiDirectoryNode" />
               <item name="Controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -1218,7 +1258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1537960608854</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="-создан интерфейс для просмотра справочников">
+      <created>1538046473364</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1538046473364</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1228,14 +1275,14 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.29371002" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.29371002" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.23726977" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.36511377" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31527627" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.46478873" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1264,7 +1311,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="-исправлена ошибка при создании нового отдела&#10;-создана класс BasePopup для работы с контекстным меню" />
     <MESSAGE value="-создан класс от которого наследуются все контроллеры с работой Popup: BasePopupController&#10;-создан класс BaseListPopupController для работы с общим контекстным меню&#10;-создан класс BasePresenter от которого наследуются все Presenter&#10;-добавлен метод delete() в интерфейс в IUpdateData&#10;-Обновлены initListView в Department, для работы с BasePresenter" />
     <MESSAGE value="-изменен интерфейс для addWorker&#10;-изменен метод update() в IUpdateDate&#10;-добавлена реализация метода update() в Department и Equipment&#10;-реализовано удаление и добавление работника из Department" />
     <MESSAGE value="-реализовано удаление адреса в Department&#10;-создан интерфейс IUpdatePopup&#10;-реализован метод hide() в BasePopup&#10;-реализовано удаление отдела в Department" />
@@ -1289,7 +1335,8 @@
     <MESSAGE value="-реализован интерфейс для добовления нового перемещения&#10;-реализована возможность просмотра полной информации по каждому перемещению" />
     <MESSAGE value="-реализована возможность перемещения списка оборудования(AddMovement)&#10;-общие методы вынесены в базовый класс (BasePresenter)" />
     <MESSAGE value="-доработан интерфейс перемещения оборудования" />
-    <option name="LAST_COMMIT_MESSAGE" value="-доработан интерфейс перемещения оборудования" />
+    <MESSAGE value="-создан интерфейс для просмотра справочников" />
+    <option name="LAST_COMMIT_MESSAGE" value="-создан интерфейс для просмотра справочников" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1361,7 +1408,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Net/Connector.java</url>
-          <line>98</line>
+          <line>97</line>
           <properties />
           <option name="timeStamp" value="90" />
         </line-breakpoint>
@@ -1553,7 +1600,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Net/Connector.java</url>
-          <line>156</line>
+          <line>155</line>
           <properties />
           <option name="timeStamp" value="236" />
         </line-breakpoint>
@@ -1907,6 +1954,60 @@
           <properties />
           <option name="timeStamp" value="439" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java</url>
+          <line>40</line>
+          <properties />
+          <option name="timeStamp" value="440" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java</url>
+          <line>43</line>
+          <properties />
+          <option name="timeStamp" value="441" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java</url>
+          <line>46</line>
+          <properties />
+          <option name="timeStamp" value="442" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java</url>
+          <line>49</line>
+          <properties />
+          <option name="timeStamp" value="443" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java</url>
+          <line>52</line>
+          <properties />
+          <option name="timeStamp" value="444" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java</url>
+          <line>55</line>
+          <properties />
+          <option name="timeStamp" value="445" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java</url>
+          <line>58</line>
+          <properties />
+          <option name="timeStamp" value="446" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java</url>
+          <line>66</line>
+          <properties />
+          <option name="timeStamp" value="448" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java</url>
+          <line>77</line>
+          <properties />
+          <option name="timeStamp" value="449" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -1918,24 +2019,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/UI/Department/Controller/AddPurchaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
-          <folding>
-            <element signature="e#2033#2034#0" expanded="true" />
-            <element signature="e#2060#2061#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Validator/BaseValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="56" column="15" lean-forward="true" selection-start-line="56" selection-start-column="15" selection-end-line="56" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UI/Validator/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -2010,20 +2093,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Iteractor/GenericIteractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="92" column="19" selection-start-line="92" selection-start-column="19" selection-end-line="92" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1409#1410#0" expanded="true" />
-            <element signature="e#1473#1474#0" expanded="true" />
-            <element signature="e#1518#1519#0" expanded="true" />
-            <element signature="e#1582#1583#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UI/Equipment/Controller/AddEquipmentController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="671">
@@ -2046,17 +2115,6 @@
             <element signature="imports" expanded="true" />
             <element signature="e#1501#1502#0" expanded="true" />
             <element signature="e#1560#1561#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Equipment/Controller/EquipmentsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="114" column="35" selection-start-line="114" selection-start-column="12" selection-end-line="114" selection-end-column="35" />
-          <folding>
-            <element signature="method#updateEquipmentTreeView#0;class#EquipmentsController#0" />
-            <element signature="method#selectedEquipment#0;class#EquipmentsController#0" />
           </folding>
         </state>
       </provider>
@@ -2176,13 +2234,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/MainTabs/Controller/DepartmentTabController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UI/Popup/Controller/BasePopupController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -2198,27 +2249,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Department/Controller/DepartmentsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
-          <folding>
-            <element signature="e#805#806#0" expanded="true" />
-            <element signature="e#862#863#0" expanded="true" />
-            <element signature="method#initialize#0;class#DepartmentsController#0" />
-            <element signature="method#initListViewDepartments#0;class#DepartmentsController#0" />
-            <element signature="class#2155:2500" />
-            <element signature="method#changed#0;class#2155:2500" />
-            <element signature="method#refreshControl#0;class#DepartmentsController#0" />
-            <element signature="method#updateControl#0;class#DepartmentsController#0" />
-            <element signature="method#updateControl#1;class#DepartmentsController#0" />
-            <element signature="class#4213:4493" />
-            <element signature="method#run#0;class#4213:4493" />
-            <element signature="method#primaryClick#0;class#DepartmentsController#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UI/Inventory_number/inventoryNumbers.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -2231,13 +2261,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="24" column="49" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/ITabSelected.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -2257,7 +2280,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UI/example.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
+        <state relative-caret-position="561">
           <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
         </state>
       </provider>
@@ -2315,7 +2338,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UI/Area/areas.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="85">
           <caret line="9" column="63" lean-forward="true" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
         </state>
       </provider>
@@ -2356,52 +2379,138 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/TabControllerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" column="31" lean-forward="true" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-          <folding>
-            <element signature="e#3971#3972#0" expanded="true" />
-            <element signature="e#4012#4013#0" expanded="true" />
-            <element signature="e#4062#4063#0" expanded="true" />
-            <element signature="e#4102#4103#0" expanded="true" />
-            <element signature="e#4148#4149#0" expanded="true" />
-            <element signature="e#4184#4185#0" expanded="true" />
-            <element signature="e#4231#4232#0" expanded="true" />
-            <element signature="e#4268#4269#0" expanded="true" />
-            <element signature="e#4316#4317#0" expanded="true" />
-            <element signature="e#4354#4355#0" expanded="true" />
-            <element signature="e#4400#4401#0" expanded="true" />
-            <element signature="e#4436#4437#0" expanded="true" />
-            <element signature="e#4484#4485#0" expanded="true" />
-            <element signature="e#4522#4523#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UI/MainTabs/catalogTab.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="35" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+        <state relative-caret-position="459">
+          <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/BaseTabController.java">
+    <entry file="file://$PROJECT_DIR$/src/Service/ITabSelected.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        <state relative-caret-position="85">
+          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/MainTabs/Controller/DepartmentTabController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="11" column="55" selection-start-line="11" selection-start-column="55" selection-end-line="11" selection-end-column="55" />
+          <folding>
+            <element signature="e#712#713#0" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Service/TabControllerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="64" column="9" lean-forward="true" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+          <folding>
+            <element signature="e#3452#3453#0" expanded="true" />
+            <element signature="e#3498#3499#0" expanded="true" />
+            <element signature="e#3559#3560#0" expanded="true" />
+            <element signature="e#3609#3610#0" expanded="true" />
+            <element signature="e#3664#3665#0" expanded="true" />
+            <element signature="e#3709#3710#0" expanded="true" />
+            <element signature="e#3766#3767#0" expanded="true" />
+            <element signature="e#3813#3814#0" expanded="true" />
+            <element signature="e#3870#3871#0" expanded="true" />
+            <element signature="e#3917#3918#0" expanded="true" />
+            <element signature="e#3968#3969#0" expanded="true" />
+            <element signature="e#4009#4010#0" expanded="true" />
+            <element signature="e#4059#4060#0" expanded="true" />
+            <element signature="e#4099#4100#0" expanded="true" />
+            <element signature="e#4145#4146#0" expanded="true" />
+            <element signature="e#4181#4182#0" expanded="true" />
+            <element signature="e#4228#4229#0" expanded="true" />
+            <element signature="e#4265#4266#0" expanded="true" />
+            <element signature="e#4313#4314#0" expanded="true" />
+            <element signature="e#4351#4352#0" expanded="true" />
+            <element signature="e#4397#4398#0" expanded="true" />
+            <element signature="e#4433#4434#0" expanded="true" />
+            <element signature="e#4481#4482#0" expanded="true" />
+            <element signature="e#4519#4520#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Net/Connector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="37" column="13" lean-forward="true" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Department/Controller/EditDepartmentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="79" column="9" lean-forward="true" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Equipment/Controller/EquipmentsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
+          <folding>
+            <element signature="method#updateEquipmentTreeView#0;class#EquipmentsController#0" />
+            <element signature="method#selectedEquipment#0;class#EquipmentsController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Department/Controller/DepartmentsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+          <folding>
+            <element signature="method#initListViewDepartments#0;class#DepartmentsController#0" />
+            <element signature="method#refreshControl#0;class#DepartmentsController#0" />
+            <element signature="method#updateControl#0;class#DepartmentsController#0" />
+            <element signature="method#updateControl#1;class#DepartmentsController#0" />
+            <element signature="method#primaryClick#0;class#DepartmentsController#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="75" column="47" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
+        <state relative-caret-position="255">
+          <caret line="15" column="51" lean-forward="true" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#560#561#0" expanded="true" />
             <element signature="e#618#619#0" expanded="true" />
+            <element signature="e#697#698#0" expanded="true" />
+            <element signature="e#723#724#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/BaseTabController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/GenericIteractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1409#1410#0" expanded="true" />
+            <element signature="e#1473#1474#0" expanded="true" />
+            <element signature="e#1518#1519#0" expanded="true" />
+            <element signature="e#1582#1583#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -46,6 +46,7 @@ public class DepartmentsController implements IUpdateUI, IOnMouseClick {
 
     @FXML
     public void initialize(){
+        System.out.println("init department");
         initListViewDepartments();
         initPopup();
     }

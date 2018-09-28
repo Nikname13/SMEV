@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 
 public class CatalogTabController extends BaseTabController implements IUpdateUI {
 
@@ -71,12 +70,17 @@ public class CatalogTabController extends BaseTabController implements IUpdateUI
         }
     }
 
-    @Override
+/*    @Override
     public void nextTab(Tab nextTab, TabPane tabPane) {
-        tabPane.getTabs().clear();
-        tabPane.getTabs().add(nextTab);
+        tabPane.getSelectionModel().select(0);
+        PauseTransition p = new PauseTransition(Duration.millis(150 + 20));
+            p.setOnFinished(e2 -> tabPane.getTabs().add(nextTab));
+            p.play();
         tabPane.getSelectionModel().select(nextTab);
-    }
+        if (tabPane.getSelectionModel().getSelectedIndex() - 1 != 0) {
+            tabPane.getTabs().remove(tabPane.getSelectionModel().getSelectedIndex() - 1);
+        }
+    }*/
 
     @Override
     public void refreshControl(Class<?> updateClass) {

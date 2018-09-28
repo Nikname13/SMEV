@@ -36,10 +36,10 @@
         </Tab>
         <Tab fx:id="mCatalogTab" text="Справочник">
             <AnchorPane>
-               <children>
-                   <fx:include source="MainTabs/catalogTab.fxml" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
-                               AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"/>
-               </children>
+                <children>
+                    <fx:include source="MainTabs/catalogTab.fxml" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+                                AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"/>
+                </children>
             </AnchorPane>
         </Tab>
     </JFXTabPane>

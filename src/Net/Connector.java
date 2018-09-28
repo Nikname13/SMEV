@@ -36,7 +36,6 @@ public class Connector {
 
     private static String getJSON(HttpURLConnection connect) {
         try {
-            System.out.println(" connect encoding ");
             BufferedReader br = new BufferedReader(new InputStreamReader(connect.getInputStream(), StandardCharsets.UTF_8));
             StringBuilder sb = new StringBuilder();
             String line;
