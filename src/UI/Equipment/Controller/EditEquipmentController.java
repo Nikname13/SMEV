@@ -16,7 +16,6 @@ import Service.TabControllerService;
 import UI.BaseController;
 import UI.Coordinator;
 import UI.Popup.BasePopup;
-import UI.TabPane.Controller.TabPaneSecondLvlTabController;
 import UI.Validator.BaseValidator;
 import UI.Validator.Pair;
 import com.jfoenix.controls.*;
@@ -41,6 +40,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import static UI.BaseTabController.nextTab;
+
 public class EditEquipmentController extends BaseController implements IUpdateUI, IOnMouseClick {
 
     private static EquipmentModel sEquipmentModel;
@@ -48,10 +49,8 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
     private BaseValidator mBaseValidatorDialog = new BaseValidator();
     private ObservableList<EquipmentParameterModel> mEquipmentParameterList;
 
-    public EditEquipmentController() {
-        ListenersService.get().addListenerUI(this);
-        sEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
-    }
+    @FXML
+    private JFXTabPane mSecondLvlTabPane;
 
     @FXML
     private JFXTextField mTextFieldName, mTextFieldNameFact;
@@ -76,6 +75,12 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
 
     @FXML
     private TreeTableColumn<EquipmentInventoryModel, String> mDepartmentEquipmentColumn, mNumberEquipmentColumn, mStateEquipmentColumn, mDescriptionEquipmentColumn;
+
+    public EditEquipmentController() {
+        ListenersService.get().addListenerUI(this);
+
+        sEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
+    }
 
     @FXML
     private StackPane mStackPaneEditEquipment;
@@ -254,7 +259,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
             if (equipment != null && equipment.getId() != -1) {
                 EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
                 EquipmentPresenter.get().setSelectedObject(equipment);
-                TabControllerService.get().getListenerThirdTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
+                TabControllerService.get().getListenerSecondTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
                 ListenersService.get().updateUI(EquipmentInventoryModel.class);
             } else {
                 EquipmentPresenter.get().setSelectedObject(null);
@@ -329,7 +334,9 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
             updateTableParameter(mEquipmentParameterList);
             //tableViewEquipment.setItems(sEquipmentModel.getObservableEqInventoryList());
             updateEquipmentTable(sEquipmentModel.getObservableEqInventoryList());
-            ListenersService.get().updateUI(TabPaneSecondLvlTabController.class);
+            mSecondLvlTabPane.getSelectionModel().select(0);
+            if (mSecondLvlTabPane.getTabs().size() > 1) mSecondLvlTabPane.getTabs().remove(1);
+            TabControllerService.get().setListenerSecondTabPane(((Tab nextTab) -> nextTab(nextTab, mSecondLvlTabPane)));
         }
     }
 

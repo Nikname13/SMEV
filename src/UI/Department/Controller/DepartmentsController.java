@@ -9,14 +9,13 @@ import Service.ListenersService;
 import Service.TabControllerService;
 import UI.Coordinator;
 import UI.Popup.BasePopup;
+import UI.TabPane.Controller.TabPaneSecondLvlTabController;
 import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -25,14 +24,6 @@ public class DepartmentsController implements IUpdateUI, IOnMouseClick {
     public DepartmentsController(){
         ListenersService.get().addListenerUI(this);
     }
-
-    private BasePopup mPopup;
-
-    @FXML
-    private TableView<DepartmentModel> mDepartmentTableView;
-
-    @FXML
-    private TableColumn<DepartmentModel,String> numberColumn, nameColumn, areaColumn;
 
     @FXML
     private JFXListView<DepartmentModel> mDepartmentListView;
@@ -75,18 +66,18 @@ public class DepartmentsController implements IUpdateUI, IOnMouseClick {
     }
 
     private void initPopup() {
-        mPopup = new BasePopup(mDepartmentListView, BasePopup.getDepartmentListPopup(), this);
+        new BasePopup(mDepartmentListView, BasePopup.getDepartmentListPopup(), this);
 
     }
 
     private void selectedDepartment(DepartmentModel department) {
         if(department!=null) {
-            //DepartmentPresenter.get().setBasePopup(mPopup);
             DepartmentPresenter.get().setDepartmentModel(department);
             DepartmentPresenter.get().setSelectedObject(department);
             DepartmentPresenter.get().loadEntity(department.getId());
             TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditDepartmentResource()));
             ListenersService.get().updateUI(DepartmentModel.class);
+
         }
     }
 
@@ -99,6 +90,7 @@ public class DepartmentsController implements IUpdateUI, IOnMouseClick {
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             mDepartmentListView.getSelectionModel().clearSelection();
+            ListenersService.get().updateControl(TabPaneSecondLvlTabController.class);
         }
     }
 

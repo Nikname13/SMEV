@@ -24,8 +24,8 @@
     </AnchorPane>
     <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0"
                 AnchorPane.leftAnchor="320.0">
-        <JFXTabPane fx:id="mCatalogTabContainer" side="LEFT" tabMaxWidth="10" tabMinWidth="10"
-                    tabMinHeight="10" tabMaxHeight="10" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+        <JFXTabPane fx:id="mCatalogTabContainer" side="LEFT" tabMaxWidth="0" tabMinWidth="0"
+                    tabMinHeight="0" tabMaxHeight="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
                     AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">
             <Tab>
                 <VBox fx:id="emptyBox"/>

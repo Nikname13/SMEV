@@ -64,23 +64,10 @@ public class CatalogTabController extends BaseTabController implements IUpdateUI
         if (updateClass.getName().equals(this.getClass().getName())) {
             System.out.println("catalog tab Controller");
             TabControllerService.get().setListenerFirstTabPane((Tab nextTab) -> nextTab(nextTab, mCatalogTabContainer));
-            //ListenersService.get().updateUI(EquipmentsController.class);
-            //ListenersService.get().updateControl(MovementModel.class);
             mCatalogTabContainer.getSelectionModel().select(0);
+            mListView.getSelectionModel().clearSelection();
         }
     }
-
-/*    @Override
-    public void nextTab(Tab nextTab, TabPane tabPane) {
-        tabPane.getSelectionModel().select(0);
-        PauseTransition p = new PauseTransition(Duration.millis(150 + 20));
-            p.setOnFinished(e2 -> tabPane.getTabs().add(nextTab));
-            p.play();
-        tabPane.getSelectionModel().select(nextTab);
-        if (tabPane.getSelectionModel().getSelectedIndex() - 1 != 0) {
-            tabPane.getTabs().remove(tabPane.getSelectionModel().getSelectedIndex() - 1);
-        }
-    }*/
 
     @Override
     public void refreshControl(Class<?> updateClass) {

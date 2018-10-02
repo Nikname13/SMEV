@@ -13,7 +13,7 @@ public class TabPaneSecondLvlTabController extends BaseTabController implements 
     public TabPaneSecondLvlTabController() {
         System.out.println("second lvl controller");
         ListenersService.get().addListenerUI(this);
-        TabControllerService.get().setListenerThirdTabPane(((Tab nextTab)->nextTab(nextTab,mSecondLvlTabPane)));
+        TabControllerService.get().setListenerSecondTabPane(((Tab nextTab) -> nextTab(nextTab, mSecondLvlTabPane)));
     }
 
     @FXML
@@ -38,7 +38,10 @@ public class TabPaneSecondLvlTabController extends BaseTabController implements 
 
     @Override
     public void updateControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(this.getClass().getName())) {
+            System.out.println("UPDATESECONDLVLTABPANE");
+            if (mSecondLvlTabPane.getTabs().size() > 1) mSecondLvlTabPane.getTabs().remove(1);
+        }
     }
 
     @Override

@@ -6,9 +6,9 @@ import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
 import UI.Equipment.Controller.EquipmentsController;
-import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 
 public class EquipmentTabController extends BaseTabController implements IUpdateUI {
 
@@ -17,7 +17,8 @@ public class EquipmentTabController extends BaseTabController implements IUpdate
     }
 
     @FXML
-    private JFXTabPane mEquipmentTabContainer;
+    private
+    TabPane mEquipmentTabContainer;
 
     @FXML
     public void initialize(){

@@ -5,9 +5,9 @@ import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
 import UI.Department.Controller.DepartmentsController;
-import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 
 public class DepartmentTabController extends BaseTabController implements IUpdateUI {
 
@@ -17,7 +17,7 @@ public class DepartmentTabController extends BaseTabController implements IUpdat
     }
 
     @FXML
-    private JFXTabPane mDepartmentTabContainer;
+    private TabPane mDepartmentTabContainer;
 
     @FXML
     public void initialize(){

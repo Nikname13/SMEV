@@ -7,12 +7,12 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="UI.TabPane.Controller.TabPaneSecondLvlTabController"
             prefHeight="400.0" prefWidth="600.0">
-    <JFXTabPane fx:id="mSecondLvlTabPane" side="LEFT" tabMaxWidth="0"
-                tabMinWidth="0" tabMinHeight="0" tabMaxHeight="0"
+    <JFXTabPane fx:id="mSecondLvlTabPane" side="LEFT" tabMaxWidth="10"
+                tabMinWidth="10" tabMinHeight="10" tabMaxHeight="10"
                 AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
                 AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">
         <Tab>
-            <fx:include source="emptyTab.fxml"/>
+            <fx:include source="../MainTabs/emptyTab.fxml"/>
         </Tab>
     </JFXTabPane>
 

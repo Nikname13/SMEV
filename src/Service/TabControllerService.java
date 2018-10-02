@@ -29,8 +29,8 @@ public class TabControllerService {
     private TabControllerService(){
         mEditDepartmentResource=new ResourceModel("/UI/Department/editDepartment.fxml","anchorPaneEditDepartment");
         mEquipmentInventoryResource=new ResourceModel("/UI/Equipment/Equipment_inventory/equipmentInventory.fxml","anchorPaneEquipmentInventory");
-        mEditEquipmentResource=new ResourceModel("/UI/Equipment/editEquipment.fxml", "anchorPaneEditEquipment");
-        mEmptyTab=new ResourceModel("/UI/TabPane/emptyTab.fxml", "emptyTab.fxml");
+        mEditEquipmentResource = new ResourceModel("/UI/Equipment/editEquipment.fxml", "mStackPaneEditEquipment");
+        mEmptyTab = new ResourceModel("/UI/MainTabs/emptyTab.fxml", "emptyTab.fxml");
         mDetailsMovementResource = new ResourceModel("/UI/Movement/detailsMovement.fxml", "mDetailsAnchorPane");
         mInventoryNumberResource = new ResourceModel("/UI/Inventory_number/inventoryNumbers.fxml", "mAnchorPaneInventoryNumber");
         mParameterResource = new ResourceModel("/UI/Parameter/parameters.fxml", "mAnchorPaneParameters");
@@ -50,11 +50,11 @@ public class TabControllerService {
         mListenerFirstTabPane = listenerFirstTabPane;
     }
 
-    public ITabSelected getListenerThirdTabPane() {
+    public ITabSelected getListenerSecondTabPane() {
         return mListenerSecondTabPane;
     }
 
-    public void setListenerThirdTabPane(ITabSelected listenerThirdTabPane) {
+    public void setListenerSecondTabPane(ITabSelected listenerThirdTabPane) {
         mListenerSecondTabPane = listenerThirdTabPane;
     }
 

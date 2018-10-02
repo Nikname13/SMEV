@@ -30,12 +30,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import static UI.BaseTabController.nextTab;
 
 public class EditDepartmentController extends BaseController implements IUpdateUI, IOnMouseClick {
 
@@ -68,6 +67,9 @@ public class EditDepartmentController extends BaseController implements IUpdateU
 
     @FXML
     private TreeTableColumn<EquipmentInventoryModel, String> mNameEquipmentColumn, mNumberEquipmentColumn, mStateEquipmentColumn, mDescriptionEquipmentColumn;
+
+    @FXML
+    private JFXTabPane mSecondLvlTabPane;
 
     @FXML
     private JFXButton mButtonUpdate;
@@ -269,7 +271,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
                 EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
                 EquipmentPresenter.get().setEquipmentModel(equipment.getEquipmentModel());
                 EquipmentPresenter.get().setSelectedObject(equipment);
-                TabControllerService.get().getListenerThirdTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
+                TabControllerService.get().getListenerSecondTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
                 ListenersService.get().updateUI(EquipmentInventoryModel.class);
             } else {
                 EquipmentPresenter.get().setSelectedObject(null);
@@ -395,7 +397,9 @@ public class EditDepartmentController extends BaseController implements IUpdateU
             mComboBoxArea.getSelectionModel().select(mDepartmentModel.getAreaModel());
             setInvisibleEditButton();
             updateEquipmentTable(mDepartmentModel.getObsEquipmentList());
-            ListenersService.get().updateUI(TabPaneSecondLvlTabController.class);
+            mSecondLvlTabPane.getSelectionModel().select(0);
+            if (mSecondLvlTabPane.getTabs().size() > 1) mSecondLvlTabPane.getTabs().remove(1);
+            TabControllerService.get().setListenerSecondTabPane(((Tab nextTab) -> nextTab(nextTab, mSecondLvlTabPane)));
 
         }
     }

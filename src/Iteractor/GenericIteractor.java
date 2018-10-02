@@ -79,20 +79,14 @@ public abstract class GenericIteractor<T> implements IIteractor<T> {
 
     @Override
     public T edit(T entity) {
-        String json=Connector.put(new URLBuilder(sURI).build(),getGson(entity));
-        if(json != null) {
-            setEntity(new Gson().fromJson(json,mModel));
-            return new Gson().fromJson(json, mModel);
-        }else{
-            System.out.println("Ошибка при обновлении записи");
-            return null;
-        }
+        List<T> list = new ArrayList<>();
+        list.add(entity);
+        return edit(list).iterator().next();
     }
 
     @Override
     public List<T> edit(List<T> entityList) {
-        String url = new URLBuilder(sURI).withParam("type", "0").build();
-        String json = Connector.put(url, getGson(entityList));
+        String json = Connector.put(new URLBuilder(sURI).build(), getGson(entityList));
         if (json != null) {
             List<T> list = new Gson().fromJson(json, mListType);
             for (T entity : list) {

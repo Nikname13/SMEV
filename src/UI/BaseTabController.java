@@ -5,7 +5,7 @@ import javafx.scene.control.TabPane;
 
 public abstract class BaseTabController {
 
-    public void nextTab(Tab nextTab, TabPane tabPane) {
+    public static void nextTab(Tab nextTab, TabPane tabPane) {
         boolean flag = false;
         for (Tab tab : tabPane.getTabs()) {
             System.out.println("TABS " + tab.getContent().getId());
@@ -15,15 +15,14 @@ public abstract class BaseTabController {
             }
         }
         if (flag) {
-            tabPane.getSelectionModel().select(nextTab);
+            if (!tabPane.getSelectionModel().getSelectedItem().getContent().getId().equals(nextTab.getContent().getId())) {
+                tabPane.getSelectionModel().select(nextTab);
+            }
         } else {
+            System.out.println("add tab");
             tabPane.getTabs().add(nextTab);
             tabPane.getSelectionModel().selectLast();
         }
-
-/*        if (tabPane.getSelectionModel().getSelectedIndex() - 1 != 0) {
-            tabPane.getTabs().remove(tabPane.getSelectionModel().getSelectedIndex() - 1);
-        }*/
     }
 
 
