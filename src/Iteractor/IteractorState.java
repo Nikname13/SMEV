@@ -6,6 +6,8 @@ import com.google.gson.reflect.TypeToken;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class IteractorState extends GenericIteractor<StateModel>  {
 
@@ -17,6 +19,7 @@ public class IteractorState extends GenericIteractor<StateModel>  {
 
     @Override
     public void setList(ObservableList<StateModel> list) {
+        Collections.sort(list, Comparator.comparing(StateModel::getNameToLowerCase));
         States.get().setEntityList(list);
     }
 

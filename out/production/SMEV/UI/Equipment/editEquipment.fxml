@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.*?>
 <StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mStackPaneEditEquipment" xmlns="http://javafx.com/javafx/8"
@@ -70,9 +71,14 @@
                         </AnchorPane>
                         <!--детализация оборудования-->
                         <AnchorPane prefWidth="350.0" maxWidth="350.0">
-                            <fx:include source="/UI/TabPane/tabPaneSecondLvl.fxml" AnchorPane.topAnchor="0.0"
-                                        AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0"
-                                        AnchorPane.rightAnchor="0"/>
+                            <JFXTabPane fx:id="mSecondLvlTabPane" side="LEFT" tabMaxWidth="0"
+                                        tabMinWidth="0" tabMinHeight="0" tabMaxHeight="0"
+                                        AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+                                        AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">
+                                <Tab>
+                                    <fx:include source="/UI/MainTabs/emptyTab.fxml"/>
+                                </Tab>
+                            </JFXTabPane>
                         </AnchorPane>
                     </children>
                 </HBox>

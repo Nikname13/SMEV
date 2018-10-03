@@ -182,9 +182,9 @@ public class Coordinator {
         }
     }
 
-    public void goToAddSupplyWindow(Stage stage, double width, double height){
+    public void goToAddSupplyWindow(Stage stage) {
         try {
-            windowSceneContent("Supply/addSupply.fxml",stage,"Новая поставка", width, height);
+            windowSceneContent("Supply/addSupply.fxml", stage, "Новая поставка", 400, 400);
         }catch (Exception ex){
             System.out.println("Exception goToAddSupplyWindow " + ex);
         }

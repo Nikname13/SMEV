@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPaneWorkers" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Worker.Controller.WorkersController">
-    <TableView fx:id="tableViewWorkers" prefHeight="400.0" prefWidth="300.0">
-        <columns>
-            <TableColumn fx:id="firstColumn" prefWidth="100.0" text="name"/>
-            <TableColumn fx:id="secondColumn" prefWidth="100.0" text="post"/>
-            <TableColumn fx:id="departmentColumn" prefWidth="100.0" text="department"/>
-        </columns>
-    </TableView>
-    <Button fx:id="buttonAdd" layoutX="308.0" layoutY="23.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="32.0" prefWidth="75.0" text="add" />
-    <Button fx:id="buttonDelete" layoutX="308.0" layoutY="56.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="32.0" prefWidth="75.0" text="delete" />
+    <children>
+        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" style="-fx-background-color: #ffffff;"
+                    prefHeight="55" minHeight="55" prefWidth="500" minWidth="500">
+            <children>
+                <JFXButton onAction="#onClickAdd" ripplerFill="#40a85f" style="-fx-background-color: #a8f1b3;"
+                           mnemonicParsing="false" text="Новый сотрудник"
+                           AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10"
+                           AnchorPane.bottomAnchor="10"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="65" AnchorPane.bottomAnchor="0"
+                    style="-fx-background-color: #ffffff;"
+                    prefHeight="55" minHeight="55" prefWidth="500" minWidth="500">
+            <children>
+                <TableView fx:id="tableViewWorkers" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10"
+                           AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+                    <columns>
+                        <TableColumn fx:id="firstColumn" prefWidth="250.0" text="ФИО"/>
+                        <TableColumn fx:id="secondColumn" prefWidth="100.0" text="Должность"/>
+                        <TableColumn fx:id="departmentColumn" prefWidth="150.0" text="Отдел"/>
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

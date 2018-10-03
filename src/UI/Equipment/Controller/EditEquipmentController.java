@@ -302,6 +302,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
                     treeEquipment.getChildren().add(new TreeItem<>(equipment));
                     flag = true;
                     treeEquipment.getValue().getInventoryNumber().setName(equipment.getInventoryNumber().getName() + " (" + treeEquipment.getChildren().size() + ")");
+                    break;
                 }
             }
             if (!flag) {

@@ -10,6 +10,15 @@ import java.time.LocalDate;
 public class SupplyPresenter extends BasePresenter {
 
     private static SupplyModel sSupplyModel;
+    private static SupplyPresenter sSupplyPresenter;
+
+    private SupplyPresenter() {
+    }
+
+    public static SupplyPresenter get() {
+        if (sSupplyPresenter == null) sSupplyPresenter = new SupplyPresenter();
+        return sSupplyPresenter;
+    }
 
     public SupplyModel getSupplyModel() {
         return sSupplyModel;

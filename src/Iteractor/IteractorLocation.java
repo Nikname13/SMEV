@@ -10,6 +10,8 @@ import com.google.gson.reflect.TypeToken;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class IteractorLocation extends GenericIteractor<LocationModel> {
 
@@ -36,6 +38,7 @@ public class IteractorLocation extends GenericIteractor<LocationModel> {
 
     @Override
     public void setList(ObservableList<LocationModel> list) {
+        Collections.sort(list, Comparator.comparing(LocationModel::getNameToLowerCase));
         Locations.get().setEntityList(list);
     }
 

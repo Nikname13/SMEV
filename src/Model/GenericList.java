@@ -11,7 +11,7 @@ public abstract class GenericList<T> implements IGenericList<T> {
         mEntityList= FXCollections.observableArrayList();
     }
 
-    public ObservableList<T> getEntityList() {
+    public ObservableList<T> getObsEntityList() {
         return mEntityList;
     }
 

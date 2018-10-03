@@ -1,11 +1,8 @@
 package UI.Supply.Controller;
 
 import Model.Provider.ProviderModel;
-import Presenter.SupplyPresenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
-import java.time.LocalDate;
 
 public class AddSupplyController {
 
@@ -57,6 +54,6 @@ public class AddSupplyController {
 
     @FXML
     private void onClickAdd(){
-        new SupplyPresenter().addSupply(numberTextField.getText(),mTypeSupply,LocalDate.now(),textAreaDescription.getText(),"new documentation", mProvider);
+        // new SupplyPresenter().addSupply(numberTextField.getText(),mTypeSupply,LocalDate.now(),textAreaDescription.getText(),"new documentation", mProvider);
     }
 }

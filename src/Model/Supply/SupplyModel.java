@@ -2,7 +2,8 @@ package Model.Supply;
 
 import Model.AbstractModel;
 import Model.Provider.ProviderModel;
-import javafx.beans.property.*;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -19,6 +20,11 @@ public class SupplyModel extends AbstractModel {
         mDocumentation = documentation;
         mTypeSupply = typeSupply;
         mProviderModel = providerModel;
+    }
+
+    public SupplyModel(int id, String number, ProviderModel provider) {
+        super(id, number);
+        mProviderModel = provider;
     }
 
     public SupplyModel(){}

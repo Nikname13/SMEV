@@ -6,6 +6,8 @@ import com.google.gson.reflect.TypeToken;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class IteractorPost extends GenericIteractor<PostModel> {
 
@@ -18,6 +20,7 @@ public class IteractorPost extends GenericIteractor<PostModel> {
 
     @Override
     public void setList(ObservableList<PostModel> list) {
+        Collections.sort(list, Comparator.comparing(PostModel::getNameToLowerCase));
         Posts.get().setEntityList(list);
     }
 

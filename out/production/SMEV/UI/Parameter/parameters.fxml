@@ -4,14 +4,32 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPaneParameters" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Parameter.Controller.ParametersController">
    <children>
-      <TableView fx:id="tableViewParameters" prefHeight="400.0" prefWidth="199.0">
-        <columns>
-          <TableColumn fx:id="firstColumn" prefWidth="199.0" text="C1" />
-        </columns>
-      </TableView>
-      <Button fx:id="buttonAdd" layoutX="208.0" layoutY="23.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="Button" onAction="#onClickAdd" />
+       <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" style="-fx-background-color: #ffffff;"
+                   prefHeight="55" minHeight="55" prefWidth="250" minWidth="250">
+           <children>
+               <JFXButton onAction="#onClickAdd" ripplerFill="#40a85f" style="-fx-background-color: #a8f1b3;"
+                          mnemonicParsing="false" text="Добавить"
+                          AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10"
+                          AnchorPane.bottomAnchor="10"/>
+           </children>
+       </AnchorPane>
+       <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="65" AnchorPane.bottomAnchor="0" style="-fx-background-color: #ffffff;"
+                   prefHeight="55" minHeight="55" prefWidth="250" minWidth="250">
+           <children>
+               <JFXTextField fx:id="mTextFieldSearch" focusColor="#40a85f" labelFloat="true"
+                             prefHeight="25.0" promptText="Поиск"
+                             AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="20.0" AnchorPane.rightAnchor="10.0"/>
+               <TableView fx:id="tableViewParameters" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="60.0" AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10">
+                   <columns>
+                       <TableColumn fx:id="firstColumn" prefWidth="225.0" text="Наименование" />
+                   </columns>
+               </TableView>
+           </children>
+       </AnchorPane>
    </children>
 </AnchorPane>

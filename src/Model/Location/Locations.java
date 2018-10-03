@@ -17,9 +17,9 @@ public class Locations extends GenericList<LocationModel> {
     }
 
     @Override
-    public ObservableList<LocationModel> getEntityList() {
+    public ObservableList<LocationModel> getObsEntityList() {
         new IteractorLocation().loadData();
-        return super.getEntityList();
+        return super.getObsEntityList();
     }
 
     @Override

@@ -43,55 +43,55 @@ public abstract class BasePresenter {
     abstract void loadEntity(int id);
 
     public ObservableList<AreaModel> getObservableArea() {
-        return Areas.get().getEntityList();
+        return Areas.get().getObsEntityList();
     }
 
     public ObservableList<DepartmentModel> getObservableDepartment() {
-        return Departments.get().getEntityList();
+        return Departments.get().getObsEntityList();
     }
 
     public ObservableList<WorkerModel> getObservableWorker() {
-        return Workers.get().getEntityList();
+        return Workers.get().getObsEntityList();
     }
 
     public ObservableList<LocationModel> getObservableLocation() {
-        return Locations.get().getEntityList();
+        return Locations.get().getObsEntityList();
     }
 
     public ObservableList<EquipmentModel> getObservableEquipment() {
-        return Equipments.get().getEntityList();
+        return Equipments.get().getObsEntityList();
     }
 
     public ObservableList<TypeModel> getObservableType() {
-        return Types.get().getEntityList();
+        return Types.get().getObsEntityList();
     }
 
     public ObservableList<StateModel> getObservableState() {
-        return States.get().getEntityList();
+        return States.get().getObsEntityList();
     }
 
     public ObservableList<InventoryNumberModel> getObservableInventory() {
-        return InventoryNumbers.get().getEntityList();
+        return InventoryNumbers.get().getObsEntityList();
     }
 
     public ObservableList<ParameterModel> getObservableParameter() {
-        return Parameters.get().getEntityList();
+        return Parameters.get().getObsEntityList();
     }
 
     public ObservableList<MovementModel> getObservableMovement() {
-        return Movements.get().getEntityList();
+        return Movements.get().getObsEntityList();
     }
 
     public ObservableList<ProviderModel> getObservableProvide() {
-        return Providers.get().getEntityList();
+        return Providers.get().getObsEntityList();
     }
 
     public ObservableList<SupplyModel> getObservableSupply() {
-        return Supplys.get().getEntityList();
+        return Supplys.get().getObsEntityList();
     }
 
     public ObservableList<PostModel> getObservablePost() {
-        return Posts.get().getEntityList();
+        return Posts.get().getObsEntityList();
     }
 
 

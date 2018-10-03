@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <AnchorPane fx:id="anchorPaneEditDepartment"
@@ -157,9 +158,14 @@
                         </AnchorPane>
                         <!--информация об оборудовании-->
                         <AnchorPane style="-fx-background-color: #ffffff;" prefWidth="350.0">
-                            <fx:include source="/UI/TabPane/tabPaneSecondLvl.fxml" AnchorPane.topAnchor="0"
-                                        AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0"
-                                        AnchorPane.rightAnchor="0"/>
+                            <JFXTabPane fx:id="mSecondLvlTabPane" side="LEFT" tabMaxWidth="0"
+                                        tabMinWidth="0" tabMinHeight="0" tabMaxHeight="0"
+                                        AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+                                        AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">
+                                <Tab>
+                                    <fx:include source="/UI/MainTabs/emptyTab.fxml"/>
+                                </Tab>
+                            </JFXTabPane>
                         </AnchorPane>
                     </children>
                 </HBox>

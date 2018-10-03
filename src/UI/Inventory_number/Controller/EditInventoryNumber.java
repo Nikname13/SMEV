@@ -44,7 +44,7 @@ public class EditInventoryNumber {
                 }
             }
         });
-        comboBoxSupply.setItems(Supplys.get().getEntityList());
+        comboBoxSupply.setItems(Supplys.get().getObsEntityList());
         comboBoxSupply.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->edit(newValue));
     }
 

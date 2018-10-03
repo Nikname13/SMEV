@@ -11,6 +11,8 @@ import com.google.gson.reflect.TypeToken;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class IteractorWorker extends GenericIteractor<WorkerModel>  {
 
@@ -37,6 +39,7 @@ public class IteractorWorker extends GenericIteractor<WorkerModel>  {
 
     @Override
     public void setList(ObservableList<WorkerModel> list) {
+        Collections.sort(list, Comparator.comparing(WorkerModel::getNameToLowerCase));
         Workers.get().setEntityList(list);
     }
 

@@ -2,11 +2,8 @@ package UI.Supply.Controller;
 
 import Model.Provider.ProviderModel;
 import Model.Supply.SupplyModel;
-import Presenter.SupplyPresenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
-import java.time.LocalDate;
 
 public class EditSupplyController {
 
@@ -30,7 +27,7 @@ public class EditSupplyController {
     private Label documentationLabel;
 
     public EditSupplyController(){
-        mSupplyModel= new SupplyPresenter().getSupplyModel();
+        // mSupplyModel= new SupplyPresenter().getSupplyModel();
     }
 
     @FXML
@@ -70,12 +67,12 @@ public class EditSupplyController {
 
     @FXML
     private void onClickEdit(){
-        new SupplyPresenter().editSupply(numberTextField.getText(), mTypeSupply, LocalDate.now(), textAreaDescription.getText(), documentationLabel.getText(),(ProviderModel) mProvider);
+        //new SupplyPresenter().editSupply(numberTextField.getText(), mTypeSupply, LocalDate.now(), textAreaDescription.getText(), documentationLabel.getText(),(ProviderModel) mProvider);
     }
 
     @FXML
     private void onClickDelete(){
-        new SupplyPresenter().deleteSupply(mSupplyModel.getId());
+        //new SupplyPresenter().deleteSupply(mSupplyModel.getId());
     }
 
 }

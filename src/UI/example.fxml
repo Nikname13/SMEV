@@ -31,7 +31,8 @@
         </Tab>
         <Tab fx:id="mSupplyTab" text="Поставки">
             <AnchorPane>
-
+                <fx:include source="MainTabs/supplyTab.fxml" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+                            AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"/>
             </AnchorPane>
         </Tab>
         <Tab fx:id="mCatalogTab" text="Справочник">

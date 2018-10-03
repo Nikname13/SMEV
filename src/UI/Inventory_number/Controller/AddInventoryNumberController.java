@@ -36,7 +36,7 @@ public class AddInventoryNumberController {
                 }
             }
         });
-        comboBoxSupply.setItems(Supplys.get().getEntityList());
+        comboBoxSupply.setItems(Supplys.get().getObsEntityList());
         comboBoxSupply.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->supplySelected(newValue));
     }
 

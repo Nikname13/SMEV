@@ -41,6 +41,10 @@ public abstract class AbstractModel<T extends AbstractModel<?>> extends Recursiv
         return mName;
     }
 
+    public String getNameToLowerCase() {
+        return mName.toLowerCase();
+    }
+
     public void setName(String name) {
         mName = name;
     }
