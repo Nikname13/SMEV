@@ -30,12 +30,13 @@ public class SupplysController extends BaseController implements IUpdateUI {
 
     @FXML
     public void initialize(){
+        System.out.println("init supple");
         initTable();
     }
 
     private void initTable() {
         mProviderColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().getProviderModel().nameProperty());
-        mDateColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().dateSupply());
+        mDateColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().dateToString());
         mNumberColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().nameProperty());
         mTreeTableSupply.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedItem(newValue)));
     }
@@ -53,14 +54,17 @@ public class SupplysController extends BaseController implements IUpdateUI {
                 }
             }
             if (!flag) {
-                TreeItem<SupplyModel> treeItemFirst = new TreeItem<>(new SupplyModel(
+                SupplyModel emptySupply = new SupplyModel(
                         -1,
                         "",
                         new ProviderModel(
                                 supplyModel.getProviderModel().getId(),
                                 supplyModel.getProviderModel().getName(),
                                 ""
-                        )));
+                        )
+                );
+                emptySupply.setDisplayDate("");
+                TreeItem<SupplyModel> treeItemFirst = new TreeItem<>(emptySupply);
                 treeItemFirst.getChildren().add(new TreeItem<>(supplyModel));
                 rootItem.getChildren().add(treeItemFirst);
 
@@ -88,6 +92,7 @@ public class SupplysController extends BaseController implements IUpdateUI {
     @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(SupplyModel.class.getName())) {
+            System.out.println("updateUI supple");
             updateTable(SupplyPresenter.get().getObservableSupply());
         }
     }

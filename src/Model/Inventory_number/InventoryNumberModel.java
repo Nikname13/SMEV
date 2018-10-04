@@ -2,7 +2,10 @@ package Model.Inventory_number;
 
 import Model.AbstractModel;
 import Model.Supply.SupplyModel;
-import javafx.beans.property.*;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class InventoryNumberModel extends AbstractModel {
 
@@ -10,12 +13,19 @@ public class InventoryNumberModel extends AbstractModel {
     private boolean mGroup;
     private SupplyModel mSupply;
 
-    public InventoryNumberModel(int id, String number,SupplyModel supply, boolean group,String description) {
+    public InventoryNumberModel(int id, String number, SupplyModel supply, boolean group, String description) {
         super(id,number);
         mDescription = description;
         mGroup = group;
         mSupply = supply;
     }
+
+    public InventoryNumberModel(int id, String number, boolean group, String description) {
+        super(id, number);
+        mDescription = description;
+        mGroup = group;
+    }
+
     public InventoryNumberModel(int id, String number){
         super(id,number);
     }

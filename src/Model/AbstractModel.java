@@ -1,15 +1,18 @@
 package Model;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public abstract class AbstractModel<T extends AbstractModel<?>> extends RecursiveTreeObject<AbstractModel> implements IAbstractModel {
 
     private int mId;
     private String mName;
+    private LocalDate mDate;
+
+    private transient String mDisplayDate;
     private transient static String typeDoc="doc";
     private transient static String typeConfig="config";
     private transient static String typePhoto="photo";
@@ -17,6 +20,12 @@ public abstract class AbstractModel<T extends AbstractModel<?>> extends Recursiv
     public AbstractModel(int id, String name) {
         mId = id;
         mName = name;
+    }
+
+    public AbstractModel(int id, String name, LocalDate date) {
+        mId = id;
+        mName = name;
+        mDate = date;
     }
 
     public AbstractModel(int id){
@@ -49,6 +58,14 @@ public abstract class AbstractModel<T extends AbstractModel<?>> extends Recursiv
         mName = name;
     }
 
+    public LocalDate getDate() {
+        return mDate;
+    }
+
+    public void setDate(LocalDate date) {
+        mDate = date;
+    }
+
     @Override
     public IntegerProperty idProperty() {
         return new SimpleIntegerProperty(getId());
@@ -57,6 +74,30 @@ public abstract class AbstractModel<T extends AbstractModel<?>> extends Recursiv
     @Override
     public StringProperty nameProperty() {
         return new SimpleStringProperty(getName());
+    }
+
+    @Override
+    public ObjectProperty<LocalDate> dateProperty() {
+        return new SimpleObjectProperty<>(mDate);
+    }
+
+    @Override
+    public StringProperty dateToString() {
+        if (mDisplayDate == null) {
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            return new SimpleStringProperty((mDate).format(format));
+        } else {
+
+            return new SimpleStringProperty(mDisplayDate);
+        }
+    }
+
+    public String getDisplayDate() {
+        return mDisplayDate;
+    }
+
+    public void setDisplayDate(String displayDate) {
+        mDisplayDate = displayDate;
     }
 
     @Override

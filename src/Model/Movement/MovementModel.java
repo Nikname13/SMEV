@@ -4,64 +4,26 @@ import Model.Department.DepartmentModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.GenericModel;
 import Model.Worker.WorkerModel;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MovementModel extends GenericModel<MovementEquipment> {
 
-    private LocalDate mDate;
     private List<MovementWorker> mWorkerList;
     private List<MovementDepartment> mDepartmentList;
-    private transient String mDisplayDate;
 
     public MovementModel(int id, LocalDate date, String base){
-        super(id, base);
-        mDate = date;
+        super(id, base, date);
     }
 
     public MovementModel(int id, LocalDate date, String base, List<MovementEquipment> equipmentList, List<MovementWorker> workerList, List<MovementDepartment> departmentList) {
-        super(id,base,equipmentList);
-        mDate = date;
+        super(id, base, equipmentList, date);
         setWorkerList(workerList);
         setDepartmentList(departmentList);
-    }
-
-    public String getDisplayDate() {
-        return mDisplayDate;
-    }
-
-    public void setDisplayDate(String displayDate) {
-        mDisplayDate = displayDate;
-    }
-
-    public LocalDate getDate() {
-        return mDate;
-    }
-
-    public void setDate(LocalDate date) {
-        mDate = date;
-    }
-
-    public ObjectProperty<LocalDate> dateProperty() {
-        return new SimpleObjectProperty<>(mDate);
-    }
-
-    public StringProperty dateToString() {
-        if (mDisplayDate == null) {
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            return new SimpleStringProperty((mDate).format(format));
-        } else {
-            return new SimpleStringProperty(mDisplayDate);
-        }
     }
 
     public List<MovementWorker> getWorkerList() {

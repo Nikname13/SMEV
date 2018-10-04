@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class MovementEquipment extends EquipmentModel {
+
     private String mInventoryNumber, mType;
     private int mEquipmentId;
 

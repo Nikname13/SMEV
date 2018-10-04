@@ -7,6 +7,7 @@ import Model.Inventory_number.InventoryNumberModel;
 import Model.Location.LocationModel;
 import Model.Parameter.ParameterModel;
 import Model.Post.PostModel;
+import Model.Provider.ProviderModel;
 import Model.State.StateModel;
 import Model.Type.TypeModel;
 import Model.Worker.WorkerModel;
@@ -411,6 +412,44 @@ public abstract class BaseController {
             comboBox.setButtonCell(new ListCell<>() {
                 @Override
                 protected void updateItem(WorkerModel item, boolean empty) {
+                    if (item != null && !empty) {
+                        setText(item.getName());
+                    } else {
+                        setText(null);
+                    }
+                }
+            });
+        }
+    }
+
+    protected void initComboBoxProvider(JFXComboBox<ProviderModel> comboBox, boolean isSelectionItem) {
+        comboBox.setCellFactory(p -> new ListCell<>() {
+            @Override
+            protected void updateItem(ProviderModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else setText(null);
+            }
+        });
+        comboBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(ProviderModel object) {
+                if (object != null) return object.getName();
+                else return null;
+            }
+
+            @Override
+            public ProviderModel fromString(String string) {
+                if (!string.trim().isEmpty())
+                    return new ProviderModel(-1, "");
+                return null;
+            }
+        });
+        if (isSelectionItem) {
+            comboBox.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(ProviderModel item, boolean empty) {
                     if (item != null && !empty) {
                         setText(item.getName());
                     } else {

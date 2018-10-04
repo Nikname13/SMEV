@@ -5,17 +5,14 @@ import Model.Provider.ProviderModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 public class SupplyModel extends AbstractModel {
 
-    private LocalDate  mDateSupply;
     private String mDescription, mDocumentation, mTypeSupply;
     private ProviderModel mProviderModel;
     public SupplyModel(int id, String number, String typeSupply, LocalDate dateSupply, String description, String documentation, ProviderModel providerModel) {
-        super(id,number);
-        mDateSupply = dateSupply;
+        super(id, number, dateSupply);
         mDescription = description;
         mDocumentation = documentation;
         mTypeSupply = typeSupply;
@@ -28,15 +25,6 @@ public class SupplyModel extends AbstractModel {
     }
 
     public SupplyModel(){}
-
-
-    public LocalDate getDateSupply() {
-        return mDateSupply;
-    }
-
-    public void setDateSupply(LocalDate dateSupply) {
-        mDateSupply = dateSupply;
-    }
 
     public String getDescription() {
         return mDescription;
@@ -64,11 +52,6 @@ public class SupplyModel extends AbstractModel {
 
     public StringProperty typeSupplyProperty() {
         return new SimpleStringProperty(mTypeSupply);
-    }
-
-    public StringProperty dateSupply(){
-        SimpleDateFormat format= new SimpleDateFormat("dd.MM.yyyy");
-        return new SimpleStringProperty(format.format(mDateSupply));
     }
 
     public StringProperty descriptionProperty() {

@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,17 @@ public abstract class GenericModel<T> extends AbstractModel<GenericModel<T>> imp
         mEntityList = entityList;
     }
 
+    public GenericModel(int id, String name, List<T> entityList, LocalDate date) {
+        super(id, name, date);
+        mEntityList = entityList;
+    }
+
     public GenericModel(int id, String name){
         super(id,name);
+    }
+
+    public GenericModel(int id, String name, LocalDate date) {
+        super(id, name, date);
     }
 
     public GenericModel(int id){

@@ -27,7 +27,7 @@ public class Supplys extends GenericList<SupplyModel> {
         SupplyModel supply = Supplys.get().getEntity(entity.getId());
         supply.setName(entity.getName());
         supply.setTypeSupply(entity.getTypeSupply());
-        supply.setDateSupply(entity.getDateSupply());
+        supply.setDate(entity.getDate());
         supply.setDescription(entity.getDescription());
         supply.setDocumentation(entity.getDocumentation());
         supply.setProviderModel(entity.getProviderModel());

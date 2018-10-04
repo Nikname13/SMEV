@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPaneSupply" prefHeight="400.0" prefWidth="882.0"
-            xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Supply.Controller.SupplysController">
-
-    <TableView fx:id="tableViewSupply" prefHeight="400.0" prefWidth="800.0">
-        <columns>
-            <TableColumn fx:id="numberColumn" prefWidth="200.0" text="Номер" />
-            <TableColumn fx:id="typeColumn" prefWidth="200.0" text="Тип" />
-            <TableColumn fx:id="providerColumn" prefWidth="200.0" text="Поставщик" />
-            <TableColumn fx:id="dateColumn" prefWidth="200.0" text="Дата" />
-        </columns>
-    </TableView>
-    <Button fx:id="buttonAdd" layoutX="800.0" layoutY="23.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="32.0" prefWidth="75.0" text="Button" />
-
-</AnchorPane>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.layout.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mStackPaneSupply" prefHeight="400.0" prefWidth="882.0"
+           xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Supply.Controller.SupplysController">
+    <AnchorPane>
+        <children>
+            <JFXButton onAction="#onClickAdd" ripplerFill="#40a85f" style="-fx-background-color: #a8f1b3;"
+                       mnemonicParsing="false"
+                       text="Новая поставка" prefHeight="35.0" AnchorPane.leftAnchor="0.0"
+                       AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+            <JFXTreeTableView fx:id="mTreeTableSupply"
+                              AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="45.0"
+                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <columns>
+                    <JFXTreeTableColumn fx:id="mProviderColumn" prefWidth="200.0" text="Поставщик"/>
+                    <JFXTreeTableColumn fx:id="mDateColumn" prefWidth="125.0" text="Дата"/>
+                    <JFXTreeTableColumn fx:id="mNumberColumn" prefWidth="173.0"
+                                        text="Номер"/>
+                </columns>
+            </JFXTreeTableView>
+        </children>
+    </AnchorPane>
+</StackPane>
