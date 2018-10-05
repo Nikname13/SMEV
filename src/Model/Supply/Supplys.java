@@ -29,7 +29,7 @@ public class Supplys extends GenericList<SupplyModel> {
         supply.setTypeSupply(entity.getTypeSupply());
         supply.setDate(entity.getDate());
         supply.setDescription(entity.getDescription());
-        supply.setDocumentation(entity.getDocumentation());
         supply.setProviderModel(entity.getProviderModel());
+        supply.setEntityList(entity.getEntityList());
     }
 }

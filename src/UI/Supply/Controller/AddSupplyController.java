@@ -23,6 +23,8 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+
 
 public class AddSupplyController extends BaseController {
 
@@ -32,32 +34,28 @@ public class AddSupplyController extends BaseController {
     private BaseValidator mBaseValidatorDialog = new BaseValidator();
     private ObservableList<InventoryNumberModel> mInventoryNumberList;
     private JFXDialog mDialog;
+    private static String sSupply = "поставки";
+    private static String sAuction = "аукциона";
 
 
     @FXML
     private JFXRadioButton mSupplyButton, mAuctionButton;
-
     @FXML
     private JFXComboBox<ProviderModel> mComboBoxProvider;
-
     @FXML
     private JFXTextField mNumberTextField;
-
     @FXML
     private ValidationFacade mFacadeDate, mFacadeProvider;
-
     @FXML
     private Label mErrorDate, mErrorProvider;
-
     @FXML
     private JFXTextArea mTextAreaDescription;
-
     @FXML
     private TreeTableView<InventoryNumberModel> mTreeTableNumber;
-
     @FXML
     private TreeTableColumn<InventoryNumberModel, String> mNumberColumn;
-
+    @FXML
+    private JFXDatePicker mDatePicker;
     @FXML
     private StackPane mStackPaneAddSupply;
 
@@ -68,9 +66,14 @@ public class AddSupplyController extends BaseController {
         mBaseValidator.setJFXTextFields(mNumberTextField);
         mBaseValidator.setValidationFacades(new Pair(mFacadeProvider, mErrorProvider));
         initRadioButton();
+        initDatePicker();
         initComboBoxProvider(mComboBoxProvider, false);
         initTableView();
         updateTable(mInventoryNumberList);
+    }
+
+    private void initDatePicker() {
+        mDatePicker.setValue(LocalDate.now());
     }
 
     private void updateTable(ObservableList<InventoryNumberModel> inventoryNumberList) {
@@ -85,7 +88,7 @@ public class AddSupplyController extends BaseController {
         mTreeTableNumber.setShowRoot(false);
         mTreeTableNumber.setFixedCellSize(50.0);
         mTreeTableNumber.prefHeightProperty().bind(Bindings.size(mTreeTableNumber.getRoot().getChildren()).multiply(mTreeTableNumber.getFixedCellSize()).add(55));
-        mTreeTableNumber.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedItem(newValue)));
+
     }
 
     private void selectedItem(TreeItem<InventoryNumberModel> newValue) {
@@ -151,7 +154,6 @@ public class AddSupplyController extends BaseController {
                         resizeHeightStage();
                     mDialog.close();
                 }
-
             }
         });
     }
@@ -166,6 +168,7 @@ public class AddSupplyController extends BaseController {
 
     private void initTableView() {
         mNumberColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().nameProperty());
+        mTreeTableNumber.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedItem(newValue)));
     }
 
     @Override
@@ -180,6 +183,7 @@ public class AddSupplyController extends BaseController {
         mSupplyButton.setToggleGroup(group);
         mAuctionButton.setToggleGroup(group);
         mSupplyButton.setSelected(true);
+        selectedButton(mSupplyButton);
         group.selectedToggleProperty().addListener((observable, oldValue, newValue) -> selectedButton(newValue));
     }
 
@@ -190,13 +194,26 @@ public class AddSupplyController extends BaseController {
 
     private void selectedButton(Object o) {
         mTypeSupply=((RadioButton)o).getText();
+        switch (((RadioButton) o).getId()) {
+            case "mSupplyButton":
+                setPromptText(sSupply);
+                break;
+            case "mAuctionButton":
+                setPromptText(sAuction);
+                break;
+        }
         System.out.println(mTypeSupply);
+    }
+
+    private void setPromptText(String type) {
+        mNumberTextField.setPromptText("Введите номер " + type);
+        mDatePicker.setPromptText("Дата " + type);
     }
 
     @FXML
     private void onClickAdd(){
         if (mBaseValidator.validate()) {
-
+            SupplyPresenter.get().addSupply(mNumberTextField.getText(), mTypeSupply, mDatePicker.getValue(), mInventoryNumberList, mTextAreaDescription.getText(), mComboBoxProvider.getValue());
         }
     }
 

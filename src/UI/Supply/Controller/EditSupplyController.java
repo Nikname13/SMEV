@@ -52,7 +52,6 @@ public class EditSupplyController {
 
         numberTextField.setText(mSupplyModel.getName());
         textAreaDescription.setText(mSupplyModel.getDescription());
-        documentationLabel.setText(mSupplyModel.getDocumentation());
     }
 
     private void providerListener(Object provider){

@@ -25,7 +25,8 @@
                   <ValidationFacade fx:id="mFacadeDate" layoutY="120" layoutX="15" AnchorPane.leftAnchor="15"
                                     AnchorPane.topAnchor="120">
                      <control>
-                        <JFXDatePicker prefHeight="25.0" prefWidth="250.0" promptText="Дата" editable="false"/>
+                        <JFXDatePicker fx:id="mDatePicker" prefHeight="25.0" prefWidth="250.0"
+                                       promptText="Дата поставки" editable="false"/>
                      </control>
                   </ValidationFacade>
                   <Label fx:id="mErrorDate"/>
@@ -44,7 +45,7 @@
                   <JFXTreeTableView fx:id="mTreeTableNumber" minHeight="105.0" maxHeight="255.0" prefWidth="250"
                                     minWidth="250" AnchorPane.leftAnchor="15">
                      <columns>
-                        <TreeTableColumn fx:id="mNumberColumn" prefWidth="248" text="Инвентарный номер"/>
+                        <TreeTableColumn fx:id="mNumberColumn" prefWidth="245" text="Инвентарный номер"/>
                      </columns>
                   </JFXTreeTableView>
                </children>

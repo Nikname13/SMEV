@@ -39,6 +39,11 @@ public abstract class GenericModel<T> extends AbstractModel<GenericModel<T>> imp
     public GenericModel() {
     }
 
+    public GenericModel(int id, String number, LocalDate dateSupply, List<T> inventoryList) {
+        super(id, number, dateSupply);
+        mEntityList = inventoryList;
+    }
+
     public List<T> getEntityList() {
         if(mEntityList==null) mEntityList=new ArrayList<>();
         return mEntityList;

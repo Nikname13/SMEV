@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPaneWorkers" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Worker.Controller.WorkersController">
     <children>
@@ -15,10 +16,12 @@
                            AnchorPane.bottomAnchor="10"/>
             </children>
         </AnchorPane>
-        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="65" AnchorPane.bottomAnchor="0" style="-fx-background-color: #ffffff;"
+        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="65" AnchorPane.bottomAnchor="0"
+                    style="-fx-background-color: #ffffff;"
                     prefHeight="55" minHeight="55" prefWidth="500" minWidth="500">
             <children>
-                <TableView fx:id="tableViewWorkers" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+                <TableView fx:id="tableViewWorkers" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10"
+                           AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
                     <columns>
                         <TableColumn fx:id="firstColumn" prefWidth="250.0" text="ФИО"/>
                         <TableColumn fx:id="secondColumn" prefWidth="100.0" text="Должность"/>

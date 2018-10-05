@@ -52,6 +52,8 @@ public class MovementsController extends BaseController implements IUpdateUI {
                 MovementPresenter.get().loadEntity(movement.getId());
                 TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getDetailsMovementResource()));
                 ListenersService.get().updateUI(MovementModel.class);
+            } else {
+                MovementPresenter.get().setSelectedObject(null);
             }
         }
     }

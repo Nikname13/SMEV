@@ -2,11 +2,13 @@ package Presenter;
 
 import Iteractor.IteractorInventoryNumber;
 import Model.Inventory_number.InventoryNumberModel;
+import Model.Inventory_number.InventoryNumbers;
 import Model.Supply.SupplyModel;
+import Service.IUpdateData;
 
 import java.util.Set;
 
-public class InventoryNumberPresenter extends BasePresenter {
+public class InventoryNumberPresenter extends BasePresenter implements IUpdateData {
 
     private static InventoryNumberModel sInventoryNumberModel;
 
@@ -42,6 +44,18 @@ public class InventoryNumberPresenter extends BasePresenter {
 
     @Override
     void loadEntity(int id) {
+
+    }
+
+    @Override
+    public void update(Object equipment) {
+        if (equipment.getClass().equals(SupplyModel.class)) {
+            InventoryNumbers.get().update();
+        }
+    }
+
+    @Override
+    public void delete() {
 
     }
 }

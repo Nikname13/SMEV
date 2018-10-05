@@ -1,10 +1,10 @@
 package UI.MainTabs.Controller;
 
-import Model.Supply.SupplyModel;
 import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
+import UI.Supply.Controller.SupplysController;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
@@ -27,7 +27,7 @@ public class SupplyTabController extends BaseTabController implements IUpdateUI 
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             TabControllerService.get().setListenerFirstTabPane((Tab nextTab) -> nextTab(nextTab, mSupplyTabContainer));
-            ListenersService.get().updateUI(SupplyModel.class);
+            ListenersService.get().updateUI(SupplysController.class);
             mSupplyTabContainer.getSelectionModel().select(0);
         }
     }

@@ -5,6 +5,7 @@ import Model.Supply.SupplyModel;
 import Presenter.SupplyPresenter;
 import Service.IUpdateUI;
 import Service.ListenersService;
+import Service.TabControllerService;
 import UI.BaseController;
 import UI.Coordinator;
 import javafx.collections.ObservableList;
@@ -77,6 +78,17 @@ public class SupplysController extends BaseController implements IUpdateUI {
     }
 
     private void selectedItem(TreeItem<SupplyModel> newValue) {
+        if (newValue != null) {
+            SupplyModel supplyModel = newValue.getValue();
+            if (supplyModel != null && supplyModel.getId() != -1) {
+                SupplyPresenter.get().setSupplyModel(supplyModel);
+                SupplyPresenter.get().setSelectedObject(supplyModel);
+                SupplyPresenter.get().loadEntity(supplyModel.getId());
+                TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getSupplyResource()));
+                ListenersService.get().updateUI(SupplyModel.class);
+            }
+
+        }
     }
 
     @FXML
@@ -91,7 +103,7 @@ public class SupplysController extends BaseController implements IUpdateUI {
 
     @Override
     public void updateUI(Class<?> updateClass) {
-        if (updateClass.getName().equals(SupplyModel.class.getName())) {
+        if (updateClass.getName().equals(this.getClass().getName())) {
             System.out.println("updateUI supple");
             updateTable(SupplyPresenter.get().getObservableSupply());
         }

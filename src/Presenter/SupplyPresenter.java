@@ -1,13 +1,17 @@
 package Presenter;
 
 import Iteractor.IteractorSupply;
+import Model.Inventory_number.InventoryNumberModel;
 import Model.Provider.ProviderModel;
 import Model.Supply.SupplyModel;
 import Model.Supply.Supplys;
+import Service.IUpdateData;
+import Service.ListenersService;
 
 import java.time.LocalDate;
+import java.util.List;
 
-public class SupplyPresenter extends BasePresenter {
+public class SupplyPresenter extends BasePresenter implements IUpdateData {
 
     private static SupplyModel sSupplyModel;
     private static SupplyPresenter sSupplyPresenter;
@@ -24,17 +28,19 @@ public class SupplyPresenter extends BasePresenter {
         return sSupplyModel;
     }
 
-    public void setSupplyModel(Object supplyModel) {
-        sSupplyModel = (SupplyModel) supplyModel;
+    public void setSupplyModel(SupplyModel supplyModel) {
+        sSupplyModel = supplyModel;
     }
 
 
-    public void addSupply(String number, String typeSupply, LocalDate dateSupply, String description, String documentation, Object provider ){
-        new IteractorSupply().addNew(new SupplyModel(0,number,typeSupply,dateSupply,description,documentation, (ProviderModel)provider));
+    public void addSupply(String number, String typeSupply, LocalDate dateSupply, List<InventoryNumberModel> inventoryList, String description, ProviderModel provider) {
+        ListenersService.get().updateData(new IteractorSupply().addNew(new SupplyModel(0, number, typeSupply, dateSupply, inventoryList, description, provider)));
+        ListenersService.get().updateUI(SupplyModel.class);
+
     }
 
     public void editSupply(String number, String typeSupply, LocalDate dateSupply, String description, String documentation,ProviderModel provider){
-        new IteractorSupply().edit(new SupplyModel(sSupplyModel.getId(),number,typeSupply,dateSupply,description,documentation,provider));
+        //new IteractorSupply().edit(new SupplyModel(sSupplyModel.getId(),number,typeSupply,dateSupply,description,documentation,provider));
     }
 
     public void deleteSupply(int id){
@@ -46,7 +52,17 @@ public class SupplyPresenter extends BasePresenter {
     }
 
     @Override
-    void loadEntity(int id) {
+    public void loadEntity(int id) {
+
+    }
+
+    @Override
+    public void update(Object equipment) {
+
+    }
+
+    @Override
+    public void delete() {
 
     }
 }

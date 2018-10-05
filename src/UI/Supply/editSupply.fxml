@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-
+<?import com.jfoenix.controls.JFXTreeTableColumn?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Supply.Controller.EditSupplyController">
+    <children>
+        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" prefHeight="300"
+                    style="-fx-background-color: #ffffff;">
+            <children>
+                <TextField fx:id="numberTextField" layoutY="25.0" prefWidth="200.0"
+                           promptText="Введите номер поставки"/>
+                <RadioButton fx:id="supplyButton" mnemonicParsing="false" text="Supply"/>
+                <RadioButton fx:id="auctionButton" layoutX="100.0" mnemonicParsing="false" text="Auction"/>
+                <DatePicker layoutY="50.0" prefHeight="25.0" prefWidth="200.0"/>
+                <ComboBox fx:id="providerBox" layoutY="75.0" prefHeight="25.0" prefWidth="200.0"/>
+                <TextArea fx:id="textAreaDescription" layoutY="100.0" prefHeight="200.0" prefWidth="200.0"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"
+                    AnchorPane.topAnchor="310" style="-fx-background-color: #ffffff;">
+            <children>
+                <JFXTreeTableView fx:id="mTreeTableEquipment" AnchorPane.bottomAnchor="10.0"
+                                  AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"
+                                  AnchorPane.leftAnchor="10.0">
+                    <columns>
+                        <JFXTreeTableColumn fx:id="mNumberColumn" prefWidth="250.0" text="Номер"/>
+                        <JFXTreeTableColumn fx:id="mDescriptionColumn" prefWidth="200.0" text="Комментарий"/>
+                    </columns>
+                </JFXTreeTableView>
+            </children>
+        </AnchorPane>
+    </children>
 
-    <TextField fx:id="numberTextField" layoutY="25.0" prefWidth="200.0" promptText="Введите номер поставки" />
-    <RadioButton fx:id="supplyButton" mnemonicParsing="false" text="Supply" />
-    <RadioButton fx:id="auctionButton" layoutX="100.0" mnemonicParsing="false" text="Auction" />
-    <DatePicker layoutY="50.0" prefHeight="25.0" prefWidth="200.0" />
-    <ComboBox fx:id="providerBox" layoutY="75.0" prefHeight="25.0" prefWidth="200.0" />
-    <Button fx:id="addSupplyButton" layoutX="200.0" layoutY="75.0" mnemonicParsing="false" onAction="#onClickEdit" text="edit" />
-    <Button fx:id="deleteSupplyButton" layoutX="255.0" layoutY="75.0" mnemonicParsing="false" onAction="#onClickDelete" text="delete" />
-    <TextArea fx:id="textAreaDescription" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-   <Label fx:id="documentationLabel" layoutX="462.0" layoutY="8.0" text="doc" />
 
 </AnchorPane>

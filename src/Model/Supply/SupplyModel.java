@@ -1,20 +1,22 @@
 package Model.Supply;
 
-import Model.AbstractModel;
+import Model.GenericModel;
+import Model.Inventory_number.InventoryNumberModel;
 import Model.Provider.ProviderModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
+import java.util.List;
 
-public class SupplyModel extends AbstractModel {
+public class SupplyModel extends GenericModel<InventoryNumberModel> {
 
-    private String mDescription, mDocumentation, mTypeSupply;
+    private String mDescription, mTypeSupply;
     private ProviderModel mProviderModel;
-    public SupplyModel(int id, String number, String typeSupply, LocalDate dateSupply, String description, String documentation, ProviderModel providerModel) {
-        super(id, number, dateSupply);
+
+    public SupplyModel(int id, String number, String typeSupply, LocalDate dateSupply, List<InventoryNumberModel> inventoryList, String description, ProviderModel providerModel) {
+        super(id, number, dateSupply, inventoryList);
         mDescription = description;
-        mDocumentation = documentation;
         mTypeSupply = typeSupply;
         mProviderModel = providerModel;
     }
@@ -34,14 +36,6 @@ public class SupplyModel extends AbstractModel {
         mDescription = description;
     }
 
-    public String getDocumentation() {
-        return mDocumentation;
-    }
-
-    public void setDocumentation(String documentation) {
-        mDocumentation = documentation;
-    }
-
     public String getTypeSupply() {
         return mTypeSupply;
     }
@@ -56,10 +50,6 @@ public class SupplyModel extends AbstractModel {
 
     public StringProperty descriptionProperty() {
         return new SimpleStringProperty(mDescription);
-    }
-
-    public StringProperty documentationProperty() {
-        return new SimpleStringProperty(mDocumentation);
     }
 
     public ProviderModel getProviderModel() {
