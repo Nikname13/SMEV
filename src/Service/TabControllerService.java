@@ -16,7 +16,7 @@ public class TabControllerService {
             mEmptyTab, mDetailsMovementResource, mInventoryNumberResource,
             mParameterResource, mProviderResource, mAreaResource,
             mStateResource, mWorkerResource, mTypeResource,
-            mSupplyResource;
+            mSupplyResource, mEditSupplyResource;
     private List<Tab> mTabList;
 
     public static TabControllerService get(){
@@ -40,6 +40,7 @@ public class TabControllerService {
         mWorkerResource = new ResourceModel("/UI/Worker/workers.fxml", "mAnchorPaneWorkers");
         mTypeResource = new ResourceModel("/UI/Type/types.fxml", "mAnchorPaneTypes");
         mSupplyResource = new ResourceModel("/UI/Supply/supplys.fxml", "mAnchorPaneSupply");
+        mEditSupplyResource = new ResourceModel("/UI/Supply/editSupply.fxml", "mAnchorPaneEditSupply");
     }
 
     public ITabSelected getListenerFirstTabPane() {
@@ -121,5 +122,9 @@ public class TabControllerService {
 
     public ResourceModel getSupplyResource() {
         return mSupplyResource;
+    }
+
+    public ResourceModel getEditSupplyResource() {
+        return mEditSupplyResource;
     }
 }

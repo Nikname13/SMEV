@@ -1,77 +1,205 @@
 package UI.Supply.Controller;
 
+import Model.Inventory_number.InventoryNumberModel;
 import Model.Provider.ProviderModel;
 import Model.Supply.SupplyModel;
+import Presenter.SupplyPresenter;
+import Service.IUpdateUI;
+import Service.ListenersService;
+import UI.BaseController;
+import UI.Validator.BaseValidator;
+import com.jfoenix.controls.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-public class EditSupplyController {
+import java.util.List;
+
+public class EditSupplyController extends BaseController implements IUpdateUI {
 
     private SupplyModel mSupplyModel;
     private String mTypeSupply;
-    private Object mProvider;
-
+    private static String sSupply = "поставки";
+    private static String sAuction = "аукциона";
+    private BaseValidator mBaseValidator = new BaseValidator();
     @FXML
-    private RadioButton supplyButton,auctionButton;
-
+    private JFXRadioButton mSupplyButton, mAuctionButton;
     @FXML
-    private ComboBox<ProviderModel> providerBox;
-
+    private JFXDatePicker mDatePicker;
     @FXML
-    private TextField numberTextField;
-
+    private JFXComboBox<ProviderModel> mComboBoxProvider;
     @FXML
-    private TextArea textAreaDescription;
-
+    private JFXTextField mNumberTextField;
     @FXML
-    private Label documentationLabel;
+    private JFXTextArea mTextAreaDescription;
+    @FXML
+    private JFXButton mButtonEdit;
+    @FXML
+    private TreeTableView<InventoryNumberModel> mTreeTableInventory;
+    @FXML
+    private TreeTableColumn<InventoryNumberModel, String> mNumberColumn, mDescriptionColumn;
+    @FXML
+    private AnchorPane mAnchorPaneEditSupply;
 
     public EditSupplyController(){
-        // mSupplyModel= new SupplyPresenter().getSupplyModel();
+        ListenersService.get().addListenerUI(this);
     }
 
     @FXML
     public void initialize(){
-        ToggleGroup group=new ToggleGroup();
-        supplyButton.setToggleGroup(group);
-        auctionButton.setToggleGroup(group);
-        providerBox.setCellFactory(p->new ListCell<ProviderModel>(){
+        initComboBoxProvider(mComboBoxProvider, true);
+        initTextField();
+        initTextArea();
+        initRadioButton();
+        initTreeTable();
+    }
+
+    private void initTreeTable() {
+        mNumberColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().nameProperty());
+        mDescriptionColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().descriptionProperty());
+    }
+
+    private void initTextArea() {
+        mTextAreaDescription.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            protected void updateItem(ProviderModel provider,boolean empty){
-                super.updateItem(provider,empty);
-                if(provider!=null && !empty){
-                    setText(provider.getName());
-                }else{
-                    setText(null);
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (mTextAreaDescription.focusedProperty().get()) {
+                    setVisibleEditButton();
                 }
             }
         });
-        // providerBox.setItems(new SupplyPresenter().getObservableProvider());
-        providerBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->providerListener(newValue) );
+    }
+
+    private void initTextField() {
+        mBaseValidator.setJFXTextFields(mNumberTextField);
+        mNumberTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (mNumberTextField.focusedProperty().get()) {
+                    setVisibleEditButton();
+                }
+            }
+        });
+    }
+
+    private void initRadioButton() {
+        ToggleGroup group=new ToggleGroup();
+        mSupplyButton.setToggleGroup(group);
+        mAuctionButton.setToggleGroup(group);
         group.selectedToggleProperty().addListener((observable, oldValue, newValue) -> selectedButton(newValue));
 
-        numberTextField.setText(mSupplyModel.getName());
-        textAreaDescription.setText(mSupplyModel.getDescription());
     }
 
-    private void providerListener(Object provider){
-        mProvider=provider;
-        System.out.println(((ProviderModel)provider).getId());
+    private void setVisibleEditButton() {
+        mTextAreaDescription.setPrefHeight(mTextAreaDescription.getMinHeight());
+        mButtonEdit.setVisible(true);
     }
 
-    private void selectedButton(Object o){
+    private void setInvisibleEditButton() {
+        mButtonEdit.setVisible(false);
+        mTextAreaDescription.setPrefHeight(mTextAreaDescription.getMaxHeight());
+    }
+
+    @Override
+    protected void initComboBoxProvider(JFXComboBox<ProviderModel> comboBox, boolean isSelectionItem) {
+        super.initComboBoxProvider(comboBox, isSelectionItem);
+        comboBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> providerListener());
+    }
+
+    private void providerListener() {
+        if (mComboBoxProvider.focusedProperty().get()) {
+            setVisibleEditButton();
+        }
+
+    }
+
+    private void selectedButton(Object o) {
         mTypeSupply=((RadioButton)o).getText();
+        switch (((RadioButton) o).getId()) {
+            case "mSupplyButton":
+                setPromptText(sSupply);
+                break;
+            case "mAuctionButton":
+                setPromptText(sAuction);
+                break;
+        }
+        if (mSupplyButton.focusedProperty().get() || mAuctionButton.focusedProperty().get()) {
+            setVisibleEditButton();
+        }
         System.out.println(mTypeSupply);
     }
 
-    @FXML
-    private void onClickEdit(){
-        //new SupplyPresenter().editSupply(numberTextField.getText(), mTypeSupply, LocalDate.now(), textAreaDescription.getText(), documentationLabel.getText(),(ProviderModel) mProvider);
+    private void setPromptText(String type) {
+        mNumberTextField.setPromptText("Номер " + type);
+        mDatePicker.setPromptText("Дата " + type);
+
     }
 
+
+
     @FXML
-    private void onClickDelete(){
-        //new SupplyPresenter().deleteSupply(mSupplyModel.getId());
+    private void onClickAdd() {
+        if (mBaseValidator.validate()) {
+            SupplyPresenter.get().editSupply(mNumberTextField.getText(), mTypeSupply, mDatePicker.getValue(), mTextAreaDescription.getText(), mComboBoxProvider.getValue());
+            setInvisibleEditButton();
+        }
     }
 
+    @Override
+    public void updateUI(Class<?> updateClass) {
+        if (updateClass.getName().equals(SupplyModel.class.getName())) {
+            mSupplyModel = SupplyPresenter.get().getSupplyModel();
+            mNumberTextField.setText(mSupplyModel.getName());
+            mDatePicker.setValue(mSupplyModel.getDate());
+            mComboBoxProvider.setItems(SupplyPresenter.get().getObservableProvide());
+            mComboBoxProvider.getSelectionModel().select(mSupplyModel.getProviderModel());
+            mTextAreaDescription.setText(mSupplyModel.getDescription());
+            setTypeSupply(mSupplyModel.getTypeSupply());
+            setInvisibleEditButton();
+            updateTreeTable(mSupplyModel.getEntityList());
+        }
+    }
+
+    private void updateTreeTable(List<InventoryNumberModel> observableEntityList) {
+        TreeItem<InventoryNumberModel> rootItem = new TreeItem<>();
+        for (InventoryNumberModel number : observableEntityList) {
+            rootItem.getChildren().add(new TreeItem<>(number));
+        }
+        mTreeTableInventory.setRoot(rootItem);
+        mTreeTableInventory.setShowRoot(false);
+    }
+
+    private void setTypeSupply(String type) {
+        switch (type) {
+            case "Поставка":
+                mSupplyButton.setSelected(true);
+                break;
+            case "Аукцион":
+                mAuctionButton.setSelected(true);
+                break;
+        }
+    }
+
+    @Override
+    public void refreshControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+
+    }
+
+    @Override
+    protected Stage getStage() {
+        return (Stage) mAnchorPaneEditSupply.getScene().getWindow();
+    }
 }

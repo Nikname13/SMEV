@@ -39,8 +39,8 @@ public class SupplyPresenter extends BasePresenter implements IUpdateData {
 
     }
 
-    public void editSupply(String number, String typeSupply, LocalDate dateSupply, String description, String documentation,ProviderModel provider){
-        //new IteractorSupply().edit(new SupplyModel(sSupplyModel.getId(),number,typeSupply,dateSupply,description,documentation,provider));
+    public void editSupply(String number, String typeSupply, LocalDate dateSupply, String description, ProviderModel provider) {
+        new IteractorSupply().edit(new SupplyModel(sSupplyModel.getId(), number, typeSupply, dateSupply, null, description, provider));
     }
 
     public void deleteSupply(int id){

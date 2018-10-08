@@ -1,27 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTreeTableColumn?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
-<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.validation.ValidationFacade?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Supply.Controller.EditSupplyController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPaneEditSupply" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Supply.Controller.EditSupplyController">
     <children>
-        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" prefHeight="300"
+        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" prefHeight="225"
                     style="-fx-background-color: #ffffff;">
             <children>
-                <TextField fx:id="numberTextField" layoutY="25.0" prefWidth="200.0"
-                           promptText="Введите номер поставки"/>
-                <RadioButton fx:id="supplyButton" mnemonicParsing="false" text="Supply"/>
-                <RadioButton fx:id="auctionButton" layoutX="100.0" mnemonicParsing="false" text="Auction"/>
-                <DatePicker layoutY="50.0" prefHeight="25.0" prefWidth="200.0"/>
-                <ComboBox fx:id="providerBox" layoutY="75.0" prefHeight="25.0" prefWidth="200.0"/>
-                <TextArea fx:id="textAreaDescription" layoutY="100.0" prefHeight="200.0" prefWidth="200.0"/>
+                <JFXTextField fx:id="mNumberTextField" focusColor="#41a65d" labelFloat="true"
+                              prefWidth="250.0" promptText="Номер поставки" AnchorPane.leftAnchor="15"
+                              AnchorPane.topAnchor="60"/>
+                <HBox AnchorPane.leftAnchor="15" AnchorPane.topAnchor="15" spacing="20">
+                    <children>
+                        <JFXRadioButton fx:id="mSupplyButton" mnemonicParsing="false" text="Поставка"/>
+                        <JFXRadioButton fx:id="mAuctionButton" mnemonicParsing="false" text="Аукцион"/>
+                    </children>
+                </HBox>
+                <ValidationFacade fx:id="mFacadeDate" layoutY="120" layoutX="15" AnchorPane.leftAnchor="15"
+                                  AnchorPane.topAnchor="120">
+                    <control>
+                        <JFXDatePicker fx:id="mDatePicker" prefHeight="25.0" prefWidth="250.0"
+                                       promptText="Дата поставки" editable="false"/>
+                    </control>
+                </ValidationFacade>
+                <Label fx:id="mErrorDate"/>
+                <ValidationFacade fx:id="mFacadeProvider" layoutY="190" layoutX="15" AnchorPane.leftAnchor="15"
+                                  AnchorPane.topAnchor="190">
+                    <control>
+                        <JFXComboBox fx:id="mComboBoxProvider" prefHeight="25.0" prefWidth="250.0" focusColor="#40a85f"
+                                     labelFloat="true" promptText="Поставщик"></JFXComboBox>
+                    </control>
+                </ValidationFacade>
+                <Label fx:id="mErrorProvider"/>
+                <JFXTextArea fx:id="mTextAreaDescription" labelFloat="true" prefHeight="181.0" minHeight="140"
+                             maxHeight="181.0" focusColor="#40a85f"
+                             AnchorPane.topAnchor="30" AnchorPane.leftAnchor="275" AnchorPane.rightAnchor="15"
+                             promptText="Комментарий"/>
+                <JFXButton onAction="#onClickAdd" fx:id="mButtonEdit" text="Сохранить" ripplerFill="#40a85f"
+                           visible="false"
+                           AnchorPane.bottomAnchor="15" AnchorPane.rightAnchor="15"/>
             </children>
         </AnchorPane>
         <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"
-                    AnchorPane.topAnchor="310" style="-fx-background-color: #ffffff;">
+                    AnchorPane.topAnchor="245" style="-fx-background-color: #ffffff;">
             <children>
-                <JFXTreeTableView fx:id="mTreeTableEquipment" AnchorPane.bottomAnchor="10.0"
+                <JFXTreeTableView fx:id="mTreeTableInventory" AnchorPane.bottomAnchor="10.0"
                                   AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"
                                   AnchorPane.leftAnchor="10.0">
                     <columns>

@@ -84,7 +84,7 @@ public class SupplysController extends BaseController implements IUpdateUI {
                 SupplyPresenter.get().setSupplyModel(supplyModel);
                 SupplyPresenter.get().setSelectedObject(supplyModel);
                 SupplyPresenter.get().loadEntity(supplyModel.getId());
-                TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getSupplyResource()));
+                TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditSupplyResource()));
                 ListenersService.get().updateUI(SupplyModel.class);
             }
 
