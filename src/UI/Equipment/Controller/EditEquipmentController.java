@@ -15,7 +15,7 @@ import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseController;
 import UI.Coordinator;
-import UI.Popup.BasePopup;
+import UI.Popup.Controller.BasePopup;
 import UI.Validator.BaseValidator;
 import UI.Validator.Pair;
 import com.jfoenix.controls.*;

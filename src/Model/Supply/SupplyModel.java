@@ -28,6 +28,10 @@ public class SupplyModel extends GenericModel<InventoryNumberModel> {
         mProviderModel = provider;
     }
 
+    public SupplyModel(int id, String name) {
+        super(id, name);
+    }
+
     @Override
     public List<InventoryNumberModel> getEntityList() {
         if (mEntityList == null) {

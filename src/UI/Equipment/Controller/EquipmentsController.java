@@ -7,7 +7,7 @@ import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.Coordinator;
-import UI.Popup.BasePopup;
+import UI.Popup.Controller.BasePopup;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeCell;

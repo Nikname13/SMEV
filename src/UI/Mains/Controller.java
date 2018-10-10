@@ -62,7 +62,7 @@ public class Controller {
 
     @FXML
     private void onClickAddInventoryNumber(){
-        new Coordinator().goToAddInventoryNumberWindow((Stage) anchorPaneMain.getScene().getWindow(),100.0,200.0);
+        //new Coordinator().goToAddInventoryNumberWindow((Stage) anchorPaneMain.getScene().getWindow(),100.0,200.0);
     }
 
     @FXML

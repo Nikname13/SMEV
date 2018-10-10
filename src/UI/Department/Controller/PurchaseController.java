@@ -7,7 +7,7 @@ import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
-import UI.Popup.BasePopup;
+import UI.Popup.Controller.BasePopup;
 import com.jfoenix.controls.JFXListView;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

@@ -25,7 +25,8 @@
                   <ValidationFacade fx:id="mFacadeDate" layoutY="120" layoutX="15" AnchorPane.leftAnchor="15"
                                     AnchorPane.topAnchor="120">
                      <control>
-                        <JFXDatePicker fx:id="mDatePicker" prefHeight="25.0" prefWidth="250.0" promptText="Дата поставки" editable="false"/>
+                        <JFXDatePicker fx:id="mDatePicker" prefHeight="25.0" prefWidth="250.0"
+                                       promptText="Дата поставки" editable="false"/>
                      </control>
                   </ValidationFacade>
                   <Label fx:id="mErrorDate"/>

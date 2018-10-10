@@ -1,4 +1,4 @@
-package UI.Popup;
+package UI.Popup.Controller;
 
 import Presenter.BasePresenter;
 import Service.IOnMouseClick;
@@ -14,8 +14,9 @@ import java.io.IOException;
 public class BasePopup implements IUpdatePopup {
 
     private static String sEquipmentInventoryPopup = "/UI/Popup/equipmentInventoryPopup.fxml";
-    private static String sBaseListPopup = "/UI/Popup/BaseListPopup.fxml";
+    private static String sBaseListPopup = "/UI/Popup/baseListPopup.fxml";
     private static String sDepartmentListPopup = "/UI/Popup/departmentsListPopup.fxml";
+    private static String sSupplyListPopup = "/UI/Popup/supplyListPopup.fxml";
     private JFXPopup mPopup;
 
     public BasePopup(Node node, String resourceURL, IOnMouseClick primaryClick) {
@@ -51,6 +52,10 @@ public class BasePopup implements IUpdatePopup {
 
     public static String getDepartmentListPopup() {
         return sDepartmentListPopup;
+    }
+
+    public static String getSupplyListPopup() {
+        return sSupplyListPopup;
     }
 
     public JFXPopup get() {

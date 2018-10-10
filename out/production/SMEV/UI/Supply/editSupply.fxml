@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTreeTableColumn?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import com.jfoenix.controls.JFXRadioButton?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.*?>
 <?import com.jfoenix.validation.ValidationFacade?>
-<?import com.jfoenix.controls.JFXDatePicker?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXTextArea?>
-<?import com.jfoenix.controls.JFXButton?>
-<AnchorPane fx:id="mAnchorPaneEditSupply" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Supply.Controller.EditSupplyController">
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPaneEditSupply" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Supply.Controller.EditSupplyController">
     <children>
         <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" prefHeight="225"
                     style="-fx-background-color: #ffffff;">
@@ -38,14 +31,16 @@
                                   AnchorPane.topAnchor="190">
                     <control>
                         <JFXComboBox fx:id="mComboBoxProvider" prefHeight="25.0" prefWidth="250.0" focusColor="#40a85f"
-                                     labelFloat="true" promptText="Поставщик" ></JFXComboBox>
+                                     labelFloat="true" promptText="Поставщик"></JFXComboBox>
                     </control>
                 </ValidationFacade>
                 <Label fx:id="mErrorProvider"/>
-                <JFXTextArea fx:id="mTextAreaDescription" labelFloat="true" prefHeight="181.0" minHeight="140" maxHeight="181.0" focusColor="#40a85f"
-                              AnchorPane.topAnchor="30" AnchorPane.leftAnchor="275" AnchorPane.rightAnchor="15"
+                <JFXTextArea fx:id="mTextAreaDescription" labelFloat="true" prefHeight="181.0" minHeight="140"
+                             maxHeight="181.0" focusColor="#40a85f"
+                             AnchorPane.topAnchor="30" AnchorPane.leftAnchor="275" AnchorPane.rightAnchor="15"
                              promptText="Комментарий"/>
-                <JFXButton onAction="#onClickAdd" fx:id="mButtonEdit" text="Сохранить" ripplerFill="#40a85f" visible="false"
+                <JFXButton onAction="#onClickAdd" fx:id="mButtonEdit" text="Сохранить" ripplerFill="#40a85f"
+                           visible="false"
                            AnchorPane.bottomAnchor="15" AnchorPane.rightAnchor="15"/>
             </children>
         </AnchorPane>

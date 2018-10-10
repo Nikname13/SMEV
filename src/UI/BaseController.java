@@ -9,6 +9,7 @@ import Model.Parameter.ParameterModel;
 import Model.Post.PostModel;
 import Model.Provider.ProviderModel;
 import Model.State.StateModel;
+import Model.Supply.SupplyModel;
 import Model.Type.TypeModel;
 import Model.Worker.WorkerModel;
 import com.jfoenix.controls.JFXComboBox;
@@ -450,6 +451,44 @@ public abstract class BaseController {
             comboBox.setButtonCell(new ListCell<>() {
                 @Override
                 protected void updateItem(ProviderModel item, boolean empty) {
+                    if (item != null && !empty) {
+                        setText(item.getName());
+                    } else {
+                        setText(null);
+                    }
+                }
+            });
+        }
+    }
+
+    protected void initComboBoxSupply(JFXComboBox<SupplyModel> comboBox, boolean isSelectionItem) {
+        comboBox.setCellFactory(p -> new ListCell<>() {
+            @Override
+            protected void updateItem(SupplyModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else setText(null);
+            }
+        });
+        comboBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(SupplyModel object) {
+                if (object != null) return object.getName();
+                else return null;
+            }
+
+            @Override
+            public SupplyModel fromString(String string) {
+                if (!string.trim().isEmpty())
+                    return new SupplyModel(-1, "");
+                return null;
+            }
+        });
+        if (isSelectionItem) {
+            comboBox.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(SupplyModel item, boolean empty) {
                     if (item != null && !empty) {
                         setText(item.getName());
                     } else {

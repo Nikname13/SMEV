@@ -4,7 +4,6 @@ import Iteractor.IteractorSupply;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Provider.ProviderModel;
 import Model.Supply.SupplyModel;
-import Model.Supply.Supplys;
 import Service.IUpdateData;
 import Service.ListenersService;
 
@@ -17,6 +16,7 @@ public class SupplyPresenter extends BasePresenter implements IUpdateData {
     private static SupplyPresenter sSupplyPresenter;
 
     private SupplyPresenter() {
+        ListenersService.get().addListenerData(this);
     }
 
     public static SupplyPresenter get() {
@@ -41,14 +41,10 @@ public class SupplyPresenter extends BasePresenter implements IUpdateData {
 
     public void editSupply(String number, String typeSupply, LocalDate dateSupply, String description, ProviderModel provider) {
         new IteractorSupply().edit(new SupplyModel(sSupplyModel.getId(), number, typeSupply, dateSupply, null, description, provider));
-    }
-
-    public void deleteSupply(int id){
-        new IteractorSupply().delete(id);
-    }
-
-    public void update(){
-        Supplys.get().update();
+        ListenersService.get().refreshControl(SupplyModel.class);
+        if (sSupplyModel.getProviderModel().getId() != provider.getId()) {
+            ListenersService.get().updateControl(SupplyModel.class);
+        }
     }
 
     @Override
@@ -58,11 +54,16 @@ public class SupplyPresenter extends BasePresenter implements IUpdateData {
 
     @Override
     public void update(Object equipment) {
-
     }
 
     @Override
     public void delete() {
-
+        if (getSelectedObject() != null) {
+            if (getSelectedObject().equals(sSupplyModel)) {
+                if (new IteractorSupply().delete(sSupplyModel.getId())) {
+                    ListenersService.get().updateControl(SupplyModel.class);
+                }
+            }
+        }
     }
 }

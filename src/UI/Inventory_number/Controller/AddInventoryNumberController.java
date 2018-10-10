@@ -3,50 +3,67 @@ package UI.Inventory_number.Controller;
 import Model.Supply.SupplyModel;
 import Model.Supply.Supplys;
 import Presenter.InventoryNumberPresenter;
+import UI.BaseController;
+import UI.Validator.BaseValidator;
+import UI.Validator.Pair;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.ValidationFacade;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 
-public class AddInventoryNumberController {
+public class AddInventoryNumberController extends BaseController {
 
-    private Object mSupply;
-
-    @FXML
-    private TextField numberText;
-
-    @FXML
-    private ComboBox<SupplyModel> comboBoxSupply;
+    private BaseValidator mBaseValidator = new BaseValidator();
 
     @FXML
-    private TextArea textAreaDescription;
-
+    private JFXTextField mTextField;
     @FXML
-    private CheckBox checkBoxGroup;
+    private JFXComboBox<SupplyModel> mComboBoxSupply;
+    @FXML
+    private ValidationFacade mFacadeSupply;
+    @FXML
+    private Label mErrorSupply;
+    @FXML
+    private JFXTextArea mTextAreaDescription;
+    @FXML
+    private JFXCheckBox mCheckBoxGroup;
+    @FXML
+    private AnchorPane mAnchorPaneInventoryNumber;
 
     @FXML
     public void initialize(){
-        comboBoxSupply.setCellFactory(p->new ListCell<SupplyModel>(){
-            @Override
-            protected void updateItem(SupplyModel supply,boolean empty){
-                super.updateItem(supply,empty);
-                if(supply!=null && !empty){
-                    setText(supply.getName());
-                }else{
-                    setText(null);
-                }
-            }
-        });
-        comboBoxSupply.setItems(Supplys.get().getObsEntityList());
-        comboBoxSupply.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->supplySelected(newValue));
+        mBaseValidator.setJFXTextFields(mTextField);
+        mBaseValidator.setValidationFacades(new Pair(mFacadeSupply, mErrorSupply));
+        initComboBoxSupply(mComboBoxSupply, false);
     }
 
-    private void supplySelected(Object supply){
-        mSupply=supply;
+    @Override
+    protected void initComboBoxSupply(JFXComboBox<SupplyModel> comboBox, boolean isSelectionItem) {
+        super.initComboBoxSupply(comboBox, isSelectionItem);
+        comboBox.setItems(Supplys.get().getObsEntityList());
     }
 
     @FXML
     private void onClickAdd(){
-        new InventoryNumberPresenter().addInventoryNumber(numberText.getText(),mSupply,checkBoxGroup.isSelected(),textAreaDescription.getText());
+        if (mBaseValidator.validate()) {
+            InventoryNumberPresenter.get().addInventoryNumber(mTextField.getText(), mComboBoxSupply.getValue(), mCheckBoxGroup.isSelected(), mTextAreaDescription.getText());
+            close(mAnchorPaneInventoryNumber);
+        }
     }
 
+    @FXML
+    private void onClickCancel() {
+        close(mAnchorPaneInventoryNumber);
+    }
+
+    @Override
+    protected Stage getStage() {
+        return null;
+    }
 }

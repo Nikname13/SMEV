@@ -13,7 +13,7 @@ public class EditInventoryNumber {
     private SupplyModel mSupply;
 
     public EditInventoryNumber(){
-        mInvNumber=new InventoryNumberPresenter().getInventoryNumberModel();
+        mInvNumber = InventoryNumberPresenter.get().getInventoryNumberModel();
         mSupply=mInvNumber.getSupply();
     }
 
@@ -54,11 +54,11 @@ public class EditInventoryNumber {
 
     @FXML
     private void onClickEdit(){
-        new InventoryNumberPresenter().editInventoryNumber(numberText.getText(), mSupply, checkBoxGroup.isSelected(), textAreaDescription.getText());
+        //new InventoryNumberPresenter().editInventoryNumber(numberText.getText(), mSupply, checkBoxGroup.isSelected(), textAreaDescription.getText());
     }
 
     @FXML
     private void onClickDelete(){
-        new InventoryNumberPresenter().delete(mInvNumber.getId());
+        //new InventoryNumberPresenter().delete(mInvNumber.getId());
     }
 }

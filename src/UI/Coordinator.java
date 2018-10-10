@@ -230,9 +230,9 @@ public class Coordinator {
         }
     }
 
-    public void goToAddInventoryNumberWindow(Stage stage, double width, double height){
+    public void goToAddInventoryNumberWindow(Stage stage) {
         try {
-            windowSceneContent("Inventory_number/addInventoryNumber.fxml",stage,"Новый номер", width, height);
+            windowSceneContent("Inventory_number/addInventoryNumber.fxml", stage, "Новый номер", 300, 305);
         }catch (Exception ex){
             System.out.println("Exception goToAddInventoryNumber " + ex);
         }

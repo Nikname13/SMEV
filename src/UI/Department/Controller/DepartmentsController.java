@@ -8,7 +8,7 @@ import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.Coordinator;
-import UI.Popup.BasePopup;
+import UI.Popup.Controller.BasePopup;
 import UI.TabPane.Controller.TabPaneSecondLvlTabController;
 import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;

@@ -4,6 +4,7 @@ import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
+import UI.Inventory_number.Controller.InventoryNumbersController;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
@@ -36,6 +37,7 @@ public class CatalogTabController extends BaseTabController implements IUpdateUI
             switch (newValue.getId()) {
                 case "mInventoryNumber":
                     TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getInventoryNumberResource()));
+                    ListenersService.get().updateUI(InventoryNumbersController.class);
                     break;
                 case "mParameter":
                     TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getParameterResource()));

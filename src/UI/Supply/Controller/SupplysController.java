@@ -3,11 +3,13 @@ package UI.Supply.Controller;
 import Model.Provider.ProviderModel;
 import Model.Supply.SupplyModel;
 import Presenter.SupplyPresenter;
+import Service.IOnMouseClick;
 import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseController;
 import UI.Coordinator;
+import UI.Popup.Controller.BasePopup;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
@@ -16,7 +18,7 @@ import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class SupplysController extends BaseController implements IUpdateUI {
+public class SupplysController extends BaseController implements IUpdateUI, IOnMouseClick {
 
     @FXML
     private TreeTableView<SupplyModel> mTreeTableSupply;
@@ -33,6 +35,11 @@ public class SupplysController extends BaseController implements IUpdateUI {
     public void initialize(){
         System.out.println("init supple");
         initTable();
+        initPopup();
+    }
+
+    private void initPopup() {
+        new BasePopup(mTreeTableSupply, BasePopup.getSupplyListPopup(), this);
     }
 
     private void initTable() {
@@ -86,6 +93,8 @@ public class SupplysController extends BaseController implements IUpdateUI {
                 SupplyPresenter.get().loadEntity(supplyModel.getId());
                 TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditSupplyResource()));
                 ListenersService.get().updateUI(SupplyModel.class);
+            } else {
+                SupplyPresenter.get().setSelectedObject(null);
             }
 
         }
@@ -111,16 +120,27 @@ public class SupplysController extends BaseController implements IUpdateUI {
 
     @Override
     public void refreshControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(SupplyModel.class.getName())) {
+            mTreeTableSupply.refresh();
+        }
     }
 
     @Override
     public void updateControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(SupplyModel.class.getName())) {
+            updateTable(SupplyPresenter.get().getObservableSupply());
+        }
     }
 
     @Override
     public void updateControl(Class<?> updateClass, Object currentItem) {
 
+    }
+
+    @Override
+    public void primaryClick(String id) {
+        if (id == "documentation") {
+            System.out.println("окно с документацией");
+        }
     }
 }

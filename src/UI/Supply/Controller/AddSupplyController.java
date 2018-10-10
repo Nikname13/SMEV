@@ -29,7 +29,6 @@ import java.time.LocalDate;
 public class AddSupplyController extends BaseController {
 
     private String mTypeSupply;
-    private Object mProvider;
     private BaseValidator mBaseValidator = new BaseValidator();
     private BaseValidator mBaseValidatorDialog = new BaseValidator();
     private ObservableList<InventoryNumberModel> mInventoryNumberList;
@@ -175,7 +174,7 @@ public class AddSupplyController extends BaseController {
     protected void initComboBoxProvider(JFXComboBox<ProviderModel> comboBox, boolean isSelectionItem) {
         super.initComboBoxProvider(comboBox, isSelectionItem);
         comboBox.setItems(SupplyPresenter.get().getObservableProvide());
-        comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> providerListener(newValue));
+        //comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> providerListener(newValue));
     }
 
     private void initRadioButton() {
@@ -185,11 +184,6 @@ public class AddSupplyController extends BaseController {
         mSupplyButton.setSelected(true);
         selectedButton(mSupplyButton);
         group.selectedToggleProperty().addListener((observable, oldValue, newValue) -> selectedButton(newValue));
-    }
-
-    private void providerListener(Object provider){
-        mProvider=provider;
-        System.out.println(((ProviderModel)provider).getId());
     }
 
     private void selectedButton(Object o) {
@@ -213,7 +207,8 @@ public class AddSupplyController extends BaseController {
     @FXML
     private void onClickAdd(){
         if (mBaseValidator.validate()) {
-            SupplyPresenter.get().addSupply(mNumberTextField.getText(), mTypeSupply, mDatePicker.getValue(), mInventoryNumberList, mTextAreaDescription.getText(), mComboBoxProvider.getValue());
+            SupplyPresenter.get().addSupply(mNumberTextField.getText(), mTypeSupply, mDatePicker.getValue(),
+                    mInventoryNumberList, mTextAreaDescription.getText(), mComboBoxProvider.getValue());
         }
     }
 
