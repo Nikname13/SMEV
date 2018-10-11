@@ -4,9 +4,11 @@ import Model.Inventory_number.InventoryNumberModel;
 import Model.Provider.ProviderModel;
 import Model.Supply.SupplyModel;
 import Presenter.SupplyPresenter;
+import Service.IOnMouseClick;
 import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
+import UI.Popup.Controller.BasePopup;
 import UI.Validator.BaseValidator;
 import com.jfoenix.controls.*;
 import javafx.beans.value.ChangeListener;
@@ -18,7 +20,7 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class EditSupplyController extends BaseController implements IUpdateUI {
+public class EditSupplyController extends BaseController implements IUpdateUI, IOnMouseClick {
 
     private SupplyModel mSupplyModel;
     private String mTypeSupply;
@@ -55,6 +57,11 @@ public class EditSupplyController extends BaseController implements IUpdateUI {
         initTextArea();
         initRadioButton();
         initTreeTable();
+        initPopup();
+    }
+
+    private void initPopup() {
+        new BasePopup(mTreeTableInventory, BasePopup.getInventoryNumberPopup(), this);
     }
 
     private void initTreeTable() {
@@ -201,5 +208,11 @@ public class EditSupplyController extends BaseController implements IUpdateUI {
     @Override
     protected Stage getStage() {
         return (Stage) mAnchorPaneEditSupply.getScene().getWindow();
+    }
+
+    @Override
+    public void primaryClick(String id) {
+        if (id.equals("inventoryLog"))
+            System.out.println("invenotory log");
     }
 }

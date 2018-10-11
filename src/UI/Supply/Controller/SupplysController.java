@@ -139,7 +139,7 @@ public class SupplysController extends BaseController implements IUpdateUI, IOnM
 
     @Override
     public void primaryClick(String id) {
-        if (id == "documentation") {
+        if (id.equals("documentation")) {
             System.out.println("окно с документацией");
         }
     }

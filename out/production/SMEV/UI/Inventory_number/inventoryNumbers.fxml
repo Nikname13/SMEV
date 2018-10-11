@@ -27,13 +27,13 @@
                 <JFXTextField fx:id="mTextFieldSearch" focusColor="#40a85f" labelFloat="true"
                               prefHeight="25.0" promptText="Поиск"
                               AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="20.0" AnchorPane.rightAnchor="10.0"/>
-                <TableView fx:id="tableViewNumber" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="60.0"
+                <TableView fx:id="mTableViewNumber" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="60.0"
                            AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10"
                 >
                     <columns>
-                        <TableColumn fx:id="numberInventoryColumn" prefWidth="100.0" text="Номер"/>
-                        <TableColumn fx:id="numberSupplyColumn" prefWidth="200.0" text="Номер поставки"/>
-                        <TableColumn fx:id="groupColumn" prefWidth="150.0" text="Состав оборудования"/>
+                        <TableColumn fx:id="mNumberInventoryColumn" prefWidth="100.0" text="Номер"/>
+                        <TableColumn fx:id="mNumberSupplyColumn" prefWidth="200.0" text="Номер поставки"/>
+                        <TableColumn fx:id="mGroupColumn" prefWidth="150.0" text="Состав оборудования"/>
                     </columns>
                 </TableView>
             </children>

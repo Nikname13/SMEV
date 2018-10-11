@@ -1,6 +1,6 @@
 package Model.Equipment;
 
-import Iteractor.IteractorInventoryLog;
+import Iteractor.IteractorInventoryNumberEquipmentLog;
 import Iteractor.IteractorStateLog;
 import Model.Department.DepartmentModel;
 import Model.GenericModel;
@@ -55,7 +55,7 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel
     }
 
     public List<EquipmentInventoryLogModel> getInventoryEditLog() {
-            mInventoryEditLog = new IteractorInventoryLog().getList(getId());
+        mInventoryEditLog = new IteractorInventoryNumberEquipmentLog().getList(getId());
         return mInventoryEditLog;
     }
 

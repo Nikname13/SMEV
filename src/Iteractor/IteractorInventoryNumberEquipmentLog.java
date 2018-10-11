@@ -5,11 +5,11 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
-public class IteractorInventoryLog extends GenericIteractor<EquipmentInventoryLogModel> {
+public class IteractorInventoryNumberEquipmentLog extends GenericIteractor<EquipmentInventoryLogModel> {
 
-    private static String sURI = "/inventory_log_servlet";
+    private static String sURI = "/inventory_equipment_log_servlet";
 
-    public IteractorInventoryLog() {
+    public IteractorInventoryNumberEquipmentLog() {
         super(sURI, EquipmentInventoryLogModel.class, new TypeToken<ArrayList<EquipmentInventoryLogModel>>() {
         }.getType());
     }
