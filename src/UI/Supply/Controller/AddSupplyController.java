@@ -112,7 +112,7 @@ public class AddSupplyController extends BaseController {
 
         mBaseValidatorDialog.setJFXTextFields(text);
 
-        JFXCheckBox groupBox = new JFXCheckBox("В составе");
+        JFXCheckBox groupBox = new JFXCheckBox("Группа");
 
         HBox hBox = new HBox();
         hBox.getChildren().add(text);
@@ -209,12 +209,13 @@ public class AddSupplyController extends BaseController {
         if (mBaseValidator.validate()) {
             SupplyPresenter.get().addSupply(mNumberTextField.getText(), mTypeSupply, mDatePicker.getValue(),
                     mInventoryNumberList, mTextAreaDescription.getText(), mComboBoxProvider.getValue());
+            close(mStackPaneAddSupply);
         }
     }
 
     @FXML
     private void onClickCancel() {
-
+close(mStackPaneAddSupply);
     }
 
     @Override

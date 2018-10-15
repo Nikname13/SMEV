@@ -3,10 +3,25 @@ package Presenter;
 import Iteractor.IteractorArea;
 import Model.Area.AreaModel;
 import Model.Area.Areas;
+import Service.IUpdateData;
+import Service.IUpdateUI;
+import Service.ListenersService;
 
-public class AreaPresenter extends BasePresenter {
+public class AreaPresenter extends BasePresenter implements IUpdateData {
 
     private static AreaModel mArea;
+    private static AreaPresenter sAreaPresenter;
+
+    public static AreaPresenter get(){
+        if(sAreaPresenter==null){
+            sAreaPresenter=new AreaPresenter();
+        }
+        return sAreaPresenter;
+    }
+
+    private AreaPresenter(){
+        ListenersService.get().addListenerData(this);
+    }
 
     public void setArea(Object area){
         mArea = (AreaModel) area;
@@ -18,22 +33,25 @@ public class AreaPresenter extends BasePresenter {
 
     public void addArea(String name){
         new IteractorArea().addNew(new AreaModel(0,name));
+        ListenersService.get().updateUI(AreaModel.class);
     }
 
     public void editArea(String name){
         new IteractorArea().edit(new AreaModel(mArea.getId(),name));
     }
 
-    public void delete(int id){
-       new IteractorArea().delete(id);
-    }
+    @Override
+    void loadEntity(int id) {
 
-    public void update(){
-       Areas.get().update();
     }
 
     @Override
-    void loadEntity(int id) {
+    public void update(Object equipment) {
+
+    }
+
+    @Override
+    public void delete() {
 
     }
 }

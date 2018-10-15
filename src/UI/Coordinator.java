@@ -126,9 +126,9 @@ public class Coordinator {
         }
     }
 
-    public void goToAddAreaWindow(Stage stage, double width, double height){
+    public void goToAddAreaWindow(Stage stage){
         try {
-            windowSceneContent("Area/addArea.fxml",stage,"Новый район", width, height);
+            windowSceneContent("Area/addArea.fxml",stage,"Новый район",300, 170);
         }catch (Exception ex){
             System.out.println("Exception goToAddAreaWindow "+ex);
         }
@@ -246,6 +246,15 @@ public class Coordinator {
         }
     }
 
+
+    public void goToInventoryNumberLog(Stage stage){
+        try{
+            windowSceneContent("Inventory_number/inventoryNumberLog.fxml",stage,"Журнал изменений номера", 560.0, 355.0);
+        }catch (Exception ex){
+            System.out.println("Exception goToEditInventoryNumber "+ex);
+        }
+    }
+
     public void goToEquipentInventoryWindow(Stage stage, double width, double height){
         try {
             windowSceneContent("Equipment/Equipment_inventory/equipmentInventory.fxml",stage,"Конкретное оборудование", width, height);
@@ -286,7 +295,7 @@ public class Coordinator {
         }
     }
 
-    public void goToInventoryNumberLog(Stage stage) {
+    public void goToInventoryNumberEquipmentLog(Stage stage) {
         try {
             windowSceneContent("Equipment/Equipment_inventory/Equipment_number/inventoryLog.fxml", stage, "Журнал изменений номера", 560.0, 355.0);
         } catch (Throwable ex) {
@@ -390,9 +399,9 @@ public class Coordinator {
         }
     }
 
-    public void goToAddProviderWindow(Stage stage, double width, double height){
+    public void goToAddProviderWindow(Stage stage){
         try {
-            windowSceneContent("Provider/addProvider.fxml", stage, "Новый поставщик", width, height);
+            windowSceneContent("Provider/addProvider.fxml", stage, "Новый поставщик", 295, 240);
         }catch (Exception ex){
             System.out.println("Exception goToAddProviderWindow "+ex);
         }
@@ -421,6 +430,7 @@ public class Coordinator {
             System.out.println("Exception goToMovementsEquipmentInventoryLog " + ex);
         }
     }
+
 
 
 }

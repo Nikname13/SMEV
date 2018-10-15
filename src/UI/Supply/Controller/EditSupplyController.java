@@ -3,11 +3,13 @@ package UI.Supply.Controller;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Provider.ProviderModel;
 import Model.Supply.SupplyModel;
+import Presenter.InventoryNumberPresenter;
 import Presenter.SupplyPresenter;
 import Service.IOnMouseClick;
 import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
+import UI.Coordinator;
 import UI.Popup.Controller.BasePopup;
 import UI.Validator.BaseValidator;
 import com.jfoenix.controls.*;
@@ -67,6 +69,14 @@ public class EditSupplyController extends BaseController implements IUpdateUI, I
     private void initTreeTable() {
         mNumberColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().nameProperty());
         mDescriptionColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().descriptionProperty());
+        mTreeTableInventory.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedNumber(newValue)));
+    }
+
+    private void selectedNumber(TreeItem<InventoryNumberModel> newValue) {
+        if(newValue!=null){
+            SupplyPresenter.get().setSelectedObject(newValue.getValue());
+            InventoryNumberPresenter.get().setInventoryNumberModel(newValue.getValue());
+        }
     }
 
     private void initTextArea() {
@@ -212,7 +222,9 @@ public class EditSupplyController extends BaseController implements IUpdateUI, I
 
     @Override
     public void primaryClick(String id) {
-        if (id.equals("inventoryLog"))
+        if (id.equals("inventoryLog")) {
             System.out.println("invenotory log");
+            new Coordinator().goToInventoryNumberLog(getStage());
+        }
     }
 }

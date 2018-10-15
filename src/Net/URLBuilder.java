@@ -6,7 +6,7 @@ import java.util.List;
 public class URLBuilder {
     private String mUrl;
     private List<String> mParams;
-    private String URL="http://10.13.96.34:8080/serverGlassfish";
+    private String URL="http://10.13.96.34:8080/Smev-server";
 
     public URLBuilder(){
         mUrl="";

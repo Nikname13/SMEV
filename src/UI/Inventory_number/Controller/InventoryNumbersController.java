@@ -2,10 +2,12 @@ package UI.Inventory_number.Controller;
 
 import Model.Inventory_number.InventoryNumberModel;
 import Presenter.InventoryNumberPresenter;
+import Service.IOnMouseClick;
 import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
+import UI.Popup.Controller.BasePopup;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -14,7 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 
-public class InventoryNumbersController extends BaseController implements IUpdateUI {
+public class InventoryNumbersController extends BaseController implements IUpdateUI, IOnMouseClick {
 
     @FXML
     private TableView<InventoryNumberModel> mTableViewNumber;
@@ -35,22 +37,27 @@ public class InventoryNumbersController extends BaseController implements IUpdat
     public void initialize(){
         System.out.println("inventoryNumber");
         initTable();
+        initPopup();
+    }
+
+    private void initPopup() {
+        new BasePopup(mTableViewNumber, BasePopup.getInventoryNumberPopup(), this);
     }
 
     private void initTable() {
         mNumberInventoryColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         mNumberSupplyColumn.setCellValueFactory(cellData -> cellData.getValue().getSupply().nameProperty());
         mGroupColumn.setCellValueFactory(cellData -> cellData.getValue().groupProperty());
-        // mTableViewNumber.setItems(new InventoryNumberPresenter().getObservableInventoryN());
-        mTableViewNumber.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> edit(newValue)));
+        mTableViewNumber.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedNumber(newValue)));
         mTableViewNumber.setFixedCellSize(50.0);
 
     }
 
-    private void edit(InventoryNumberModel entity){
-        //new InventoryNumberPresenter().setInventoryNumberModel(entity);
-        new Coordinator().goToEditInventoryNumber((Stage) mAnchorPaneInventoryNumber.getScene().getWindow(), 100.0, 200.0);
-
+    private void selectedNumber(InventoryNumberModel newValue) {
+        if(newValue!=null){
+            InventoryNumberPresenter.get().setSelectedObject(newValue);
+            InventoryNumberPresenter.get().setInventoryNumberModel(newValue);
+        }
     }
 
     private void updateTable(ObservableList<InventoryNumberModel> observableInventory) {
@@ -91,5 +98,13 @@ public class InventoryNumbersController extends BaseController implements IUpdat
     @Override
     public void updateControl(Class<?> updateClass, Object currentItem) {
 
+    }
+
+    @Override
+    public void primaryClick(String id) {
+        if (id.equals("inventoryLog")) {
+            new Coordinator().goToInventoryNumberLog(getStage());
+            System.out.println("invenotory log");
+        }
     }
 }

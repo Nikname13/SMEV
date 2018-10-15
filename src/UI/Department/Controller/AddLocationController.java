@@ -8,6 +8,7 @@ import UI.BaseController;
 import UI.Validator.BaseValidator;
 import UI.Validator.Pair;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.ValidationFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

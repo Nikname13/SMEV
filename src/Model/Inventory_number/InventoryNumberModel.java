@@ -1,17 +1,32 @@
 package Model.Inventory_number;
 
+import Iteractor.IteractorInventoryNumber;
+import Iteractor.IteractorInventoryNumberLog;
 import Model.AbstractModel;
+import Model.GenericList;
+import Model.GenericModel;
 import Model.Supply.SupplyModel;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class InventoryNumberModel extends AbstractModel {
+import java.util.ArrayList;
+import java.util.List;
+
+public class InventoryNumberModel extends GenericModel<InventoryNumberLog> {
 
     private String mDescription;
     private boolean mGroup;
     private SupplyModel mSupply;
+
+    public InventoryNumberModel(int id, String number, SupplyModel supply, boolean group, String description, InventoryNumberLog numberLog) {
+        super(id,number);
+        mDescription = description;
+        mGroup = group;
+        mSupply = supply;
+        addEntity(numberLog);
+    }
 
     public InventoryNumberModel(int id, String number, SupplyModel supply, boolean group, String description) {
         super(id,number);
@@ -28,6 +43,15 @@ public class InventoryNumberModel extends AbstractModel {
 
     public InventoryNumberModel(int id, String number){
         super(id,number);
+    }
+
+    @Override
+    public List<InventoryNumberLog> getEntityList() {
+        if(mEntityList==null){
+            mEntityList=new ArrayList<>();
+            mEntityList= new IteractorInventoryNumberLog().getList(getId());
+        }
+        return super.getEntityList();
     }
 
     public String getDescription() {
@@ -61,6 +85,5 @@ public class InventoryNumberModel extends AbstractModel {
     public void setSupply(SupplyModel supply) {
         mSupply = supply;
     }
-
 
 }

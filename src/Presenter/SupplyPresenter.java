@@ -1,11 +1,13 @@
 package Presenter;
 
 import Iteractor.IteractorSupply;
+import Model.Inventory_number.InventoryNumberLog;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Provider.ProviderModel;
 import Model.Supply.SupplyModel;
 import Service.IUpdateData;
 import Service.ListenersService;
+import UI.Supply.Controller.SupplysController;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -34,8 +36,11 @@ public class SupplyPresenter extends BasePresenter implements IUpdateData {
 
 
     public void addSupply(String number, String typeSupply, LocalDate dateSupply, List<InventoryNumberModel> inventoryList, String description, ProviderModel provider) {
+        for(InventoryNumberModel inventoryNumber:inventoryList){
+            inventoryNumber.addEntity(new InventoryNumberLog(0, inventoryNumber.getName(), LocalDate.now(), number, "Начало начал"));
+        }
         ListenersService.get().updateData(new IteractorSupply().addNew(new SupplyModel(0, number, typeSupply, dateSupply, inventoryList, description, provider)));
-        ListenersService.get().updateUI(SupplyModel.class);
+        ListenersService.get().updateUI(SupplysController.class);
 
     }
 

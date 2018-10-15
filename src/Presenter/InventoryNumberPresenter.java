@@ -1,6 +1,7 @@
 package Presenter;
 
 import Iteractor.IteractorInventoryNumber;
+import Model.Inventory_number.InventoryNumberLog;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Inventory_number.InventoryNumbers;
 import Model.Supply.SupplyModel;
@@ -8,6 +9,7 @@ import Model.Supply.Supplys;
 import Service.IUpdateData;
 import Service.ListenersService;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 public class InventoryNumberPresenter extends BasePresenter implements IUpdateData {
@@ -40,7 +42,8 @@ public class InventoryNumberPresenter extends BasePresenter implements IUpdateDa
                 number,
                 supply,
                 group,
-                description
+                description,
+                new InventoryNumberLog(0, number, LocalDate.now(), supply.getName(), "Начало начал")
         )));
         ListenersService.get().updateControl(InventoryNumberModel.class);
     }

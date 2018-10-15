@@ -372,7 +372,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
                 new Coordinator().goToEditWorkerDepartmentWindow(getStage());
                 break;
             case "inventoryLog":
-                new Coordinator().goToInventoryNumberLog(getStage());
+                new Coordinator().goToInventoryNumberEquipmentLog(getStage());
                 break;
             case "statusLog":
                 new Coordinator().goToEquipmentStateLog(getStage());

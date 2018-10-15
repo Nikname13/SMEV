@@ -2,6 +2,10 @@ package UI.Area.Controller;
 
 import Model.Area.AreaModel;
 import Presenter.AreaPresenter;
+import Presenter.BasePresenter;
+import Service.IUpdateUI;
+import Service.ListenersService;
+import UI.BaseController;
 import UI.Coordinator;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -9,12 +13,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class AreasController {
-
-    private int mId;
+public class AreasController extends BaseController implements IUpdateUI {
 
     public AreasController(){
-        //new AreaPresenter().updateData();
+        ListenersService.get().addListenerUI(this);
     }
 
     @FXML
@@ -28,25 +30,46 @@ public class AreasController {
 
     @FXML
     public void initialize(){
+        initTable();
+    }
+
+    private void initTable() {
         firstColumn.setCellValueFactory(cellData->cellData.getValue().nameProperty());
-        tableViewArea.setItems(new AreaPresenter().getObservableArea());
-        tableViewArea.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> deleteArea(newValue.getId())));
+        tableViewArea.setItems(AreaPresenter.get().getObservableArea());
+        tableViewArea.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedArea(newValue)));
     }
 
-    private void deleteArea(int id){
-        mId=id;
-    }
+    private void selectedArea(AreaModel newValue) {
 
-    @FXML
-    private void onClickDelete(){
-        if(mId != -1){
-            new AreaPresenter().delete(mId);
-            mId=-1;
-        }
     }
 
     @FXML
     private void onClickAdd(){
-        new Coordinator().goToAddAreaWindow((Stage) mAnchorPaneArea.getScene().getWindow(), 100.0, 200.0);
+        new Coordinator().goToAddAreaWindow(getStage());
+    }
+
+    @Override
+    public void updateUI(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void refreshControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+
+    }
+
+    @Override
+    protected Stage getStage() {
+        return (Stage) mAnchorPaneArea.getScene().getWindow();
     }
 }
