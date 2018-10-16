@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
+            fx:controller="UI.Movement.Controller.DetailsMovementController"
+            fx:id="mDetailsAnchorPane">
+    <children>
+        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" prefHeight="300"
+                    style="-fx-background-color: #ffffff;">
+            <children>
+                <JFXTextField fx:id="mTextFieldDepartmentFrom" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
+                              prefWidth="250.0" promptText="Из отдела:" AnchorPane.leftAnchor="10.0"
+                              AnchorPane.topAnchor="20.0" editable="false"/>
+                <JFXTextField fx:id="mTextFieldDepartmentTo" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
+                              prefWidth="250.0" promptText="В отдел:" AnchorPane.leftAnchor="10.0"
+                              AnchorPane.topAnchor="90.0" editable="false"/>
+
+                <JFXTextField fx:id="mTextFieldWorkerFrom" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
+                              prefWidth="250.0" promptText="Сотрудник" AnchorPane.rightAnchor="10.0"
+                              AnchorPane.topAnchor="20.0" editable="false"/>
+                <JFXTextField fx:id="mTextFieldWorkerTo" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
+                              prefWidth="250.0" promptText="Сотрудник" AnchorPane.rightAnchor="10.0"
+                              AnchorPane.topAnchor="90.0" editable="false"/>
+                <JFXTextArea fx:id="mTextAreaBase" focusColor="#40a85f" promptText="Обоснование для перемещения"
+                             labelFloat="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+                             AnchorPane.bottomAnchor="20.0"
+                             AnchorPane.topAnchor="155.0" editable="false"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"
+                    AnchorPane.topAnchor="310" style="-fx-background-color: #ffffff;">
+            <children>
+                <JFXTreeTableView fx:id="mTreeTableEquipment" AnchorPane.bottomAnchor="10.0"
+                                  AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"
+                                  AnchorPane.leftAnchor="10.0">
+                    <columns>
+                        <JFXTreeTableColumn fx:id="mNameColumn" prefWidth="250.0" text="Оборудование"/>
+                        <JFXTreeTableColumn fx:id="mTypeColumn" prefWidth="150.0" text="Тип"/>
+                        <JFXTreeTableColumn fx:id="mInventoryNumberColumn" prefWidth="200.0" text="Инвентарный номер"/>
+                    </columns>
+                </JFXTreeTableView>
+            </children>
+        </AnchorPane>
+    </children>
+
+</AnchorPane>

@@ -2,7 +2,7 @@ package UI.Parameter.Controller;
 
 import Model.Parameter.ParameterModel;
 import Model.Parameter.ValueParameterModel;
-import Presenter.ParametersPresenter;
+import Presenter.ParameterPresenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -17,7 +17,6 @@ public class EditParameterController {
     private static List<Object> mEditValues, mdeleteValue;
 
     public EditParameterController() {
-        mParameter = new ParametersPresenter().getParameter();
         mEditValues = new ArrayList<>();
         mdeleteValue = new ArrayList<>();
     }
@@ -70,14 +69,12 @@ public class EditParameterController {
                 }
             }
         }
-        new ParametersPresenter().editParameter(nameParameter.getText(), isValue.isSelected(), mEditValues, mdeleteValue);
     }
 
     private void editParameter(int value) {
         System.out.println("editParameter "+value);
         Set<Integer> id = new HashSet<>();
         id.add(value);
-        new ParametersPresenter().deleteValueParameter(id);
     }
 
     @FXML
@@ -87,7 +84,6 @@ public class EditParameterController {
 
     @FXML
     private void onDelete() {
-        new ParametersPresenter().deleteParameters(mParameter.getId());
     }
 
 }

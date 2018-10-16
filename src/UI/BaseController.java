@@ -13,6 +13,7 @@ import Model.Supply.SupplyModel;
 import Model.Type.TypeModel;
 import Model.Worker.WorkerModel;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
@@ -497,6 +498,19 @@ public abstract class BaseController {
                 }
             });
         }
+    }
+
+    protected void initTextField(JFXTextField textField , String promtText, String label){
+        textField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue){
+                    textField.setPromptText(label);
+                }else{
+                    textField.setPromptText(promtText);
+                }
+            }
+        });
     }
 
     protected void close(Node node) {

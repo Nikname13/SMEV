@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<JFXListView xmlns:fx="http://javafx.com/fxml/1" fx:id="mPopupList"
+             styleClass="popup-list-view" xmlns="http://javafx.com/javafx/8"
+             fx:controller="UI.Popup.Controller.EquipmentInventoryPopupController">
+    <Label fx:id="moveLog">
+        Журнал перемещений
+        <graphic>
+            <StackPane styleClass="custom-jfx-list-view-icon-container">
+
+            </StackPane>
+        </graphic>
+    </Label>
+    <Label fx:id="statusLog">
+        Журнал состояния
+        <graphic>
+            <StackPane styleClass="custom-jfx-list-view-icon-container">
+
+            </StackPane>
+        </graphic>
+    </Label>
+    <Label fx:id="inventoryLog">
+        Журнал изменения номера
+        <graphic>
+            <StackPane styleClass="custom-jfx-list-view-icon-container">
+
+            </StackPane>
+        </graphic>
+    </Label>
+    <Label fx:id="delete">
+        Удалить
+        <graphic>
+            <StackPane styleClass="custom-jfx-list-view-icon-container">
+
+            </StackPane>
+        </graphic>
+    </Label>
+
+</JFXListView>

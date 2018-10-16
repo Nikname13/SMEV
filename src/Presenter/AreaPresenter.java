@@ -33,7 +33,7 @@ public class AreaPresenter extends BasePresenter implements IUpdateData {
 
     public void addArea(String name){
         new IteractorArea().addNew(new AreaModel(0,name));
-        ListenersService.get().updateUI(AreaModel.class);
+       // ListenersService.get().updateUI(AreaModel.class);
     }
 
     public void editArea(String name){

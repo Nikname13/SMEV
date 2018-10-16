@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:id="mAnchorPanePurchase"
+            xmlns="http://javafx.com/javafx"
+            style="-fx-background-color: #ffffff;"
+            fx:controller="UI.Department.Controller.PurchaseController" prefWidth="450.0">
+        <children>
+            <JFXButton onAction="#onClickAddPurchase" mnemonicParsing="false"
+                       text="Новая закупка" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+                       AnchorPane.topAnchor="10.0" prefHeight="35.0" ripplerFill="#40a85f" focusTraversable="false"/>
+            <JFXListView fx:id="mListViewPurchase" AnchorPane.topAnchor="55.0" AnchorPane.rightAnchor="10.0"
+                         AnchorPane.leftAnchor="10.0" AnchorPane.bottomAnchor="10.0">
+            </JFXListView>
+        </children>
+</AnchorPane>

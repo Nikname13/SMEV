@@ -1,21 +1,44 @@
 package UI.State.Controller;
 
 import Presenter.StatePresenter;
+import UI.BaseController;
+import UI.Validator.BaseValidator;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-public class AddStateController {
+public class AddStateController extends BaseController {
+
+    private BaseValidator mBaseValidator=new BaseValidator();
 
     @FXML
-    private TextField textFieldName;
+    private JFXTextField mTextFieldName;
+
+    @FXML
+    private AnchorPane mAnchorPaneAddState;
 
     @FXML
     public void initialize(){
-
+        mBaseValidator.setJFXTextFields(mTextFieldName);
+        initTextField(mTextFieldName, "Введите состояние", "Состояние");
     }
 
     @FXML
     private void onClickAdd(){
-        new StatePresenter().addState(textFieldName.getText());
+        if(mBaseValidator.validate()) {
+            new StatePresenter().addState(mTextFieldName.getText());
+            close(mAnchorPaneAddState);
+        }
+    }
+
+    @FXML
+    private  void onClickCancel(){
+        close(mAnchorPaneAddState);
+    }
+
+    @Override
+    protected Stage getStage() {
+        return null;
     }
 }

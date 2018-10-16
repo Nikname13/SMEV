@@ -10,7 +10,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="UI.Provider.Controller.AddProviderController"
-            fx:id="mAnchorPaneAddProvider"
+            fx:id="mAnchorPaneAddProvider" style="-fx-background-color: #ffffff;"
             prefHeight="400.0" prefWidth="600.0">
     <children>
         <JFXTextField fx:id="mTextFieldName" focusColor="#40a85f" labelFloat="true"

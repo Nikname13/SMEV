@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import com.jfoenix.controls.JFXTreeTableColumn?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
+            fx:controller="UI.Inventory_number.Controller.InventoryNumberLogController"
+            prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;">
+    <JFXTreeTableView fx:id="mInventoryLogTreeView" prefHeight="200.0"
+                      AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0"
+                      AnchorPane.bottomAnchor="10.0">
+        <columns>
+            <JFXTreeTableColumn fx:id="mDateColumn" prefWidth="110.0" text="Дата"/>
+            <JFXTreeTableColumn fx:id="mInventoryNumberColumn" prefWidth="150.0" text="Номер"/>
+            <JFXTreeTableColumn fx:id="mDescriptionColumn" prefWidth="260.0" text="Обоснование"/>
+        </columns>
+    </JFXTreeTableView>
+
+</AnchorPane>

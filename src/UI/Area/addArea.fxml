@@ -9,16 +9,16 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="UI.Area.Controller.AddAreaController"
-            fx:id="mAnchorPaneAddArea"
+            fx:id="mAnchorPaneAddArea" style="-fx-background-color: #ffffff;"
             prefHeight="400.0" prefWidth="600.0">
 
     <JFXTextField fx:id="mTextFieldName" focusColor="#40a85f" labelFloat="true"
-                  prefHeight="25.0" prefWidth="250.0" promptText="Район" AnchorPane.topAnchor="25.0"
+                  prefHeight="25.0" prefWidth="200.0" AnchorPane.topAnchor="25.0"
                   AnchorPane.leftAnchor="15.0"/>
-    <JFXButton fx:id="buttonAdd" mnemonicParsing="false" onAction="#onClickAdd" prefWidth="120.0" prefHeight="35.0"
-               ripplerFill="#40a85f" text="Сохранить" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="85"/>
-    <JFXButton fx:id="buttonCancel" mnemonicParsing="false" ripplerFill="#40a85f" prefWidth="120.0"
-               prefHeight="35.0" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="85.0"
+    <JFXButton fx:id="buttonAdd" mnemonicParsing="false" onAction="#onClickAdd" prefWidth="95.0" prefHeight="35.0"
+               ripplerFill="#40a85f" text="Сохранить" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="80"/>
+    <JFXButton fx:id="buttonCancel" mnemonicParsing="false" ripplerFill="#40a85f" prefWidth="95.0"
+               prefHeight="35.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="80.0"
                text="Отмена" onAction="#onClickCancel"/>
 
 </AnchorPane>

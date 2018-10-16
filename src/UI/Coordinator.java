@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Coordinator {
 
@@ -24,8 +25,8 @@ public class Coordinator {
         stage.setX( midX- stage.getWidth() / 2);
         stage.setY( midY- stage.getHeight() / 2);
         stage.initModality(Modality.APPLICATION_MODAL);
-        /*stage.initStyle(StageStyle.UNDECORATED);
-        stage.getScene().getRoot().setEffect(new DropShadow());
+        //stage.initStyle(StageStyle.UNDECORATED);
+        /*stage.getScene().getRoot().setEffect(new DropShadow());
         stage.getScene().setFill(Color.TRANSPARENT);*/
         stage.show();
         return page;
@@ -70,9 +71,9 @@ public class Coordinator {
         }
     }
 
-    public void goToAddParameterWindow(Stage stage, double width, double height){
+    public void goToAddParameterWindow(Stage stage){
         try{
-            windowSceneContent("Parameter/addParameter.fxml",stage, "Новый параметр", width, height);
+            windowSceneContent("Parameter/addParameter.fxml",stage, "Новый параметр", 250, 170);
         }catch (Exception ex){
             System.out.println("Exception goToAddParameterWindow "+ex);
         }
@@ -110,9 +111,9 @@ public class Coordinator {
         }
     }
 
-    public void goToAddStateWindow(Stage stage, double width, double height){
+    public void goToAddStateWindow(Stage stage){
         try{
-            windowSceneContent("State/addState.fxml", stage, "Новое состояние", width, height);
+            windowSceneContent("State/addState.fxml", stage, "Новое состояние", 250, 170);
         }catch (Exception ex){
             System.out.println("Exception goToAddStateWindow "+ex );
         }
@@ -142,9 +143,9 @@ public class Coordinator {
         }
     }
 
-    public void goToAddWorkerWindow(Stage stage, double width, double height){
+    public void goToAddWorkerWindow(Stage stage){
         try {
-            windowSceneContent("Worker/addWorker.fxml",stage,"Новый сотрудник", width, height);
+            windowSceneContent("Worker/addWorker.fxml",stage,"Новый сотрудник",260.0, 300.0);
         }catch (Exception ex){
             System.out.println("Exception goToAddWorkerWindow "+ex);
         }

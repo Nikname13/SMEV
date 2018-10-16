@@ -2,14 +2,16 @@ package UI.State.Controller;
 
 import Model.State.StateModel;
 import Presenter.StatePresenter;
+import UI.BaseController;
 import UI.Coordinator;
+import UI.Validator.BaseValidator;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class StatesController {
+public class StatesController extends BaseController {
 
     public StatesController(){
         //new StatePresenter().updateData();
@@ -26,19 +28,28 @@ public class StatesController {
 
     @FXML
     public void initialize(){
+        initTable();
+
+    }
+
+    private void initTable() {
         firstColumn.setCellValueFactory(cellData->cellData.getValue().nameProperty());
         tableViewState.setItems(new StatePresenter().getObservableState());
         tableViewState.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->editState(newValue));
     }
 
-    @FXML
-    private void onClickAdd(){
-        new Coordinator().goToAddStateWindow((Stage) mAnchorPaneState.getScene().getWindow(), 100.0, 200.0);
+    private void editState(StateModel newValue) {
+
     }
 
-    private void editState(Object state){
-        /*new StatePresenter().setState(state);
-        new StatePresenter().editState("New name of state");*/
-        new StatePresenter().deleteState(state.hashCode());
+    @FXML
+    private void onClickAdd(){
+        new Coordinator().goToAddStateWindow(getStage());
+    }
+
+
+    @Override
+    protected Stage getStage() {
+        return (Stage) mAnchorPaneState.getScene().getWindow();
     }
 }

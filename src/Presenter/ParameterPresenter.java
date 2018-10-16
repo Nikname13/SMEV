@@ -1,21 +1,32 @@
 package Presenter;
 
 import Iteractor.IteractorParameter;
-import Iteractor.IteractorValueParameter;
 import Model.Parameter.ParameterModel;
-import Model.Parameter.Parameters;
 import Model.Parameter.ValueParameterModel;
+import Service.IUpdateData;
 import Service.IUpdateUI;
+import Service.ListenersService;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-public class ParametersPresenter extends BasePresenter {
+public class ParameterPresenter extends BasePresenter implements IUpdateData {
 
     private static ParameterModel mParameter;
     private static IUpdateUI updateListener;
+    private static ParameterPresenter sParameterPresenter;
+
+    public static ParameterPresenter get(){
+        if(sParameterPresenter ==null){
+            sParameterPresenter =new ParameterPresenter();
+        }
+        return sParameterPresenter;
+    }
+
+    private ParameterPresenter(){
+        ListenersService.get().addListenerData(this);
+    }
 
     public void setParameter(Object parameter) {
         mParameter = (ParameterModel) parameter;
@@ -29,15 +40,8 @@ public class ParametersPresenter extends BasePresenter {
         return mParameter;
     }
 
-    public void addParameter(String name, boolean isValue, List<Object> valuesParameter) {
-        System.out.println("Name= " + name + "\nisValue= " + isValue + "\nValues=" + valuesParameter);
-        if (isValue) {
-            List<ValueParameterModel> values = new ArrayList<>();
-            for (int i = 0; i < valuesParameter.size(); i++) {
-                values.add(new ValueParameterModel(0, (String) valuesParameter.get(i)));
-            }
-            new IteractorParameter().addNew(new ParameterModel(0, name, values, isValue));
-        } else new IteractorParameter().addNew(new ParameterModel(0, name, null, isValue));
+    public void addParameter(String name) {
+        new IteractorParameter().addNew(new ParameterModel(0, name));
     }
 
     private void printList(ObservableList<ValueParameterModel> list) {
@@ -73,28 +77,20 @@ public class ParametersPresenter extends BasePresenter {
             new IteractorParameter().edit(new ParameterModel(mParameter.getId(), name, null, isValue));
         }
         System.out.println("editParameter");
-        update();
-    }
-
-    public void deleteParameters(int id) {
-        new IteractorParameter().delete(id);
-        update();
-    }
-
-    public void deleteValueParameter(Set<Integer> idList) {
-        new IteractorValueParameter().delete(idList);
-        for(Integer id:idList) {
-            mParameter.deleteEntity(id);
-        }
-
-    }
-
-    public void update() {
-        Parameters.get().update();
     }
 
     @Override
     void loadEntity(int id) {
+
+    }
+
+    @Override
+    public void update(Object equipment) {
+
+    }
+
+    @Override
+    public void delete() {
 
     }
 }

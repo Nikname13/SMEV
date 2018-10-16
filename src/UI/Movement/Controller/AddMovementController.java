@@ -37,6 +37,7 @@ public class AddMovementController extends BaseController {
     private JFXDialog mDialog;
     private TableView<SelectedEquipmentInventoryShell> mTableEquipmentDialog;
     private Pair mErrorTable;
+
     @FXML
     private JFXComboBox<DepartmentModel> mComboBoxDepartmentFrom, mComboBoxDepartmentTo;
     @FXML

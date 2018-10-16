@@ -1,49 +1,45 @@
 package UI.Parameter.Controller;
 
-import Presenter.ParametersPresenter;
+import Presenter.ParameterPresenter;
+import UI.BaseController;
+import UI.Validator.BaseValidator;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+public class AddParameterController extends BaseController {
 
-public class AddParameterController {
+    private BaseValidator mBaseValidator=new BaseValidator();
 
     @FXML
-    private TextArea valuesParameter;
+    private JFXTextField mNameParameter;
 
     @FXML
-    private TextField nameParameter;
-
-    @FXML
-    private RadioButton isValue;
+    private AnchorPane mAnchorPaneAddParameter;
 
     @FXML
     public void initialize() {
-
+        mBaseValidator.setJFXTextFields(mNameParameter);
+        initTextField(mNameParameter, "Введите наименование параметра", "Наименование параметра");
         System.out.println("init");
-
     }
 
     @FXML
-    private void onClickOk() {
-        if (isValue.isSelected()) {
-            List<Object> values = new ArrayList<>();
-            String s[] = valuesParameter.getText().split("\n");
-            for (int i = 0; i < s.length; i++) {
-                values.add(s[i]);
-            }
-            if (valuesParameter.getText().length() == 0) isValue.setSelected(false);
-            new ParametersPresenter().addParameter(nameParameter.getText(), isValue.isSelected(), values);
-        } else new ParametersPresenter().addParameter(nameParameter.getText(), isValue.isSelected(), null);
+    private void onClickAdd() {
+        if(mBaseValidator.validate()){
+            ParameterPresenter.get().addParameter(mNameParameter.getText());
+            close(mAnchorPaneAddParameter);
+        }
     }
 
     @FXML
     private void onClickCancel() {
+        close(mAnchorPaneAddParameter);
     }
 
+    @Override
+    protected Stage getStage() {
+        return null;
+    }
 }

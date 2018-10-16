@@ -2,6 +2,7 @@ package UI.Worker.Controller;
 
 import Model.Worker.WorkerModel;
 import Presenter.WorkerPresenter;
+import UI.BaseController;
 import UI.Coordinator;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -9,9 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class WorkersController {
-
-    private int mId;
+public class WorkersController extends BaseController {
 
     public WorkersController(){
         //new WorkerPresenter().updateData();
@@ -44,6 +43,11 @@ public class WorkersController {
 
     @FXML
     private void onClickAdd(){
-        new Coordinator().goToAddWorkerWindow((Stage) mAnchorPaneWorkers.getScene().getWindow(), 100.0, 200.0);
+        new Coordinator().goToAddWorkerWindow(getStage());
+    }
+
+    @Override
+    protected Stage getStage() {
+        return (Stage) mAnchorPaneWorkers.getScene().getWindow();
     }
 }
