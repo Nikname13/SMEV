@@ -54,8 +54,8 @@ public class AddDepartmentController extends BaseController {
         mFlagLocation=false;
         mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNumber);
         mBaseValidator.setValidationFacades(new Pair(mFacadeArea, mErrorArea, mComboBoxArea), new Pair(mFacadeLocation, mErrorLocation, mComboBoxLocation));
-        initComboBoxArea(mComboBoxArea, false);
-        initComboBoxLocation(mComboBoxLocation);
+        initComboBoxArea(mComboBoxArea, false, "Выберите район", "Район");
+        initComboBoxLocation(mComboBoxLocation, "Выберите или введите адрес", "Адрес");
 
     }
 
@@ -65,15 +65,15 @@ public class AddDepartmentController extends BaseController {
     }
 
     @Override
-    protected void initComboBoxLocation(JFXComboBox<LocationModel> comboBoxLocation) {
-        super.initComboBoxLocation(comboBoxLocation);
+    protected void initComboBoxLocation(JFXComboBox<LocationModel> comboBoxLocation, String promptText, String label) {
+       super.initComboBoxLocation(comboBoxLocation,promptText,label);
         comboBoxLocation.setItems(DepartmentPresenter.get().getObservableLocation());
         mComboBoxLocation.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedLocation()));
     }
 
     @Override
-    protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea, boolean isSelectionItem) {
-        super.initComboBoxArea(comboBoxArea, isSelectionItem);
+    protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea, boolean isSelectionItem, String promptText, String label) {
+        super.initComboBoxArea(comboBoxArea, isSelectionItem,promptText,label);
         comboBoxArea.setItems(DepartmentPresenter.get().getObservableArea());
     }
 

@@ -57,9 +57,9 @@ public class EquipmentInventoryController extends BaseController implements IUpd
     public void initialize(){
         System.out.println("equipment inventory initialize");
         mButtonSave.setFocusTraversable(false);
-        initComboBoxDepartment(mComboBoxDepartment, true);
-        initComboBoxNumber(mComboBoxNumber, true);
-        initComboBoxState(mComboBoxState, true);
+        initComboBoxDepartment(mComboBoxDepartment, true, "Выберите отдел", "Отдел");
+        initComboBoxNumber(mComboBoxNumber, true, "Выберите номер", "Номер");
+        initComboBoxState(mComboBoxState, true, "Выберите состояние", "Состояние");
         initTextField();
         initTextArea();
     }
@@ -84,14 +84,14 @@ public class EquipmentInventoryController extends BaseController implements IUpd
     }
 
     @Override
-    protected void initComboBoxState(JFXComboBox<StateModel> comboBox, boolean isSelectionItem) {
-        super.initComboBoxState(comboBox, isSelectionItem);
+    protected void initComboBoxState(JFXComboBox<StateModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        super.initComboBoxState(comboBox, isSelectionItem, promptText, label);
         comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedState());
     }
 
     @Override
-    protected void initComboBoxNumber(JFXComboBox<InventoryNumberModel> comboBox, boolean isSelectionItem) {
-        super.initComboBoxNumber(comboBox, isSelectionItem);
+    protected void initComboBoxNumber(JFXComboBox<InventoryNumberModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        super.initComboBoxNumber(comboBox, isSelectionItem, promptText, label);
         comboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedNumber()));
     }
 
@@ -110,8 +110,8 @@ public class EquipmentInventoryController extends BaseController implements IUpd
     }
 
     @Override
-    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem) {
-        super.initComboBoxDepartment(comboBox, isSelectionItem);
+    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        super.initComboBoxDepartment(comboBox, isSelectionItem, promptText, label);
         comboBox.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment()));
     }
 

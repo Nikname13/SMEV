@@ -13,7 +13,6 @@ public class EditTypeController {
     private static TypeModel sTypeModel;
 
     public EditTypeController() {
-        sTypeModel=new TypePresenter().getTypeModel();
     }
 
     @FXML
@@ -34,16 +33,16 @@ public class EditTypeController {
     }
 
     private void editEntity(Object entity){
-        new TypePresenter().deleteParameter(entity);
+        TypePresenter.get().deleteParameter(entity);
     }
 
     @FXML
     private void onClickOk(){
-        new TypePresenter().editType(nameType.getText(),null);
+        TypePresenter.get().editType(nameType.getText(),null);
     }
 
     @FXML
     private void onClickDelete(){
-        new TypePresenter().deleteType(sTypeModel.getId());
+        TypePresenter.get().deleteType(sTypeModel.getId());
     }
 }

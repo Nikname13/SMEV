@@ -21,7 +21,7 @@ public class AddStateController extends BaseController {
     @FXML
     public void initialize(){
         mBaseValidator.setJFXTextFields(mTextFieldName);
-        initTextField(mTextFieldName, "Введите состояние", "Состояние");
+        initPromptText(mTextFieldName, "Введите состояние", "Состояние");
     }
 
     @FXML

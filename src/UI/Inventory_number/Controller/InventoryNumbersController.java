@@ -5,15 +5,20 @@ import Presenter.InventoryNumberPresenter;
 import Service.IOnMouseClick;
 import Service.IUpdateUI;
 import Service.ListenersService;
+import Service.TabControllerService;
 import UI.BaseController;
 import UI.Coordinator;
 import UI.Popup.Controller.BasePopup;
+import com.jfoenix.controls.JFXTabPane;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import static UI.BaseTabController.nextTab;
 
 
 public class InventoryNumbersController extends BaseController implements IUpdateUI, IOnMouseClick {
@@ -25,7 +30,7 @@ public class InventoryNumbersController extends BaseController implements IUpdat
     private TableColumn<InventoryNumberModel, String> mNumberInventoryColumn, mNumberSupplyColumn;
 
     @FXML
-    private TableColumn<InventoryNumberModel, Boolean> mGroupColumn;
+    private JFXTabPane mSecondLvlTabPane;
 
     @FXML
     private AnchorPane mAnchorPaneInventoryNumber;
@@ -47,7 +52,6 @@ public class InventoryNumbersController extends BaseController implements IUpdat
     private void initTable() {
         mNumberInventoryColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         mNumberSupplyColumn.setCellValueFactory(cellData -> cellData.getValue().getSupply().nameProperty());
-        mGroupColumn.setCellValueFactory(cellData -> cellData.getValue().groupProperty());
         mTableViewNumber.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedNumber(newValue)));
         mTableViewNumber.setFixedCellSize(50.0);
 
@@ -57,6 +61,8 @@ public class InventoryNumbersController extends BaseController implements IUpdat
         if(newValue!=null){
             InventoryNumberPresenter.get().setSelectedObject(newValue);
             InventoryNumberPresenter.get().setInventoryNumberModel(newValue);
+            TabControllerService.get().getListenerSecondTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getInventoryNumberEditResource()));
+            ListenersService.get().updateUI(InventoryNumberModel.class);
         }
     }
 
@@ -79,6 +85,10 @@ public class InventoryNumbersController extends BaseController implements IUpdat
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             updateTable(InventoryNumberPresenter.get().getObservableInventory());
+            mTableViewNumber.getSelectionModel().clearSelection();
+            mSecondLvlTabPane.getSelectionModel().select(0);
+            if (mSecondLvlTabPane.getTabs().size() > 1) mSecondLvlTabPane.getTabs().remove(1);
+            TabControllerService.get().setListenerSecondTabPane(((Tab nextTab) -> nextTab(nextTab, mSecondLvlTabPane)));
         }
     }
 

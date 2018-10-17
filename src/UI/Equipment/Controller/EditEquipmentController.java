@@ -157,7 +157,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
         content.setHeading(new Text("Добавить параметр"));
 
         JFXComboBox<ParameterModel> comboBox = initComboBoxParameter(
-                new JFXComboBox(EquipmentPresenter.get().getObservableEquipmentParameter(mEquipmentParameterList)), false);
+                new JFXComboBox(EquipmentPresenter.get().getObservableEquipmentParameter(mEquipmentParameterList)), false, "Выберите параметр", "Параметр");
         comboBox.setLabelFloat(true);
         comboBox.setPromptText("Параметр");
         comboBox.setFocusColor(Paint.valueOf("#40a85f"));
@@ -327,13 +327,12 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
     @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(EquipmentModel.class.getName())) {
-            mEquipmentParameterList = sEquipmentModel.getObservableEntityList();
             sEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
+            mEquipmentParameterList = sEquipmentModel.getObservableEntityList();
             mTextFieldName.setText(sEquipmentModel.getName());
             mTextFieldNameFact.setText(sEquipmentModel.getNameFact());
             mTextAreaDescription.setText(sEquipmentModel.getDescription());
             updateTableParameter(mEquipmentParameterList);
-            //tableViewEquipment.setItems(sEquipmentModel.getObservableEqInventoryList());
             updateEquipmentTable(sEquipmentModel.getObservableEqInventoryList());
             mSecondLvlTabPane.getSelectionModel().select(0);
             if (mSecondLvlTabPane.getTabs().size() > 1) mSecondLvlTabPane.getTabs().remove(1);

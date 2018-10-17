@@ -49,8 +49,8 @@ public class AddEquipmentInventoryController extends BaseController {
     private AnchorPane mAnchorPaneEquipmentInventory;
 
     public void initialize(){
-        initComboBoxNumber(mComboBoxInventory, false);
-        initComboBoxState(mComboBoxState, false);
+        initComboBoxNumber(mComboBoxInventory, false, "Выберите номер", "Номер");
+        initComboBoxState(mComboBoxState, false, "Выберите состояние", "Состояние");
         initTextFieldCount();
         mBaseValidator.setJFXTextFields(mTextFieldCount, mTextFieldGuaranty);
         mBaseValidator.setValidationFacades(new Pair(mFacadeNumber, mErrorNumber, mComboBoxInventory), new Pair(mFacadeState, mErrorState, mComboBoxState));
@@ -82,8 +82,8 @@ public class AddEquipmentInventoryController extends BaseController {
     }
 
     @Override
-    protected void initComboBoxNumber(JFXComboBox<InventoryNumberModel> comboBox, boolean isSelectionItem) {
-        super.initComboBoxNumber(comboBox, isSelectionItem);
+    protected void initComboBoxNumber(JFXComboBox<InventoryNumberModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        super.initComboBoxNumber(comboBox, isSelectionItem, promptText, label);
         comboBox.setItems(EquipmentPresenter.get().getObservableInventory());
         comboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedInventory(newValue)));
     }
@@ -97,8 +97,8 @@ public class AddEquipmentInventoryController extends BaseController {
     }
 
     @Override
-    protected void initComboBoxState(JFXComboBox<StateModel> comboBox, boolean isSelectionItem) {
-        super.initComboBoxState(comboBox, isSelectionItem);
+    protected void initComboBoxState(JFXComboBox<StateModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        super.initComboBoxState(comboBox, isSelectionItem, promptText, label);
         comboBox.setItems(EquipmentPresenter.get().getObservableState());
     }
 

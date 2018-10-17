@@ -2,10 +2,13 @@ package Presenter;
 
 import Iteractor.IteractorParameter;
 import Model.Parameter.ParameterModel;
+import Model.Parameter.Parameters;
+import Model.Parameter.SelectedParameterShell;
 import Model.Parameter.ValueParameterModel;
 import Service.IUpdateData;
 import Service.IUpdateUI;
 import Service.ListenersService;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
@@ -30,6 +33,31 @@ public class ParameterPresenter extends BasePresenter implements IUpdateData {
 
     public void setParameter(Object parameter) {
         mParameter = (ParameterModel) parameter;
+    }
+
+    public ObservableList<SelectedParameterShell> getParameterList(ObservableList<ParameterModel> listExcluding){
+        ObservableList<SelectedParameterShell> list=FXCollections.observableArrayList();
+        if(listExcluding!=null){
+            boolean flag=false;
+            for(ParameterModel parameter: Parameters.get().getObsEntityList()){
+                for(ParameterModel parameterExcluding:listExcluding){
+                    if(parameter.getId()==parameterExcluding.getId()){
+                        flag=true;
+                        break;
+                    }
+                }
+                if(!flag){
+                    list.add(new SelectedParameterShell(parameter));
+                }
+                flag=false;
+            }
+            return list;
+        }else{
+            for(ParameterModel parameter:Parameters.get().getObsEntityList()){
+                list.add(new SelectedParameterShell(parameter));
+            }
+            return list;
+        }
     }
 
     public void addListener(IUpdateUI listener) {

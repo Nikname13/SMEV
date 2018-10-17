@@ -27,17 +27,17 @@ public class TypesController {
     @FXML
     public void initialize(){
         firstColumn.setCellValueFactory(cellData->cellData.getValue().nameProperty());
-        tableViewTypes.setItems(new TypePresenter().getObservableType());
+        tableViewTypes.setItems(TypePresenter.get().getObservableType());
         tableViewTypes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->editType(newValue));
     }
 
     private void editType(Object type){
-        new TypePresenter().setTypeModel(type);
-        new Coordinator().goToEditTypeWindow((Stage) mAnchorPaneTypes.getScene().getWindow(), 100.0, 200.0);
+        TypePresenter.get().setTypeModel(type);
+        new Coordinator().goToEditTypeWindow((Stage) mAnchorPaneTypes.getScene().getWindow());
     }
 
     @FXML
     private void onClickAdd(){
-        new Coordinator().goToAddTypeWindow((Stage) mAnchorPaneTypes.getScene().getWindow(), 100.0, 200.0);
+        new Coordinator().goToAddTypeWindow((Stage) mAnchorPaneTypes.getScene().getWindow());
     }
 }

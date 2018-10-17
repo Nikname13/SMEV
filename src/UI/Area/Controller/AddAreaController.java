@@ -22,7 +22,7 @@ public class AddAreaController extends BaseController {
     @FXML
     public void initialize(){
         mBaseValidator.setJFXTextFields(mTextFieldName);
-        initTextField(mTextFieldName, "Введите наименование района", "Наименование района");
+        initPromptText(mTextFieldName, "Введите наименование района", "Наименование района");
     }
 
     @FXML

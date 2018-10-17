@@ -66,7 +66,7 @@ public class AddSupplyController extends BaseController {
         mBaseValidator.setValidationFacades(new Pair(mFacadeProvider, mErrorProvider));
         initRadioButton();
         initDatePicker();
-        initComboBoxProvider(mComboBoxProvider, false);
+        initComboBoxProvider(mComboBoxProvider, false, "Выберите поставщика", "Поставщик");
         initTableView();
         updateTable(mInventoryNumberList);
     }
@@ -171,8 +171,8 @@ public class AddSupplyController extends BaseController {
     }
 
     @Override
-    protected void initComboBoxProvider(JFXComboBox<ProviderModel> comboBox, boolean isSelectionItem) {
-        super.initComboBoxProvider(comboBox, isSelectionItem);
+    protected void initComboBoxProvider(JFXComboBox<ProviderModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        super.initComboBoxProvider(comboBox, isSelectionItem, promptText, label);
         comboBox.setItems(SupplyPresenter.get().getObservableProvide());
         //comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> providerListener(newValue));
     }

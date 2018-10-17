@@ -54,7 +54,7 @@ public class EditSupplyController extends BaseController implements IUpdateUI, I
 
     @FXML
     public void initialize(){
-        initComboBoxProvider(mComboBoxProvider, true);
+        initComboBoxProvider(mComboBoxProvider, true, "Выберите поставщика", "Поставщик");
         initTextField();
         initTextArea();
         initRadioButton();
@@ -121,8 +121,8 @@ public class EditSupplyController extends BaseController implements IUpdateUI, I
     }
 
     @Override
-    protected void initComboBoxProvider(JFXComboBox<ProviderModel> comboBox, boolean isSelectionItem) {
-        super.initComboBoxProvider(comboBox, isSelectionItem);
+    protected void initComboBoxProvider(JFXComboBox<ProviderModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        super.initComboBoxProvider(comboBox, isSelectionItem, promptText, label);
         comboBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> providerListener());
     }
 

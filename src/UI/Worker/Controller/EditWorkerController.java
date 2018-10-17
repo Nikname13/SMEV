@@ -43,8 +43,8 @@ public class EditWorkerController extends BaseController {
         mBaseValidator.setJFXTextFields(mTextFieldName);
         mBaseValidator.setValidationFacades(new Pair(mFacadePost, mErrorPost, mComboBoxPost), new Pair(mFacadeDepartment, mErrorDepartment, mComboBoxDepartment));
         initTextField();
-        initComboBoxPost(mComboBoxPost);
-        initComboBoxDepartment(mComboBoxDepartment, true);
+        initComboBoxPost(mComboBoxPost, "Выберите или введите должность", "Должность");
+        initComboBoxDepartment(mComboBoxDepartment, true, "Выберите отдел", "Отдел");
     }
 
     @Override
@@ -53,15 +53,15 @@ public class EditWorkerController extends BaseController {
     }
 
     @Override
-    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem) {
-        super.initComboBoxDepartment(comboBox, isSelectionItem);
+    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        super.initComboBoxDepartment(comboBox, isSelectionItem, promptText, label);
         comboBox.setItems(WorkerPresenter.get().getObservableDepartment());
         comboBox.getSelectionModel().select(mWorkerModel.getDepartmentModel());
     }
 
     @Override
-    protected void initComboBoxPost(JFXComboBox<PostModel> comboBoxPost) {
-        super.initComboBoxPost(comboBoxPost);
+    protected void initComboBoxPost(JFXComboBox<PostModel> comboBoxPost, String promptText, String label) {
+        super.initComboBoxPost(comboBoxPost, promptText, label);
         comboBoxPost.setItems(WorkerPresenter.get().getObservablePost());
         mComboBoxPost.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedPost()));
         mComboBoxPost.getSelectionModel().select(mWorkerModel.getPost());

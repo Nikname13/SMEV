@@ -1,64 +1,69 @@
 package UI.Inventory_number.Controller;
 
+import Model.Equipment.EquipmentInventoryModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Supply.SupplyModel;
 import Model.Supply.Supplys;
 import Presenter.InventoryNumberPresenter;
+import Service.IUpdateUI;
+import UI.BaseController;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-public class EditInventoryNumber {
-
-    private InventoryNumberModel mInvNumber;
-    private SupplyModel mSupply;
-
-    public EditInventoryNumber(){
-        mInvNumber = InventoryNumberPresenter.get().getInventoryNumberModel();
-        mSupply=mInvNumber.getSupply();
-    }
+public class EditInventoryNumber extends BaseController implements IUpdateUI {
 
     @FXML
-    private TextField numberText;
+    private JFXTextField mTextFieldNumber;
+    @FXML
+    private JFXCheckBox mCheckBoxGroup;
+    @FXML
+    private JFXComboBox<SupplyModel> mComboBoxSupply;
+    @FXML
+    private JFXTextArea mTextAreaDescription;
+    @FXML
+    private TreeTableView<EquipmentInventoryModel> mTreeTableEquipmentInventory;
+    @FXML
+    private TreeTableColumn<EquipmentInventoryModel,String> mNameEquipmentColumn,mDepartmentEquipmentColumn,mStateEquipmentColumn,mDescriptionEquipmentColumn;
 
     @FXML
-    private ComboBox<SupplyModel> comboBoxSupply;
-
-    @FXML
-    private TextArea textAreaDescription;
-
-    @FXML
-    private CheckBox checkBoxGroup;
+    private AnchorPane mEditInventoryNumberPane;
 
     public void initialize(){
-        numberText.setText(mInvNumber.getName());
-        checkBoxGroup.setSelected(mInvNumber.isGroup());
-        textAreaDescription.setText(mInvNumber.getDescription());
-        comboBoxSupply.setCellFactory(p->new ListCell<SupplyModel>(){
-            @Override
-            protected void updateItem(SupplyModel supply,boolean empty){
-                super.updateItem(supply,empty);
-                if(supply!=null && !empty){
-                    setText(supply.getName());
-                }else{
-                    setText(null);
-                }
-            }
-        });
-        comboBoxSupply.setItems(Supplys.get().getObsEntityList());
-        comboBoxSupply.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->edit(newValue));
-    }
-
-    private void edit(SupplyModel supply){
-        mSupply=supply;
     }
 
     @FXML
-    private void onClickEdit(){
-        //new InventoryNumberPresenter().editInventoryNumber(numberText.getText(), mSupply, checkBoxGroup.isSelected(), textAreaDescription.getText());
+    private void onClickAdd(){
+
     }
 
-    @FXML
-    private void onClickDelete(){
-        //new InventoryNumberPresenter().delete(mInvNumber.getId());
+    @Override
+    public void updateUI(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void refreshControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+
+    }
+
+    @Override
+    protected Stage getStage() {
+        return (Stage)mEditInventoryNumberPane.getScene().getWindow();
     }
 }

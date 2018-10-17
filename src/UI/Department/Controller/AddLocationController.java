@@ -39,7 +39,7 @@ public class AddLocationController extends BaseController {
     @FXML
     public void initialize() {
         mBaseValidator.setValidationFacades(new Pair(mFacadeLocation, mErrorLocation, mComboBoxLocation));
-        initComboBoxLocation(mComboBoxLocation);
+        initComboBoxLocation(mComboBoxLocation,"Выберите или введите адрес", "Адрес");
     }
 
     @Override
@@ -48,8 +48,8 @@ public class AddLocationController extends BaseController {
     }
 
     @Override
-    protected void initComboBoxLocation(JFXComboBox<LocationModel> comboBoxLocation) {
-        super.initComboBoxLocation(comboBoxLocation);
+    protected void initComboBoxLocation(JFXComboBox<LocationModel> comboBoxLocation, String promptText, String label) {
+        super.initComboBoxLocation(comboBoxLocation,promptText,label);
         comboBoxLocation.setItems(DepartmentPresenter.get().getObservableLocation());
         mComboBoxLocation.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedLocation()));
     }

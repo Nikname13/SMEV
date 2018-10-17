@@ -64,7 +64,7 @@ public class AddEquipmentController extends BaseController {
     public void initialize() {
         mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNameFact);
         mBaseValidator.setValidationFacades(new Pair(mFacadeType, mErrorType, mComboBoxType));
-        initComboBoxType(mComboBoxType, false);
+        initComboBoxType(mComboBoxType, false, "Выберите тип", "Тип");
         initTableVieParameter();
         updateTableParameter(mEquipmentParameterList);
     }
@@ -116,7 +116,7 @@ public class AddEquipmentController extends BaseController {
         content.setHeading(new Text("Добавить параметр"));
 
         JFXComboBox<ParameterModel> comboBox = initComboBoxParameter(
-                new JFXComboBox(EquipmentPresenter.get().getObservableEquipmentParameter(mEquipmentParameterList)), false);
+                new JFXComboBox(EquipmentPresenter.get().getObservableEquipmentParameter(mEquipmentParameterList)), false, "Выберите параметр", "Параметр");
         comboBox.setLabelFloat(true);
         comboBox.setPromptText("Параметр");
         comboBox.setFocusColor(Paint.valueOf("#40a85f"));
@@ -182,8 +182,8 @@ public class AddEquipmentController extends BaseController {
     }
 
     @Override
-    protected void initComboBoxType(JFXComboBox<TypeModel> comboBoxType, boolean isSelectionItem) {
-        super.initComboBoxType(comboBoxType, isSelectionItem);
+    protected void initComboBoxType(JFXComboBox<TypeModel> comboBoxType, boolean isSelectionItem, String promptText, String label) {
+        super.initComboBoxType(comboBoxType, isSelectionItem, promptText, label);
         mComboBoxType.setItems(EquipmentPresenter.get().getObservableType());
         mComboBoxType.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> selectedType());
     }

@@ -40,12 +40,13 @@ public class AddInventoryNumberController extends BaseController {
     public void initialize(){
         mBaseValidator.setJFXTextFields(mTextField);
         mBaseValidator.setValidationFacades(new Pair(mFacadeSupply, mErrorSupply));
-        initComboBoxSupply(mComboBoxSupply, false);
+        initPromptText(mTextField, "Введите инвентарный номер", "Инвентарный номер");
+        initComboBoxSupply(mComboBoxSupply, false, "Выберите поставку", "Номер поставки");
     }
 
     @Override
-    protected void initComboBoxSupply(JFXComboBox<SupplyModel> comboBox, boolean isSelectionItem) {
-        super.initComboBoxSupply(comboBox, isSelectionItem);
+    protected void initComboBoxSupply(JFXComboBox<SupplyModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        super.initComboBoxSupply(comboBox, isSelectionItem, promptText, label);
         comboBox.setItems(Supplys.get().getObsEntityList());
     }
 

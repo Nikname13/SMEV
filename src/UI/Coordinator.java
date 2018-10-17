@@ -159,17 +159,17 @@ public class Coordinator {
         }
     }
 
-    public void goToAddTypeWindow(Stage stage, double width, double height){
+    public void goToAddTypeWindow(Stage stage){
         try {
-            windowSceneContent("Type/addType.fxml",stage,"Новый тип", width, height);
+            windowSceneContent("Type/addType.fxml",stage,"Новый тип",300, 330);
         }catch (Exception ex){
             System.out.println("Exception goToAddTypeWindow " + ex);
         }
     }
 
-    public void goToEditTypeWindow(Stage stage, double width, double height){
+    public void goToEditTypeWindow(Stage stage){
         try {
-            windowSceneContent("Type/editType.fxml",stage,"Тип", width, height);
+            windowSceneContent("Type/editType.fxml",stage,"Тип", 250, 170);
         }catch (Exception ex){
             System.out.println("Exception goToEditType " + ex);
         }

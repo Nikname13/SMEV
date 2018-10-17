@@ -13,11 +13,11 @@ import Model.Supply.SupplyModel;
 import Model.Type.TypeModel;
 import Model.Worker.WorkerModel;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextField;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.TextInputControl;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -36,8 +36,8 @@ public abstract class BaseController {
         mSelectedLocation = selectedLocation;
     }
 
-    protected void initComboBoxLocation(JFXComboBox<LocationModel> comboBoxLocation) {
-
+    protected void initComboBoxLocation(JFXComboBox<LocationModel> comboBoxLocation,String promptText, String label) {
+        initPromptText(comboBoxLocation,promptText,label);
         comboBoxLocation.setCellFactory(p -> new ListCell<>() {
             @Override
             protected void updateItem(LocationModel item, boolean empty) {
@@ -73,8 +73,8 @@ public abstract class BaseController {
 
     }
 
-    protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea, boolean isSelectionItem) {
-
+    protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea, boolean isSelectionItem, String promptText, String label ) {
+        initPromptText(comboBoxArea,promptText,label);
         comboBoxArea.setCellFactory(p -> new ListCell<>() {
             @Override
             protected void updateItem(AreaModel item, boolean empty) {
@@ -119,7 +119,8 @@ public abstract class BaseController {
         mSelectedPost = selectedPost;
     }
 
-    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem) {
+    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        initPromptText(comboBox,promptText,label);
         comboBox.setCellFactory(p -> new ListCell<DepartmentModel>() {
             @Override
             protected void updateItem(DepartmentModel item, boolean empty) {
@@ -158,8 +159,8 @@ public abstract class BaseController {
         }
     }
 
-    protected void initComboBoxPost(JFXComboBox<PostModel> comboBoxPost) {
-
+    protected void initComboBoxPost(JFXComboBox<PostModel> comboBoxPost, String promptText, String label) {
+        initPromptText(comboBoxPost,promptText,label);
         comboBoxPost.setCellFactory(p -> new ListCell<>() {
             @Override
             protected void updateItem(PostModel item, boolean empty) {
@@ -196,7 +197,8 @@ public abstract class BaseController {
         });
     }
 
-    protected void initComboBoxType(JFXComboBox<TypeModel> comboBoxType, boolean isSelectionItem) {
+    protected void initComboBoxType(JFXComboBox<TypeModel> comboBoxType, boolean isSelectionItem, String promptText, String label) {
+        initPromptText(comboBoxType,promptText,label);
         comboBoxType.setCellFactory(p -> new ListCell<>() {
             @Override
             protected void updateItem(TypeModel item, boolean empty) {
@@ -233,7 +235,8 @@ public abstract class BaseController {
         }
     }
 
-    protected JFXComboBox initComboBoxParameter(JFXComboBox<ParameterModel> comboBox, boolean isSelectionItem) {
+    protected JFXComboBox initComboBoxParameter(JFXComboBox<ParameterModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        initPromptText(comboBox,promptText,label);
         comboBox.setCellFactory(p -> new ListCell<>() {
             @Override
             protected void updateItem(ParameterModel item, boolean empty) {
@@ -271,7 +274,8 @@ public abstract class BaseController {
         return comboBox;
     }
 
-    protected JFXComboBox initComboBoxEquipmentParameter(JFXComboBox<EquipmentParameterModel> comboBox, boolean isSelectionItem) {
+    protected JFXComboBox initComboBoxEquipmentParameter(JFXComboBox<EquipmentParameterModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        initPromptText(comboBox,promptText,label);
         comboBox.setCellFactory(p -> new ListCell<>() {
             @Override
             protected void updateItem(EquipmentParameterModel item, boolean empty) {
@@ -310,7 +314,8 @@ public abstract class BaseController {
         return comboBox;
     }
 
-    protected void initComboBoxNumber(JFXComboBox<InventoryNumberModel> comboBox, boolean isSelectionItem) {
+    protected void initComboBoxNumber(JFXComboBox<InventoryNumberModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        initPromptText(comboBox,promptText,label);
         comboBox.setCellFactory(p -> new ListCell<>() {
             @Override
             protected void updateItem(InventoryNumberModel item, boolean empty) {
@@ -348,7 +353,8 @@ public abstract class BaseController {
         }
     }
 
-    protected void initComboBoxState(JFXComboBox<StateModel> comboBox, boolean isSelectionItem) {
+    protected void initComboBoxState(JFXComboBox<StateModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        initPromptText(comboBox,promptText,label);
         comboBox.setCellFactory(p -> new ListCell<>() {
             @Override
             protected void updateItem(StateModel item, boolean empty) {
@@ -386,7 +392,8 @@ public abstract class BaseController {
         }
     }
 
-    protected void initComboBoxWorker(JFXComboBox<WorkerModel> comboBox, boolean isSelectionItem) {
+    protected void initComboBoxWorker(JFXComboBox<WorkerModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        initPromptText(comboBox,promptText,label);
         comboBox.setCellFactory(p -> new ListCell<>() {
             @Override
             protected void updateItem(WorkerModel item, boolean empty) {
@@ -424,7 +431,8 @@ public abstract class BaseController {
         }
     }
 
-    protected void initComboBoxProvider(JFXComboBox<ProviderModel> comboBox, boolean isSelectionItem) {
+    protected void initComboBoxProvider(JFXComboBox<ProviderModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        initPromptText(comboBox,promptText,label);
         comboBox.setCellFactory(p -> new ListCell<>() {
             @Override
             protected void updateItem(ProviderModel item, boolean empty) {
@@ -462,7 +470,8 @@ public abstract class BaseController {
         }
     }
 
-    protected void initComboBoxSupply(JFXComboBox<SupplyModel> comboBox, boolean isSelectionItem) {
+    protected void initComboBoxSupply(JFXComboBox<SupplyModel> comboBox, boolean isSelectionItem, String promptText, String label) {
+        initPromptText(comboBox,promptText,label);
         comboBox.setCellFactory(p -> new ListCell<>() {
             @Override
             protected void updateItem(SupplyModel item, boolean empty) {
@@ -500,14 +509,29 @@ public abstract class BaseController {
         }
     }
 
-    protected void initTextField(JFXTextField textField , String promtText, String label){
-        textField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+    protected void initPromptText(TextInputControl control , String promptText, String label){
+        control.setPromptText(promptText);
+        control.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(newValue){
-                    textField.setPromptText(label);
+                    control.setPromptText(label);
                 }else{
-                    textField.setPromptText(promtText);
+                    control.setPromptText(promptText);
+                }
+            }
+        });
+    }
+
+    protected void initPromptText(JFXComboBox control , String promptText, String label){
+        control.setPromptText(promptText);
+        control.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue){
+                    control.setPromptText(label);
+                }else{
+                    control.setPromptText(promptText);
                 }
             }
         });

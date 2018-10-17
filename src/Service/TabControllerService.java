@@ -13,8 +13,8 @@ public class TabControllerService {
     private ITabSelected mListenerFirstTabPane, mListenerSecondTabPane;
     private static TabControllerService sTabControllerService;
     private ResourceModel mEditDepartmentResource, mEquipmentInventoryResource, mEditEquipmentResource,
-            mEmptyTab, mDetailsMovementResource, mInventoryNumberResource,
-            mParameterResource, mProviderResource, mAreaResource,
+            mEmptyTab, mDetailsMovementResource, mInventoryNumberListResource, mInventoryNumberEditResource,
+            mParameterListResource, mParameterEditResource, mProviderResource, mAreaResource,
             mStateResource, mWorkerResource, mTypeResource,
             mSupplyResource, mEditSupplyResource;
     private List<Tab> mTabList;
@@ -32,8 +32,10 @@ public class TabControllerService {
         mEditEquipmentResource = new ResourceModel("/UI/Equipment/editEquipment.fxml", "mStackPaneEditEquipment");
         mEmptyTab = new ResourceModel("/UI/MainTabs/emptyTab.fxml", "emptyTab.fxml");
         mDetailsMovementResource = new ResourceModel("/UI/Movement/detailsMovement.fxml", "mDetailsAnchorPane");
-        mInventoryNumberResource = new ResourceModel("/UI/Inventory_number/inventoryNumbers.fxml", "mAnchorPaneInventoryNumber");
-        mParameterResource = new ResourceModel("/UI/Parameter/parameters.fxml", "mAnchorPaneParameters");
+        mInventoryNumberListResource = new ResourceModel("/UI/Inventory_number/inventoryNumbers.fxml", "mAnchorPaneInventoryNumber");
+        mInventoryNumberEditResource = new ResourceModel("/UI/Inventory_number/editInventoryNumber.fxml", "mEditInventoryNumberPane");
+        mParameterListResource = new ResourceModel("/UI/Parameter/parameters.fxml", "mAnchorPaneParameters");
+        mParameterEditResource=new ResourceModel("/UI/Parameter/parameters.fxml", "mAnchorPaneParameters");
         mProviderResource = new ResourceModel("/UI/Provider/providers.fxml", "mAnchorPaneProviders");
         mAreaResource = new ResourceModel("/UI/Area/areas.fxml", "mAnchorPaneArea");
         mStateResource = new ResourceModel("/UI/State/states.fxml", "mAnchorPaneState");
@@ -92,12 +94,12 @@ public class TabControllerService {
         return mDetailsMovementResource;
     }
 
-    public ResourceModel getInventoryNumberResource() {
-        return mInventoryNumberResource;
+    public ResourceModel getInventoryNumberListResource() {
+        return mInventoryNumberListResource;
     }
 
-    public ResourceModel getParameterResource() {
-        return mParameterResource;
+    public ResourceModel getParameterListResource() {
+        return mParameterListResource;
     }
 
     public ResourceModel getProviderResource() {
@@ -126,5 +128,13 @@ public class TabControllerService {
 
     public ResourceModel getEditSupplyResource() {
         return mEditSupplyResource;
+    }
+
+    public ResourceModel getInventoryNumberEditResource() {
+        return mInventoryNumberEditResource;
+    }
+
+    public ResourceModel getParameterEditResource() {
+        return mParameterEditResource;
     }
 }

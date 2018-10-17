@@ -36,11 +36,11 @@ public class CatalogTabController extends BaseTabController implements IUpdateUI
         if (newValue != null) {
             switch (newValue.getId()) {
                 case "mInventoryNumber":
-                    TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getInventoryNumberResource()));
+                    TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getInventoryNumberListResource()));
                     ListenersService.get().updateUI(InventoryNumbersController.class);
                     break;
                 case "mParameter":
-                    TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getParameterResource()));
+                    TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getParameterListResource()));
                     break;
                 case "mProvider":
                     TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getProviderResource()));

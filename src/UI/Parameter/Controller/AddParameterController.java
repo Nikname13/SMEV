@@ -21,7 +21,7 @@ public class AddParameterController extends BaseController {
     @FXML
     public void initialize() {
         mBaseValidator.setJFXTextFields(mNameParameter);
-        initTextField(mNameParameter, "Введите наименование параметра", "Наименование параметра");
+        initPromptText(mNameParameter, "Введите наименование параметра", "Наименование параметра");
         System.out.println("init");
     }
 

@@ -89,7 +89,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         mButtonUpdate.setFocusTraversable(false);
         initTextFields();
         initTreeTableEquipmentInventory();
-        initComboBoxArea(mComboBoxArea, true);
+        initComboBoxArea(mComboBoxArea, true,"Выберите район", "Район");
         initTextAreaDescription();
         initRadioButton();
         initLocationListView();
@@ -123,8 +123,8 @@ public class EditDepartmentController extends BaseController implements IUpdateU
     }
 
     @Override
-    protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea, boolean isSelectionItem) {
-        super.initComboBoxArea(comboBoxArea, isSelectionItem);
+    protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea, boolean isSelectionItem, String promptText, String label) {
+        super.initComboBoxArea(comboBoxArea, isSelectionItem, promptText, label);
         comboBoxArea.getSelectionModel().selectedIndexProperty().addListener((observable -> selectedArea()));
     }
 
