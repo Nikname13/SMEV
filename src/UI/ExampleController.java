@@ -9,8 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
-public class ExampleController implements IErrorMessage {
+public class ExampleController extends BaseController implements IErrorMessage {
 
     @FXML
     private StackPane mStackPainMain;
@@ -40,6 +41,7 @@ public class ExampleController implements IErrorMessage {
     public void initialize() {
         System.out.println("example initialize");
         mTabContainer.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedTab(newValue.getId())));
+        setParentStackPane(mStackPainMain);
     }
 
     private void selectedTab(String id){
@@ -67,5 +69,10 @@ public class ExampleController implements IErrorMessage {
     public void showError(String errorMessage) {
         JFXDialog dialog = new JFXDialog(mStackPainMain, new Label(errorMessage), JFXDialog.DialogTransition.BOTTOM);
         dialog.show();
+    }
+
+    @Override
+    protected Stage getStage() {
+        return null;
     }
 }

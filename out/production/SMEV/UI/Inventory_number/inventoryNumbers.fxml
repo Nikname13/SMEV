@@ -5,38 +5,58 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.Tab?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="UI.Inventory_number.Controller.InventoryNumbersController"
             fx:id="mAnchorPaneInventoryNumber">
     <children>
-        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" style="-fx-background-color: #ffffff;"
-                    prefHeight="55" minHeight="55" prefWidth="500" minWidth="500">
+        <HBox spacing="10" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
             <children>
-                <JFXButton onAction="#onClickAdd" ripplerFill="#40a85f" style="-fx-background-color: #a8f1b3;"
-                           mnemonicParsing="false" text="Новый номер"
-                           AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10"
-                           AnchorPane.bottomAnchor="10"/>
-            </children>
+                <AnchorPane>
+                    <children>
+                        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" style="-fx-background-color: #ffffff;"
+                                    prefHeight="55" minHeight="55" prefWidth="350" minWidth="350">
+                            <children>
+                                <JFXButton onAction="#onClickAdd" ripplerFill="#40a85f" style="-fx-background-color: #a8f1b3;"
+                                           mnemonicParsing="false" text="Новый номер"
+                                           AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10"
+                                           AnchorPane.bottomAnchor="10"/>
+                            </children>
 
-        </AnchorPane>
-        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="65" AnchorPane.bottomAnchor="0"
-                    style="-fx-background-color: #ffffff;"
-                    prefWidth="500" minWidth="500">
-            <children>
-                <JFXTextField fx:id="mTextFieldSearch" focusColor="#40a85f" labelFloat="true"
-                              prefHeight="25.0" promptText="Поиск"
-                              AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="20.0" AnchorPane.rightAnchor="10.0"/>
-                <TableView fx:id="mTableViewNumber" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="60.0"
-                           AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10"
-                >
-                    <columns>
-                        <TableColumn fx:id="mNumberInventoryColumn" prefWidth="100.0" text="Номер"/>
-                        <TableColumn fx:id="mNumberSupplyColumn" prefWidth="200.0" text="Номер поставки"/>
-                        <TableColumn fx:id="mGroupColumn" prefWidth="150.0" text="Состав оборудования"/>
-                    </columns>
-                </TableView>
+                        </AnchorPane>
+                        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="65" AnchorPane.bottomAnchor="0"
+                                    style="-fx-background-color: #ffffff;"
+                                    prefWidth="350" minWidth="350">
+                            <children>
+                                <JFXTextField fx:id="mTextFieldSearch" focusColor="#40a85f" labelFloat="true"
+                                              prefHeight="25.0" promptText="Поиск"
+                                              AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="20.0" AnchorPane.rightAnchor="10.0"/>
+                                <TableView fx:id="mTableViewNumber" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="60.0"
+                                           AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+                                    <columns>
+                                        <TableColumn fx:id="mNumberInventoryColumn" prefWidth="100.0" text="Номер"/>
+                                        <TableColumn fx:id="mNumberSupplyColumn" prefWidth="200.0" text="Номер поставки"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+                <AnchorPane>
+                    <children>
+                            <JFXTabPane fx:id="mSecondLvlTabPane" side="LEFT" tabMaxWidth="10"
+                                        tabMinWidth="10" tabMinHeight="10" tabMaxHeight="10"
+                                        AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+                                        AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">
+                                <Tab>
+                                    <fx:include source="/UI/MainTabs/emptyTab.fxml"/>
+                                </Tab>
+                            </JFXTabPane>
+                    </children>
+                </AnchorPane>
             </children>
-        </AnchorPane>
+        </HBox>
     </children>
 </AnchorPane>

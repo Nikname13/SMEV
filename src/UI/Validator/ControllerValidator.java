@@ -31,6 +31,7 @@ public class ControllerValidator {
                 validator.setMessage("Поле не может быть пустым");
             } else {
                 //validator.setIcon(new Image);
+                validator.setMessage("WTF");
             }
             text.focusedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override

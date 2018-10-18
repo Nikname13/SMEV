@@ -209,6 +209,8 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     }
 
+
+
     @Override
     public void update(Object object) {
         if (object.getClass().equals(EquipmentInventoryModel.class)) {

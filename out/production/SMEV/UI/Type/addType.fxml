@@ -36,10 +36,10 @@
                 <AnchorPane>
                     <children>
                         <JFXButton onAction="#onClickAdd" text="Сохранить" ripplerFill="#40a85f"
-                                   AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="85" prefWidth="120.0"
+                                   AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="0" prefWidth="120.0"
                                    prefHeight="35.0"/>
                         <JFXButton onAction="#onClickCancel" text="Отмена" ripplerFill="#40a85f" AnchorPane.leftAnchor="145.0"
-                                   AnchorPane.topAnchor="85.0" prefWidth="120"
+                                   AnchorPane.topAnchor="0.0" prefWidth="120"
                                    prefHeight="35.0"/>
                     </children>
                 </AnchorPane>

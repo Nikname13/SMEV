@@ -1,39 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.layout.*?>
-
-<?import com.jfoenix.controls.JFXTreeTableView?>
-<?import com.jfoenix.controls.JFXTreeTableColumn?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXCheckBox?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXTextArea?>
-<?import com.jfoenix.controls.JFXButton?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="UI.Inventory_number.Controller.EditInventoryNumber"
             fx:id="mEditInventoryNumberPane">
     <children>
-        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" prefWidth="300" minWidth="300" prefHeight="300" minHeight="300" style="-fx-background-color: #ffffff;">
+        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" prefWidth="280" minWidth="280" prefHeight="250" minHeight="250" style="-fx-background-color: #ffffff;">
             <children>
-                <JFXTextField fx:id="mTextField" focusColor="#40a85f" labelFloat="true" AnchorPane.leftAnchor="15"
+                <JFXTextField fx:id="mTextFieldNumber" promptText="Инвентарный номер" focusColor="#40a85f" labelFloat="true" AnchorPane.leftAnchor="15" editable="false"
                               AnchorPane.topAnchor="25" prefWidth="170"/>
                 <JFXCheckBox fx:id="mCheckBoxGroup" AnchorPane.topAnchor="35.0" AnchorPane.leftAnchor="200"
                              mnemonicParsing="false" text="Группа" disable="true"/>
 
-                <JFXComboBox fx:id="mComboBoxSupply" prefWidth="250.0" focusColor="#40a85f" labelFloat="true" AnchorPane.leftAnchor="15"
+                <JFXComboBox fx:id="mComboBoxSupply" promptText="Номер поставки" prefWidth="250.0" focusColor="#40a85f" labelFloat="true" AnchorPane.leftAnchor="15"
                              AnchorPane.topAnchor="90"/>
-                <JFXTextArea fx:id="mTextAreaDescription" AnchorPane.leftAnchor="15" AnchorPane.topAnchor="150" prefHeight="50.0"
+                <JFXTextArea fx:id="mTextAreaDescription" promptText="Комментарий" AnchorPane.leftAnchor="15" AnchorPane.topAnchor="150" prefHeight="70.0" minHeight="50" maxHeight="70"
                              prefWidth="250.0" focusColor="#41a65d" labelFloat="true"/>
-                <JFXButton fx:id="buttonAdd" mnemonicParsing="false" onAction="#onClickAdd" text="Сохранить" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="220"/>
+                <JFXButton fx:id="mButtonUpdate" ripplerFill="#40a85f" mnemonicParsing="false" onAction="#onClickAdd" text="Сохранить" AnchorPane.rightAnchor="15" AnchorPane.topAnchor="210" visible="false"/>
 
             </children>
         </AnchorPane>
-        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="310" AnchorPane.rightAnchor="0" style="-fx-background-color: #ffffff;">
+        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="260" AnchorPane.rightAnchor="0" style="-fx-background-color: #ffffff;">
             <children>
                 <JFXTreeTableView fx:id="mTreeTableEquipmentInventory" prefHeight="200.0" prefWidth="530.0"
                                   AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"

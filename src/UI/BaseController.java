@@ -18,21 +18,33 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 public abstract class BaseController {
 
     private boolean mSelectedLocation;
     private boolean mSelectedPost;
+    private static StackPane sParentStackPane;
+
+    protected static StackPane getParentStackPane() {
+        return sParentStackPane;
+    }
+
+    protected static void setParentStackPane(StackPane parentStackPane) {
+        sParentStackPane = parentStackPane;
+    }
 
     protected abstract Stage getStage();
 
-    public boolean isSelectedLocation() {
+    protected boolean isSelectedLocation() {
         return mSelectedLocation;
     }
 
-    public void setSelectedLocation(boolean selectedLocation) {
+    protected void setSelectedLocation(boolean selectedLocation) {
         mSelectedLocation = selectedLocation;
     }
 
@@ -111,11 +123,11 @@ public abstract class BaseController {
         }
     }
 
-    public boolean isSelectedPost() {
+    protected boolean isSelectedPost() {
         return mSelectedPost;
     }
 
-    public void setSelectedPost(boolean selectedPost) {
+    protected void setSelectedPost(boolean selectedPost) {
         mSelectedPost = selectedPost;
     }
 
@@ -510,28 +522,34 @@ public abstract class BaseController {
     }
 
     protected void initPromptText(TextInputControl control , String promptText, String label){
-        control.setPromptText(promptText);
         control.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(newValue){
                     control.setPromptText(label);
                 }else{
-                    control.setPromptText(promptText);
+                    if(control.getText().trim().isEmpty()) {
+                        control.setPromptText(promptText);
+                    }else{
+                        control.setPromptText(label);
+                    }
                 }
             }
         });
     }
 
-    protected void initPromptText(JFXComboBox control , String promptText, String label){
-        control.setPromptText(promptText);
+    private void initPromptText(JFXComboBox control , String promptText, String label){
         control.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(newValue){
                     control.setPromptText(label);
                 }else{
-                    control.setPromptText(promptText);
+                    if(control.getSelectionModel().isEmpty()) {
+                        control.setPromptText(promptText);
+                    }else{
+                        control.setPromptText(label);
+                    }
                 }
             }
         });

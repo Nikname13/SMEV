@@ -6,18 +6,52 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import com.jfoenix.controls.JFXTreeTableColumn?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXButton?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="UI.Inventory_number.Controller.EditInventoryNumber"
-            prefHeight="400.0" prefWidth="600.0"
-            fx:id="anchorPanelInventoryNumber">
+            fx:id="mEditInventoryNumberPane">
     <children>
-        <TextField fx:id="numberText" layoutX="14.0" layoutY="14.0" />
-        <ComboBox fx:id="comboBoxSupply" layoutX="14.0" layoutY="50.0" prefWidth="150.0" />
-        <TextArea fx:id="textAreaDescription" layoutX="14.0" layoutY="83.0" prefHeight="200.0" prefWidth="200.0" />
-        <Button layoutX="274.0" layoutY="258.0" mnemonicParsing="false" onAction="#onClickEdit" text="edit" />
-        <Button layoutX="274.0" layoutY="308.0" mnemonicParsing="false" onAction="#onClickDelete" text="delete" />
-        <CheckBox fx:id="checkBoxGroup" layoutX="178.0" layoutY="18.0" mnemonicParsing="false" text="CheckBox" />
+        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" prefWidth="280" minWidth="280" prefHeight="250" minHeight="250" style="-fx-background-color: #ffffff;">
+            <children>
+                <JFXTextField fx:id="mTextFieldNumber" promptText="Инвентарный номер" focusColor="#40a85f" labelFloat="true" AnchorPane.leftAnchor="15" editable="false"
+                              AnchorPane.topAnchor="25" prefWidth="170"/>
+                <JFXCheckBox fx:id="mCheckBoxGroup" AnchorPane.topAnchor="35.0" AnchorPane.leftAnchor="200"
+                             mnemonicParsing="false" text="Группа" disable="true"/>
+
+                <JFXComboBox fx:id="mComboBoxSupply" promptText="Номер поставки" prefWidth="250.0" focusColor="#40a85f" labelFloat="true" AnchorPane.leftAnchor="15"
+                             AnchorPane.topAnchor="90"/>
+                <JFXTextArea fx:id="mTextAreaDescription" promptText="Комментарий" AnchorPane.leftAnchor="15" AnchorPane.topAnchor="150" prefHeight="70.0" minHeight="50" maxHeight="70"
+                             prefWidth="250.0" focusColor="#41a65d" labelFloat="true"/>
+                <JFXButton fx:id="mButtonUpdate" ripplerFill="#40a85f" mnemonicParsing="false" onAction="#onClickAdd" text="Сохранить" AnchorPane.rightAnchor="15" AnchorPane.topAnchor="210" visible="false"/>
+
+            </children>
+        </AnchorPane>
+        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="260" AnchorPane.rightAnchor="0" style="-fx-background-color: #ffffff;">
+            <children>
+                <JFXTreeTableView fx:id="mTreeTableEquipmentInventory" prefHeight="200.0" prefWidth="530.0"
+                                  AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+                                  AnchorPane.rightAnchor="10.0"
+                                  AnchorPane.topAnchor="55.0">
+                    <columns>
+                        <JFXTreeTableColumn fx:id="mNameEquipmentColumn" prefWidth="182.0" text="Наименование"/>
+                        <JFXTreeTableColumn fx:id="mDepartmentEquipmentColumn" prefWidth="100.0"
+                                            text="Отдел"/>
+                        <JFXTreeTableColumn fx:id="mStateEquipmentColumn" prefWidth="75.0"
+                                            text="Состояние"/>
+                        <JFXTreeTableColumn fx:id="mDescriptionEquipmentColumn" prefWidth="150.0"
+                                            text="Комментарий"/>
+                    </columns>
+                </JFXTreeTableView>
+            </children>
+        </AnchorPane>
+
     </children>
 
 </AnchorPane>
