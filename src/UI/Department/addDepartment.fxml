@@ -8,12 +8,22 @@
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="UI.Department.Controller.AddDepartmentController">
     <children>
-        <JFXTextField fx:id="mTextFieldNumber" focusColor="#40a85f" labelFloat="true"
-                      prefHeight="25.0" prefWidth="250.0" promptText="Номер отдела" AnchorPane.topAnchor="30.0"
-                      AnchorPane.leftAnchor="20.0"/>
-        <JFXTextField fx:id="mTextFieldName" focusColor="#41a65d" labelFloat="true" AnchorPane.leftAnchor="20.0"
-                      AnchorPane.topAnchor="90.0"
-                      prefHeight="25.0" prefWidth="250.0" promptText="Наименование отдела"/>
+        <VBox spacing="40" AnchorPane.leftAnchor="20" AnchorPane.topAnchor="30">
+            <children>
+                <AnchorPane>
+                    <children>
+                        <JFXTextField fx:id="mTextFieldNumber" focusColor="#40a85f" labelFloat="true"
+                                      prefHeight="25.0" prefWidth="250.0" promptText="Номер отдела"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane>
+                    <children>
+                        <JFXTextField fx:id="mTextFieldName" focusColor="#41a65d" labelFloat="true"
+                                      prefHeight="25.0" prefWidth="250.0" promptText="Наименование отдела"/>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
         <ValidationFacade fx:id="mFacadeArea" layoutX="20.0" layoutY="150.0" AnchorPane.leftAnchor="20.0"
                           AnchorPane.topAnchor="150.0">
             <control>
