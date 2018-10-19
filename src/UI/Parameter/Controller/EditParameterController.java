@@ -1,24 +1,20 @@
 package UI.Parameter.Controller;
 
-import Model.Parameter.ParameterModel;
 import Model.Parameter.ValueParameterModel;
-import Presenter.ParameterPresenter;
+import Service.IUpdateUI;
+import Service.ListenersService;
+import UI.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class EditParameterController {
-
-    private static ParameterModel mParameter;
-    private static List<Object> mEditValues, mdeleteValue;
+public class EditParameterController extends BaseController implements IUpdateUI {
 
     public EditParameterController() {
-        mEditValues = new ArrayList<>();
-        mdeleteValue = new ArrayList<>();
+        ListenersService.get().addListenerUI(this);
     }
 
     @FXML
@@ -38,37 +34,10 @@ public class EditParameterController {
 
     @FXML
     public void initialize() {
-
-        nameParameter.setText(mParameter.getName());
-        //первое обращение к базе для загрузки списка параметров
-        if (!mParameter.getEntityList().isEmpty()) {
-            System.out.println("UI getValueList != null");
-            tableViewEditParameters.setVisible(true);
-            valuesTextArea.setVisible(false);
-            firstColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-            tableViewEditParameters.setItems(mParameter.getObservableEntityList());
-            tableViewEditParameters.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> editParameter(newValue.getId()));
-            isValue.setSelected(mParameter.isValue());
-        } else {
-            tableViewEditParameters.setVisible(false);
-            valuesTextArea.setVisible(true);
-        }
     }
 
     @FXML
     private void onClickOk() {
-        if(isValue.isSelected()) {
-            if (!mParameter.isValue()) {
-                String s[] = valuesTextArea.getText().split("\n");
-                if (s.length > 0) {
-                    for (int i = 0; i < s.length; i++) {
-                        mEditValues.add(s[i]);
-                    }
-                } else {
-                    isValue.setSelected(false);
-                }
-            }
-        }
     }
 
     private void editParameter(int value) {
@@ -86,6 +55,30 @@ public class EditParameterController {
     private void onDelete() {
     }
 
+    @Override
+    public void updateUI(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void refreshControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+
+    }
+
+    @Override
+    protected Stage getStage() {
+        return null;
+    }
 }
 
 

@@ -66,7 +66,6 @@ public class AddEquipmentController extends BaseController {
         mBaseValidator.setValidationFacades(new Pair(mFacadeType, mErrorType, mComboBoxType));
         initComboBoxType(mComboBoxType, false, "Выберите тип", "Тип");
         initTableVieParameter();
-        updateTableParameter(mEquipmentParameterList);
     }
 
     private void initTableVieParameter() {
@@ -78,9 +77,6 @@ public class AddEquipmentController extends BaseController {
             public void handle(TreeTableColumn.CellEditEvent<EquipmentParameterModel, String> event) {
                 TreeItem<EquipmentParameterModel> currentEditEquipment = mTreeTableViewParameter.getTreeItem(event.getTreeTablePosition().getRow());
                 currentEditEquipment.getValue().setName(event.getNewValue());
-                for (EquipmentParameterModel parameter : mEquipmentParameterList) {
-                    System.out.println(parameter.getName());
-                }
             }
         });
         mTreeTableViewParameter.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipmentParameter(newValue)));

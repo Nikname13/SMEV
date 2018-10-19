@@ -78,8 +78,6 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
 
     public EditEquipmentController() {
         ListenersService.get().addListenerUI(this);
-
-        sEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
     }
 
     @FXML

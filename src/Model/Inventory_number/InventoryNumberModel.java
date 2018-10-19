@@ -1,9 +1,8 @@
 package Model.Inventory_number;
 
-import Iteractor.IteractorInventoryNumber;
+import Iteractor.IteractorEquipmentInventory;
 import Iteractor.IteractorInventoryNumberLog;
-import Model.AbstractModel;
-import Model.GenericList;
+import Model.Equipment.EquipmentInventoryModel;
 import Model.GenericModel;
 import Model.Supply.SupplyModel;
 import javafx.beans.property.BooleanProperty;
@@ -19,6 +18,7 @@ public class InventoryNumberModel extends GenericModel<InventoryNumberLog> {
     private String mDescription;
     private boolean mGroup;
     private SupplyModel mSupply;
+    private transient List<EquipmentInventoryModel> mEquipmentInventoryList;
 
     public InventoryNumberModel(int id, String number, SupplyModel supply, boolean group, String description, InventoryNumberLog numberLog) {
         super(id,number);
@@ -47,10 +47,8 @@ public class InventoryNumberModel extends GenericModel<InventoryNumberLog> {
 
     @Override
     public List<InventoryNumberLog> getEntityList() {
-        if(mEntityList==null){
             mEntityList=new ArrayList<>();
             mEntityList= new IteractorInventoryNumberLog().getList(getId());
-        }
         return super.getEntityList();
     }
 
@@ -86,4 +84,15 @@ public class InventoryNumberModel extends GenericModel<InventoryNumberLog> {
         mSupply = supply;
     }
 
+    public List<EquipmentInventoryModel> getEquipmentInventoryList() {
+        if (mEquipmentInventoryList == null) {
+            mEquipmentInventoryList = new ArrayList<>();
+            mEquipmentInventoryList = new IteractorEquipmentInventory().getList(getId(), "inventoryNumber");
+        }
+        return mEquipmentInventoryList;
+    }
+
+    public void setEquipmentInventoryList(List<EquipmentInventoryModel> equipmentInventoryList) {
+        mEquipmentInventoryList = equipmentInventoryList;
+    }
 }

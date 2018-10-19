@@ -35,7 +35,7 @@ public class TabControllerService {
         mInventoryNumberListResource = new ResourceModel("/UI/Inventory_number/inventoryNumbers.fxml", "mAnchorPaneInventoryNumber");
         mInventoryNumberEditResource = new ResourceModel("/UI/Inventory_number/editInventoryNumber.fxml", "mEditInventoryNumberPane");
         mParameterListResource = new ResourceModel("/UI/Parameter/parameters.fxml", "mAnchorPaneParameters");
-        mParameterEditResource=new ResourceModel("/UI/Parameter/parameters.fxml", "mAnchorPaneParameters");
+        mParameterEditResource = new ResourceModel("/UI/Parameter/editParameter.fxml", "mParameterEditPane");
         mProviderResource = new ResourceModel("/UI/Provider/providers.fxml", "mAnchorPaneProviders");
         mAreaResource = new ResourceModel("/UI/Area/areas.fxml", "mAnchorPaneArea");
         mStateResource = new ResourceModel("/UI/State/states.fxml", "mAnchorPaneState");

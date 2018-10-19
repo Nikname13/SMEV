@@ -11,9 +11,6 @@ import Service.ListenersService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ParameterPresenter extends BasePresenter implements IUpdateData {
 
     private static ParameterModel mParameter;
@@ -78,33 +75,8 @@ public class ParameterPresenter extends BasePresenter implements IUpdateData {
         }
     }
 
-    public void editParameter(String name, boolean isValue, List<Object> editValue, List<Object> deleteValue) {
-        //mParameter.setLoad(false);
-        if (isValue) {
-            List<ValueParameterModel> values = new ArrayList<>();
-            if (mParameter.isValue()) {
-                System.out.println("getValueList!=null");
-/*                for (int i = 0; i < editValue.size(); i++) {
-                    values.add((ValueParameterModel) editValue.get(i));
-                    //mParameter.getValuesList().remove(values.get(i));
-                }*/
-                values=mParameter.getEntityList();
-               for (int i = 0; i < deleteValue.size(); i++) {
-                    values.remove(deleteValue.get(i));
-                }
-                for(ValueParameterModel value: values){
-                    System.out.println(value.getName());
-                }
-            } else {
-                for (int i = 0; i < editValue.size(); i++) {
-                    values.add(new ValueParameterModel(0, (String) editValue.get(i)));
-                }
-            }
-            new IteractorParameter().edit(new ParameterModel(mParameter.getId(), name, values, isValue));
-        }else {
-            new IteractorParameter().edit(new ParameterModel(mParameter.getId(), name, null, isValue));
-        }
-        System.out.println("editParameter");
+    public void editParameter(ParameterModel parameter) {
+        new IteractorParameter().edit(parameter);
     }
 
     @Override

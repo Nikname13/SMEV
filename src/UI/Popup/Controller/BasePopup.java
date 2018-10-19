@@ -14,6 +14,7 @@ import java.io.IOException;
 public class BasePopup implements IUpdatePopup {
 
     private static String sEquipmentInventoryPopup = "/UI/Popup/equipmentInventoryPopup.fxml";
+    private static String sEquipmentInventoryReadPopup = "/UI/Popup/equipmentInventoryReadPopup.fxml";
     private static String sBaseListPopup = "/UI/Popup/baseListPopup.fxml";
     private static String sDepartmentListPopup = "/UI/Popup/departmentsListPopup.fxml";
     private static String sSupplyListPopup = "/UI/Popup/supplyListPopup.fxml";
@@ -61,6 +62,10 @@ public class BasePopup implements IUpdatePopup {
 
     public static String getInventoryNumberPopup() {
         return sInventoryNumberPopup;
+    }
+
+    public static String getEquipmentInventoryReadPopup() {
+        return sEquipmentInventoryReadPopup;
     }
 
     public JFXPopup get() {

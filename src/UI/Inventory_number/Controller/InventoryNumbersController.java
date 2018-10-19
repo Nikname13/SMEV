@@ -87,7 +87,6 @@ public class InventoryNumbersController extends BaseController implements IUpdat
             updateTable(InventoryNumberPresenter.get().getObservableInventory());
             mTableViewNumber.getSelectionModel().clearSelection();
             mSecondLvlTabPane.getSelectionModel().select(0);
-            if (mSecondLvlTabPane.getTabs().size() > 1) mSecondLvlTabPane.getTabs().remove(1);
             TabControllerService.get().setListenerSecondTabPane(((Tab nextTab) -> nextTab(nextTab, mSecondLvlTabPane)));
         }
     }
@@ -95,13 +94,16 @@ public class InventoryNumbersController extends BaseController implements IUpdat
 
     @Override
     public void refreshControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(InventoryNumberModel.class.getName())) {
+            //updateTable(InventoryNumberPresenter.get().getObservableInventory());
+            mTableViewNumber.refresh();
+        }
     }
 
     @Override
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(InventoryNumberModel.class.getName())) {
-            updateTable(InventoryNumberPresenter.get().getObservableInventory());
+
         }
     }
 

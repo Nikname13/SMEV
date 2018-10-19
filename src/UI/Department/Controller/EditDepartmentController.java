@@ -40,7 +40,6 @@ public class EditDepartmentController extends BaseController implements IUpdateU
 
     private static DepartmentModel mDepartmentModel;
     private BaseValidator mBaseValidator = new BaseValidator();
-    private static Stage sStage;
     @FXML
     private AnchorPane anchorPaneEditDepartment;
 
@@ -80,10 +79,6 @@ public class EditDepartmentController extends BaseController implements IUpdateU
     }
 
     @FXML
-    private AnchorPane mAnchorPaneBasicInfoDepartment;
-
-
-    @FXML
     public void initialize() {
         System.out.println("edit department initialize ");
         mButtonUpdate.setFocusTraversable(false);
@@ -95,10 +90,6 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         initLocationListView();
         initWorkerListView();
         initPopup();
-    }
-
-    public void setStage(Stage stage) {
-        sStage = stage;
     }
 
     private void initTextFields() {
@@ -248,7 +239,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
     }
 
     private void initPopup() {
-        new BasePopup(mTreeTableEquipmentInventory, BasePopup.getEquipmentInventoryPopup(), this);
+        new BasePopup(mTreeTableEquipmentInventory, BasePopup.getEquipmentInventoryReadPopup(), this);
         new BasePopup(mListViewLocation, BasePopup.getBaseListPopup(), null);
         new BasePopup(mListViewWorker, BasePopup.getBaseListPopup(), this);
     }

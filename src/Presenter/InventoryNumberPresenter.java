@@ -1,8 +1,6 @@
 package Presenter;
 
-import Iteractor.IteractorEquipmentInventory;
 import Iteractor.IteractorInventoryNumber;
-import Iteractor.IteractorInventoryNumberLog;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Inventory_number.InventoryNumberLog;
 import Model.Inventory_number.InventoryNumberModel;
@@ -13,7 +11,6 @@ import Service.IUpdateData;
 import Service.ListenersService;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 public class InventoryNumberPresenter extends BasePresenter implements IUpdateData {
@@ -40,10 +37,6 @@ public class InventoryNumberPresenter extends BasePresenter implements IUpdateDa
         sInventoryNumberModel = inventoryNumberModel;
     }
 
-    public List<EquipmentInventoryModel> getEquipmentList(int id){
-        return new IteractorEquipmentInventory().getList(id, "inventoryNumber");
-    }
-
     public void addInventoryNumber(String number, SupplyModel supply, boolean group, String description) {
         ListenersService.get().updateData(new IteractorInventoryNumber().addNew(new InventoryNumberModel(
                 0,
@@ -63,11 +56,22 @@ public class InventoryNumberPresenter extends BasePresenter implements IUpdateDa
     }
 
     public void editInventoryNumber( SupplyModel supply, String description){
-        new IteractorInventoryNumber().edit(new InventoryNumberModel(sInventoryNumberModel.getId(),sInventoryNumberModel.getName(), supply, sInventoryNumberModel.isGroup(), description));
+        if (new IteractorInventoryNumber().edit(new InventoryNumberModel(sInventoryNumberModel.getId(), sInventoryNumberModel.getName(), supply, sInventoryNumberModel.isGroup(), description)) != null) {
+            update();
+        }
     }
 
     public void editInventoryNumber(InventoryNumberModel inventoryNumberModel){
-        new IteractorInventoryNumber().edit(inventoryNumberModel);
+        if (new IteractorInventoryNumber().edit(inventoryNumberModel) != null) {
+            update();
+        }
+    }
+
+    private void update() {
+        for (EquipmentInventoryModel equipmentInventoryModel : sInventoryNumberModel.getEquipmentInventoryList()) {
+            ListenersService.get().updateData(equipmentInventoryModel);
+        }
+        ListenersService.get().refreshControl(InventoryNumberModel.class);
     }
 
     public void delete(int id){

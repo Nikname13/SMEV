@@ -6,11 +6,14 @@ import Model.Equipment.EquipmentModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.State.StateModel;
 import Model.Supply.SupplyModel;
-import Model.Supply.Supplys;
+import Presenter.EquipmentPresenter;
 import Presenter.InventoryNumberPresenter;
+import Service.IOnMouseClick;
 import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
+import UI.Coordinator;
+import UI.Popup.Controller.BasePopup;
 import UI.Validator.BaseValidator;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.events.JFXDialogEvent;
@@ -19,9 +22,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
@@ -29,7 +33,7 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class EditInventoryNumber extends BaseController implements IUpdateUI {
+public class EditInventoryNumber extends BaseController implements IUpdateUI, IOnMouseClick {
 
     private BaseValidator mBaseValidator=new BaseValidator();
     private String mOldNumber;
@@ -63,6 +67,11 @@ public class EditInventoryNumber extends BaseController implements IUpdateUI {
         initComboBoxSupply(mComboBoxSupply, true, "Выберите поставку", "Номер поставки");
         initPromptText(mTextAreaDescription, "Добавить комментарий", "Комментарий");
         initTextArea();
+        initPopup();
+    }
+
+    private void initPopup() {
+        new BasePopup(mTreeTableEquipmentInventory, BasePopup.getEquipmentInventoryReadPopup(), this);
     }
 
     private void initTextArea() {
@@ -80,6 +89,18 @@ public class EditInventoryNumber extends BaseController implements IUpdateUI {
         mDepartmentEquipmentColumn.setCellValueFactory(cellData->cellData.getValue().getValue().getDepartmentModel().nameProperty());
         mStateEquipmentColumn.setCellValueFactory(cellData->cellData.getValue().getValue().getStateModel().nameProperty());
         mDescriptionEquipmentColumn.setCellValueFactory(cellData->cellData.getValue().getValue().descriptionProperty());
+        mTreeTableEquipmentInventory.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedEquipment(newValue)));
+    }
+
+    private void selectedEquipment(TreeItem<EquipmentInventoryModel> newValue) {
+        if (newValue != null) {
+            if (newValue.getValue().getId() != -1) {
+                InventoryNumberPresenter.get().setSelectedObject(newValue.getValue());
+                EquipmentPresenter.get().setEquipmentInventoryModel(newValue.getValue());
+            } else {
+                InventoryNumberPresenter.get().setSelectedObject(null);
+            }
+        }
     }
 
     @Override
@@ -158,8 +179,10 @@ public class EditInventoryNumber extends BaseController implements IUpdateUI {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(mBaseValidator.validate())
-                InventoryNumberPresenter.get().addInventoryNumberLog(text.getText(), textArea.getText());
+                if (mBaseValidator.validate()) {
+                    InventoryNumberPresenter.get().addInventoryNumberLog(text.getText(), textArea.getText());
+                    mJFXDialog.close();
+                }
             }
         });
         mJFXDialog.show();
@@ -211,14 +234,17 @@ public class EditInventoryNumber extends BaseController implements IUpdateUI {
             mComboBoxSupply.setItems(InventoryNumberPresenter.get().getObservableSupply());
             mComboBoxSupply.getSelectionModel().select(mInventoryNumberModel.getSupply());
             mTextAreaDescription.setText(mInventoryNumberModel.getDescription());
-            updateTable(InventoryNumberPresenter.get().getEquipmentList(mInventoryNumberModel.getId()));
+            setInvisibleEditButton();
+            updateTable(mInventoryNumberModel.getEquipmentInventoryList());
         }
     }
 
 
     @Override
     public void refreshControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(InventoryNumberModel.class.getName())) {
+            updateUI(InventoryNumberModel.class);
+        }
     }
 
     @Override
@@ -234,5 +260,20 @@ public class EditInventoryNumber extends BaseController implements IUpdateUI {
     @Override
     protected Stage getStage() {
         return (Stage)mEditInventoryNumberPane.getScene().getWindow();
+    }
+
+    @Override
+    public void primaryClick(String id) {
+        switch (id) {
+            case "inventoryLog":
+                new Coordinator().goToInventoryNumberEquipmentLog(getStage());
+                break;
+            case "statusLog":
+                new Coordinator().goToEquipmentStateLog(getStage());
+                break;
+            case "moveLog":
+                new Coordinator().goToMovementsEquipmentInventoryLog(getStage());
+                break;
+        }
     }
 }
