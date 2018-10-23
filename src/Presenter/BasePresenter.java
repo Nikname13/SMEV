@@ -82,7 +82,7 @@ public abstract class BasePresenter {
         return Movements.get().getObsEntityList();
     }
 
-    public ObservableList<ProviderModel> getObservableProvide() {
+    public ObservableList<ProviderModel> getObservableProvider() {
         return Providers.get().getObsEntityList();
     }
 

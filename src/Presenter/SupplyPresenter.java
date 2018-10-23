@@ -5,6 +5,7 @@ import Model.Inventory_number.InventoryNumberLog;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Provider.ProviderModel;
 import Model.Supply.SupplyModel;
+import Model.Supply.Supplys;
 import Service.IUpdateData;
 import Service.ListenersService;
 import UI.Supply.Controller.SupplysController;
@@ -58,7 +59,17 @@ public class SupplyPresenter extends BasePresenter implements IUpdateData {
     }
 
     @Override
-    public void update(Object equipment) {
+    public void update(Object entity) {
+        if (entity.getClass().equals(ProviderModel.class)) {
+            ProviderModel provider = (ProviderModel) entity;
+            for (SupplyModel supply : Supplys.get().getObsEntityList()) {
+                if (supply.getProviderModel().getId() == provider.getId()) {
+                    supply.setProviderModel(provider);
+                    break;
+                }
+            }
+            ListenersService.get().updateUI(SupplysController.class);
+        }
     }
 
     @Override

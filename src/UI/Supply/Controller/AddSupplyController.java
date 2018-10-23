@@ -173,7 +173,7 @@ public class AddSupplyController extends BaseController {
     @Override
     protected void initComboBoxProvider(JFXComboBox<ProviderModel> comboBox, boolean isSelectionItem, String promptText, String label) {
         super.initComboBoxProvider(comboBox, isSelectionItem, promptText, label);
-        comboBox.setItems(SupplyPresenter.get().getObservableProvide());
+        comboBox.setItems(SupplyPresenter.get().getObservableProvider());
         //comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> providerListener(newValue));
     }
 

@@ -48,12 +48,23 @@ public class ParametersController extends BaseController implements IUpdateUI {
         mNameColumn.setOnEditCommit(new EventHandler<TreeTableColumn.CellEditEvent<ParameterModel, String>>() {
             @Override
             public void handle(TreeTableColumn.CellEditEvent<ParameterModel, String> event) {
-                TreeItem<ParameterModel> currentEditItem = mTreeTableParameters.getTreeItem(event.getTreeTablePosition().getRow());
-                currentEditItem.getValue().setName(event.getNewValue());
-                ParameterPresenter.get().editParameter(currentEditItem.getValue());
+                if (!event.getNewValue().trim().isEmpty()) {
+                    TreeItem<ParameterModel> currentEditItem = mTreeTableParameters.getTreeItem(event.getTreeTablePosition().getRow());
+                    currentEditItem.getValue().setName(event.getNewValue());
+                    ParameterPresenter.get().editParameter(currentEditItem.getValue());
+                } else {
+                    ListenersService.get().refreshControl(ParameterModel.class);
+                }
             }
         });
         mTreeTableParameters.setEditable(true);
+        mTreeTableParameters.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedItem(newValue)));
+    }
+
+    private void selectedItem(TreeItem<ParameterModel> newValue) {
+        if (newValue != null) {
+            ParameterPresenter.get().setSelectedObject(newValue.getValue());
+        }
     }
 
     @FXML
@@ -85,7 +96,9 @@ public class ParametersController extends BaseController implements IUpdateUI {
 
     @Override
     public void refreshControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(ParameterModel.class.getName())) {
+            mTreeTableParameters.refresh();
+        }
     }
 
     @Override

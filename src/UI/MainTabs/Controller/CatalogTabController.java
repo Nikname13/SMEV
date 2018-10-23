@@ -3,9 +3,11 @@ package UI.MainTabs.Controller;
 import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
+import UI.Area.Controller.AreasController;
 import UI.BaseTabController;
 import UI.Inventory_number.Controller.InventoryNumbersController;
 import UI.Parameter.Controller.ParametersController;
+import UI.Provider.Controller.ProvidersController;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
@@ -46,9 +48,11 @@ public class CatalogTabController extends BaseTabController implements IUpdateUI
                     break;
                 case "mProvider":
                     TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getProviderResource()));
+                    ListenersService.get().updateUI(ProvidersController.class);
                     break;
                 case "mArea":
                     TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getAreaResource()));
+                    ListenersService.get().updateUI(AreasController.class);
                     break;
                 case "mState":
                     TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getStateResource()));

@@ -171,7 +171,7 @@ public class EditSupplyController extends BaseController implements IUpdateUI, I
             mSupplyModel = SupplyPresenter.get().getSupplyModel();
             mNumberTextField.setText(mSupplyModel.getName());
             mDatePicker.setValue(mSupplyModel.getDate());
-            mComboBoxProvider.setItems(SupplyPresenter.get().getObservableProvide());
+            mComboBoxProvider.setItems(SupplyPresenter.get().getObservableProvider());
             mComboBoxProvider.getSelectionModel().select(mSupplyModel.getProviderModel());
             mTextAreaDescription.setText(mSupplyModel.getDescription());
             setTypeSupply(mSupplyModel.getTypeSupply());

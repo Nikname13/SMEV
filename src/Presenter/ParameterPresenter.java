@@ -76,7 +76,7 @@ public class ParameterPresenter extends BasePresenter implements IUpdateData {
     }
 
     public void editParameter(ParameterModel parameter) {
-        new IteractorParameter().edit(parameter);
+        ListenersService.get().updateData(new IteractorParameter().edit(parameter));
     }
 
     @Override

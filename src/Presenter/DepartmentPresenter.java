@@ -129,6 +129,14 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
                 Departments.get().getEntity(departmentModel.getId()).setLocationList(null);
             }
         }
+/*        if(object.getClass().equals(AreaModel.class)){
+            AreaModel area= (AreaModel) object;
+            for(DepartmentModel departmentModel:Departments.get().getObsEntityList()){
+                if(departmentModel.getAreaModel().getId()==area.getId()){
+                    departmentModel.setAreaModel(area);
+                }
+            }
+        }*/
     }
 
     private void setLoadFalse(int id) {

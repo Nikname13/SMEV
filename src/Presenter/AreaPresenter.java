@@ -2,9 +2,7 @@ package Presenter;
 
 import Iteractor.IteractorArea;
 import Model.Area.AreaModel;
-import Model.Area.Areas;
 import Service.IUpdateData;
-import Service.IUpdateUI;
 import Service.ListenersService;
 
 public class AreaPresenter extends BasePresenter implements IUpdateData {
@@ -37,7 +35,11 @@ public class AreaPresenter extends BasePresenter implements IUpdateData {
     }
 
     public void editArea(String name){
-        new IteractorArea().edit(new AreaModel(mArea.getId(),name));
+        ListenersService.get().updateData(new IteractorArea().edit(new AreaModel(mArea.getId(), name)));
+    }
+
+    public void editArea(AreaModel area) {
+        ListenersService.get().updateData(new IteractorArea().edit(area));
     }
 
     @Override

@@ -33,12 +33,16 @@ public class ProviderPresenter extends BasePresenter implements IUpdateData {
     }
 
 
-    public void addProvide(String name, String description){
+    public void addProvider(String name, String description) {
         new IteractorProvider().addNew(new ProviderModel(0,name,description));
     }
 
-    public void editProvide(String name, String description){
-        new IteractorProvider().edit(new ProviderModel(mProviderModel.getId(),name, description));
+    public void editProvider(String name, String description) {
+        ListenersService.get().updateData(new IteractorProvider().edit(new ProviderModel(mProviderModel.getId(), name, description)));
+    }
+
+    public void editProvider(ProviderModel provider) {
+        ListenersService.get().updateData(new IteractorProvider().edit(provider));
     }
 
     public void delete(int id){

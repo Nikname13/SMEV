@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Parameter.Controller.EditParameterController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
+            fx:controller="UI.Parameter.Controller.EditParameterController" fx:id="mParameterEditPane">
     <children>
         <TextField fx:id="nameParameter" prefHeight="17.0" prefWidth="200.0" promptText="Введите наименование параметра" />
         <RadioButton fx:id="isValue" layoutX="200.0" layoutY="6.0" mnemonicParsing="false" onAction="#isValueChange" text="RadioButton" />

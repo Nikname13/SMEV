@@ -6,7 +6,6 @@ import UI.Validator.BaseValidator;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -31,7 +30,7 @@ public class AddProviderController extends BaseController {
     @FXML
     private void onClickAdd(){
         if(mBaseValidator.validate()) {
-            ProviderPresenter.get().addProvide(mTextFieldName.getText(), mTextAreaDescription.getText());
+            ProviderPresenter.get().addProvider(mTextFieldName.getText(), mTextAreaDescription.getText());
             close(mAnchorPaneAddProvider);
         }
     }

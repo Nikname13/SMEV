@@ -2,14 +2,17 @@ package UI.Area.Controller;
 
 import Model.Area.AreaModel;
 import Presenter.AreaPresenter;
-import Presenter.BasePresenter;
 import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
+import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -20,10 +23,10 @@ public class AreasController extends BaseController implements IUpdateUI {
     }
 
     @FXML
-    private TableView<AreaModel> tableViewArea;
+    private TreeTableView<AreaModel> mTreeTableArea;
 
     @FXML
-    private TableColumn<AreaModel,String> firstColumn;
+    private TreeTableColumn<AreaModel, String> mNameColumn;
 
     @FXML
     private AnchorPane mAnchorPaneArea;
@@ -31,16 +34,44 @@ public class AreasController extends BaseController implements IUpdateUI {
     @FXML
     public void initialize(){
         initTable();
+        initPopup();
+    }
+
+    private void initPopup() {
     }
 
     private void initTable() {
-        firstColumn.setCellValueFactory(cellData->cellData.getValue().nameProperty());
-        tableViewArea.setItems(AreaPresenter.get().getObservableArea());
-        tableViewArea.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedArea(newValue)));
+        mNameColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().nameProperty());
+        mNameColumn.setCellFactory((TreeTableColumn<AreaModel, String> param) -> new GenericEditableTreeTableCell<>());
+        mNameColumn.setOnEditCommit(new EventHandler<TreeTableColumn.CellEditEvent<AreaModel, String>>() {
+            @Override
+            public void handle(TreeTableColumn.CellEditEvent<AreaModel, String> event) {
+                if (!event.getNewValue().trim().isEmpty()) {
+                    TreeItem<AreaModel> currentEditItem = mTreeTableArea.getTreeItem(event.getTreeTablePosition().getRow());
+                    currentEditItem.getValue().setName(event.getNewValue());
+                    AreaPresenter.get().editArea(currentEditItem.getValue());
+                } else {
+                    ListenersService.get().refreshControl(AreaModel.class);
+                }
+            }
+        });
+        mTreeTableArea.setEditable(true);
+        mTreeTableArea.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedArea(newValue)));
     }
 
-    private void selectedArea(AreaModel newValue) {
+    private void selectedArea(TreeItem<AreaModel> newValue) {
+        if (newValue != null) {
+            AreaPresenter.get().setSelectedObject(newValue.getValue());
+        }
+    }
 
+    private void updateTable(ObservableList<AreaModel> observableArea) {
+        TreeItem<AreaModel> rootItem = new TreeItem<>();
+        for (AreaModel model : observableArea) {
+            rootItem.getChildren().add(new TreeItem<>(model));
+        }
+        mTreeTableArea.setRoot(rootItem);
+        mTreeTableArea.setShowRoot(false);
     }
 
     @FXML
@@ -50,12 +81,17 @@ public class AreasController extends BaseController implements IUpdateUI {
 
     @Override
     public void updateUI(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(this.getClass().getName())) {
+            updateTable(AreaPresenter.get().getObservableArea());
+        }
     }
+
 
     @Override
     public void refreshControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(AreaModel.class.getName())) {
+            mTreeTableArea.refresh();
+        }
     }
 
     @Override

@@ -220,6 +220,19 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
                 equipmentModel.setEquipmentInventoryList(null);
             }
         }
+        if (object.getClass().equals(ParameterModel.class)) {
+            ParameterModel parameterModel = (ParameterModel) object;
+            for (EquipmentModel equipment : Equipments.get().getObsEntityList()) {
+                if (equipment.getEntityList() != null) {
+                    for (EquipmentParameterModel equipmentParameter : equipment.getEntityList()) {
+                        if (equipmentParameter.getParameterModel().getId() == parameterModel.getId()) {
+                            equipment.setEntityList(null);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Override
