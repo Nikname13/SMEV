@@ -4,10 +4,13 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import com.jfoenix.controls.JFXTreeTableColumn?>
+<?import javafx.scene.control.TreeTableColumn?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="UI.State.Controller.StatesController"
-            prefHeight="400.0" prefWidth="600.0" fx:id="mAnchorPaneState">
+            prefHeight="400.0" prefWidth="600.0" fx:id="mStatePane">
     <children>
         <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" style="-fx-background-color: #ffffff;"
                     prefHeight="55" minHeight="55" prefWidth="250" minWidth="250">
@@ -22,12 +25,12 @@
                     style="-fx-background-color: #ffffff;"
                     prefHeight="55" minHeight="55" prefWidth="250" minWidth="250">
             <children>
-                <TableView fx:id="tableViewState" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10"
+                <JFXTreeTableView fx:id="mTreeTableState" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10"
                            AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
                     <columns>
-                        <TableColumn fx:id="firstColumn" prefWidth="225.0" text="Состояние"/>
+                        <TreeTableColumn fx:id="mNameColumn" prefWidth="225.0" text="Состояние"/>
                     </columns>
-                </TableView>
+                </JFXTreeTableView>
             </children>
         </AnchorPane>
     </children>

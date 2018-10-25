@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.*?>
-<?import com.jfoenix.controls.JFXTabPane?>
-<?import javafx.scene.control.Tab?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="UI.Inventory_number.Controller.InventoryNumbersController"
             fx:id="mAnchorPaneInventoryNumber">
     <children>
-                <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
+        <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
                     <children>
                         <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" style="-fx-background-color: #ffffff;"
                                     prefHeight="55" minHeight="55" prefWidth="350" minWidth="350">
@@ -42,11 +42,12 @@
                         </AnchorPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane AnchorPane.leftAnchor="360" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0">
+        <AnchorPane AnchorPane.leftAnchor="360" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                    AnchorPane.rightAnchor="0">
                     <children>
 
-                            <JFXTabPane fx:id="mSecondLvlTabPane" side="LEFT" tabMaxWidth="0"
-                                        tabMinWidth="0" tabMinHeight="0" tabMaxHeight="0"
+                        <JFXTabPane fx:id="mSecondLvlTabPane" side="LEFT" tabMaxWidth="0"
+                                    tabMinWidth="0" tabMinHeight="0" tabMaxHeight="0"
                                         AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
                                         AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">
                                 <Tab>

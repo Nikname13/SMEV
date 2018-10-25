@@ -2,10 +2,8 @@ package Model.Area;
 
 import Iteractor.IteractorArea;
 import Model.GenericList;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
-import java.awt.geom.Area;
+import java.util.Comparator;
 
 public class Areas extends GenericList<AreaModel> {
 
@@ -20,6 +18,7 @@ public class Areas extends GenericList<AreaModel> {
         return sArea;
     }
 
+
     @Override
     public void update() {
         clear();
@@ -29,6 +28,8 @@ public class Areas extends GenericList<AreaModel> {
     @Override
     public void replace(AreaModel entity) {
         AreaModel area= Areas.get().getEntity(entity.getId());
-        area.setName(entity.getName());
+        Areas.get().getObsEntityList().remove(area);
+        Areas.get().addEntity(entity, Comparator.comparing(AreaModel::getNameToLowerCase));
+
     }
 }

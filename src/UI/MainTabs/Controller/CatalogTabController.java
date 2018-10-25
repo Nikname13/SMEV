@@ -8,6 +8,7 @@ import UI.BaseTabController;
 import UI.Inventory_number.Controller.InventoryNumbersController;
 import UI.Parameter.Controller.ParametersController;
 import UI.Provider.Controller.ProvidersController;
+import UI.State.Controller.StatesController;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
@@ -56,6 +57,7 @@ public class CatalogTabController extends BaseTabController implements IUpdateUI
                     break;
                 case "mState":
                     TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getStateResource()));
+                    ListenersService.get().updateUI(StatesController.class);
                     break;
                 case "mWorker":
                     TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getWorkerResource()));

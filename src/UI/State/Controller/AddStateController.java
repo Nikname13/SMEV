@@ -27,7 +27,7 @@ public class AddStateController extends BaseController {
     @FXML
     private void onClickAdd(){
         if(mBaseValidator.validate()) {
-            new StatePresenter().addState(mTextFieldName.getText());
+            StatePresenter.get().addState(mTextFieldName.getText());
             close(mAnchorPaneAddState);
         }
     }

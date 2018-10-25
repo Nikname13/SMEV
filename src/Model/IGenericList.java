@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Comparator;
+
 public interface IGenericList<T> {
 
     /*общие методы*/
@@ -8,6 +10,8 @@ public interface IGenericList<T> {
     void deleteEntity(T entity);
     void deleteEntity(int id);
     void clear();
+
+    void sortToLowerCase(Comparator c);
     /*переопределяемые методы*/
     void update();
     void replace(T entity);

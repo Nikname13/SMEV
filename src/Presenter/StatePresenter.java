@@ -3,18 +3,31 @@ package Presenter;
 import Iteractor.IteractorState;
 import Model.State.StateModel;
 import Model.State.States;
+import Service.ListenersService;
 
 import java.util.Set;
 
 public class StatePresenter extends BasePresenter {
 
     private static StateModel mState;
+    private static StatePresenter sStatePresenter;
+
+    private StatePresenter() {
+
+    }
+
+    public static StatePresenter get() {
+        if (sStatePresenter == null) {
+            sStatePresenter = new StatePresenter();
+        }
+        return sStatePresenter;
+    }
 
     public void setState(Object state){
         mState = (StateModel) state;
     }
 
-    public static StateModel getState() {
+    public StateModel getState() {
         return mState;
     }
 
@@ -24,6 +37,10 @@ public class StatePresenter extends BasePresenter {
 
     public void editState(String name){
         new IteractorState().edit(new StateModel(mState.getId(),name));
+    }
+
+    public void editState(StateModel state) {
+        ListenersService.get().updateData(new IteractorState().edit(state));
     }
 
     public void deleteState(int id){

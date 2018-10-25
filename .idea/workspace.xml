@@ -2,42 +2,69 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="323cb7f8-3c47-480a-8a3f-eb094a4c995f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/UI/Popup/equipmentInventoryReadPopup.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/addDepartment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Department/addDepartment.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorArea.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorArea.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorDepartment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorDepartment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorEquipment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorEquipment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorInventoryNumber.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorInventoryNumber.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorLocation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorLocation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorParameter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorParameter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorPost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorPost.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorSupply.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorSupply.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Iteractor/IteractorWorker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Model/AbstractModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Model/AbstractModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Model/Area/Areas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Model/Area/Areas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Model/GenericList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Model/GenericList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Model/IGenericList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Model/IGenericList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Presenter/AreaPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Presenter/AreaPresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Presenter/BasePresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Presenter/BasePresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Presenter/DepartmentPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Presenter/DepartmentPresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Presenter/EquipmentPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Presenter/EquipmentPresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Presenter/ProviderPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Presenter/ProviderPresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Presenter/StatePresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Presenter/StatePresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/Presenter/SupplyPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/Presenter/SupplyPresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Area/Controller/AreasController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Area/Controller/AreasController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Area/areas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Area/areas.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Department/Controller/EditDepartmentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Inventory_number/Controller/EditInventoryNumber.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Inventory_number/Controller/EditInventoryNumber.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Inventory_number/inventoryNumbers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Inventory_number/inventoryNumbers.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Popup/Controller/BasePopup.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Popup/equipmentInventoryPopup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Popup/equipmentInventoryPopup.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Inventory_number/InventoryNumberModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Inventory_number/InventoryNumberModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Presenter/InventoryNumberPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presenter/InventoryNumberPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Presenter/ParameterPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presenter/ParameterPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/TabControllerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/TabControllerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/MainTabs/Controller/CatalogTabController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/MainTabs/Controller/CatalogTabController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Provider/Controller/AddProviderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Provider/Controller/AddProviderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Provider/Controller/ProvidersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Provider/Controller/ProvidersController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Provider/providers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Provider/providers.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/State/Controller/AddStateController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/State/Controller/AddStateController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/State/Controller/StatesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/State/Controller/StatesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/State/states.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/State/states.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Supply/Controller/AddSupplyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Supply/Controller/AddSupplyController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SMEV/UI/Supply/Controller/EditSupplyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SMEV/UI/Supply/Controller/EditSupplyController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Iteractor/IteractorArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Iteractor/IteractorArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Iteractor/IteractorDepartment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Iteractor/IteractorDepartment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Iteractor/IteractorEquipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Iteractor/IteractorEquipment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Iteractor/IteractorInventoryNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Iteractor/IteractorInventoryNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Iteractor/IteractorLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Iteractor/IteractorLocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Iteractor/IteractorParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Iteractor/IteractorParameter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Iteractor/IteractorPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Iteractor/IteractorPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Iteractor/IteractorProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Iteractor/IteractorProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Iteractor/IteractorState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Iteractor/IteractorState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Iteractor/IteractorSupply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Iteractor/IteractorSupply.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Iteractor/IteractorType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Iteractor/IteractorType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Iteractor/IteractorWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Iteractor/IteractorWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/AbstractModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AbstractModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Area/Areas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Area/Areas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GenericList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GenericList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/IGenericList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/IGenericList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presenter/AreaPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presenter/AreaPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presenter/DepartmentPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presenter/DepartmentPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presenter/StatePresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presenter/StatePresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Area/Controller/AreasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Area/Controller/AreasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/Department/Controller/EditDepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Department/Controller/EditDepartmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Equipment/Controller/AddEquipmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Equipment/Controller/AddEquipmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Equipment/Controller/EditEquipmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Equipment/Controller/EditEquipmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Inventory_number/Controller/EditInventoryNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Inventory_number/Controller/EditInventoryNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Inventory_number/Controller/InventoryNumbersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Inventory_number/Controller/InventoryNumbersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Inventory_number/inventoryNumbers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Inventory_number/inventoryNumbers.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Parameter/Controller/EditParameterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Parameter/Controller/EditParameterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Parameter/Controller/ParametersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Parameter/Controller/ParametersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Parameter/editParameter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Parameter/editParameter.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Parameter/parameters.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Parameter/parameters.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Popup/Controller/BasePopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Popup/Controller/BasePopup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Popup/equipmentInventoryPopup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Popup/equipmentInventoryPopup.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/State/Controller/AddStateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/State/Controller/AddStateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/State/Controller/StatesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/State/Controller/StatesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/State/states.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/State/states.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,65 +79,56 @@
       <content type="file-editors">
         <state>
           <leaf>
-            <file leaf-file-name="inventoryNumbers.fxml" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/UI/Inventory_number/inventoryNumbers.fxml">
+            <file leaf-file-name="ParametersController.java" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/UI/Parameter/Controller/ParametersController.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="111">
-                    <caret line="14" column="107" selection-start-line="14" selection-start-column="107" selection-end-line="14" selection-end-column="107" />
+                  <state relative-caret-position="429">
+                    <caret line="88" column="61" lean-forward="true" selection-start-line="88" selection-start-column="61" selection-end-line="88" selection-end-column="61" />
+                    <folding>
+                      <element signature="e#1165#1166#0" expanded="true" />
+                      <element signature="e#1252#1253#0" expanded="true" />
+                      <element signature="e#2279#2280#0" expanded="true" />
+                      <element signature="e#2347#2348#0" expanded="true" />
+                      <element signature="e#2395#2396#0" expanded="true" />
+                      <element signature="e#2470#2471#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="ListenersService.java" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/Service/ListenersService.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="816">
+                    <caret line="67" selection-start-line="67" selection-end-line="67" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="areas.fxml" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/UI/Area/areas.fxml">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="391">
+                    <caret line="23" column="33" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="33" />
                   </state>
                 </provider>
                 <provider editor-type-id="JavaFX-Scene-Builder" />
               </entry>
             </file>
-            <file leaf-file-name="InventoryNumbersController.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/UI/Inventory_number/Controller/InventoryNumbersController.java">
+            <file leaf-file-name="Areas.java" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/Model/Area/Areas.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="646">
-                    <caret line="97" column="14" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="14" />
+                  <state relative-caret-position="102">
+                    <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
                   </state>
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="BasePresenter.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/Presenter/BasePresenter.java">
+            <file leaf-file-name="AreasController.java" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/UI/Area/Controller/AreasController.java">
                 <provider selected="true" editor-type-id="text-editor">
                   <state relative-caret-position="476">
-                    <caret line="72" column="48" selection-start-line="72" selection-start-column="48" selection-end-line="72" selection-end-column="48" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="AddEquipmentController.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/UI/Equipment/Controller/AddEquipmentController.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="153">
-                    <caret line="68" selection-start-line="68" selection-end-line="68" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="EditEquipmentController.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/UI/Equipment/Controller/EditEquipmentController.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="1236">
-                    <caret line="206" column="59" lean-forward="true" selection-start-line="206" selection-start-column="59" selection-end-line="206" selection-end-column="59" />
-                    <folding>
-                      <element signature="e#2702#2703#0" expanded="true" />
-                      <element signature="e#2760#2761#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="EquipmentPresenter.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/Presenter/EquipmentPresenter.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="225">
-                    <caret line="215" column="60" selection-start-line="215" selection-start-column="37" selection-end-line="215" selection-end-column="60" />
-                    <folding>
-                      <element signature="e#2096#2097#0" expanded="true" />
-                      <element signature="e#2143#2144#0" expanded="true" />
-                    </folding>
+                    <caret line="53" column="19" lean-forward="true" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
                   </state>
                 </provider>
               </entry>
@@ -122,112 +140,113 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ParametersController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/UI/Parameter/Controller/ParametersController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="53" column="47" lean-forward="true" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
-              <folding>
-                <element signature="e#698#699#0" expanded="true" />
-                <element signature="e#756#757#0" expanded="true" />
-                <element signature="e#882#883#0" expanded="true" />
-                <element signature="e#912#913#0" expanded="true" />
-                <element signature="e#1916#1917#0" expanded="true" />
-                <element signature="e#1984#1985#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EditInventoryNumber.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UI/Inventory_number/Controller/EditInventoryNumber.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="246" column="49" selection-start-line="246" selection-start-column="49" selection-end-line="246" selection-end-column="49" />
-              <folding>
-                <element signature="e#10187#10188#0" expanded="true" />
-                <element signature="e#10264#10265#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InventoryNumberPresenter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Presenter/InventoryNumberPresenter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="67" column="45" selection-start-line="67" selection-start-column="45" selection-end-line="67" selection-end-column="45" />
-              <folding>
-                <element signature="method#addInventoryNumber#0;class#InventoryNumberPresenter#0" />
-                <element signature="e#3307#3308#0" expanded="true" />
-                <element signature="e#3364#3365#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GenericIteractor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Iteractor/GenericIteractor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IteractorInventoryNumber.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorInventoryNumber.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InventoryNumbers.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Inventory_number/InventoryNumbers.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="25" column="86" selection-start-line="25" selection-start-column="86" selection-end-line="25" selection-end-column="86" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InventoryNumberModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Inventory_number/InventoryNumberModel.java">
+      <file leaf-file-name="StatesController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/State/Controller/StatesController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="296">
-              <caret line="89" column="66" selection-start-line="89" selection-start-column="41" selection-end-line="89" selection-end-column="66" />
+              <caret line="100" column="38" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#515#516#0" expanded="true" />
+                <element signature="e#569#570#0" expanded="true" />
+                <element signature="e#888#889#0" expanded="true" />
+                <element signature="e#918#919#0" expanded="true" />
+                <element signature="e#2817#2818#0" expanded="true" />
+                <element signature="e#2881#2882#0" expanded="true" />
+                <element signature="e#2930#2931#0" expanded="true" />
+                <element signature="e#2994#2995#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditParameterController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UI/Parameter/Controller/EditParameterController.java">
+      <file leaf-file-name="DepartmentPresenter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Presenter/DepartmentPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="44" selection-start-line="44" selection-end-line="44" />
+            <state relative-caret-position="499">
+              <caret line="143" column="5" lean-forward="true" selection-start-line="143" selection-start-column="5" selection-end-line="143" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InventoryLogController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UI/Equipment/Equipment_inventory/Equipment_number/Controller/InventoryLogController.java">
+      <file leaf-file-name="EquipmentPresenter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Presenter/EquipmentPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="27" column="83" lean-forward="true" selection-start-line="27" selection-start-column="83" selection-end-line="27" selection-end-column="83" />
+            <state relative-caret-position="415">
+              <caret line="277" column="31" lean-forward="true" selection-start-line="277" selection-start-column="31" selection-end-line="277" selection-end-column="31" />
+              <folding>
+                <element signature="e#2096#2097#0" expanded="true" />
+                <element signature="e#2143#2144#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EquipmentInventoryModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Equipment/EquipmentInventoryModel.java">
+      <file leaf-file-name="IteractorState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="56" column="44" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="44" />
+            <state relative-caret-position="340">
+              <caret line="29" column="94" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="94" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StateModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/State/StateModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="States.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/State/States.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IteractorEquipment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorEquipment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddStateController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/State/Controller/AddStateController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="29" column="68" lean-forward="true" selection-start-line="29" selection-start-column="68" selection-end-line="29" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatePresenter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Presenter/StatePresenter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="422">
+              <caret line="42" column="76" selection-start-line="42" selection-start-column="76" selection-end-line="42" selection-end-column="76" />
+              <folding>
+                <element signature="e#528#529#0" expanded="true" />
+                <element signature="e#606#607#0" expanded="true" />
+                <element signature="e#947#948#0" expanded="true" />
+                <element signature="e#979#980#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Connector.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Net/Connector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="262">
+              <caret line="27" column="45" lean-forward="true" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -248,27 +267,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/UI/Department/addDepartment.fxml" />
-        <option value="$PROJECT_DIR$/src/UI/Popup/equipmentInventoryPopup.fxml" />
-        <option value="$PROJECT_DIR$/src/UI/Popup/Controller/EquipmentInventoryReadPopup.java" />
-        <option value="$PROJECT_DIR$/src/UI/Popup/equipmentInventoryReadPopup.fxml" />
-        <option value="$PROJECT_DIR$/src/UI/Popup/Controller/BasePopup.java" />
-        <option value="$PROJECT_DIR$/src/UI/Department/Controller/EditDepartmentController.java" />
-        <option value="$PROJECT_DIR$/src/Service/TabControllerService.java" />
-        <option value="$PROJECT_DIR$/src/UI/Parameter/Controller/EditParameterController.java" />
-        <option value="$PROJECT_DIR$/src/UI/Parameter/editParameter.fxml" />
-        <option value="$PROJECT_DIR$/src/UI/Inventory_number/inventoryNumbers.fxml" />
-        <option value="$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java" />
-        <option value="$PROJECT_DIR$/src/UI/Parameter/parameters.fxml" />
-        <option value="$PROJECT_DIR$/src/UI/Equipment/Controller/EditEquipmentController.java" />
-        <option value="$PROJECT_DIR$/src/Presenter/ParameterPresenter.java" />
-        <option value="$PROJECT_DIR$/src/UI/Equipment/Controller/AddEquipmentController.java" />
-        <option value="$PROJECT_DIR$/src/UI/Parameter/Controller/ParametersController.java" />
         <option value="$PROJECT_DIR$/src/Model/Inventory_number/InventoryNumberModel.java" />
-        <option value="$PROJECT_DIR$/src/UI/Inventory_number/Controller/EditInventoryNumber.java" />
         <option value="$PROJECT_DIR$/src/Presenter/InventoryNumberPresenter.java" />
-        <option value="$PROJECT_DIR$/src/Model/Inventory_number/InventoryNumbers.java" />
         <option value="$PROJECT_DIR$/src/UI/Inventory_number/Controller/InventoryNumbersController.java" />
+        <option value="$PROJECT_DIR$/src/UI/Inventory_number/Controller/EditInventoryNumber.java" />
+        <option value="$PROJECT_DIR$/src/UI/Provider/providers.fxml" />
+        <option value="$PROJECT_DIR$/src/Presenter/BasePresenter.java" />
+        <option value="$PROJECT_DIR$/src/Presenter/EquipmentPresenter.java" />
+        <option value="$PROJECT_DIR$/src/Presenter/ParameterPresenter.java" />
+        <option value="$PROJECT_DIR$/src/Presenter/ProviderPresenter.java" />
+        <option value="$PROJECT_DIR$/src/Presenter/SupplyPresenter.java" />
+        <option value="$PROJECT_DIR$/src/UI/Area/areas.fxml" />
+        <option value="$PROJECT_DIR$/src/UI/Parameter/Controller/ParametersController.java" />
+        <option value="$PROJECT_DIR$/src/UI/Provider/Controller/ProvidersController.java" />
+        <option value="$PROJECT_DIR$/src/UI/Department/Controller/EditDepartmentController.java" />
+        <option value="$PROJECT_DIR$/src/Presenter/AreaPresenter.java" />
+        <option value="$PROJECT_DIR$/src/Presenter/DepartmentPresenter.java" />
+        <option value="$PROJECT_DIR$/src/Model/AbstractModel.java" />
+        <option value="$PROJECT_DIR$/src/Model/GenericList.java" />
+        <option value="$PROJECT_DIR$/src/Model/IGenericList.java" />
+        <option value="$PROJECT_DIR$/src/Iteractor/IteractorSupply.java" />
+        <option value="$PROJECT_DIR$/src/Model/Post/Posts.java" />
+        <option value="$PROJECT_DIR$/src/Iteractor/IteractorWorker.java" />
+        <option value="$PROJECT_DIR$/src/Model/Equipment/Equipments.java" />
+        <option value="$PROJECT_DIR$/src/Iteractor/IteractorParameter.java" />
+        <option value="$PROJECT_DIR$/src/Iteractor/IteractorLocation.java" />
+        <option value="$PROJECT_DIR$/src/Model/Parameter/Parameters.java" />
+        <option value="$PROJECT_DIR$/src/Model/Movement/Movements.java" />
+        <option value="$PROJECT_DIR$/src/Iteractor/IteractorType.java" />
+        <option value="$PROJECT_DIR$/src/Iteractor/IteractorArea.java" />
+        <option value="$PROJECT_DIR$/src/Model/Type/Types.java" />
+        <option value="$PROJECT_DIR$/src/Model/Location/Locations.java" />
+        <option value="$PROJECT_DIR$/src/Iteractor/IteractorEquipment.java" />
+        <option value="$PROJECT_DIR$/src/Iteractor/IteractorDepartment.java" />
+        <option value="$PROJECT_DIR$/src/Model/Supply/Supplys.java" />
+        <option value="$PROJECT_DIR$/src/Iteractor/IteractorProvider.java" />
+        <option value="$PROJECT_DIR$/src/Model/Inventory_number/InventoryNumbers.java" />
+        <option value="$PROJECT_DIR$/src/Iteractor/IteractorState.java" />
+        <option value="$PROJECT_DIR$/src/Iteractor/IteractorPost.java" />
+        <option value="$PROJECT_DIR$/src/Iteractor/IteractorMovement.java" />
+        <option value="$PROJECT_DIR$/src/Model/Provider/Providers.java" />
+        <option value="$PROJECT_DIR$/src/Model/Worker/Workers.java" />
+        <option value="$PROJECT_DIR$/src/Model/Area/Areas.java" />
+        <option value="$PROJECT_DIR$/src/Iteractor/IteractorInventoryNumber.java" />
+        <option value="$PROJECT_DIR$/src/Model/Department/Departments.java" />
+        <option value="$PROJECT_DIR$/src/UI/State/states.fxml" />
+        <option value="$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java" />
+        <option value="$PROJECT_DIR$/src/UI/State/Controller/AddStateController.java" />
+        <option value="$PROJECT_DIR$/src/Presenter/StatePresenter.java" />
+        <option value="$PROJECT_DIR$/src/UI/Area/Controller/AreasController.java" />
+        <option value="$PROJECT_DIR$/src/UI/State/Controller/StatesController.java" />
+        <option value="$PROJECT_DIR$/src/Model/State/States.java" />
       </list>
     </option>
   </component>
@@ -316,7 +365,41 @@
               <item name="SMEV" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="Area" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="Equipment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
               <item name="Inventory_number" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="Provider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="State" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Net" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
@@ -335,6 +418,21 @@
               <item name="SMEV" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="Area" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="Area" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
               <item name="Department" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -464,6 +562,51 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="UI" type="462c0819:PsiDirectoryNode" />
               <item name="Popup" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="Provider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="Provider" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="State" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="State" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="Supply" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMEV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMEV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="Supply" type="462c0819:PsiDirectoryNode" />
               <item name="Controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -536,40 +679,46 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" weight="0.32908705" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30997878" />
-      <window_info id="Designer" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18020834" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39915073" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="9" />
+      <window_info anchor="bottom" id="Messages" order="2" weight="0.32908705" />
+      <window_info anchor="right" id="Palette&#9;" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="0" />
+      <window_info anchor="bottom" id="Version Control" order="1" />
+      <window_info anchor="bottom" id="Run" order="5" visible="true" weight="0.30997878" />
+      <window_info id="Designer" order="1" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.18020834" />
+      <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="6" weight="0.39915073" />
+      <window_info anchor="bottom" id="Find" order="4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="тест" />
-    <option name="LAST_COMMIT_MESSAGE" value="тест" />
+    <MESSAGE value="-изменен Popup лист для оборудования (EditDepartmentController, EditInventoryNumberController)&#10;-доработан справочник инвентарного номера&#10;-реализовано редактирование параметров" />
+    <MESSAGE value="-доработано редактирование параметров&#10;-доработано редактирование районов&#10;-доработано редактирование поставщиков" />
+    <option name="LAST_COMMIT_MESSAGE" value="-доработано редактирование параметров&#10;-доработано редактирование районов&#10;-доработано редактирование поставщиков" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/UI/Parameter/Controller/ParametersController.java</url>
-          <line>69</line>
+          <line>82</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -585,144 +734,70 @@
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Model/Area/Areas.java</url>
+          <line>20</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/UI/Department/Controller/EditDepartmentController.java</url>
+          <line>384</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Presenter/BasePresenter.java</url>
+          <line>45</line>
+          <properties />
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="6" />
+      <option name="time" value="9" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/UI/Department/addDepartment.fxml">
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.base/javafx/beans/property/ReadOnlyIntegerPropertyBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Popup/Controller/EquipmentInventoryPopupController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="39" column="5" lean-forward="true" selection-start-line="9" selection-start-column="2" selection-end-line="39" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Popup/Controller/EquipmentInventoryReadPopup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="32" selection-start-line="32" selection-end-line="35" selection-end-column="13" />
+        <state relative-caret-position="782">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1665#1666#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Popup/equipmentInventoryPopup.fxml">
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.controls/javafx/scene/control/MultipleSelectionModelBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="7" column="55" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="55" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Popup/Controller/BasePopupController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+        <state relative-caret-position="369">
+          <caret line="416" selection-start-line="416" selection-end-line="416" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Popup/Controller/BasePopup.java">
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.controls/javafx/scene/control/SelectionModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="23" column="50" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="50" />
+        <state relative-caret-position="318">
+          <caret line="68" column="54" selection-start-line="68" selection-start-column="54" selection-end-line="68" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Equipment/Equipment_inventory/Equipment_move/Controller/MovementsEquipmentLogController.java">
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.base/javafx/beans/property/ObjectPropertyBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="28" column="105" selection-start-line="28" selection-start-column="105" selection-end-line="28" selection-end-column="105" />
+        <state relative-caret-position="750">
+          <caret line="148" selection-start-line="148" selection-end-line="148" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Inventory_number/editInventoryNumber.fxml">
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.base/javafx/beans/property/ReadOnlyObjectWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Inventory_number/inventoryNumberLog.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/BaseTabController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/MainTabs/emptyTab.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="28" lean-forward="true" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="28" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Popup/equipmentInventoryReadPopup.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Department/Controller/EditDepartmentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="260" column="17" selection-start-line="260" selection-start-column="17" selection-end-line="260" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Inventory_number/inventoryNumbers.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="14" column="107" selection-start-line="14" selection-start-column="107" selection-end-line="14" selection-end-column="107" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Parameter/editParameter.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="44" column="55" selection-start-line="44" selection-start-column="55" selection-end-line="44" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/TabControllerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="37" column="30" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="30" />
-          <folding>
-            <element signature="e#5242#5243#0" expanded="true" />
-            <element signature="e#5287#5288#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="639">
+          <caret line="103" selection-start-line="103" selection-end-line="103" />
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.base/javafx/beans/property/ReadOnlyObjectPropertyBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
+        <state relative-caret-position="816">
           <caret line="74" selection-start-line="74" selection-end-line="74" />
           <folding>
             <element signature="e#1722#1723#0" expanded="true" />
@@ -730,90 +805,325 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.base/javafx/beans/property/ReadOnlyObjectWrapper.java">
+    <entry file="file://$PROJECT_DIR$/src/Service/ListenersService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="103" selection-start-line="103" selection-end-line="103" />
+        <state relative-caret-position="816">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.base/javafx/beans/property/ObjectPropertyBase.java">
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.controls/javafx/scene/control/TreeTableCell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="148" selection-start-line="148" selection-end-line="148" />
+        <state relative-caret-position="180">
+          <caret line="363" selection-start-line="363" selection-end-line="363" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Equipment/Equipment_inventory/addEquipmentInventory.fxml">
+    <entry file="file://$PROJECT_DIR$/src/Model/Area/AreaModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Parameter/parameters.fxml">
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/function/Function.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
+        <state relative-caret-position="208">
+          <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Presenter/ParameterPresenter.java">
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/Comparator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="707">
-          <caret line="58" column="24" lean-forward="true" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
+        <state relative-caret-position="202">
+          <caret line="463" column="69" selection-start-line="463" selection-start-column="69" selection-end-line="463" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/AbstractModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
           <folding>
-            <element signature="e#2600#2601#0" expanded="true" />
-            <element signature="e#2646#2647#0" expanded="true" />
+            <element signature="e#1215#1216#0" expanded="true" />
+            <element signature="e#1257#1258#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Equipment/Controller/AddEquipmentController.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/GenericList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
+        <state relative-caret-position="415">
+          <caret line="77" column="19" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/IGenericList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorSupply.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="28" column="96" selection-start-line="28" selection-start-column="96" selection-end-line="28" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Post/Posts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="27" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="47" column="40" lean-forward="true" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Equipment/Equipments.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="25" selection-start-line="25" selection-end-line="35" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorParameter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorLocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="46" column="42" lean-forward="true" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Parameter/Parameters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="23" selection-start-line="23" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Movement/Movements.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="23" selection-start-line="23" selection-end-line="31" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="28" column="38" lean-forward="true" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Type/Types.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="23" selection-start-line="23" selection-end-line="29" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Location/Locations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="30" selection-start-line="30" selection-end-line="34" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorDepartment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="29" column="41" lean-forward="true" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Supply/Supplys.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="24" selection-start-line="24" selection-end-line="33" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="27" column="42" lean-forward="true" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Inventory_number/InventoryNumbers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorPost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="28" column="38" lean-forward="true" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorMovement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="26" column="42" lean-forward="true" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Provider/Providers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="23" selection-start-line="23" selection-end-line="28" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorInventoryNumber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Department/Departments.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="27" column="35" lean-forward="true" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorArea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="29" column="40" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
+          <folding>
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#485#486#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Area/areas.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="33" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="33" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/State/states.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="30" column="44" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/MainTabs/Controller/CatalogTabController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="59" column="74" selection-start-line="59" selection-start-column="74" selection-end-line="59" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Area/Areas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Worker/Workers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/State/Controller/AddStateController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="29" column="68" lean-forward="true" selection-start-line="29" selection-start-column="68" selection-end-line="29" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/State/Controller/StatesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="100" column="38" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#515#516#0" expanded="true" />
+            <element signature="e#569#570#0" expanded="true" />
+            <element signature="e#888#889#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+            <element signature="e#2817#2818#0" expanded="true" />
+            <element signature="e#2881#2882#0" expanded="true" />
+            <element signature="e#2930#2931#0" expanded="true" />
+            <element signature="e#2994#2995#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Presenter/DepartmentPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="117" column="70" lean-forward="true" selection-start-line="117" selection-start-column="70" selection-end-line="117" selection-end-column="70" />
+        <state relative-caret-position="499">
+          <caret line="143" column="5" lean-forward="true" selection-start-line="143" selection-start-column="5" selection-end-line="143" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Equipment/Equipment_inventory/Equipment_number/Controller/InventoryLogController.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/State/StateModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="27" column="83" lean-forward="true" selection-start-line="27" selection-start-column="83" selection-end-line="27" selection-end-column="83" />
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Equipment/EquipmentInventoryModel.java">
+    <entry file="file://$PROJECT_DIR$/src/UI/Area/Controller/AreasController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="56" column="44" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="44" />
+        <state relative-caret-position="476">
+          <caret line="53" column="19" lean-forward="true" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Inventory_number/Controller/EditInventoryNumber.java">
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="246" column="49" selection-start-line="246" selection-start-column="49" selection-end-line="246" selection-end-column="49" />
-          <folding>
-            <element signature="e#10187#10188#0" expanded="true" />
-            <element signature="e#10264#10265#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="340">
+          <caret line="29" column="94" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/State/States.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorEquipment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Presenter/EquipmentPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="215" column="60" selection-start-line="215" selection-start-column="37" selection-end-line="215" selection-end-column="60" />
+        <state relative-caret-position="415">
+          <caret line="277" column="31" lean-forward="true" selection-start-line="277" selection-start-column="31" selection-end-line="277" selection-end-column="31" />
           <folding>
             <element signature="e#2096#2097#0" expanded="true" />
             <element signature="e#2143#2144#0" expanded="true" />
@@ -821,93 +1131,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Presenter/BasePresenter.java">
+    <entry file="file://$PROJECT_DIR$/src/Presenter/StatePresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="72" column="48" selection-start-line="72" selection-start-column="48" selection-end-line="72" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Presenter/InventoryNumberPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="67" column="45" selection-start-line="67" selection-start-column="45" selection-end-line="67" selection-end-column="45" />
+        <state relative-caret-position="422">
+          <caret line="42" column="76" selection-start-line="42" selection-start-column="76" selection-end-line="42" selection-end-column="76" />
           <folding>
-            <element signature="method#addInventoryNumber#0;class#InventoryNumberPresenter#0" />
-            <element signature="e#3307#3308#0" expanded="true" />
-            <element signature="e#3364#3365#0" expanded="true" />
+            <element signature="e#528#529#0" expanded="true" />
+            <element signature="e#606#607#0" expanded="true" />
+            <element signature="e#947#948#0" expanded="true" />
+            <element signature="e#979#980#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Iteractor/GenericIteractor.java">
+    <entry file="file://$PROJECT_DIR$/src/Net/Connector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Iteractor/IteractorInventoryNumber.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Inventory_number/InventoryNumbers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="25" column="86" selection-start-line="25" selection-start-column="86" selection-end-line="25" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Equipment/Controller/EditEquipmentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1236">
-          <caret line="206" column="59" lean-forward="true" selection-start-line="206" selection-start-column="59" selection-end-line="206" selection-end-column="59" />
-          <folding>
-            <element signature="e#2702#2703#0" expanded="true" />
-            <element signature="e#2760#2761#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Inventory_number/InventoryNumberModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="89" column="66" selection-start-line="89" selection-start-column="41" selection-end-line="89" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Parameter/Controller/EditParameterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Inventory_number/Controller/InventoryNumbersController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="97" column="14" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Parameter/Controller/ParametersController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="53" column="47" lean-forward="true" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
-          <folding>
-            <element signature="e#698#699#0" expanded="true" />
-            <element signature="e#756#757#0" expanded="true" />
-            <element signature="e#882#883#0" expanded="true" />
-            <element signature="e#912#913#0" expanded="true" />
-            <element signature="e#1916#1917#0" expanded="true" />
-            <element signature="e#1984#1985#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="262">
+          <caret line="27" column="45" lean-forward="true" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
         </state>
       </provider>
     </entry>

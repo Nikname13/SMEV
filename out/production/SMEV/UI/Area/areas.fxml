@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -21,12 +21,12 @@
         <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="65" style="-fx-background-color: #ffffff;"
                     prefHeight="55" minHeight="55" prefWidth="250" minWidth="250" AnchorPane.bottomAnchor="0">
             <children>
-                <TableView fx:id="tableViewArea" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10"
-                           AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+                <JFXTreeTableView fx:id="mTreeTableArea" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10"
+                                  AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
                     <columns>
-                        <TableColumn fx:id="firstColumn" prefWidth="225.0" text="Наименование"/>
+                        <TreeTableColumn fx:id="mNameColumn" prefWidth="225.0" text="Наименование"/>
                     </columns>
-                </TableView>
+                </JFXTreeTableView>
             </children>
         </AnchorPane>
     </children>

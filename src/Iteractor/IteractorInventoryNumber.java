@@ -6,7 +6,6 @@ import com.google.gson.reflect.TypeToken;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class IteractorInventoryNumber extends GenericIteractor<InventoryNumberModel> {
@@ -19,8 +18,7 @@ public class IteractorInventoryNumber extends GenericIteractor<InventoryNumberMo
 
     @Override
     public void setList(ObservableList<InventoryNumberModel> list) {
-        Collections.sort(list, Comparator.comparing(InventoryNumberModel::getNameToLowerCase));
-        InventoryNumbers.get().setEntityList(list);
+        InventoryNumbers.get().setEntityList(list, Comparator.comparing(InventoryNumberModel::getNameToLowerCase));
     }
 
     @Override
@@ -28,7 +26,7 @@ public class IteractorInventoryNumber extends GenericIteractor<InventoryNumberMo
         if(InventoryNumbers.get().getEntity(entity.getId())!=null){
             InventoryNumbers.get().replace(entity);
         }else{
-            InventoryNumbers.get().addEntity(entity);
+            InventoryNumbers.get().addEntity(entity, Comparator.comparing(InventoryNumberModel::getNameToLowerCase));
         }
     }
 

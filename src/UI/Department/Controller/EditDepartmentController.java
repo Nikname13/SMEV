@@ -383,7 +383,6 @@ public class EditDepartmentController extends BaseController implements IUpdateU
             mRadioButtonRenting.setSelected(mDepartmentModel.isRenting());
             mListViewWorker.setItems(mDepartmentModel.getObsWorkerList());
             mListViewLocation.setItems(mDepartmentModel.getObsLocationList());
-
             mComboBoxArea.setItems(DepartmentPresenter.get().getObservableArea());
             mComboBoxArea.getSelectionModel().select(mDepartmentModel.getAreaModel());
             setInvisibleEditButton();

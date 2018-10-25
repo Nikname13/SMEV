@@ -51,7 +51,7 @@ public class AreasController extends BaseController implements IUpdateUI {
                     currentEditItem.getValue().setName(event.getNewValue());
                     AreaPresenter.get().editArea(currentEditItem.getValue());
                 } else {
-                    ListenersService.get().refreshControl(AreaModel.class);
+                    refreshControl(AreaModel.class);
                 }
             }
         });

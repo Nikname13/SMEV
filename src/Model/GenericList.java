@@ -3,6 +3,9 @@ package Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.Collections;
+import java.util.Comparator;
+
 public abstract class GenericList<T> implements IGenericList<T> {
 
     private ObservableList<T> mEntityList;
@@ -29,9 +32,20 @@ public abstract class GenericList<T> implements IGenericList<T> {
         mEntityList = entityList;
     }
 
+    public void setEntityList(ObservableList<T> entityList, Comparator c) {
+        setEntityList(entityList);
+        sortToLowerCase(c);
+    }
+
     @Override
     public void addEntity(T entity) {
         mEntityList.add(entity);
+    }
+
+
+    public void addEntity(T entity, Comparator c) {
+        addEntity(entity);
+        sortToLowerCase(c);
     }
 
     @Override
@@ -63,4 +77,8 @@ public abstract class GenericList<T> implements IGenericList<T> {
     @Override
     public abstract void replace(T entity);
 
+    @Override
+    public void sortToLowerCase(Comparator c) {
+        Collections.sort(getObsEntityList(), c);
+    }
 }
