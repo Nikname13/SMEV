@@ -8,7 +8,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SupplyModel extends GenericModel<InventoryNumberModel> {
@@ -34,10 +33,7 @@ public class SupplyModel extends GenericModel<InventoryNumberModel> {
 
     @Override
     public List<InventoryNumberModel> getEntityList() {
-        if (mEntityList == null) {
-            mEntityList = new ArrayList<>();
             mEntityList = new IteractorInventoryNumber().getList(getId());
-        }
         return mEntityList;
     }
 

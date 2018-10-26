@@ -9,7 +9,6 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
@@ -38,15 +37,13 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
 
 
     public List<EquipmentInventoryModel> getEquipmentInventoryList() {
-        if (mEqInventoryList == null) {
-            mEqInventoryList = new ArrayList<>();
+        //mEqInventoryList = new ArrayList<>();
             mEqInventoryList = new IteractorEquipmentInventory().getList(getId(), "equipment");
-        }
         return mEqInventoryList;
     }
 
     public EquipmentInventoryModel getEquipmentInventory(int id) {
-        for (EquipmentInventoryModel equipment : mEqInventoryList) {
+        for (EquipmentInventoryModel equipment : getEquipmentInventoryList()) {
             if (equipment.getId() == id) return equipment;
         }
         return null;
@@ -62,10 +59,7 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
 
     @Override
     public List<EquipmentParameterModel> getEntityList(){
-        if (mEntityList == null) {
-            mEntityList = new ArrayList<>();
             mEntityList = new IteractorEquipmentParameter().getList(getId());
-        }
         return mEntityList;
     }
 

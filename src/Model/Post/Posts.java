@@ -2,6 +2,7 @@ package Model.Post;
 
 import Iteractor.IteractorPost;
 import Model.GenericList;
+import javafx.collections.ObservableList;
 
 public class Posts extends GenericList<PostModel> {
 
@@ -10,9 +11,14 @@ public class Posts extends GenericList<PostModel> {
     public static Posts get() {
         if (sPosts == null) {
             sPosts = new Posts();
-            new IteractorPost().loadData();
         }
         return sPosts;
+    }
+
+    @Override
+    public ObservableList<PostModel> getObsEntityList() {
+        new IteractorPost().loadData();
+        return super.getObsEntityList();
     }
 
     @Override

@@ -2,6 +2,7 @@ package Model.Type;
 
 import Iteractor.IteractorType;
 import Model.GenericList;
+import javafx.collections.ObservableList;
 
 public class Types extends GenericList<TypeModel> {
 
@@ -10,9 +11,14 @@ public class Types extends GenericList<TypeModel> {
     public static Types get(){
         if(sTypes==null){
             sTypes=new Types();
-            new IteractorType().loadData();
         }
         return sTypes;
+    }
+
+    @Override
+    public ObservableList<TypeModel> getObsEntityList() {
+        new IteractorType().loadData();
+        return super.getObsEntityList();
     }
 
     @Override

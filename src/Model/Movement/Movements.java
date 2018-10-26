@@ -2,6 +2,7 @@ package Model.Movement;
 
 import Iteractor.IteractorMovement;
 import Model.GenericList;
+import javafx.collections.ObservableList;
 
 public class Movements extends GenericList<MovementModel> {
 
@@ -10,9 +11,14 @@ public class Movements extends GenericList<MovementModel> {
     public static Movements get(){
         if (sMovements==null){
             sMovements=new Movements();
-            new IteractorMovement().loadData();
         }
         return sMovements;
+    }
+
+    @Override
+    public ObservableList<MovementModel> getObsEntityList() {
+        new IteractorMovement().loadData();
+        return super.getObsEntityList();
     }
 
     @Override

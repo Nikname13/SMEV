@@ -2,6 +2,7 @@ package Model.Supply;
 
 import Iteractor.IteractorSupply;
 import Model.GenericList;
+import javafx.collections.ObservableList;
 
 public class Supplys extends GenericList<SupplyModel> {
 
@@ -10,10 +11,15 @@ public class Supplys extends GenericList<SupplyModel> {
     public static Supplys get(){
         if(sSupplys==null){
             sSupplys=new Supplys();
-            new IteractorSupply().loadData();
             return sSupplys;
         }
         return sSupplys;
+    }
+
+    @Override
+    public ObservableList<SupplyModel> getObsEntityList() {
+        new IteractorSupply().loadData();
+        return super.getObsEntityList();
     }
 
     @Override

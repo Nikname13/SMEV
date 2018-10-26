@@ -2,7 +2,6 @@ package Presenter;
 
 import Iteractor.IteractorProvider;
 import Model.Provider.ProviderModel;
-import Model.Provider.Providers;
 import Service.IUpdateData;
 import Service.ListenersService;
 
@@ -54,7 +53,7 @@ public class ProviderPresenter extends BasePresenter implements IUpdateData {
     }
 
     public void update(){
-        Providers.get().update();
+        // Providers.get().update();
     }
 
     @Override

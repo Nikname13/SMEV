@@ -4,9 +4,7 @@ import Iteractor.IteractorInventoryNumber;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Inventory_number.InventoryNumberLog;
 import Model.Inventory_number.InventoryNumberModel;
-import Model.Inventory_number.InventoryNumbers;
 import Model.Supply.SupplyModel;
-import Model.Supply.Supplys;
 import Service.IUpdateData;
 import Service.ListenersService;
 
@@ -89,7 +87,7 @@ public class InventoryNumberPresenter extends BasePresenter implements IUpdateDa
 
     @Override
     public void update(Object entity) {
-        if (entity.getClass().equals(SupplyModel.class)) {
+/*        if (entity.getClass().equals(SupplyModel.class)) {
             InventoryNumbers.get().update();
         }
         if (entity.getClass().equals(InventoryNumberModel.class)) {
@@ -98,7 +96,7 @@ public class InventoryNumberPresenter extends BasePresenter implements IUpdateDa
             if (supplyModel != null) {
                 supplyModel.setEntityList(null);
             }
-        }
+        }*/
     }
 
     @Override

@@ -213,7 +213,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     @Override
     public void update(Object object) {
-        if (object.getClass().equals(EquipmentInventoryModel.class)) {
+/*        if (object.getClass().equals(EquipmentInventoryModel.class)) {
             EquipmentInventoryModel equipment = (EquipmentInventoryModel) object;
             EquipmentModel equipmentModel = Equipments.get().getEntity(equipment.getEquipmentModel().getId());
             if (equipmentModel != null) {
@@ -232,7 +232,7 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
                     }
                 }
             }
-        }
+        }*/
     }
 
     @Override

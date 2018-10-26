@@ -2,6 +2,7 @@ package Model.Worker;
 
 import Iteractor.IteractorWorker;
 import Model.GenericList;
+import javafx.collections.ObservableList;
 
 public class Workers extends GenericList<WorkerModel> {
 
@@ -10,9 +11,15 @@ public class Workers extends GenericList<WorkerModel> {
     public static Workers get(){
         if(sWorkers==null) {
             sWorkers = new Workers();
-            new IteractorWorker().loadData();
+
         }
         return sWorkers;
+    }
+
+    @Override
+    public ObservableList<WorkerModel> getObsEntityList() {
+        new IteractorWorker().loadData();
+        return super.getObsEntityList();
     }
 
     @Override

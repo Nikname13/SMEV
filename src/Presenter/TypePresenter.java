@@ -3,11 +3,9 @@ package Presenter;
 import Iteractor.IteractorType;
 import Model.Parameter.ParameterModel;
 import Model.Type.TypeModel;
-import Model.Type.Types;
 import Service.IUpdateData;
 import Service.ListenersService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TypePresenter extends BasePresenter implements IUpdateData {
@@ -55,7 +53,7 @@ public class TypePresenter extends BasePresenter implements IUpdateData {
     }
 
     public void update(){
-        Types.get().update();
+        // Types.get().update();
     }
 
     @Override

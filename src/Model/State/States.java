@@ -2,8 +2,7 @@ package Model.State;
 
 import Iteractor.IteractorState;
 import Model.GenericList;
-import Model.Type.TypeModel;
-import Model.Type.Types;
+import javafx.collections.ObservableList;
 
 public class States extends GenericList<StateModel> {
 
@@ -12,9 +11,14 @@ public class States extends GenericList<StateModel> {
     public static States get() {
         if(sState==null) {
             sState = new States();
-            new IteractorState().loadData();
         }
         return sState;
+    }
+
+    @Override
+    public ObservableList<StateModel> getObsEntityList() {
+        new IteractorState().loadData();
+        return super.getObsEntityList();
     }
 
     @Override

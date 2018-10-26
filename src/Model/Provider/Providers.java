@@ -2,6 +2,7 @@ package Model.Provider;
 
 import Iteractor.IteractorProvider;
 import Model.GenericList;
+import javafx.collections.ObservableList;
 
 public class Providers extends GenericList<ProviderModel> {
 
@@ -10,9 +11,14 @@ public class Providers extends GenericList<ProviderModel> {
     public static Providers get(){
         if(sProviders==null){
             sProviders=new Providers();
-            new IteractorProvider().loadData();
         }
         return sProviders;
+    }
+
+    @Override
+    public ObservableList<ProviderModel> getObsEntityList() {
+        new IteractorProvider().loadData();
+        return super.getObsEntityList();
     }
 
     @Override

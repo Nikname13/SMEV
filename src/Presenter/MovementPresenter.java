@@ -5,7 +5,6 @@ import Iteractor.IteractorMovement;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
 import Model.Equipment.EquipmentInventoryModel;
-import Model.Equipment.Equipments;
 import Model.Equipment.SelectedEquipmentInventoryShell;
 import Model.Movement.MovementModel;
 import Model.Worker.WorkerModel;
@@ -103,13 +102,13 @@ public class MovementPresenter extends BasePresenter implements IUpdateData {
     }
 
     private void updateEquipment(EquipmentInventoryModel equipment, DepartmentModel toDepartment) {
-        Equipments.get().getEntity(equipment.getEquipmentModel().getId()).setEquipmentInventoryList(null);
+        // Equipments.get().getEntity(equipment.getEquipmentModel().getId()).setEquipmentInventoryList(null);
         equipment.setDepartmentModel(toDepartment);//назначение нового отдела дла оборудования
     }
 
     private void updateDepartment(DepartmentModel fromDepartment, DepartmentModel toDepartment) {
-        Departments.get().getEntity(toDepartment.getId()).setEquipmentList(null);
-        Departments.get().getEntity(fromDepartment.getId()).setEquipmentList(null);
+        // Departments.get().getEntity(toDepartment.getId()).setEquipmentList(null);
+        // Departments.get().getEntity(fromDepartment.getId()).setEquipmentList(null);
     }
 
 

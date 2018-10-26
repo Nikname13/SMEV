@@ -11,7 +11,7 @@
    <children>
       <JFXTextField fx:id="mTextField" focusColor="#40a85f" labelFloat="true" AnchorPane.leftAnchor="15"
                     AnchorPane.topAnchor="25"
-                    promptText="Инвентарный номер номер" prefWidth="170"/>
+                    promptText="Инвентарный номер" prefWidth="170"/>
       <JFXCheckBox fx:id="mCheckBoxGroup" AnchorPane.topAnchor="35.0" AnchorPane.leftAnchor="200"
                    mnemonicParsing="false" text="Группа"/>
       <ValidationFacade fx:id="mFacadeSupply" layoutX="15" layoutY="90" AnchorPane.leftAnchor="15"

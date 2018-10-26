@@ -22,8 +22,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
-
 public abstract class BaseController {
 
     private boolean mSelectedLocation;
@@ -545,7 +543,7 @@ public abstract class BaseController {
                 if(newValue){
                     control.setPromptText(label);
                 }else{
-                    if(control.getSelectionModel().isEmpty()) {
+                    if (control.getSelectionModel().isEmpty() && control.getEditor().getText().trim().isEmpty()) {
                         control.setPromptText(promptText);
                     }else{
                         control.setPromptText(label);

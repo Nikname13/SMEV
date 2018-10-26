@@ -40,9 +40,8 @@ public class MovementModel extends GenericModel<MovementEquipment> {
     }
 
     public ObservableList<WorkerModel> getObsWorkerList(){
-        if(mWorkerList==null) getWorkerList();
         ObservableList<WorkerModel> workerList=FXCollections.observableArrayList();
-        for(WorkerModel worker : mWorkerList){
+        for (WorkerModel worker : getWorkerList()) {
             workerList.add(worker);
         }
         return workerList;

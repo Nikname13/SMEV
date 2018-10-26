@@ -2,6 +2,7 @@ package Model.Parameter;
 
 import Iteractor.IteractorParameter;
 import Model.GenericList;
+import javafx.collections.ObservableList;
 
 public class Parameters extends GenericList<ParameterModel> {
 
@@ -10,9 +11,15 @@ public class Parameters extends GenericList<ParameterModel> {
     public static Parameters get() {
         if(sParameters==null) {
             sParameters = new Parameters();
-            new IteractorParameter().loadData();
+
         }
         return sParameters;
+    }
+
+    @Override
+    public ObservableList<ParameterModel> getObsEntityList() {
+        new IteractorParameter().loadData();
+        return super.getObsEntityList();
     }
 
     @Override

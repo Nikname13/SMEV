@@ -2,7 +2,6 @@ package Presenter;
 
 import Iteractor.IteractorState;
 import Model.State.StateModel;
-import Model.State.States;
 import Service.ListenersService;
 
 import java.util.Set;
@@ -52,7 +51,7 @@ public class StatePresenter extends BasePresenter {
     }
 
     public void update(){
-        States.get().update();
+        //States.get().update();
     }
 
     @Override

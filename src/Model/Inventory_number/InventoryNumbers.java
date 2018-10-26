@@ -2,6 +2,7 @@ package Model.Inventory_number;
 
 import Iteractor.IteractorInventoryNumber;
 import Model.GenericList;
+import javafx.collections.ObservableList;
 
 public class InventoryNumbers extends GenericList<InventoryNumberModel>{
 
@@ -10,9 +11,14 @@ public class InventoryNumbers extends GenericList<InventoryNumberModel>{
     public static InventoryNumbers get(){
         if(sInventoryNumbers==null) {
         sInventoryNumbers=new InventoryNumbers();
-        new IteractorInventoryNumber().loadData();
         }
         return sInventoryNumbers;
+    }
+
+    @Override
+    public ObservableList<InventoryNumberModel> getObsEntityList() {
+        new IteractorInventoryNumber().loadData();
+        return super.getObsEntityList();
     }
 
     @Override

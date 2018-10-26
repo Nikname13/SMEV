@@ -10,7 +10,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InventoryNumberModel extends GenericModel<InventoryNumberLog> {
@@ -47,7 +46,7 @@ public class InventoryNumberModel extends GenericModel<InventoryNumberLog> {
 
     @Override
     public List<InventoryNumberLog> getEntityList() {
-            mEntityList=new ArrayList<>();
+        //  mEntityList=new ArrayList<>();
             mEntityList= new IteractorInventoryNumberLog().getList(getId());
         return super.getEntityList();
     }
@@ -85,10 +84,7 @@ public class InventoryNumberModel extends GenericModel<InventoryNumberLog> {
     }
 
     public List<EquipmentInventoryModel> getEquipmentInventoryList() {
-        if (mEquipmentInventoryList == null) {
-            mEquipmentInventoryList = new ArrayList<>();
             mEquipmentInventoryList = new IteractorEquipmentInventory().getList(getId(), "inventoryNumber");
-        }
         return mEquipmentInventoryList;
     }
 

@@ -2,6 +2,7 @@ package Model.Equipment;
 
 import Iteractor.IteractorEquipment;
 import Model.GenericList;
+import javafx.collections.ObservableList;
 
 public class Equipments extends GenericList<EquipmentModel> {
 
@@ -10,11 +11,15 @@ public class Equipments extends GenericList<EquipmentModel> {
     public static Equipments get(){
         if(sEquipments==null){
             sEquipments=new Equipments();
-            new IteractorEquipment()
-                    .loadData();
             return sEquipments;
         }
         return sEquipments;
+    }
+
+    @Override
+    public ObservableList<EquipmentModel> getObsEntityList() {
+        new IteractorEquipment().loadData();
+        return super.getObsEntityList();
     }
 
     @Override

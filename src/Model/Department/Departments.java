@@ -3,6 +3,7 @@ package Model.Department;
 import Iteractor.IteractorDepartment;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.GenericList;
+import javafx.collections.ObservableList;
 
 public class Departments extends GenericList<DepartmentModel> {
 
@@ -11,11 +12,15 @@ public class Departments extends GenericList<DepartmentModel> {
     public static Departments get(){
         if(sDepartments==null){
             sDepartments=new Departments();
-           new IteractorDepartment().loadData();
         }
         return sDepartments;
     }
 
+    @Override
+    public ObservableList<DepartmentModel> getObsEntityList() {
+        new IteractorDepartment().loadData();
+        return super.getObsEntityList();
+    }
 
     @Override
     public void update() {

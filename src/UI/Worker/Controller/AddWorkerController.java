@@ -41,6 +41,7 @@ public class AddWorkerController extends BaseController {
     public void initialize(){
         mBaseValidator.setValidationFacades(new Pair(mFacadeDepartment, mErrorDepartment, mComboBoxDepartment), new Pair(mFacadePost, mErrorPost, mComboBoxPost));
         mBaseValidator.setJFXTextFields(mTextFieldName);
+        initPromptText(mTextFieldName, "Введите ФИО сотрудника", "ФИО");
         initComboBoxDepartment(mComboBoxDepartment, false, "Выберите отдел", "Отдел");
         initComboBoxPost(mComboBoxPost, "Выберите должность", "Должность");
     }
