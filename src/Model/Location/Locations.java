@@ -11,7 +11,7 @@ public class Locations extends GenericList<LocationModel> {
     public static Locations get() {
         if (sLocations == null) {
             sLocations = new Locations();
-            new IteractorLocation().loadData();
+            //new IteractorLocation().loadData();
         }
         return sLocations;
     }

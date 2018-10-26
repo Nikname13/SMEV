@@ -19,7 +19,6 @@ public class IteractorArea extends GenericIteractor<AreaModel> {
 
     @Override
     public void setList(ObservableList<AreaModel> list) {
-
         Areas.get().setEntityList(list, Comparator.comparing(AreaModel::getNameToLowerCase));
     }
 

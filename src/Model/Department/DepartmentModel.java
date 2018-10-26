@@ -75,10 +75,8 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     }
 
     public List<EquipmentInventoryModel> getEquipmentList() {
-        if (mEquipmentList == null) {
-            mEquipmentList = new ArrayList<>();
+        // mEquipmentList = new ArrayList<>();
             mEquipmentList = new IteractorEquipmentInventory().getList(getId(), "department");
-        }
         return mEquipmentList;
     }
 
@@ -91,14 +89,10 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     }
 
     public EquipmentInventoryModel getEquipment(int id) {
-        for (EquipmentInventoryModel equipment : mEquipmentList) {
+        for (EquipmentInventoryModel equipment : getEquipmentList()) {
             if (equipment.getId() == id) return equipment;
         }
         return null;
-    }
-
-    public void deleteEquipment(EquipmentInventoryModel equipment) {
-        mEquipmentList.remove(equipment);
     }
 
     public String getNumber() {
@@ -167,10 +161,7 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     }
 
     public List<WorkerModel> getWorkerList() {
-        if (mWorkerList == null) {
-            mWorkerList = new ArrayList<>();
             mWorkerList = new IteractorWorker().getList(getId());
-        }
         return mWorkerList;
     }
 
@@ -198,10 +189,8 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     }
 
     public List<LocationModel> getLocationList() {
-        if (mLocationList == null) {
-            mLocationList = new ArrayList<>();
+        // mLocationList = new ArrayList<>();
             mLocationList = new IteractorLocation().getList(getId());
-        }
         return mLocationList;
     }
 
@@ -227,6 +216,7 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     }
 
     public void setFileDumpDocList(List<File> fileList) throws IOException {
+        if (mFileDumpDocList == null) mFileDumpDocList = new ArrayList<>();
         mFileDumpDocList = new IteractorDepartment().uploadFile(getId(), fileList, getTypeDoc());
         for (FileDumpModel file : mFileDumpDocList) {
             System.out.println(file.toString());
@@ -234,9 +224,8 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     }
 
     public ObservableList<FileDumpModel> getObsFileDumpDocList() {
-        if (mFileDumpDocList == null) getFileDumpDocList();
         ObservableList<FileDumpModel> list = FXCollections.observableArrayList();
-        for (FileDumpModel file : mFileDumpDocList) {
+        for (FileDumpModel file : getFileDumpDocList()) {
             list.add(file);
         }
         return list;
@@ -244,7 +233,6 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
 
     public void addFileDumpDocList(List<File> fileList) throws IOException {
         if (mFileDumpDocList == null) {
-            mFileDumpDocList = new ArrayList<>();
             setFileDumpDocList(fileList);
         } else {
             mFileDumpDocList.addAll(new IteractorDepartment().uploadFile(getId(), fileList, getTypeDoc()));

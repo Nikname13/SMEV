@@ -9,7 +9,6 @@ import Model.Department.Departments;
 import Model.Department.PurchaseModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Location.LocationModel;
-import Model.Worker.WorkerModel;
 import Service.IUpdateData;
 import Service.ListenersService;
 
@@ -115,11 +114,11 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
     @Override
     public void update(Object object) {
         System.out.println(object.getClass() + " " + EquipmentInventoryModel.class);
-        if (object.getClass().equals(EquipmentInventoryModel.class)) {
+/*        if (object.getClass().equals(EquipmentInventoryModel.class)) {
             EquipmentInventoryModel equipment = (EquipmentInventoryModel) object;
             Departments.get().getEntity(equipment.getDepartmentModel().getId()).setEquipmentList(null);
-        }
-        if (object.getClass().equals(WorkerModel.class)) {
+        }*/
+/*        if (object.getClass().equals(WorkerModel.class)) {
             WorkerModel workerModel = (WorkerModel) object;
             Departments.get().getEntity(workerModel.getDepartmentModel().getId()).setWorkerList(null);
         }
@@ -128,15 +127,15 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
             for (DepartmentModel departmentModel : locationModel.getDepartmentList()) {
                 Departments.get().getEntity(departmentModel.getId()).setLocationList(null);
             }
-        }
-        if (object.getClass().equals(AreaModel.class)) {
+        }*/
+/*        if (object.getClass().equals(AreaModel.class)) {
             AreaModel area= (AreaModel) object;
             for(DepartmentModel departmentModel:Departments.get().getObsEntityList()){
                 if(departmentModel.getAreaModel().getId()==area.getId()){
                     departmentModel.setAreaModel(area);
                 }
             }
-        }
+        }*/
     }
 
     private void setLoadFalse(int id) {
@@ -159,8 +158,6 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
 
     @Override
     public void loadEntity(int id) {
-        if (!sDepartmentModel.isLoad()) {
             new IteractorDepartment().loadData(id);
-        }
     }
 }

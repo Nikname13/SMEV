@@ -79,6 +79,6 @@ public abstract class GenericList<T> implements IGenericList<T> {
 
     @Override
     public void sortToLowerCase(Comparator c) {
-        Collections.sort(getObsEntityList(), c);
+        Collections.sort(mEntityList, c);
     }
 }
