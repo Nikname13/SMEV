@@ -59,10 +59,11 @@ public class InventoryNumbersController extends BaseController implements IUpdat
 
     private void selectedNumber(InventoryNumberModel newValue) {
         if(newValue!=null){
-            InventoryNumberPresenter.get().setSelectedObject(newValue);
             InventoryNumberPresenter.get().setInventoryNumberModel(newValue);
             TabControllerService.get().getListenerSecondTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getInventoryNumberEditResource()));
             ListenersService.get().updateUI(InventoryNumberModel.class);
+        } else {
+            InventoryNumberPresenter.get().setInventoryNumberModel(null);
         }
     }
 
@@ -103,7 +104,7 @@ public class InventoryNumbersController extends BaseController implements IUpdat
     @Override
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(InventoryNumberModel.class.getName())) {
-
+            updateTable(InventoryNumberPresenter.get().getObservableInventory());
         }
     }
 

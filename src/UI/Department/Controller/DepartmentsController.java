@@ -59,8 +59,8 @@ public class DepartmentsController implements IUpdateUI, IOnMouseClick {
         mDepartmentListView.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (!oldValue)
-                    DepartmentPresenter.get().setSelectedObject(mDepartmentListView.getSelectionModel().getSelectedItem());
+                /*if (!oldValue)
+                    DepartmentPresenter.get().setSelectedObject(mDepartmentListView.getSelectionModel().getSelectedItem());*/
             }
         });
     }
@@ -73,11 +73,11 @@ public class DepartmentsController implements IUpdateUI, IOnMouseClick {
     private void selectedDepartment(DepartmentModel department) {
         if(department!=null) {
             DepartmentPresenter.get().setDepartmentModel(department);
-            DepartmentPresenter.get().setSelectedObject(department);
             DepartmentPresenter.get().loadEntity(department.getId());
             TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditDepartmentResource()));
             ListenersService.get().updateUI(DepartmentModel.class);
-
+        } else {
+            DepartmentPresenter.get().setDepartmentModel(null);
         }
     }
 

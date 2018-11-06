@@ -135,13 +135,12 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         });
         mListViewLocation.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
             LocationPresenter.get().setLocation(newValue);
-            LocationPresenter.get().setSelectedObject(newValue);
         }));
         mListViewLocation.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (newValue)
-                    LocationPresenter.get().setSelectedObject(mListViewLocation.getSelectionModel().getSelectedItem());
+              /*  if (newValue)
+                    LocationPresenter.get().setLocation(mListViewLocation.getSelectionModel().getSelectedItem());*/
             }
         });
     }
@@ -176,7 +175,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
                     if (mTreeTableEquipmentInventory.getSelectionModel().getSelectedItem() != null) {
                         EquipmentInventoryModel equipment = mTreeTableEquipmentInventory.getSelectionModel().getSelectedItem().getValue();
                         if (equipment != null && equipment.getId() != -1)
-                            EquipmentPresenter.get().setSelectedObject(equipment);
+                            EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
                     }
                 }
             }
@@ -225,14 +224,18 @@ public class EditDepartmentController extends BaseController implements IUpdateU
             if (newValue != null) {
                 newValue.setDepartmentModel(mDepartmentModel);
                 WorkerPresenter.get().setWorkerModel(newValue);
-                WorkerPresenter.get().setSelectedObject(newValue);
+                System.out.println("selected");
+            } else {
+                WorkerPresenter.get().setWorkerModel(null);
             }
         }));
         mListViewWorker.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (newValue)
-                    WorkerPresenter.get().setSelectedObject(mListViewWorker.getSelectionModel().getSelectedItem());
+                if (newValue) {
+                    // WorkerPresenter.get().setSelectedObject(mListViewWorker.getSelectionModel().getSelectedItem());
+                }
+                System.out.println("focus");
             }
         });
 
@@ -259,13 +262,12 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         if (treeEquipment != null) {
             EquipmentInventoryModel equipment = treeEquipment.getValue();
             if (equipment != null && equipment.getId() != -1) {
+                //  EquipmentPresenter.get().setEquipmentModel(equipment.getEquipmentModel());
                 EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
-                EquipmentPresenter.get().setEquipmentModel(equipment.getEquipmentModel());
-                EquipmentPresenter.get().setSelectedObject(equipment);
                 TabControllerService.get().getListenerSecondTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
                 ListenersService.get().updateUI(EquipmentInventoryModel.class);
             } else {
-                EquipmentPresenter.get().setSelectedObject(null);
+                EquipmentPresenter.get().setEquipmentInventoryModel(null);
             }
         }
     }
@@ -429,7 +431,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         System.out.println("node id " + id);
         switch (id) {
             case "mListViewWorker":
-                new Coordinator().goToEditWorkerDepartmentWindow(getStage());
+                new Coordinator().goToEditWorkerWindow(getStage());
                 break;
             case "inventoryLog":
                 new Coordinator().goToInventoryNumberEquipmentLog(getStage());

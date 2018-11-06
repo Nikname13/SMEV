@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
 
 public class ParameterPresenter extends BasePresenter implements IUpdateData {
 
-    private static ParameterModel mParameter;
+    private static ParameterModel sParameterModel;
     private static IUpdateUI updateListener;
     private static ParameterPresenter sParameterPresenter;
 
@@ -28,8 +28,8 @@ public class ParameterPresenter extends BasePresenter implements IUpdateData {
         ListenersService.get().addListenerData(this);
     }
 
-    public void setParameter(Object parameter) {
-        mParameter = (ParameterModel) parameter;
+    public ParameterModel getParameter() {
+        return sParameterModel;
     }
 
     public ObservableList<SelectedParameterShell> getParameterList(ObservableList<ParameterModel> listExcluding){
@@ -61,12 +61,14 @@ public class ParameterPresenter extends BasePresenter implements IUpdateData {
         updateListener = listener;
     }
 
-    public ParameterModel getParameter() {
-        return mParameter;
+    public void setParameter(ParameterModel parameter) {
+        sParameterModel = parameter;
+        setSelectedObject(parameter);
     }
 
     public void addParameter(String name) {
         new IteractorParameter().addNew(new ParameterModel(0, name));
+        ListenersService.get().updateControl(ParameterModel.class);
     }
 
     private void printList(ObservableList<ValueParameterModel> list) {
@@ -91,6 +93,12 @@ public class ParameterPresenter extends BasePresenter implements IUpdateData {
 
     @Override
     public void delete() {
-
+        if (getSelectedObject() != null) {
+            if (getSelectedObject().equals(sParameterModel)) {
+                if (new IteractorParameter().delete(sParameterModel.getId())) {
+                    ListenersService.get().updateControl(ParameterModel.class);
+                }
+            }
+        }
     }
 }

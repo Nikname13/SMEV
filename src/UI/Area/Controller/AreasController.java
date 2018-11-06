@@ -6,6 +6,7 @@ import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
+import UI.Popup.Controller.BasePopup;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -38,6 +39,7 @@ public class AreasController extends BaseController implements IUpdateUI {
     }
 
     private void initPopup() {
+        new BasePopup(mTreeTableArea, BasePopup.getBaseListPopup(), null);
     }
 
     private void initTable() {
@@ -61,7 +63,9 @@ public class AreasController extends BaseController implements IUpdateUI {
 
     private void selectedArea(TreeItem<AreaModel> newValue) {
         if (newValue != null) {
-            AreaPresenter.get().setSelectedObject(newValue.getValue());
+            AreaPresenter.get().setArea(newValue.getValue());
+        } else {
+            AreaPresenter.get().setArea(null);
         }
     }
 
@@ -96,7 +100,9 @@ public class AreasController extends BaseController implements IUpdateUI {
 
     @Override
     public void updateControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(AreaModel.class.getName())) {
+            updateTable(AreaPresenter.get().getObservableArea());
+        }
     }
 
     @Override
@@ -108,4 +114,5 @@ public class AreasController extends BaseController implements IUpdateUI {
     protected Stage getStage() {
         return (Stage) mAnchorPaneArea.getScene().getWindow();
     }
+
 }

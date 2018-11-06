@@ -2,6 +2,7 @@ package Model.Area;
 
 import Iteractor.IteractorArea;
 import Model.GenericList;
+import javafx.collections.ObservableList;
 
 import java.util.Comparator;
 
@@ -13,11 +14,16 @@ public class Areas extends GenericList<AreaModel> {
     {
         if(sArea==null) {
             sArea=new Areas();
-            new IteractorArea().loadData();
+
         }
         return sArea;
     }
 
+    @Override
+    public ObservableList<AreaModel> getObsEntityList() {
+        new IteractorArea().loadData();
+        return super.getObsEntityList();
+    }
 
     @Override
     public void update() {

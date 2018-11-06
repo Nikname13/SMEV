@@ -7,7 +7,7 @@ import Service.ListenersService;
 
 public class AreaPresenter extends BasePresenter implements IUpdateData {
 
-    private static AreaModel mArea;
+    private static AreaModel sAreaModel;
     private static AreaPresenter sAreaPresenter;
 
     public static AreaPresenter get(){
@@ -21,21 +21,22 @@ public class AreaPresenter extends BasePresenter implements IUpdateData {
         ListenersService.get().addListenerData(this);
     }
 
-    public void setArea(Object area){
-        mArea = (AreaModel) area;
+    public static AreaModel getArea() {
+        return sAreaModel;
     }
 
-    public static AreaModel getArea() {
-        return mArea;
+    public void setArea(AreaModel area) {
+        sAreaModel = area;
+        setSelectedObject(area);
     }
 
     public void addArea(String name){
         new IteractorArea().addNew(new AreaModel(0,name));
-       // ListenersService.get().updateUI(AreaModel.class);
+        ListenersService.get().updateControl(AreaModel.class);
     }
 
     public void editArea(String name){
-        ListenersService.get().updateData(new IteractorArea().edit(new AreaModel(mArea.getId(), name)));
+        ListenersService.get().updateData(new IteractorArea().edit(new AreaModel(sAreaModel.getId(), name)));
     }
 
     public void editArea(AreaModel area) {
@@ -54,6 +55,12 @@ public class AreaPresenter extends BasePresenter implements IUpdateData {
 
     @Override
     public void delete() {
-
+        if (getSelectedObject() != null) {
+            if (getSelectedObject().equals(sAreaModel)) {
+                if (new IteractorArea().delete(sAreaModel.getId())) {
+                    ListenersService.get().updateControl(AreaModel.class);
+                }
+            }
+        }
     }
 }

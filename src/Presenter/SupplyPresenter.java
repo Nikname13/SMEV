@@ -32,6 +32,7 @@ public class SupplyPresenter extends BasePresenter implements IUpdateData {
 
     public void setSupplyModel(SupplyModel supplyModel) {
         sSupplyModel = supplyModel;
+        setSelectedObject(supplyModel);
     }
 
 

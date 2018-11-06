@@ -89,12 +89,11 @@ public class SupplysController extends BaseController implements IUpdateUI, IOnM
             SupplyModel supplyModel = newValue.getValue();
             if (supplyModel != null && supplyModel.getId() != -1) {
                 SupplyPresenter.get().setSupplyModel(supplyModel);
-                SupplyPresenter.get().setSelectedObject(supplyModel);
                 SupplyPresenter.get().loadEntity(supplyModel.getId());
                 TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditSupplyResource()));
                 ListenersService.get().updateUI(SupplyModel.class);
             } else {
-                SupplyPresenter.get().setSelectedObject(null);
+                SupplyPresenter.get().setSupplyModel(null);
             }
 
         }

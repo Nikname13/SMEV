@@ -61,7 +61,9 @@ public class StatesController extends BaseController implements IUpdateUI {
 
     private void selectedState(TreeItem<StateModel> newValue) {
         if (newValue != null) {
-            StatePresenter.get().setSelectedObject(newValue.getValue());
+            StatePresenter.get().setState(newValue.getValue());
+        } else {
+            StatePresenter.get().setState(null);
         }
     }
 
@@ -102,7 +104,9 @@ public class StatesController extends BaseController implements IUpdateUI {
 
     @Override
     public void updateControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(StateModel.class.getName())) {
+            updateTable(StatePresenter.get().getObservableState());
+        }
     }
 
     @Override

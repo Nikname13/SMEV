@@ -5,11 +5,9 @@ import Model.Provider.ProviderModel;
 import Service.IUpdateData;
 import Service.ListenersService;
 
-import java.util.Set;
-
 public class ProviderPresenter extends BasePresenter implements IUpdateData {
 
-    private static ProviderModel mProviderModel;
+    private static ProviderModel sProviderModel;
     private static ProviderPresenter sProviderPresenter;
 
     public static ProviderPresenter get(){
@@ -24,36 +22,27 @@ public class ProviderPresenter extends BasePresenter implements IUpdateData {
     }
 
     public ProviderModel getProviderModel() {
-        return mProviderModel;
+        return sProviderModel;
     }
 
-    public void setProviderModel(Object providerModel) {
-        mProviderModel =(ProviderModel) providerModel;
+    public void setProviderModel(ProviderModel providerModel) {
+        sProviderModel = providerModel;
+        setSelectedObject(providerModel);
+
     }
 
 
     public void addProvider(String name, String description) {
         new IteractorProvider().addNew(new ProviderModel(0,name,description));
+        ListenersService.get().updateControl(ProviderModel.class);
     }
 
     public void editProvider(String name, String description) {
-        ListenersService.get().updateData(new IteractorProvider().edit(new ProviderModel(mProviderModel.getId(), name, description)));
+        ListenersService.get().updateData(new IteractorProvider().edit(new ProviderModel(sProviderModel.getId(), name, description)));
     }
 
     public void editProvider(ProviderModel provider) {
         ListenersService.get().updateData(new IteractorProvider().edit(provider));
-    }
-
-    public void delete(int id){
-        new IteractorProvider().delete(id);
-    }
-
-    public void delete(Set<Integer> id){
-
-    }
-
-    public void update(){
-        // Providers.get().update();
     }
 
     @Override
@@ -68,6 +57,12 @@ public class ProviderPresenter extends BasePresenter implements IUpdateData {
 
     @Override
     public void delete() {
-
+        if (getSelectedObject() != null) {
+            if (getSelectedObject().equals(sProviderModel)) {
+                if (new IteractorProvider().delete(sProviderModel.getId())) {
+                    ListenersService.get().updateControl(ProviderModel.class);
+                }
+            }
+        }
     }
 }

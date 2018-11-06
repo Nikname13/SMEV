@@ -33,6 +33,7 @@ public class InventoryNumberPresenter extends BasePresenter implements IUpdateDa
 
     public void setInventoryNumberModel(InventoryNumberModel inventoryNumberModel) {
         sInventoryNumberModel = inventoryNumberModel;
+        setSelectedObject(inventoryNumberModel);
     }
 
     public void addInventoryNumber(String number, SupplyModel supply, boolean group, String description) {
@@ -101,6 +102,12 @@ public class InventoryNumberPresenter extends BasePresenter implements IUpdateDa
 
     @Override
     public void delete() {
-
+        if (getSelectedObject() != null) {
+            if (getSelectedObject().equals(sInventoryNumberModel)) {
+                if (new IteractorInventoryNumber().delete(sInventoryNumberModel.getId())) {
+                    ListenersService.get().updateControl(InventoryNumberModel.class);
+                }
+            }
+        }
     }
 }

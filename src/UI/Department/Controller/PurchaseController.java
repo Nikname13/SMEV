@@ -55,15 +55,14 @@ public class PurchaseController extends BaseController implements IUpdateUI {
         mListViewPurchase.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 newValue.setDepartment(mDepartmentModel);
-                DepartmentPresenter.get().setSelectedObject(newValue);
                 DepartmentPresenter.get().setPurchaseModel(newValue);
             }
         }));
         mListViewPurchase.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (newValue)
-                    DepartmentPresenter.get().setSelectedObject(mListViewPurchase.getSelectionModel().getSelectedItem());
+/*                if (newValue)
+                    DepartmentPresenter.get().setPurchaseModel(mListViewPurchase.getSelectionModel().getSelectedItem());*/
             }
         });
         mListViewPurchase.setItems(mDepartmentModel.getObservableEntityList());

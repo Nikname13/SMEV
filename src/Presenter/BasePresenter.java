@@ -36,7 +36,7 @@ public abstract class BasePresenter {
         return sSelectedObject;
     }
 
-    public void setSelectedObject(Object selectedObject) {
+    protected void setSelectedObject(Object selectedObject) {
         sSelectedObject = selectedObject;
     }
 

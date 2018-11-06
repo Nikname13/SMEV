@@ -20,12 +20,12 @@
                     style="-fx-background-color: #ffffff;"
                     prefHeight="55" minHeight="55" prefWidth="500" minWidth="500">
             <children>
-                <TableView fx:id="tableViewWorkers" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10"
+                <TableView fx:id="mTableViewWorkers" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10"
                            AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
                     <columns>
-                        <TableColumn fx:id="firstColumn" prefWidth="250.0" text="ФИО"/>
-                        <TableColumn fx:id="secondColumn" prefWidth="100.0" text="Должность"/>
-                        <TableColumn fx:id="departmentColumn" prefWidth="150.0" text="Отдел"/>
+                        <TableColumn fx:id="mNameColumn" prefWidth="200.0" text="ФИО"/>
+                        <TableColumn fx:id="mPostColumn" prefWidth="150.0" text="Должность"/>
+                        <TableColumn fx:id="mDepartmentColumn" prefWidth="150.0" text="Отдел"/>
                     </columns>
                 </TableView>
             </children>

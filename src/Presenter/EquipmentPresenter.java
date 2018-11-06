@@ -58,14 +58,19 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     public void setEquipmentModel(Object equipmentModel) {
         sEquipmentModel = (EquipmentModel) equipmentModel;
+        setSelectedObject(sEquipmentModel);
     }
 
     public EquipmentInventoryModel getEquipmentInventoryModel() {
         return sEquipmentInventoryModel;
     }
 
-    public void setEquipmentInventoryModel(Object equipmentInventoryModel) {
-        sEquipmentInventoryModel = (EquipmentInventoryModel) equipmentInventoryModel;
+    public void setEquipmentInventoryModel(EquipmentInventoryModel equipmentInventoryModel) {
+        sEquipmentInventoryModel = equipmentInventoryModel;
+        if (equipmentInventoryModel != null) {
+            sEquipmentModel = equipmentInventoryModel.getEquipmentModel();
+        }
+        setSelectedObject(equipmentInventoryModel);
     }
 
     public StateModel getStateModel() {

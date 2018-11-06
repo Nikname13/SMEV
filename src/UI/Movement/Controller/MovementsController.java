@@ -48,12 +48,11 @@ public class MovementsController extends BaseController implements IUpdateUI {
             MovementModel movement = movementItem.getValue();
             if (movement != null && movement.getId() != -1) {
                 MovementPresenter.get().setMovementModel(movement);
-                MovementPresenter.get().setSelectedObject(movement);
                 MovementPresenter.get().loadEntity(movement.getId());
                 TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getDetailsMovementResource()));
                 ListenersService.get().updateUI(MovementModel.class);
             } else {
-                MovementPresenter.get().setSelectedObject(null);
+                MovementPresenter.get().setMovementModel(null);
             }
         }
     }

@@ -26,6 +26,7 @@ public class LocationPresenter extends BasePresenter implements IUpdateData {
 
     public void setLocation(LocationModel location){
         sLocationModel=location;
+        setSelectedObject(location);
     }
 
     public void addLocation(String address, DepartmentModel department){

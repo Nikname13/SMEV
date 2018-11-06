@@ -73,7 +73,9 @@ public class ProvidersController extends BaseController implements IUpdateUI {
 
     private void selectedProvider(TreeItem<ProviderModel> newValue) {
         if (newValue != null) {
-            ProviderPresenter.get().setSelectedObject(newValue);
+            ProviderPresenter.get().setProviderModel(newValue.getValue());
+        } else {
+            ProviderPresenter.get().setProviderModel(null);
         }
     }
 
@@ -114,7 +116,9 @@ public class ProvidersController extends BaseController implements IUpdateUI {
 
     @Override
     public void updateControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(ProviderModel.class.getName())) {
+            updateTable(ProviderPresenter.get().getObservableProvider());
+        }
     }
 
     @Override

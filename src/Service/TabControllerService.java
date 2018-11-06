@@ -38,7 +38,7 @@ public class TabControllerService {
         mParameterEditResource = new ResourceModel("/UI/Parameter/editParameter.fxml", "mParameterEditPane");
         mProviderResource = new ResourceModel("/UI/Provider/providers.fxml", "mAnchorPaneProviders");
         mAreaResource = new ResourceModel("/UI/Area/areas.fxml", "mAnchorPaneArea");
-        mStateResource = new ResourceModel("/UI/State/states.fxml", "mAnchorPaneState");
+        mStateResource = new ResourceModel("/UI/State/states.fxml", "mStatePane");
         mWorkerResource = new ResourceModel("/UI/Worker/workers.fxml", "mAnchorPaneWorkers");
         mTypeResource = new ResourceModel("/UI/Type/types.fxml", "mAnchorPaneTypes");
         mSupplyResource = new ResourceModel("/UI/Supply/supplys.fxml", "mAnchorPaneSupply");

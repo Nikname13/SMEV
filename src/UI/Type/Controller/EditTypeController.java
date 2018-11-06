@@ -33,7 +33,7 @@ public class EditTypeController {
     }
 
     private void editEntity(Object entity){
-        TypePresenter.get().deleteParameter(entity);
+        // TypePresenter.get().deleteParameter(entity);
     }
 
     @FXML
@@ -43,6 +43,6 @@ public class EditTypeController {
 
     @FXML
     private void onClickDelete(){
-        TypePresenter.get().deleteType(sTypeModel.getId());
+        // TypePresenter.get().deleteType(sTypeModel.getId());
     }
 }

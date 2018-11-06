@@ -95,10 +95,9 @@ public class EditInventoryNumber extends BaseController implements IUpdateUI, IO
     private void selectedEquipment(TreeItem<EquipmentInventoryModel> newValue) {
         if (newValue != null) {
             if (newValue.getValue().getId() != -1) {
-                InventoryNumberPresenter.get().setSelectedObject(newValue.getValue());
                 EquipmentPresenter.get().setEquipmentInventoryModel(newValue.getValue());
             } else {
-                InventoryNumberPresenter.get().setSelectedObject(null);
+                EquipmentPresenter.get().setEquipmentInventoryModel(null);
             }
         }
     }

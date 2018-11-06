@@ -88,12 +88,11 @@ public class EquipmentsController implements IUpdateUI {
         System.out.println("select equipment");
         if (equipment != null) {
             if (equipment.getValue().getClass().getName().equals(EquipmentModel.class.getName())) {
-                EquipmentPresenter.get().setSelectedObject(equipment.getValue());
                 EquipmentPresenter.get().setEquipmentModel(equipment.getValue());
                 TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditEquipmentResource()));
                 ListenersService.get().updateUI(EquipmentModel.class);
             } else {
-                EquipmentPresenter.get().setSelectedObject(null);
+                EquipmentPresenter.get().setEquipmentModel(null);
             }
         }
     }

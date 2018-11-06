@@ -63,7 +63,9 @@ public class ParametersController extends BaseController implements IUpdateUI {
 
     private void selectedItem(TreeItem<ParameterModel> newValue) {
         if (newValue != null) {
-            ParameterPresenter.get().setSelectedObject(newValue.getValue());
+            ParameterPresenter.get().setParameter(newValue.getValue());
+        } else {
+            ParameterPresenter.get().setParameter(null);
         }
     }
 
@@ -103,7 +105,9 @@ public class ParametersController extends BaseController implements IUpdateUI {
 
     @Override
     public void updateControl(Class<?> updateClass) {
-
+        if (updateClass.getName().equals(ParameterModel.class.getName())) {
+            updateTable(ParameterPresenter.get().getObservableParameter());
+        }
     }
 
     @Override

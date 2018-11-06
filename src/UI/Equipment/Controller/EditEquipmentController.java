@@ -256,11 +256,10 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
             EquipmentInventoryModel equipment = treeEquipment.getValue();
             if (equipment != null && equipment.getId() != -1) {
                 EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
-                EquipmentPresenter.get().setSelectedObject(equipment);
                 TabControllerService.get().getListenerSecondTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
                 ListenersService.get().updateUI(EquipmentInventoryModel.class);
             } else {
-                EquipmentPresenter.get().setSelectedObject(null);
+                EquipmentPresenter.get().setEquipmentInventoryModel(null);
             }
             //new Coordinator().goToEquipentInventoryWindow((Stage) mStackPaneEditEquipment.getScene().getWindow());
         }
@@ -366,7 +365,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
     public void primaryClick(String id) {
         switch (id) {
             case "mListViewWorker":
-                new Coordinator().goToEditWorkerDepartmentWindow(getStage());
+                new Coordinator().goToEditWorkerWindow(getStage());
                 break;
             case "inventoryLog":
                 new Coordinator().goToInventoryNumberEquipmentLog(getStage());

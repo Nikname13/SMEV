@@ -74,8 +74,9 @@ public class EditSupplyController extends BaseController implements IUpdateUI, I
 
     private void selectedNumber(TreeItem<InventoryNumberModel> newValue) {
         if(newValue!=null){
-            SupplyPresenter.get().setSelectedObject(newValue.getValue());
             InventoryNumberPresenter.get().setInventoryNumberModel(newValue.getValue());
+        } else {
+            InventoryNumberPresenter.get().setInventoryNumberModel(null);
         }
     }
 

@@ -28,23 +28,28 @@ public class WorkerPresenter extends BasePresenter implements IUpdateData {
 
     public void setWorkerModel(WorkerModel worker) {
         sWorkerModel = worker;
+        setSelectedObject(worker);
     }
 
     public void addWorker(String name, PostModel post, DepartmentModel department) {
         if (post.getId() == 0) {
             post = addPost(post);
         }
-        ListenersService.get().updateData(new IteractorWorker().addNew(new WorkerModel(0, name, post, department)));
+        new IteractorWorker().addNew(new WorkerModel(0, name, post, department));
         ListenersService.get().updateControl(WorkerModel.class);
+        // ListenersService.get().updateData();
+        //  ListenersService.get().updateControl(WorkerModel.class);
     }
 
     public void editWorker(String name, PostModel post, DepartmentModel department) {
         if (post.getId() == 0) {
             post = addPost(post);
         }
-        ListenersService.get().updateData(sWorkerModel);
-        ListenersService.get().updateData(new IteractorWorker().edit(new WorkerModel(sWorkerModel.getId(), name, post, department)));
-        ListenersService.get().updateControl(WorkerModel.class);
+        new IteractorWorker().edit(new WorkerModel(sWorkerModel.getId(), name, post, department));
+        ListenersService.get().refreshControl(WorkerModel.class);
+        //ListenersService.get().updateData(sWorkerModel);
+        // ListenersService.get().updateData();
+        // ListenersService.get().updateControl(WorkerModel.class);
     }
 
     public PostModel addPost(PostModel post) {
@@ -64,9 +69,9 @@ public class WorkerPresenter extends BasePresenter implements IUpdateData {
     public void delete() {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sWorkerModel)) {
-                System.out.println("delete " + sWorkerModel.getDepartmentModel().getId() + " hashCode " + sWorkerModel.hashCode());
-                new IteractorWorker().delete(sWorkerModel);
-                ListenersService.get().updateControl(WorkerModel.class);
+                if (new IteractorWorker().delete(sWorkerModel)) {
+                    ListenersService.get().updateControl(WorkerModel.class);
+                }
             }
         }
     }

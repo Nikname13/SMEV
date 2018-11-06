@@ -38,8 +38,9 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
         return sDepartmentModel;
     }
 
-    public void setDepartmentModel(Object departmentModel) {
-        sDepartmentModel = (DepartmentModel) departmentModel;
+    public void setDepartmentModel(DepartmentModel departmentModel) {
+        sDepartmentModel = departmentModel;
+        setSelectedObject(departmentModel);
     }
 
     public PurchaseModel getPurchaseModel() {
@@ -48,6 +49,7 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
 
     public void setPurchaseModel(PurchaseModel purchaseModel) {
         sPurchaseModel = purchaseModel;
+        setSelectedObject(purchaseModel);
     }
 
 

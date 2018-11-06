@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class Coordinator {
 
@@ -352,11 +351,11 @@ public class Coordinator {
         }
     }
 
-    public void goToEditWorkerDepartmentWindow(Stage stage) {
+    public void goToEditWorkerWindow(Stage stage) {
         try {
-            windowSceneContent("Worker/editWorker.fxml", stage, "Добавить сотрудника", 260.0, 300.0);
+            windowSceneContent("Worker/editWorker.fxml", stage, "Сотрудник", 260.0, 300.0);
         } catch (Exception ex) {
-            System.out.println("Exception goToEditWorkerDepartmentWindow " + ex);
+            System.out.println("Exception goToEditWorkerWindow " + ex);
         }
     }
 

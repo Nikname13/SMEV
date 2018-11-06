@@ -28,28 +28,23 @@ public class TypePresenter extends BasePresenter implements IUpdateData {
         return sTypeModel;
     }
 
-    public void setTypeModel(Object type) {
-        sTypeModel = (TypeModel) type;
+    public void setTypeModel(TypeModel type) {
+        sTypeModel = type;
+        setSelectedObject(type);
+
     }
 
     public void addType(String name, List<ParameterModel> parameters){
         new IteractorType().addNew(new TypeModel(0,name,parameters));
+        ListenersService.get().updateControl(TypeModel.class);
     }
 
     public void editType(String name, List<Object> parameters){
         new IteractorType().edit(new TypeModel(sTypeModel.getId(),name,sTypeModel.getEntityList()));
-        update();
     }
 
-
-    public void deleteType(int id){
-        new IteractorType().delete(id);
-        update();
-    }
-
-    public void deleteParameter(Object entity){
-        sTypeModel.deleteEntity((ParameterModel)entity);
-        update();
+    public void editType(TypeModel type) {
+        new IteractorType().edit(type);
     }
 
     public void update(){
@@ -68,6 +63,12 @@ public class TypePresenter extends BasePresenter implements IUpdateData {
 
     @Override
     public void delete() {
-
+        if (getSelectedObject() != null) {
+            if (getSelectedObject().equals(sTypeModel)) {
+                if (new IteractorType().delete(sTypeModel.getId())) {
+                    ListenersService.get().updateControl(TypeModel.class);
+                }
+            }
+        }
     }
 }

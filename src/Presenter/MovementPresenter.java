@@ -37,6 +37,7 @@ public class MovementPresenter extends BasePresenter implements IUpdateData {
 
     public void setMovementModel(MovementModel movementModel) {
         sMovementModel = movementModel;
+        setSelectedObject(movementModel);
     }
 
     public ObservableList<DepartmentModel> getObservableDepartmentWithout(DepartmentModel department) {
