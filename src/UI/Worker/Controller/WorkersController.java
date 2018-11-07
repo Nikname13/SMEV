@@ -48,6 +48,7 @@ public class WorkersController extends BaseController implements IUpdateUI, IOnM
     private void selectedWorker(WorkerModel newValue) {
         if (newValue != null) {
             WorkerPresenter.get().setWorkerModel(newValue);
+            ListenersService.get().updateUI(WorkerModel.class);
         } else {
             WorkerPresenter.get().setWorkerModel(null);
         }

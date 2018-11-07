@@ -4,6 +4,8 @@ import Model.Department.DepartmentModel;
 import Model.Post.PostModel;
 import Model.Worker.WorkerModel;
 import Presenter.WorkerPresenter;
+import Service.IUpdateUI;
+import Service.ListenersService;
 import UI.BaseController;
 import UI.Validator.BaseValidator;
 import UI.Validator.Pair;
@@ -15,10 +17,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class EditWorkerController extends BaseController {
+public class EditWorkerController extends BaseController implements IUpdateUI {
 
     private BaseValidator mBaseValidator = new BaseValidator();
-    private boolean mSelectedFlag;
     private PostModel mPostModel;
     private WorkerModel mWorkerModel;
     @FXML
@@ -35,7 +36,7 @@ public class EditWorkerController extends BaseController {
     private AnchorPane mAnchorPaneEditWorker;
 
     public EditWorkerController() {
-        mWorkerModel = WorkerPresenter.get().getWorkerModel();
+        ListenersService.get().addListenerUI(this);
     }
 
     @FXML
@@ -56,7 +57,7 @@ public class EditWorkerController extends BaseController {
     protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem, String promptText, String label) {
         super.initComboBoxDepartment(comboBox, isSelectionItem, promptText, label);
         comboBox.setItems(WorkerPresenter.get().getObservableDepartment());
-        comboBox.getSelectionModel().select(mWorkerModel.getDepartmentModel());
+
     }
 
     @Override
@@ -64,7 +65,7 @@ public class EditWorkerController extends BaseController {
         super.initComboBoxPost(comboBoxPost, promptText, label);
         comboBoxPost.setItems(WorkerPresenter.get().getObservablePost());
         mComboBoxPost.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedPost()));
-        mComboBoxPost.getSelectionModel().select(mWorkerModel.getPost());
+
     }
 
 
@@ -76,7 +77,7 @@ public class EditWorkerController extends BaseController {
     }
 
     private void initTextField() {
-        mTextFieldName.setText(mWorkerModel.getName());
+
     }
 
     @FXML
@@ -94,5 +95,31 @@ public class EditWorkerController extends BaseController {
     @FXML
     private void onClickCancel() {
         close(mAnchorPaneEditWorker);
+    }
+
+    @Override
+    public void updateUI(Class<?> updateClass) {
+        if (updateClass.getName().equals(WorkerModel.class.getName())) {
+            System.out.println("ololo update");
+            mWorkerModel = WorkerPresenter.get().getWorkerModel();
+            mComboBoxPost.getSelectionModel().select(mWorkerModel.getPost());
+            mComboBoxDepartment.getSelectionModel().select(mWorkerModel.getDepartmentModel());
+            mTextFieldName.setText(mWorkerModel.getName());
+        }
+    }
+
+    @Override
+    public void refreshControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+
     }
 }

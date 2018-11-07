@@ -3,46 +3,107 @@ package UI.Type.Controller;
 import Model.Parameter.ParameterModel;
 import Model.Type.TypeModel;
 import Presenter.TypePresenter;
+import Service.IUpdateUI;
+import Service.ListenersService;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
+import javafx.stage.Stage;
 
-public class EditTypeController {
+public class EditTypeController extends BaseTypeController implements IUpdateUI {
 
-    private static TypeModel sTypeModel;
+    private TypeModel mTypeModel;
+    @FXML
+    private TreeTableView<ParameterModel> mTreeTableViewParameter;
+    @FXML
+    private TreeTableColumn<ParameterModel, String> mNameColumn;
+    @FXML
+    private JFXTextField mTextFieldName;
+    @FXML
+    private JFXButton mButtonUpdate;
 
     public EditTypeController() {
+        ListenersService.get().addListenerUI(this);
     }
-
-    @FXML
-    private TableView<ParameterModel> tableViewEditParameters;
-
-    @FXML
-    private TableColumn<ParameterModel,String> firstColumn;
-
-    @FXML
-    private TextField nameType;
 
     @FXML
     public void initialize(){
-        nameType.setText(sTypeModel.getName());
-        firstColumn.setCellValueFactory(cellData->cellData.getValue().nameProperty());
-        tableViewEditParameters.setItems(sTypeModel.getObservableEntityList());
-        tableViewEditParameters.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->editEntity(newValue) );
+        setTreeTableViewParameters(mTreeTableViewParameter);
+        setNameColumn(mNameColumn);
+        setDialogPane(getParentStackPane());
+        initTextField(mTextFieldName);
+        initTableView();
     }
 
-    private void editEntity(Object entity){
-        // TypePresenter.get().deleteParameter(entity);
+    @Override
+    protected void initTextField(JFXTextField textField) {
+        super.initTextField(textField);
+        mTextFieldName.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (mTextFieldName.focusedProperty().get()) {
+                    setVisibleEditButton();
+                }
+            }
+        });
+    }
+
+    @Override
+    protected boolean editType(ObservableList<ParameterModel> parametersList) {
+        TypePresenter.get().editType(parametersList);
+        return true;
+    }
+
+    private void setVisibleEditButton() {
+        mButtonUpdate.setVisible(true);
+    }
+
+    private void setInvisibleEditButton() {
+        mButtonUpdate.setVisible(false);
     }
 
     @FXML
-    private void onClickOk(){
-        TypePresenter.get().editType(nameType.getText(),null);
+    private void onClickAdd() {
+        if (getBaseValidator().validate()) {
+            setInvisibleEditButton();
+            TypePresenter.get().editType(mTextFieldName.getText());
+        }
     }
 
-    @FXML
-    private void onClickDelete(){
-        // TypePresenter.get().deleteType(sTypeModel.getId());
+    @Override
+    public void updateUI(Class<?> updateClass) {
+        if (updateClass.getName().equals(TypeModel.class.getName())) {
+            mTypeModel = TypePresenter.get().getTypeModel();
+            mTextFieldName.setText(mTypeModel.getName());
+            setParametersList(mTypeModel.getObservableEntityList());
+            updateTableView(mTypeModel.getObservableEntityList());
+            setInvisibleEditButton();
+        }
+    }
+
+
+    @Override
+    public void refreshControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass) {
+
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+
+    }
+
+    @Override
+    protected Stage getStage() {
+        return null;
     }
 }

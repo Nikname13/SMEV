@@ -14,10 +14,8 @@ public abstract class BaseTabController {
                 break;
             }
         }
-        if (flag) {
-            if (!tabPane.getSelectionModel().getSelectedItem().getContent().getId().equals(nextTab.getContent().getId())) {
+        if (flag && !tabPane.getSelectionModel().getSelectedItem().getContent().getId().equals(nextTab.getContent().getId())) {
                 tabPane.getSelectionModel().select(nextTab);
-            }
         } else {
             System.out.println("add tab");
             tabPane.getTabs().add(nextTab);

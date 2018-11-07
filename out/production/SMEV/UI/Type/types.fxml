@@ -1,38 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.*?>
-<?import com.jfoenix.controls.JFXTreeTableRow?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.Tab?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="UI.Type.Controller.TypesController"
             prefHeight="400.0" prefWidth="600.0" fx:id="mAnchorPaneTypes">
 <children>
-    <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" style="-fx-background-color: #ffffff;"
-                prefHeight="55" minHeight="55" prefWidth="250" minWidth="250">
+    <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
         <children>
-            <JFXButton onAction="#onClickAdd" ripplerFill="#40a85f" style="-fx-background-color: #a8f1b3;"
-                       mnemonicParsing="false" text="Добавить"
-                       AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10"
-                       AnchorPane.bottomAnchor="10"/>
+            <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" style="-fx-background-color: #ffffff;"
+                        prefHeight="55" minHeight="55" prefWidth="250" minWidth="250">
+                <children>
+                    <JFXButton onAction="#onClickAdd" ripplerFill="#40a85f" style="-fx-background-color: #a8f1b3;"
+                               mnemonicParsing="false" text="Добавить"
+                               AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10"
+                               AnchorPane.bottomAnchor="10"/>
+                </children>
+            </AnchorPane>
+            <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="65" AnchorPane.bottomAnchor="0"
+                        style="-fx-background-color: #ffffff;"
+                        prefHeight="55" minHeight="55" prefWidth="250" minWidth="250">
+                <children>
+                    <JFXTreeTableView fx:id="mTreeTableView" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10"
+                                      AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+                        <columns>
+                            <TreeTableColumn fx:id="mNameColumn" prefWidth="225.0" text="Тип"/>
+                        </columns>
+                    </JFXTreeTableView>
+                </children>
+            </AnchorPane>
         </children>
     </AnchorPane>
-    <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="65" AnchorPane.bottomAnchor="0"
-                style="-fx-background-color: #ffffff;"
-                prefHeight="55" minHeight="55" prefWidth="250" minWidth="250">
+    <AnchorPane AnchorPane.leftAnchor="260" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
         <children>
-            <JFXTreeTableView fx:id="mTreeTableView" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10"
-                              AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
-                <columns>
-                    <TreeTableColumn fx:id="mNameColumn" prefWidth="225.0" text="Тип"/>
-                </columns>
-            </JFXTreeTableView>
+            <JFXTabPane fx:id="mSecondLvlTabPane" side="LEFT" tabMaxWidth="0"
+                        tabMinWidth="0" tabMinHeight="0" tabMaxHeight="0"
+                        AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+                        AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">
+                <Tab>
+                    <fx:include source="/UI/MainTabs/emptyTab.fxml"/>
+                </Tab>
+            </JFXTabPane>
         </children>
     </AnchorPane>
+
 </children>
 
 </AnchorPane>

@@ -31,8 +31,7 @@ public class BasePopup implements IUpdatePopup {
                         ListenersService.get().setListenerOnMouseClick(primaryClick);
                         mPopup.show(node, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());
                     }
-                    if (event.getButton() == MouseButton.PRIMARY) {
-                        if (primaryClick != null)
+                    if (event.getButton() == MouseButton.PRIMARY && primaryClick != null) {
                             primaryClick.primaryClick(node.getId());
                     }
                 }

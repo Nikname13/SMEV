@@ -15,7 +15,7 @@ public class TabControllerService {
     private ResourceModel mEditDepartmentResource, mEquipmentInventoryResource, mEditEquipmentResource,
             mEmptyTab, mDetailsMovementResource, mInventoryNumberListResource, mInventoryNumberEditResource,
             mParameterListResource, mParameterEditResource, mProviderResource, mAreaResource,
-            mStateResource, mWorkerResource, mTypeResource,
+            mStateResource, mWorkerResource, mTypeResource, mEditTypeResource,
             mSupplyResource, mEditSupplyResource;
     private List<Tab> mTabList;
 
@@ -41,6 +41,7 @@ public class TabControllerService {
         mStateResource = new ResourceModel("/UI/State/states.fxml", "mStatePane");
         mWorkerResource = new ResourceModel("/UI/Worker/workers.fxml", "mAnchorPaneWorkers");
         mTypeResource = new ResourceModel("/UI/Type/types.fxml", "mAnchorPaneTypes");
+        mEditTypeResource = new ResourceModel("/UI/Type/editType.fxml", "mEditTypePane");
         mSupplyResource = new ResourceModel("/UI/Supply/supplys.fxml", "mAnchorPaneSupply");
         mEditSupplyResource = new ResourceModel("/UI/Supply/editSupply.fxml", "mAnchorPaneEditSupply");
     }
@@ -120,6 +121,10 @@ public class TabControllerService {
 
     public ResourceModel getTypeResource() {
         return mTypeResource;
+    }
+
+    public ResourceModel getEditTypeResource() {
+        return mEditTypeResource;
     }
 
     public ResourceModel getSupplyResource() {

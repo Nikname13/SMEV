@@ -224,10 +224,12 @@ public class EditDepartmentController extends BaseController implements IUpdateU
             if (newValue != null) {
                 newValue.setDepartmentModel(mDepartmentModel);
                 WorkerPresenter.get().setWorkerModel(newValue);
-                System.out.println("selected");
+                ListenersService.get().updateUI(WorkerModel.class);
+
             } else {
                 WorkerPresenter.get().setWorkerModel(null);
             }
+            System.out.println("selected");
         }));
         mListViewWorker.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
@@ -431,6 +433,7 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         System.out.println("node id " + id);
         switch (id) {
             case "mListViewWorker":
+                mListViewWorker.getSelectionModel().clearSelection();
                 new Coordinator().goToEditWorkerWindow(getStage());
                 break;
             case "inventoryLog":

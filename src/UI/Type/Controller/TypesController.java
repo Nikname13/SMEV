@@ -4,18 +4,21 @@ import Model.Type.TypeModel;
 import Presenter.TypePresenter;
 import Service.IUpdateUI;
 import Service.ListenersService;
+import Service.TabControllerService;
 import UI.BaseController;
 import UI.Coordinator;
 import UI.Popup.Controller.BasePopup;
-import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
+import com.jfoenix.controls.JFXTabPane;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import static UI.BaseTabController.nextTab;
 
 public class TypesController extends BaseController implements IUpdateUI {
 
@@ -23,6 +26,8 @@ public class TypesController extends BaseController implements IUpdateUI {
     private TreeTableView<TypeModel> mTreeTableView;
     @FXML
     private TreeTableColumn<TypeModel, String> mNameColumn;
+    @FXML
+    private JFXTabPane mSecondLvlTabPane;
 
     public TypesController() {
         ListenersService.get().addListenerUI(this);
@@ -43,27 +48,14 @@ public class TypesController extends BaseController implements IUpdateUI {
 
     private void initTable() {
         mNameColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().nameProperty());
-        mNameColumn.setCellFactory((TreeTableColumn<TypeModel, String> param) -> new GenericEditableTreeTableCell<>());
-        mNameColumn.setOnEditCommit(new EventHandler<TreeTableColumn.CellEditEvent<TypeModel, String>>() {
-            @Override
-            public void handle(TreeTableColumn.CellEditEvent<TypeModel, String> event) {
-                if (!event.getNewValue().trim().isEmpty()) {
-                    TreeItem<TypeModel> currentEditItem = mTreeTableView.getTreeItem(event.getTreeTablePosition().getRow());
-                    currentEditItem.getValue().setName(event.getNewValue());
-                    TypePresenter.get().editType(currentEditItem.getValue());
-                } else {
-                    ListenersService.get().refreshControl(TypeModel.class);
-                }
-
-            }
-        });
-        mTreeTableView.setEditable(true);
         mTreeTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedType(newValue));
     }
 
     private void selectedType(TreeItem<TypeModel> newValue) {
         if (newValue != null) {
             TypePresenter.get().setTypeModel(newValue.getValue());
+            TabControllerService.get().getListenerSecondTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditTypeResource()));
+            ListenersService.get().updateUI(TypeModel.class);
         } else {
             TypePresenter.get().setTypeModel(null);
         }
@@ -89,6 +81,9 @@ public class TypesController extends BaseController implements IUpdateUI {
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             updateTable(TypePresenter.get().getObservableType());
+            mTreeTableView.getSelectionModel().clearSelection();
+            mSecondLvlTabPane.getSelectionModel().select(0);
+            TabControllerService.get().setListenerSecondTabPane((Tab nextTab) -> nextTab(nextTab, mSecondLvlTabPane));
         }
     }
 
@@ -116,4 +111,5 @@ public class TypesController extends BaseController implements IUpdateUI {
     protected Stage getStage() {
         return null;
     }
+
 }

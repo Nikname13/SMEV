@@ -39,12 +39,14 @@ public class TypePresenter extends BasePresenter implements IUpdateData {
         ListenersService.get().updateControl(TypeModel.class);
     }
 
-    public void editType(String name, List<Object> parameters){
-        new IteractorType().edit(new TypeModel(sTypeModel.getId(),name,sTypeModel.getEntityList()));
+    public void editType(String name) {
+        sTypeModel.setName(name);
+        new IteractorType().edit(sTypeModel);
     }
 
-    public void editType(TypeModel type) {
-        new IteractorType().edit(type);
+    public void editType(List<ParameterModel> parametersList) {
+        sTypeModel.setEntityList(parametersList);
+        new IteractorType().edit(sTypeModel);
     }
 
     public void update(){
