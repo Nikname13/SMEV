@@ -42,34 +42,24 @@ public class EditDepartmentController extends BaseController implements IUpdateU
     private BaseValidator mBaseValidator = new BaseValidator();
     @FXML
     private AnchorPane anchorPaneEditDepartment;
-
     @FXML
     private JFXTextField mTextFieldNumber, mTextFieldName;
-
     @FXML
     private JFXRadioButton mRadioButtonRenting, mRadioButtonElQ;
-
     @FXML
     private JFXComboBox<AreaModel> mComboBoxArea;
-
     @FXML
     private JFXListView<WorkerModel> mListViewWorker;
-
     @FXML
     private JFXListView<LocationModel> mListViewLocation;
-
     @FXML
     private JFXTextArea mTextAreaDescription;
-
     @FXML
     private TreeTableView<EquipmentInventoryModel> mTreeTableEquipmentInventory;
-
     @FXML
     private TreeTableColumn<EquipmentInventoryModel, String> mNameEquipmentColumn, mNumberEquipmentColumn, mStateEquipmentColumn, mDescriptionEquipmentColumn;
-
     @FXML
     private JFXTabPane mSecondLvlTabPane;
-
     @FXML
     private JFXButton mButtonUpdate;
 
@@ -224,18 +214,18 @@ public class EditDepartmentController extends BaseController implements IUpdateU
             if (newValue != null) {
                 newValue.setDepartmentModel(mDepartmentModel);
                 WorkerPresenter.get().setWorkerModel(newValue);
-                ListenersService.get().updateUI(WorkerModel.class);
+                System.out.println("selected worker");
 
             } else {
                 WorkerPresenter.get().setWorkerModel(null);
             }
-            System.out.println("selected");
+
         }));
         mListViewWorker.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (newValue) {
-                    // WorkerPresenter.get().setSelectedObject(mListViewWorker.getSelectionModel().getSelectedItem());
+                    WorkerPresenter.get().setWorkerModel(mListViewWorker.getSelectionModel().getSelectedItem());
                 }
                 System.out.println("focus");
             }
@@ -272,40 +262,6 @@ public class EditDepartmentController extends BaseController implements IUpdateU
                 EquipmentPresenter.get().setEquipmentInventoryModel(null);
             }
         }
-    }
-
-    @FXML
-    private void onClickAddWorker() {
-        DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
-        new Coordinator().goToAddWorkerDepartmentWindow(getStage());
-    }
-
-    @FXML
-    private void onClickAddLocation() {
-        DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
-        new Coordinator().goToAddLocationWindow(getStage());
-    }
-
-    @FXML
-    private void onClickEdit() {
-        if (mBaseValidator.validate()) {
-            setInvisibleEditButton();
-            DepartmentPresenter.get().editDepartment(mTextFieldNumber.getText(), mTextFieldName.getText(), mRadioButtonElQ.isSelected(), mRadioButtonRenting.isSelected(),
-                    mTextAreaDescription.getText(), mComboBoxArea.getValue());
-        }
-    }
-
-    @FXML
-    private void onClickConfig() {
-        DepartmentPresenter.get().setTypeDocuments(AbstractModel.getTypeDoc());
-        new Coordinator().goToFilesDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
-
-    }
-
-    @FXML
-    private void onClickPhoto() {
-        DepartmentPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
-        new Coordinator().goToPhotoDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
     }
 
     private EquipmentInventoryModel getEmptySecondLvlEquipment(EquipmentInventoryModel equipment) {
@@ -376,6 +332,44 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         mTreeTableEquipmentInventory.setShowRoot(false);
     }
 
+    @FXML
+    private void onClickAddWorker() {
+        DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
+        new Coordinator().goToAddWorkerDepartmentWindow(getStage());
+    }
+
+    @FXML
+    private void onClickAddLocation() {
+        DepartmentPresenter.get().setDepartmentModel(mDepartmentModel);
+        new Coordinator().goToAddLocationWindow(getStage());
+    }
+
+    @FXML
+    private void onClickEdit() {
+        if (mBaseValidator.validate()) {
+            setInvisibleEditButton();
+            DepartmentPresenter.get().editDepartment(mTextFieldNumber.getText(), mTextFieldName.getText(), mRadioButtonElQ.isSelected(), mRadioButtonRenting.isSelected(),
+                    mTextAreaDescription.getText(), mComboBoxArea.getValue());
+        }
+    }
+
+    @FXML
+    private void onClickDoc() {
+        DepartmentPresenter.get().setTypeDocuments(AbstractModel.getTypeDoc());
+        new Coordinator().goToFilesDepartmentWindow(getStage());
+    }
+
+    @FXML
+    private void onClickConfig() {
+
+    }
+
+    @FXML
+    private void onClickPhoto() {
+        DepartmentPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
+        new Coordinator().goToPhotoDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
+    }
+
     @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(DepartmentModel.class.getName())) {
@@ -433,7 +427,6 @@ public class EditDepartmentController extends BaseController implements IUpdateU
         System.out.println("node id " + id);
         switch (id) {
             case "mListViewWorker":
-                mListViewWorker.getSelectionModel().clearSelection();
                 new Coordinator().goToEditWorkerWindow(getStage());
                 break;
             case "inventoryLog":

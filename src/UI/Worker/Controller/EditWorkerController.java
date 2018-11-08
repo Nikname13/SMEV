@@ -4,8 +4,6 @@ import Model.Department.DepartmentModel;
 import Model.Post.PostModel;
 import Model.Worker.WorkerModel;
 import Presenter.WorkerPresenter;
-import Service.IUpdateUI;
-import Service.ListenersService;
 import UI.BaseController;
 import UI.Validator.BaseValidator;
 import UI.Validator.Pair;
@@ -17,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class EditWorkerController extends BaseController implements IUpdateUI {
+public class EditWorkerController extends BaseController {
 
     private BaseValidator mBaseValidator = new BaseValidator();
     private PostModel mPostModel;
@@ -36,7 +34,8 @@ public class EditWorkerController extends BaseController implements IUpdateUI {
     private AnchorPane mAnchorPaneEditWorker;
 
     public EditWorkerController() {
-        ListenersService.get().addListenerUI(this);
+        System.out.println("constructor");
+        mWorkerModel = WorkerPresenter.get().getWorkerModel();
     }
 
     @FXML
@@ -57,6 +56,7 @@ public class EditWorkerController extends BaseController implements IUpdateUI {
     protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem, String promptText, String label) {
         super.initComboBoxDepartment(comboBox, isSelectionItem, promptText, label);
         comboBox.setItems(WorkerPresenter.get().getObservableDepartment());
+        comboBox.getSelectionModel().select(mWorkerModel.getDepartmentModel());
 
     }
 
@@ -64,7 +64,8 @@ public class EditWorkerController extends BaseController implements IUpdateUI {
     protected void initComboBoxPost(JFXComboBox<PostModel> comboBoxPost, String promptText, String label) {
         super.initComboBoxPost(comboBoxPost, promptText, label);
         comboBoxPost.setItems(WorkerPresenter.get().getObservablePost());
-        mComboBoxPost.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedPost()));
+        comboBoxPost.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedPost()));
+        comboBoxPost.getSelectionModel().select(mWorkerModel.getPost());
 
     }
 
@@ -77,7 +78,7 @@ public class EditWorkerController extends BaseController implements IUpdateUI {
     }
 
     private void initTextField() {
-
+        mTextFieldName.setText(mWorkerModel.getName());
     }
 
     @FXML
@@ -97,29 +98,4 @@ public class EditWorkerController extends BaseController implements IUpdateUI {
         close(mAnchorPaneEditWorker);
     }
 
-    @Override
-    public void updateUI(Class<?> updateClass) {
-        if (updateClass.getName().equals(WorkerModel.class.getName())) {
-            System.out.println("ololo update");
-            mWorkerModel = WorkerPresenter.get().getWorkerModel();
-            mComboBoxPost.getSelectionModel().select(mWorkerModel.getPost());
-            mComboBoxDepartment.getSelectionModel().select(mWorkerModel.getDepartmentModel());
-            mTextFieldName.setText(mWorkerModel.getName());
-        }
-    }
-
-    @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
 }

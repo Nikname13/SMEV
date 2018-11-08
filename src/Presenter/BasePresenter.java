@@ -27,6 +27,11 @@ import Model.Type.Types;
 import Model.Worker.WorkerModel;
 import Model.Worker.Workers;
 import javafx.collections.ObservableList;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
+import java.util.List;
 
 public abstract class BasePresenter {
 
@@ -94,6 +99,16 @@ public abstract class BasePresenter {
         return Posts.get().getObsEntityList();
     }
 
-
+    protected List<File> uploadDocFiles(Stage stage) {
+        FileChooser fileChooser = new FileChooser();//Класс работы с диалогом выборки и сохранения
+        fileChooser.setTitle("Open Document");//Заголовок диалога
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All files", "*.*"),
+                new FileChooser.ExtensionFilter("txt files (*.txt)", "*.txt"),
+                new FileChooser.ExtensionFilter("Word doc (*.doc)", "*.doc"),
+                new FileChooser.ExtensionFilter("Open Document (*.odt)", "*.odt")
+        );
+        return fileChooser.showOpenMultipleDialog(stage);//Указываем текущую сцену CodeNote.mainStage
+    }
 
 }

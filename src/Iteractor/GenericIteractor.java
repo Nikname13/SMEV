@@ -153,12 +153,18 @@ public abstract class GenericIteractor<T> implements IIteractor<T> {
     }
 
     @Override
-    public List<FileDumpModel> uploadFile(int id, List<File> files, String type) throws IOException {
-        URLBuilder url=new URLBuilder(getLoadFileURL());
-        List<FileDumpModel> list= new Gson().fromJson(
-                Connector.post(url.withParam("id",String.valueOf(id)).withParam("type", type).build(), files),
-                new TypeToken<ArrayList<FileDumpModel>>(){}.getType());
-        return list;
+    public List<FileDumpModel> uploadFile(int id, List<File> files, String type) {
+        try {
+            URLBuilder url = new URLBuilder(getLoadFileURL());
+            List<FileDumpModel> list = new Gson().fromJson(
+                    Connector.post(url.withParam("id", String.valueOf(id)).withParam("type", type).build(), files),
+                    new TypeToken<ArrayList<FileDumpModel>>() {
+                    }.getType());
+            return list;
+        } catch (IOException ex) {
+            System.out.println("создать еррор диалог " + ex);
+            return null;
+        }
     }
 
     @Override

@@ -52,7 +52,8 @@
                         <!--три кнопки док, конфиг и фото-->
                         <AnchorPane style="-fx-background-color: #ffffff;" prefHeight="190.0" prefWidth="150.0">
                             <children>
-                                <JFXButton fx:id="mButtonDoc" ripplerFill="#40a85f" text="Документация"
+                                <JFXButton fx:id="mButtonDoc" onAction="#onClickDoc" ripplerFill="#40a85f"
+                                           text="Документация"
                                            AnchorPane.leftAnchor="10.0"
                                            AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0" prefHeight="50.0"/>
                                 <JFXButton fx:id="mButtonConfig" ripplerFill="#40a85f" text="Конфигурация"

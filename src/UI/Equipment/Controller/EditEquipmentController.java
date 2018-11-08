@@ -324,6 +324,7 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
     @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(EquipmentModel.class.getName())) {
+            System.out.println("updateUI edit equipment");
             sEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
             mEquipmentParameterList = sEquipmentModel.getObservableEntityList();
             mTextFieldName.setText(sEquipmentModel.getName());

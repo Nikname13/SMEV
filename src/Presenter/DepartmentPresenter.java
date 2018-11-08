@@ -11,6 +11,7 @@ import Model.Equipment.EquipmentInventoryModel;
 import Model.Location.LocationModel;
 import Service.IUpdateData;
 import Service.ListenersService;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.File;
@@ -84,9 +85,15 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
         new IteractorDepartment().delete(id);
     }
 
-    public void uploadConfig(List<File> files) throws IOException {
-        sDepartmentModel.addFileDumpDocList(files);
+    public void uploadFiles(Stage stage) {
+        List<File> fileList = uploadDocFiles(stage);
+        if (fileList != null) {
+            System.out.println("Процесс открытия файла");
+            new IteractorDepartment().uploadFile(sDepartmentModel.getId(), fileList, sTypeDocuments);
+        }
     }
+
+
 
     public String getTypeDocuments() {
         return sTypeDocuments;
