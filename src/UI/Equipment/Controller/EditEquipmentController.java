@@ -363,6 +363,11 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
     }
 
     @Override
+    public void destroy() {
+
+    }
+
+    @Override
     public void primaryClick(String id) {
         switch (id) {
             case "mListViewWorker":

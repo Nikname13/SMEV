@@ -5,7 +5,6 @@ import UI.BaseController;
 import UI.Validator.BaseValidator;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -41,5 +40,10 @@ public class AddAreaController extends BaseController {
     @Override
     protected Stage getStage() {
         return null;
+    }
+
+    @Override
+    public void destroy() {
+
     }
 }

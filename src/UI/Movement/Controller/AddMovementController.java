@@ -254,4 +254,9 @@ public class AddMovementController extends BaseController {
     protected Stage getStage() {
         return (Stage) mStackPaneAddMovement.getScene().getWindow();
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

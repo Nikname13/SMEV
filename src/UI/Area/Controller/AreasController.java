@@ -115,4 +115,9 @@ public class AreasController extends BaseController implements IUpdateUI {
         return (Stage) mAnchorPaneArea.getScene().getWindow();
     }
 
+    @Override
+    public void destroy() {
+
+    }
+
 }

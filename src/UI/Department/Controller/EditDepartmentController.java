@@ -14,7 +14,6 @@ import Presenter.EquipmentPresenter;
 import Presenter.LocationPresenter;
 import Presenter.WorkerPresenter;
 import Service.IOnMouseClick;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseController;
@@ -36,7 +35,7 @@ import javafx.stage.Stage;
 
 import static UI.BaseTabController.nextTab;
 
-public class EditDepartmentController extends BaseController implements IUpdateUI, IOnMouseClick {
+public class EditDepartmentController extends BaseController implements IOnMouseClick {
 
     private static DepartmentModel mDepartmentModel;
     private BaseValidator mBaseValidator = new BaseValidator();
@@ -107,6 +106,11 @@ public class EditDepartmentController extends BaseController implements IUpdateU
     protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea, boolean isSelectionItem, String promptText, String label) {
         super.initComboBoxArea(comboBoxArea, isSelectionItem, promptText, label);
         comboBoxArea.getSelectionModel().selectedIndexProperty().addListener((observable -> selectedArea()));
+    }
+
+    @Override
+    public void destroy() {
+
     }
 
     private void selectedArea() {

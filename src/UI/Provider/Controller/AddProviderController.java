@@ -44,4 +44,9 @@ public class AddProviderController extends BaseController {
     protected Stage getStage() {
         return null;
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

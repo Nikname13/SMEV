@@ -5,13 +5,12 @@ import Model.Parameter.ParameterModel;
 import Model.Parameter.Parameters;
 import Model.Parameter.SelectedParameterShell;
 import Model.Parameter.ValueParameterModel;
-import Service.IUpdateData;
 import Service.IUpdateUI;
 import Service.ListenersService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class ParameterPresenter extends BasePresenter implements IUpdateData {
+public class ParameterPresenter extends BasePresenter {
 
     private static ParameterModel sParameterModel;
     private static IUpdateUI updateListener;
@@ -79,16 +78,6 @@ public class ParameterPresenter extends BasePresenter implements IUpdateData {
 
     public void editParameter(ParameterModel parameter) {
         ListenersService.get().updateData(new IteractorParameter().edit(parameter));
-    }
-
-    @Override
-    void loadEntity(int id) {
-
-    }
-
-    @Override
-    public void update(Object equipment) {
-
     }
 
     @Override

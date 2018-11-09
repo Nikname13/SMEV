@@ -5,13 +5,11 @@ import Model.Equipment.EquipmentInventoryModel;
 import Model.Inventory_number.InventoryNumberLog;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Supply.SupplyModel;
-import Service.IUpdateData;
 import Service.ListenersService;
 
 import java.time.LocalDate;
-import java.util.Set;
 
-public class InventoryNumberPresenter extends BasePresenter implements IUpdateData {
+public class InventoryNumberPresenter extends BasePresenter {
 
     private static InventoryNumberModel sInventoryNumberModel;
     private static InventoryNumberPresenter sInventoryNumberPresenter;
@@ -71,33 +69,6 @@ public class InventoryNumberPresenter extends BasePresenter implements IUpdateDa
             ListenersService.get().updateData(equipmentInventoryModel);
         }
         ListenersService.get().refreshControl(InventoryNumberModel.class);
-    }
-
-    public void delete(int id){
-        new IteractorInventoryNumber().delete(id);
-    }
-
-    public void delete(Set<Integer> id){
-
-    }
-
-    @Override
-    void loadEntity(int id) {
-
-    }
-
-    @Override
-    public void update(Object entity) {
-/*        if (entity.getClass().equals(SupplyModel.class)) {
-            InventoryNumbers.get().update();
-        }
-        if (entity.getClass().equals(InventoryNumberModel.class)) {
-            InventoryNumberModel inventoryNumberModel = (InventoryNumberModel) entity;
-            SupplyModel supplyModel = Supplys.get().getEntity(inventoryNumberModel.getSupply().getId());
-            if (supplyModel != null) {
-                supplyModel.setEntityList(null);
-            }
-        }*/
     }
 
     @Override

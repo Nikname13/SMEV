@@ -80,6 +80,11 @@ public class ParametersController extends BaseController implements IUpdateUI {
     }
 
     @Override
+    public void destroy() {
+
+    }
+
+    @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             mTreeTableParameters.getSelectionModel().clearSelection();

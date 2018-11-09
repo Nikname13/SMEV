@@ -142,4 +142,9 @@ public class MovementsController extends BaseController implements IUpdateUI {
     protected Stage getStage() {
         return (Stage) mStackPaneMovement.getScene().getWindow();
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

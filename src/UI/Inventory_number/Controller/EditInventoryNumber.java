@@ -108,6 +108,11 @@ public class EditInventoryNumber extends BaseController implements IUpdateUI, IO
         comboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedSupply()));
     }
 
+    @Override
+    public void destroy() {
+
+    }
+
     private void selectedSupply() {
         if(mComboBoxSupply.focusedProperty().get()){
             setVisibleEditButton();

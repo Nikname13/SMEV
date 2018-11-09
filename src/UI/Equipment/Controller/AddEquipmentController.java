@@ -184,6 +184,11 @@ public class AddEquipmentController extends BaseController {
         mComboBoxType.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> selectedType());
     }
 
+    @Override
+    public void destroy() {
+
+    }
+
     private void selectedType() {
         mEquipmentParameterList = FXCollections.observableArrayList();
         for (ParameterModel parameter : mComboBoxType.getValue().getEntityList()) {

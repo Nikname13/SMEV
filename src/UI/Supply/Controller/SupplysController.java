@@ -89,7 +89,7 @@ public class SupplysController extends BaseController implements IUpdateUI, IOnM
             SupplyModel supplyModel = newValue.getValue();
             if (supplyModel != null && supplyModel.getId() != -1) {
                 SupplyPresenter.get().setSupplyModel(supplyModel);
-                SupplyPresenter.get().loadEntity(supplyModel.getId());
+                //SupplyPresenter.get().loadEntity(supplyModel.getId());
                 TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditSupplyResource()));
                 ListenersService.get().updateUI(SupplyModel.class);
             } else {
@@ -107,6 +107,10 @@ public class SupplysController extends BaseController implements IUpdateUI, IOnM
     @Override
     protected Stage getStage() {
         return (Stage) mStackPaneSupply.getScene().getWindow();
+    }
+
+    @Override
+    public void destroy() {
     }
 
     @Override

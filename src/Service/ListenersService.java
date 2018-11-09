@@ -40,6 +40,10 @@ public class ListenersService {
         mListenerUI.add(listener);
     }
 
+    public void removeListenerUI(IUpdateUI listener) {
+        mListenerUI.remove(listener);
+    }
+
     public void addListenerPopup(IUpdatePopup listener) {
         mListenerPopup.add(listener);
     }
@@ -110,4 +114,5 @@ public class ListenersService {
     public void onMouseClick(String id) {
         mListenerOnMouseClick.primaryClick(id);
     }
+
 }

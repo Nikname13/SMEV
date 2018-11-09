@@ -4,8 +4,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane fx:id="anchorPaneFiles" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Department.DepartmentFiles.FilesDepartmentController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchorPaneFiles" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8.0.121"
+            fx:controller="UI.Department.DepartmentFiles.FilesDepartmentController">
    <children>
       <TableView fx:id="tableViewFile" layoutX="14.0" layoutY="14.0" prefHeight="340.0" prefWidth="200.0">
         <columns>

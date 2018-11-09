@@ -65,6 +65,11 @@ public class WorkersController extends BaseController implements IUpdateUI, IOnM
     }
 
     @Override
+    public void destroy() {
+
+    }
+
+    @Override
     public void primaryClick(String id) {
         switch (id) {
             case "mTableViewWorkers":

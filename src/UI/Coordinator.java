@@ -11,7 +11,8 @@ public class Coordinator {
 
     private Parent windowSceneContent(String fxml, Stage rootStage, String title, double width, double height) throws Exception {
         System.out.println("WindowSceneContent");
-        Parent page = FXMLLoader.load(getClass().getResource(fxml), null, new JavaFXBuilderFactory());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), null, new JavaFXBuilderFactory());
+        Parent page = loader.load();
         Stage stage=new Stage();
         stage.setScene(new Scene(page));
         stage.setTitle(title);
@@ -28,6 +29,10 @@ public class Coordinator {
         /*stage.getScene().getRoot().setEffect(new DropShadow());
         stage.getScene().setFill(Color.TRANSPARENT);*/
         stage.show();
+        stage.setOnCloseRequest(event -> {
+            BaseController controller = loader.getController();
+            controller.destroy();
+        });
         return page;
     }
 

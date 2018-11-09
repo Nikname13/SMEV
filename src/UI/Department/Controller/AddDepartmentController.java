@@ -77,6 +77,11 @@ public class AddDepartmentController extends BaseController {
         comboBoxArea.setItems(DepartmentPresenter.get().getObservableArea());
     }
 
+    @Override
+    public void destroy() {
+
+    }
+
     private void selectedLocation(){
         if(mComboBoxLocation.getSelectionModel().getSelectedIndex()!=-1){
             setSelectedLocation(true);

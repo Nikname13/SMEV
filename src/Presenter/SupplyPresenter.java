@@ -5,14 +5,13 @@ import Model.Inventory_number.InventoryNumberLog;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Provider.ProviderModel;
 import Model.Supply.SupplyModel;
-import Service.IUpdateData;
 import Service.ListenersService;
 import UI.Supply.Controller.SupplysController;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class SupplyPresenter extends BasePresenter implements IUpdateData {
+public class SupplyPresenter extends BasePresenter {
 
     private static SupplyModel sSupplyModel;
     private static SupplyPresenter sSupplyPresenter;
@@ -56,20 +55,6 @@ public class SupplyPresenter extends BasePresenter implements IUpdateData {
     @Override
     public void loadEntity(int id) {
 
-    }
-
-    @Override
-    public void update(Object entity) {
-/*        if (entity.getClass().equals(ProviderModel.class)) {
-            ProviderModel provider = (ProviderModel) entity;
-            for (SupplyModel supply : Supplys.get().getObsEntityList()) {
-                if (supply.getProviderModel().getId() == provider.getId()) {
-                    supply.setProviderModel(provider);
-                    break;
-                }
-            }
-            ListenersService.get().updateUI(SupplysController.class);
-        }*/
     }
 
     @Override

@@ -75,4 +75,9 @@ public class ExampleController extends BaseController implements IErrorMessage {
     protected Stage getStage() {
         return null;
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

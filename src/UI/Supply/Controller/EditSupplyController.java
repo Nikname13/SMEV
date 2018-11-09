@@ -127,6 +127,11 @@ public class EditSupplyController extends BaseController implements IUpdateUI, I
         comboBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> providerListener());
     }
 
+    @Override
+    public void destroy() {
+
+    }
+
     private void providerListener() {
         if (mComboBoxProvider.focusedProperty().get()) {
             setVisibleEditButton();

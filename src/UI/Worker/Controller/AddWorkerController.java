@@ -64,6 +64,11 @@ public class AddWorkerController extends BaseController {
         mComboBoxPost.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedPost()));
     }
 
+    @Override
+    public void destroy() {
+
+    }
+
     private void selectedPost() {
         if (mComboBoxPost.getSelectionModel().selectedIndexProperty().get() != -1) {
             setSelectedPost(true);

@@ -2,10 +2,9 @@ package Presenter;
 
 import Iteractor.IteractorState;
 import Model.State.StateModel;
-import Service.IUpdateData;
 import Service.ListenersService;
 
-public class StatePresenter extends BasePresenter implements IUpdateData {
+public class StatePresenter extends BasePresenter {
 
     private static StateModel sStateModel;
     private static StatePresenter sStatePresenter;
@@ -41,16 +40,6 @@ public class StatePresenter extends BasePresenter implements IUpdateData {
 
     public void editState(StateModel state) {
         ListenersService.get().updateData(new IteractorState().edit(state));
-    }
-
-    @Override
-    void loadEntity(int id) {
-
-    }
-
-    @Override
-    public void update(Object equipment) {
-
     }
 
     @Override

@@ -3,10 +3,9 @@ package Presenter;
 import Iteractor.IteractorLocation;
 import Model.Department.DepartmentModel;
 import Model.Location.LocationModel;
-import Service.IUpdateData;
 import Service.ListenersService;
 
-public class LocationPresenter extends BasePresenter implements IUpdateData {
+public class LocationPresenter extends BasePresenter {
 
     private static LocationModel sLocationModel;
     private static LocationPresenter sLocationPresenter;
@@ -43,16 +42,6 @@ public class LocationPresenter extends BasePresenter implements IUpdateData {
         ListenersService.get().updateControl(LocationModel.class);
     }
 
-    public void delete(int id){
-        new IteractorLocation().delete(id);
-    }
-
-
-    @Override
-    public void update(Object equipment) {
-
-    }
-
     @Override
     public void delete() {
         if (getSelectedObject() != null) {
@@ -69,10 +58,5 @@ public class LocationPresenter extends BasePresenter implements IUpdateData {
                 ListenersService.get().updateControl(LocationModel.class);
             }
         }
-    }
-
-    @Override
-    void loadEntity(int id) {
-
     }
 }

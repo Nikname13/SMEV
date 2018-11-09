@@ -26,6 +26,8 @@ import Model.Type.TypeModel;
 import Model.Type.Types;
 import Model.Worker.WorkerModel;
 import Model.Worker.Workers;
+import Service.ErrorService;
+import Service.IUpdateData;
 import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -33,7 +35,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.util.List;
 
-public abstract class BasePresenter {
+public abstract class BasePresenter implements IUpdateData {
 
     private static Object sSelectedObject;
 
@@ -45,7 +47,9 @@ public abstract class BasePresenter {
         sSelectedObject = selectedObject;
     }
 
-    abstract void loadEntity(int id);
+    void loadEntity(int id) {
+        ErrorService.get().overrideError("loadEntity", this.getClass());
+    }
 
     public ObservableList<AreaModel> getObservableArea() {
         return Areas.get().getObsEntityList();
@@ -111,4 +115,13 @@ public abstract class BasePresenter {
         return fileChooser.showOpenMultipleDialog(stage);//Указываем текущую сцену CodeNote.mainStage
     }
 
+    @Override
+    public void update(Object equipment) {
+        ErrorService.get().overrideError("update", this.getClass());
+    }
+
+    @Override
+    public void delete() {
+        ErrorService.get().overrideError("delete", this.getClass());
+    }
 }

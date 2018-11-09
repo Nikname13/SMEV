@@ -77,6 +77,11 @@ public class MoveEquipmentInventoryController extends BaseController {
         comboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment(newValue)));
     }
 
+    @Override
+    public void destroy() {
+
+    }
+
     private void setWorkerTo() {
         mComboBoxWorkerTo.getSelectionModel().selectFirst();
     }

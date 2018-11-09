@@ -3,12 +3,11 @@ package Presenter;
 import Iteractor.IteractorType;
 import Model.Parameter.ParameterModel;
 import Model.Type.TypeModel;
-import Service.IUpdateData;
 import Service.ListenersService;
 
 import java.util.List;
 
-public class TypePresenter extends BasePresenter implements IUpdateData {
+public class TypePresenter extends BasePresenter {
 
     private static TypeModel sTypeModel;
     private static TypePresenter sTypePresenter;
@@ -47,20 +46,6 @@ public class TypePresenter extends BasePresenter implements IUpdateData {
     public void editType(List<ParameterModel> parametersList) {
         sTypeModel.setEntityList(parametersList);
         new IteractorType().edit(sTypeModel);
-    }
-
-    public void update(){
-        // Types.get().update();
-    }
-
-    @Override
-    void loadEntity(int id) {
-
-    }
-
-    @Override
-    public void update(Object equipment) {
-
     }
 
     @Override

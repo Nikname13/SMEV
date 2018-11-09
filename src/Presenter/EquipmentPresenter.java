@@ -12,7 +12,6 @@ import Model.Movement.MovementModel;
 import Model.Parameter.ParameterModel;
 import Model.State.StateModel;
 import Model.Type.TypeModel;
-import Service.IUpdateData;
 import Service.ListenersService;
 import UI.MainTabs.Controller.EquipmentTabController;
 import javafx.collections.FXCollections;
@@ -22,7 +21,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EquipmentPresenter extends BasePresenter implements IUpdateData {
+public class EquipmentPresenter extends BasePresenter {
 
     private static EquipmentModel sEquipmentModel;
     private static EquipmentInventoryModel sEquipmentInventoryModel;
@@ -212,32 +211,6 @@ public class EquipmentPresenter extends BasePresenter implements IUpdateData {
 
     public void addMovement(LocalDate date, String base, Object fromDepartment, Object toDepartment, Object fromWorker, Object toWorker, Object equipment) {
 
-    }
-
-
-
-    @Override
-    public void update(Object object) {
-/*        if (object.getClass().equals(EquipmentInventoryModel.class)) {
-            EquipmentInventoryModel equipment = (EquipmentInventoryModel) object;
-            EquipmentModel equipmentModel = Equipments.get().getEntity(equipment.getEquipmentModel().getId());
-            if (equipmentModel != null) {
-                equipmentModel.setEquipmentInventoryList(null);
-            }
-        }
-        if (object.getClass().equals(ParameterModel.class)) {
-            ParameterModel parameterModel = (ParameterModel) object;
-            for (EquipmentModel equipment : Equipments.get().getObsEntityList()) {
-                if (equipment.getEntityList() != null) {
-                    for (EquipmentParameterModel equipmentParameter : equipment.getEntityList()) {
-                        if (equipmentParameter.getParameterModel().getId() == parameterModel.getId()) {
-                            equipment.setEntityList(null);
-                            break;
-                        }
-                    }
-                }
-            }
-        }*/
     }
 
     @Override

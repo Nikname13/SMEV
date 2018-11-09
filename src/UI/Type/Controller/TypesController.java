@@ -112,4 +112,9 @@ public class TypesController extends BaseController implements IUpdateUI {
         return null;
     }
 
+    @Override
+    public void destroy() {
+
+    }
+
 }

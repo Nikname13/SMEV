@@ -49,6 +49,11 @@ public class DetailsMovementController extends BaseController implements IUpdate
     }
 
     @Override
+    public void destroy() {
+
+    }
+
+    @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(MovementModel.class.getName())) {
             mMovementModel = MovementPresenter.get().getMovementModel();

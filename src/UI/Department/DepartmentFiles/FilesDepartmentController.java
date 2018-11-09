@@ -3,7 +3,6 @@ package UI.Department.DepartmentFiles;
 import Model.Department.DepartmentModel;
 import Model.FileDumpModel;
 import Presenter.DepartmentPresenter;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import javafx.fxml.FXML;
@@ -15,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class FilesDepartmentController extends BaseController implements IUpdateUI {
+public class FilesDepartmentController extends BaseController {
 
     private DepartmentModel mDepartmentModel;
     private String mTypeDocument;
@@ -47,7 +46,8 @@ public class FilesDepartmentController extends BaseController implements IUpdate
 
     @FXML
     private void onClickAdd() {
-        DepartmentPresenter.get().uploadFiles(getStage());
+        if (DepartmentPresenter.get().uploadFiles(getStage()))
+            ListenersService.get().updateUI(this.getClass());
     }
 
     @FXML
@@ -66,28 +66,21 @@ public class FilesDepartmentController extends BaseController implements IUpdate
 
     }
 
-    @Override
+/*    @Override
     public void updateUI(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
+        if(updateClass.getName().equals(this.getClass().getName())){
+            System.out.println("update UI files");
+        }
+    }*/
 
     @Override
     protected Stage getStage() {
         return (Stage) anchorPaneFiles.getScene().getWindow();
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("destroy files");
+        ListenersService.get().removeListenerUI(this);
     }
 }

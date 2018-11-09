@@ -2,10 +2,9 @@ package Presenter;
 
 import Iteractor.IteractorArea;
 import Model.Area.AreaModel;
-import Service.IUpdateData;
 import Service.ListenersService;
 
-public class AreaPresenter extends BasePresenter implements IUpdateData {
+public class AreaPresenter extends BasePresenter {
 
     private static AreaModel sAreaModel;
     private static AreaPresenter sAreaPresenter;
@@ -41,16 +40,6 @@ public class AreaPresenter extends BasePresenter implements IUpdateData {
 
     public void editArea(AreaModel area) {
         ListenersService.get().updateData(new IteractorArea().edit(area));
-    }
-
-    @Override
-    void loadEntity(int id) {
-
-    }
-
-    @Override
-    public void update(Object equipment) {
-
     }
 
     @Override

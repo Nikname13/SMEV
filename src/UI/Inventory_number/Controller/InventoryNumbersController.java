@@ -83,6 +83,11 @@ public class InventoryNumbersController extends BaseController implements IUpdat
     }
 
     @Override
+    public void destroy() {
+
+    }
+
+    @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             updateTable(InventoryNumberPresenter.get().getObservableInventory());

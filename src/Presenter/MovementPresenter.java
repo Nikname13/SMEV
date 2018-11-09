@@ -8,7 +8,6 @@ import Model.Equipment.EquipmentInventoryModel;
 import Model.Equipment.SelectedEquipmentInventoryShell;
 import Model.Movement.MovementModel;
 import Model.Worker.WorkerModel;
-import Service.IUpdateData;
 import Service.ListenersService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +15,7 @@ import javafx.collections.ObservableList;
 import java.time.LocalDate;
 import java.util.List;
 
-public class MovementPresenter extends BasePresenter implements IUpdateData {
+public class MovementPresenter extends BasePresenter {
     private static MovementPresenter sMovementPresenter;
     private static MovementModel sMovementModel;
 
@@ -118,13 +117,4 @@ public class MovementPresenter extends BasePresenter implements IUpdateData {
         new IteractorMovement().loadData(id);
     }
 
-    @Override
-    public void update(Object equipment) {
-
-    }
-
-    @Override
-    public void delete() {
-
-    }
 }

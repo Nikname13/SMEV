@@ -102,6 +102,11 @@ public class AddEquipmentInventoryController extends BaseController {
         comboBox.setItems(EquipmentPresenter.get().getObservableState());
     }
 
+    @Override
+    public void destroy() {
+
+    }
+
     private void resizeWidthStage() {
         if (mTextFieldCount.isVisible()) {
             getStage().setWidth(getStage().getMinWidth() + (mTextFieldCount.getWidth() + 15));

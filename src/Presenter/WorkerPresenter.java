@@ -5,10 +5,9 @@ import Iteractor.IteractorWorker;
 import Model.Department.DepartmentModel;
 import Model.Post.PostModel;
 import Model.Worker.WorkerModel;
-import Service.IUpdateData;
 import Service.ListenersService;
 
-public class WorkerPresenter extends BasePresenter implements IUpdateData {
+public class WorkerPresenter extends BasePresenter {
 
     private static WorkerModel sWorkerModel;
     private static WorkerPresenter sWorkerPresenter;
@@ -56,15 +55,6 @@ public class WorkerPresenter extends BasePresenter implements IUpdateData {
         return new IteractorPost().addNew(post);
     }
 
-    public void deleteWorker(int id) {
-        new IteractorWorker().delete(id);
-    }
-
-    @Override
-    public void update(Object equipment) {
-
-    }
-
     @Override
     public void delete() {
         if (getSelectedObject() != null) {
@@ -76,8 +66,4 @@ public class WorkerPresenter extends BasePresenter implements IUpdateData {
         }
     }
 
-    @Override
-    void loadEntity(int id) {
-
-    }
 }

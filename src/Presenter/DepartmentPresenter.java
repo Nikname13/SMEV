@@ -7,9 +7,7 @@ import Model.Area.AreaModel;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
 import Model.Department.PurchaseModel;
-import Model.Equipment.EquipmentInventoryModel;
 import Model.Location.LocationModel;
-import Service.IUpdateData;
 import Service.ListenersService;
 import javafx.stage.Stage;
 
@@ -19,7 +17,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class DepartmentPresenter extends BasePresenter implements IUpdateData {
+public class DepartmentPresenter extends BasePresenter {
 
     private static DepartmentModel sDepartmentModel;
     private static PurchaseModel sPurchaseModel;
@@ -85,12 +83,14 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
         new IteractorDepartment().delete(id);
     }
 
-    public void uploadFiles(Stage stage) {
+    public boolean uploadFiles(Stage stage) {
         List<File> fileList = uploadDocFiles(stage);
         if (fileList != null) {
             System.out.println("Процесс открытия файла");
             new IteractorDepartment().uploadFile(sDepartmentModel.getId(), fileList, sTypeDocuments);
+            return true;
         }
+        return false;
     }
 
 
@@ -118,33 +118,6 @@ public class DepartmentPresenter extends BasePresenter implements IUpdateData {
 
     public void downloadSaveFile(String path, String typeDocuments, File savePath) {
         new IteractorDepartment().downloadFile(sDepartmentModel.getId(), typeDocuments, path, savePath);
-    }
-
-    @Override
-    public void update(Object object) {
-        System.out.println(object.getClass() + " " + EquipmentInventoryModel.class);
-/*        if (object.getClass().equals(EquipmentInventoryModel.class)) {
-            EquipmentInventoryModel equipment = (EquipmentInventoryModel) object;
-            Departments.get().getEntity(equipment.getDepartmentModel().getId()).setEquipmentList(null);
-        }*/
-/*        if (object.getClass().equals(WorkerModel.class)) {
-            WorkerModel workerModel = (WorkerModel) object;
-            Departments.get().getEntity(workerModel.getDepartmentModel().getId()).setWorkerList(null);
-        }
-        if (object.getClass().equals(LocationModel.class)) {
-            LocationModel locationModel = (LocationModel) object;
-            for (DepartmentModel departmentModel : locationModel.getDepartmentList()) {
-                Departments.get().getEntity(departmentModel.getId()).setLocationList(null);
-            }
-        }*/
-/*        if (object.getClass().equals(AreaModel.class)) {
-            AreaModel area= (AreaModel) object;
-            for(DepartmentModel departmentModel:Departments.get().getObsEntityList()){
-                if(departmentModel.getAreaModel().getId()==area.getId()){
-                    departmentModel.setAreaModel(area);
-                }
-            }
-        }*/
     }
 
     private void setLoadFalse(int id) {

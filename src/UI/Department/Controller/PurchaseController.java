@@ -87,6 +87,7 @@ public class PurchaseController extends BaseController implements IUpdateUI {
     @Override
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(PurchaseModel.class.getName())) {
+            System.out.println("update Purchase");
             mListViewPurchase.setItems(mDepartmentModel.getObservableEntityList());
         }
     }
@@ -99,5 +100,11 @@ public class PurchaseController extends BaseController implements IUpdateUI {
     @Override
     protected Stage getStage() {
         return (Stage) mAnchorPanePurchase.getScene().getWindow();
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("destroy purchase");
+        ListenersService.get().removeListenerUI(this);
     }
 }
