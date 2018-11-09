@@ -19,29 +19,29 @@ public class BasePopup implements IUpdatePopup {
     private static String sDepartmentListPopup = "/UI/Popup/departmentsListPopup.fxml";
     private static String sSupplyListPopup = "/UI/Popup/supplyListPopup.fxml";
     private static String sInventoryNumberPopup = "/UI/Popup/inventoryNumberPopup.fxml";
+    private static String sFileDumpListPopup = "/UI/Popup/fileDumpListPopup.fxml";
     private JFXPopup mPopup;
+    private boolean mDoubleClick;
+    private IOnMouseClick mPrimaryClickClass;
 
-    public BasePopup(Node node, String resourceURL, IOnMouseClick primaryClick) {
-        ListenersService.get().addListenerPopup(this::hide);
-        try {
-            mPopup = new JFXPopup(FXMLLoader.load(getClass().getResource(resourceURL)));
-            node.setOnMouseClicked(event -> {
-                if (BasePresenter.getSelectedObject() != null) {
-                    if (event.getButton() == MouseButton.SECONDARY) {
-                        ListenersService.get().setListenerOnMouseClick(primaryClick);
-                        mPopup.show(node, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());
-                    }
-                    if (event.getButton() == MouseButton.PRIMARY && primaryClick != null) {
-                            primaryClick.primaryClick(node.getId());
-                    }
-                }
-            });
-        } catch (IOException ex) {
-            System.out.println("Ошибка загрузки " + resourceURL);
-            ex.printStackTrace();
-        }
+    public BasePopup(Node node, String resourceURL) {
+        initPopup(node, resourceURL);
     }
 
+    public BasePopup(Node node, String resourceURL, IOnMouseClick primaryClickClass) {
+        mPrimaryClickClass = primaryClickClass;
+        initPopup(node, resourceURL);
+    }
+
+    public BasePopup(Node node, String resourceURL, IOnMouseClick primaryClickClass, boolean doubleClick) {
+        mDoubleClick = doubleClick;
+        mPrimaryClickClass = primaryClickClass;
+        initPopup(node, resourceURL);
+    }
+
+    public static String getFileDumpListPopup() {
+        return sFileDumpListPopup;
+    }
 
     public static String getEquipmentInventoryPopup() {
         return sEquipmentInventoryPopup;
@@ -65,6 +65,33 @@ public class BasePopup implements IUpdatePopup {
 
     public static String getEquipmentInventoryReadPopup() {
         return sEquipmentInventoryReadPopup;
+    }
+
+    private void initPopup(Node node, String resourceURL) {
+        ListenersService.get().addListenerPopup(this::hide);
+        try {
+            mPopup = new JFXPopup(FXMLLoader.load(getClass().getResource(resourceURL)));
+            node.setOnMouseClicked(event -> {
+                if (BasePresenter.getSelectedObject() != null) {
+                    if (event.getButton() == MouseButton.SECONDARY) {
+                        ListenersService.get().setListenerOnMouseClick(mPrimaryClickClass);
+                        mPopup.show(node, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());
+                    }
+                    if (mPrimaryClickClass != null && event.getButton() == MouseButton.PRIMARY) {
+                        if (mDoubleClick) {
+                            if (event.getClickCount() == 2) {
+                                mPrimaryClickClass.primaryClick(node.getId());
+                            }
+                        } else {
+                            mPrimaryClickClass.primaryClick(node.getId());
+                        }
+                    }
+                }
+            });
+        } catch (IOException ex) {
+            System.out.println("Ошибка загрузки " + resourceURL);
+            ex.printStackTrace();
+        }
     }
 
     public JFXPopup get() {

@@ -55,34 +55,10 @@ public class EditParameterController extends BaseController {
     }
 
     @Override
-    public void updateUI(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
-
-    @Override
     protected Stage getStage() {
         return null;
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }
 
 

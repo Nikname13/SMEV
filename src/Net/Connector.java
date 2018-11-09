@@ -1,6 +1,6 @@
 package Net;
 
-import Service.ListenersService;
+import Service.ErrorService;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -46,7 +46,7 @@ public class Connector {
             System.out.println("out " + sb.toString());
             connect.disconnect();
             if (sb.toString().startsWith("Error")) {
-                ListenersService.get().showError(sb.toString());
+                ErrorService.get().showError(sb.toString());
                 return null;
             }
             return sb.toString();

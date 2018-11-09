@@ -210,12 +210,11 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     }
 
     public List<FileDumpModel> getFileDumpDocList() {
-        if (mFileDumpDocList == null) mFileDumpDocList = new ArrayList<>();
-        mFileDumpDocList = new IteractorDepartment().getFiles(getId(), getTypeDoc());
+        mFileDumpDocList = new IteractorDepartment().getFilesList(getId(), getTypeDoc());
         return mFileDumpDocList;
     }
 
-    public void setFileDumpDocList(List<File> fileList) throws IOException {
+    public void setFileDumpDocList(List<File> fileList) {
         if (mFileDumpDocList == null) mFileDumpDocList = new ArrayList<>();
         mFileDumpDocList = new IteractorDepartment().uploadFile(getId(), fileList, getTypeDoc());
         for (FileDumpModel file : mFileDumpDocList) {
@@ -245,6 +244,24 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
 
     public void setFileDumpConfigList(List<FileDumpModel> fileDumpConfigList) {
         mFileDumpConfigList = fileDumpConfigList;
+    }
+
+    public ObservableList<FileDumpModel> getObsFileDumpConfigList() {
+        ObservableList<FileDumpModel> list = FXCollections.observableArrayList();
+        for (FileDumpModel file : getFileDumpConfigList()) {
+            list.add(file);
+        }
+        return list;
+    }
+
+    public ObservableList<FileDumpModel> getFilesList(String type) {
+        switch (type) {
+            case "doc":
+                return getObsFileDumpDocList();
+            case "config":
+                return getObsFileDumpConfigList();
+        }
+        return null;
     }
 
     public List<FileDumpModel> getFileDumpPhotoList() {

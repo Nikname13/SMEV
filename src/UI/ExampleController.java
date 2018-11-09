@@ -1,14 +1,17 @@
 package UI;
 
+import Service.ErrorService;
 import Service.IErrorMessage;
 import Service.ListenersService;
 import UI.MainTabs.Controller.*;
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ExampleController extends BaseController implements IErrorMessage {
@@ -20,7 +23,7 @@ public class ExampleController extends BaseController implements IErrorMessage {
     private JFXTabPane mTabContainer;
 
     public ExampleController() {
-        ListenersService.get().setErrorListener(this::showError);
+        ErrorService.get().setErrorListener(this::showError);
     }
 
     @FXML
@@ -67,7 +70,10 @@ public class ExampleController extends BaseController implements IErrorMessage {
 
     @Override
     public void showError(String errorMessage) {
-        JFXDialog dialog = new JFXDialog(mStackPainMain, new Label(errorMessage), JFXDialog.DialogTransition.BOTTOM);
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text("Ошибка"));
+        content.setBody(new Label(errorMessage));
+        JFXDialog dialog = new JFXDialog(mStackPainMain, content, JFXDialog.DialogTransition.BOTTOM);
         dialog.show();
     }
 

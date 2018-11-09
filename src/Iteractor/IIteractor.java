@@ -36,7 +36,9 @@ public interface IIteractor<T> {
 
     List<FileDumpModel> uploadFile(int id, List<File> files, String type) throws IOException;
 
-    List<FileDumpModel> getFiles(int id, String type);
+    List<FileDumpModel> getFilesList(int id, String type);
+
+    FileDumpModel editFile(FileDumpModel entity);
 
     File downloadFile(int id, String type, String path, File file);
 

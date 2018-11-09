@@ -3,79 +3,125 @@ package UI.Department.DepartmentFiles;
 import Model.Department.DepartmentModel;
 import Model.FileDumpModel;
 import Presenter.DepartmentPresenter;
+import Presenter.FileDumpPresenter;
+import Service.IOnMouseClick;
 import Service.ListenersService;
 import UI.BaseController;
+import UI.Popup.Controller.BasePopup;
+import UI.Validator.BaseValidator;
+import com.jfoenix.controls.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
+import javafx.scene.control.ListCell;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.File;
-
-public class FilesDepartmentController extends BaseController {
+public class FilesDepartmentController extends BaseController implements IOnMouseClick {
 
     private DepartmentModel mDepartmentModel;
     private String mTypeDocument;
+    private BaseValidator mBaseValidatorDialog = new BaseValidator();
 
     public FilesDepartmentController (){
         ListenersService.get().addListenerUI(this);
-        System.out.println("constructor file department bleat");
         mDepartmentModel=DepartmentPresenter.get().getDepartmentModel();
         mTypeDocument=DepartmentPresenter.get().getTypeDocuments();
     }
 
     @FXML
-    private TableView<FileDumpModel> tableViewFile;
+    private StackPane mFilesPane;
     @FXML
-    private TableColumn<FileDumpModel,String> columnName;
-    @FXML
-    private AnchorPane anchorPaneFiles;
+    private JFXListView<FileDumpModel> mFileDumpList;
 
     @FXML
     public void initialize(){
-        columnName.setCellValueFactory(cellData->cellData.getValue().nameProperty());
-        tableViewFile.setItems(mDepartmentModel.getObsFileDumpDocList());
-        tableViewFile.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectFile(newValue)));
-        System.out.println("initialize file department bleat");
-       /* getStage().setOnCloseRequest(event -> {
-            System.out.println("clooooose");
-        });*/
+        initListView();
+        initPopup();
+    }
+
+    private void initPopup() {
+        new BasePopup(mFileDumpList, BasePopup.getFileDumpListPopup(), this, true);
+    }
+
+    private void initListView() {
+        mFileDumpList.setCellFactory(p -> new ListCell<>() {
+            @Override
+            protected void updateItem(FileDumpModel item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item.getName());
+                } else setText(null);
+            }
+        });
+        mFileDumpList.setItems(mDepartmentModel.getFilesList(mTypeDocument));
+        mFileDumpList.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedFile(newValue)));
+    }
+
+    private void selectedFile(FileDumpModel newValue) {
+        if (newValue != null) {
+            FileDumpPresenter.get().setFileDumpModel(newValue);
+        } else {
+            FileDumpPresenter.get().setFileDumpModel(null);
+        }
+    }
+
+    private void createDialog() {
+        String oldFileName = FileDumpPresenter.get().getFileDumpModel().getName();
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text("Редактирование"));
+
+        JFXTextField text = new JFXTextField();
+        text.setText(oldFileName.substring(0, oldFileName.lastIndexOf(".")));
+        text.setPrefWidth(200);
+        text.setLabelFloat(true);
+        text.setPromptText("Наименование файла");
+        text.setFocusColor(Paint.valueOf("#40a85f"));
+        initPromptText(text, "Введите наименование файла", "Наименование файла");
+        mBaseValidatorDialog.setJFXTextFields(text);
+
+        JFXButton button = new JFXButton("Сохранить");
+        button.setRipplerFill(Paint.valueOf("#40a85f"));
+        button.setPrefHeight(35.0);
+
+        content.setBody(text);
+        content.setActions(button);
+        JFXDialog dialog = new JFXDialog(mFilesPane, content, JFXDialog.DialogTransition.TOP);
+
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (mBaseValidatorDialog.validate()) {
+                    DepartmentPresenter.get().editFile(text.getText());
+                    dialog.close();
+                }
+            }
+        });
+        dialog.show();
     }
 
     @FXML
     private void onClickAdd() {
-        if (DepartmentPresenter.get().uploadFiles(getStage()))
-            ListenersService.get().updateUI(this.getClass());
+        DepartmentPresenter.get().uploadFiles(getStage());
     }
 
     @FXML
     private void selectFile(FileDumpModel file) {
         //new DepartmentPresenter().downloadOpenFile(file.getPath(),mTypeDocument);
-        String fileName=file.getName();
-        FileChooser fileChooser = new FileChooser();//Класс работы с диалогом выборки и сохранения
-        fileChooser.setTitle("Open Document");//Заголовок диалога
-        fileChooser.setInitialFileName(file.getName());
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("File", "*"+fileName.substring(fileName.length()-4,fileName.length())));
-        File saveFile = fileChooser.showSaveDialog(anchorPaneFiles.getScene().getWindow());
-        if(saveFile!= null){
-            System.out.println(saveFile.getPath());
-            DepartmentPresenter.get().downloadSaveFile(file.getPath(), mTypeDocument, saveFile);
-        }
 
     }
 
-/*    @Override
+    @Override
     public void updateUI(Class<?> updateClass) {
         if(updateClass.getName().equals(this.getClass().getName())){
-            System.out.println("update UI files");
         }
-    }*/
+    }
 
     @Override
     protected Stage getStage() {
-        return (Stage) anchorPaneFiles.getScene().getWindow();
+        return (Stage) mFilesPane.getScene().getWindow();
     }
 
     @Override
@@ -83,4 +129,21 @@ public class FilesDepartmentController extends BaseController {
         System.out.println("destroy files");
         ListenersService.get().removeListenerUI(this);
     }
+
+    @Override
+    public void primaryClick(String id) {
+        switch (id) {
+            case "saveFile":
+                DepartmentPresenter.get().saveSelectedFile(getStage());
+                break;
+            case "renameFile":
+                createDialog();
+                break;
+            case "mFileDumpList":
+                System.out.println("double click");
+                DepartmentPresenter.get().openSelectedFile();
+                break;
+        }
+    }
+
 }

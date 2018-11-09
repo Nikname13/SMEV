@@ -57,13 +57,6 @@ public class ListenersService {
         mListenerOnMouseClick = listenerOnMouseClick;
     }
 
-    public IErrorMessage getErrorListener() {
-        return mErrorListener;
-    }
-
-    public void setErrorListener(IErrorMessage errorListener) {
-        mErrorListener = errorListener;
-    }
 
     public void updateUI(Class<?> updateClass){
         for (IUpdateUI listener : getListenerUI()) {
@@ -105,10 +98,6 @@ public class ListenersService {
         for (IUpdatePopup listener : mListenerPopup) {
             listener.hide();
         }
-    }
-
-    public void showError(String errorMessage) {
-        mErrorListener.showError(errorMessage);
     }
 
     public void onMouseClick(String id) {

@@ -7,13 +7,12 @@ import Model.Area.AreaModel;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
 import Model.Department.PurchaseModel;
+import Model.FileDumpModel;
 import Model.Location.LocationModel;
 import Service.ListenersService;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -83,6 +82,20 @@ public class DepartmentPresenter extends BasePresenter {
         new IteractorDepartment().delete(id);
     }
 
+    public String getTypeDocuments() {
+        return sTypeDocuments;
+    }
+
+    public void setTypeDocuments(String type) {
+        sTypeDocuments = type;
+    }
+
+    public void editFile(String name) {
+        FileDumpModel ediFile = FileDumpPresenter.get().getFileDumpModel();
+        ediFile.setName(name.concat(ediFile.getName().substring(ediFile.getName().lastIndexOf("."))));
+        new IteractorDepartment().editFile(ediFile);
+    }
+
     public boolean uploadFiles(Stage stage) {
         List<File> fileList = uploadDocFiles(stage);
         if (fileList != null) {
@@ -93,35 +106,20 @@ public class DepartmentPresenter extends BasePresenter {
         return false;
     }
 
-
-
-    public String getTypeDocuments() {
-        return sTypeDocuments;
-    }
-
-    public void setTypeDocuments(String type) {
-        sTypeDocuments = type;
-    }
-
-    public void downloadOpenFile(String path, String typeDocuments) {
-        try {
-            File file = File.createTempFile(path.substring(0, path.length() - 4), path.substring(path.length() - 4));
-            Desktop desktop = null;
-            if (Desktop.isDesktopSupported()) {
-                desktop = Desktop.getDesktop();
-            }
-            desktop.open(new IteractorDepartment().downloadFile(sDepartmentModel.getId(), typeDocuments, path, file));
-        } catch (IOException ex) {
-            System.out.println(ex);
+    public void saveSelectedFile(Stage stage) {
+        File savePathFile = saveFile(FileDumpPresenter.get().getFileDumpModel(), stage);
+        if (savePathFile != null) {
+            getFile(savePathFile);
         }
     }
 
-    public void downloadSaveFile(String path, String typeDocuments, File savePath) {
-        new IteractorDepartment().downloadFile(sDepartmentModel.getId(), typeDocuments, path, savePath);
+    public void openSelectedFile() {
+        openFile(FileDumpPresenter.get().getFileDumpModel().getPath());
     }
 
-    private void setLoadFalse(int id) {
-        Departments.get().getEntity(id).setLoad(false);
+    @Override
+    protected File getFile(File savePathFile) {
+        return new IteractorDepartment().downloadFile(sDepartmentModel.getId(), sTypeDocuments, FileDumpPresenter.get().getFileDumpModel().getPath(), savePathFile);
     }
 
     @Override
@@ -142,4 +140,5 @@ public class DepartmentPresenter extends BasePresenter {
     public void loadEntity(int id) {
             new IteractorDepartment().loadData(id);
     }
+
 }

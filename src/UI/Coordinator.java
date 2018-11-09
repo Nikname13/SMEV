@@ -334,7 +334,7 @@ public class Coordinator {
 
     public void goToFilesDepartmentWindow(Stage stage) {
         try {
-            windowSceneContent("Department/DepartmentFiles/filesDepartment.fxml", stage, "файлы", 100.0, 200.0);
+            windowSceneContent("Department/DepartmentFiles/filesDepartment.fxml", stage, "файлы", 350, 400);
         }catch (Exception ex){
             System.out.println("Exception goToFilesDepartmentWindow " + ex);
         }

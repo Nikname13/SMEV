@@ -168,7 +168,7 @@ public abstract class GenericIteractor<T> implements IIteractor<T> {
     }
 
     @Override
-    public List<FileDumpModel> getFiles(int id, String type) {
+    public List<FileDumpModel> getFilesList(int id, String type) {
         URLBuilder url=new URLBuilder(getLoadFileURL());
         List<FileDumpModel> list= new Gson().fromJson(
                 Connector.get(url.withParam("id",String.valueOf(id)).withParam("type", type).build()),
@@ -180,6 +180,15 @@ public abstract class GenericIteractor<T> implements IIteractor<T> {
     public File downloadFile(int id, String type, String path, File file) {
         URLBuilder url=new URLBuilder(getLoadFileURL());
        return Connector.get(url.withParam("id",String.valueOf(id)).withParam("type", type).withParam("path", path).build(),file);
+    }
+
+    @Override
+    public FileDumpModel editFile(FileDumpModel entity) {
+        String json = Connector.put(new URLBuilder(getLoadFileURL()).build(), new GsonBuilder().create().toJson(entity));
+        if (json != null) {
+            return new Gson().fromJson(json, FileDumpModel.class);
+        }
+        return null;
     }
 
     @Override

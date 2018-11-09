@@ -239,7 +239,7 @@ public class EditDepartmentController extends BaseController implements IOnMouse
 
     private void initPopup() {
         new BasePopup(mTreeTableEquipmentInventory, BasePopup.getEquipmentInventoryReadPopup(), this);
-        new BasePopup(mListViewLocation, BasePopup.getBaseListPopup(), null);
+        new BasePopup(mListViewLocation, BasePopup.getBaseListPopup());
         new BasePopup(mListViewWorker, BasePopup.getBaseListPopup(), this);
     }
 
