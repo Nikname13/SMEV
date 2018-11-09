@@ -45,8 +45,4 @@ public class AddProviderController extends BaseController {
         return null;
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }

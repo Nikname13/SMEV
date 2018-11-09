@@ -581,6 +581,8 @@ public abstract class BaseController implements IUpdateUI {
     }
 
 
-    public abstract void destroy();
+    public void destroy() {
+        ErrorService.get().overrideError("destroy", this.getClass());
+    }
 }
 

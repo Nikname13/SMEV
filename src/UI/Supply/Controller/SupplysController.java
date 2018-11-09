@@ -4,7 +4,6 @@ import Model.Provider.ProviderModel;
 import Model.Supply.SupplyModel;
 import Presenter.SupplyPresenter;
 import Service.IOnMouseClick;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseController;
@@ -18,7 +17,7 @@ import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class SupplysController extends BaseController implements IUpdateUI, IOnMouseClick {
+public class SupplysController extends BaseController implements IOnMouseClick {
 
     @FXML
     private TreeTableView<SupplyModel> mTreeTableSupply;
@@ -110,10 +109,6 @@ public class SupplysController extends BaseController implements IUpdateUI, IOnM
     }
 
     @Override
-    public void destroy() {
-    }
-
-    @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             System.out.println("updateUI supple");
@@ -133,11 +128,6 @@ public class SupplysController extends BaseController implements IUpdateUI, IOnM
         if (updateClass.getName().equals(SupplyModel.class.getName())) {
             updateTable(SupplyPresenter.get().getObservableSupply());
         }
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
     }
 
     @Override

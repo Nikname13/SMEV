@@ -43,8 +43,4 @@ public class AddParameterController extends BaseController {
         return null;
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }

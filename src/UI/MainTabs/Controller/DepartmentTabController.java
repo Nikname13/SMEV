@@ -1,6 +1,5 @@
 package UI.MainTabs.Controller;
 
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
@@ -9,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
-public class DepartmentTabController extends BaseTabController implements IUpdateUI {
+public class DepartmentTabController extends BaseTabController {
 
     public DepartmentTabController() {
         ListenersService.get().addListenerUI(this);
@@ -31,20 +30,5 @@ public class DepartmentTabController extends BaseTabController implements IUpdat
             ListenersService.get().updateUI(DepartmentsController.class);
             mDepartmentTabContainer.getSelectionModel().select(0);
         }
-    }
-
-    @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
     }
 }

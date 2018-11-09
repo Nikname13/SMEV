@@ -72,9 +72,4 @@ public class AddPurchaseController extends BaseController {
     protected Stage getStage() {
         return null;
     }
-
-    @Override
-    public void destroy() {
-
-    }
 }

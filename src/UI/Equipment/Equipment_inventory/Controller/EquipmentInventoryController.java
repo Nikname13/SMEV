@@ -90,11 +90,6 @@ public class EquipmentInventoryController extends BaseController implements IUpd
     }
 
     @Override
-    public void destroy() {
-
-    }
-
-    @Override
     protected void initComboBoxNumber(JFXComboBox<InventoryNumberModel> comboBox, boolean isSelectionItem, String promptText, String label) {
         super.initComboBoxNumber(comboBox, isSelectionItem, promptText, label);
         comboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedNumber()));
@@ -188,13 +183,4 @@ public class EquipmentInventoryController extends BaseController implements IUpd
         }
     }
 
-    @Override
-    public void updateControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
 }

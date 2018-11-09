@@ -1,6 +1,5 @@
 package UI.TabPane.Controller;
 
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
@@ -8,7 +7,7 @@ import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 
-public class TabPaneSecondLvlTabController extends BaseTabController implements IUpdateUI {
+public class TabPaneSecondLvlTabController extends BaseTabController {
 
     public TabPaneSecondLvlTabController() {
         System.out.println("second lvl controller");
@@ -32,11 +31,6 @@ public class TabPaneSecondLvlTabController extends BaseTabController implements 
     }
 
     @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             System.out.println("UPDATESECONDLVLTABPANE");
@@ -44,8 +38,4 @@ public class TabPaneSecondLvlTabController extends BaseTabController implements 
         }
     }
 
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
 }

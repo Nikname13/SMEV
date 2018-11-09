@@ -6,7 +6,6 @@ import Model.Supply.SupplyModel;
 import Presenter.InventoryNumberPresenter;
 import Presenter.SupplyPresenter;
 import Service.IOnMouseClick;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
@@ -22,7 +21,7 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class EditSupplyController extends BaseController implements IUpdateUI, IOnMouseClick {
+public class EditSupplyController extends BaseController implements IOnMouseClick {
 
     private SupplyModel mSupplyModel;
     private String mTypeSupply;
@@ -127,11 +126,6 @@ public class EditSupplyController extends BaseController implements IUpdateUI, I
         comboBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> providerListener());
     }
 
-    @Override
-    public void destroy() {
-
-    }
-
     private void providerListener() {
         if (mComboBoxProvider.focusedProperty().get()) {
             setVisibleEditButton();
@@ -204,21 +198,6 @@ public class EditSupplyController extends BaseController implements IUpdateUI, I
                 mAuctionButton.setSelected(true);
                 break;
         }
-    }
-
-    @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
     }
 
     @Override

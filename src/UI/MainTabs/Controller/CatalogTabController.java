@@ -1,6 +1,5 @@
 package UI.MainTabs.Controller;
 
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.Area.Controller.AreasController;
@@ -17,7 +16,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 
-public class CatalogTabController extends BaseTabController implements IUpdateUI {
+public class CatalogTabController extends BaseTabController {
 
     @FXML
     private JFXListView<Label> mListView;
@@ -81,20 +80,5 @@ public class CatalogTabController extends BaseTabController implements IUpdateUI
             mCatalogTabContainer.getSelectionModel().select(0);
             mListView.getSelectionModel().clearSelection();
         }
-    }
-
-    @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
     }
 }

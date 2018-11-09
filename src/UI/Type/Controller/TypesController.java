@@ -2,7 +2,6 @@ package UI.Type.Controller;
 
 import Model.Type.TypeModel;
 import Presenter.TypePresenter;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseController;
@@ -20,7 +19,7 @@ import javafx.stage.Stage;
 
 import static UI.BaseTabController.nextTab;
 
-public class TypesController extends BaseController implements IUpdateUI {
+public class TypesController extends BaseController {
 
     @FXML
     private TreeTableView<TypeModel> mTreeTableView;
@@ -103,18 +102,9 @@ public class TypesController extends BaseController implements IUpdateUI {
     }
 
     @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
-
-    @Override
     protected Stage getStage() {
         return null;
     }
 
-    @Override
-    public void destroy() {
-
-    }
 
 }

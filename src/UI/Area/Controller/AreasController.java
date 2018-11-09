@@ -2,7 +2,6 @@ package UI.Area.Controller;
 
 import Model.Area.AreaModel;
 import Presenter.AreaPresenter;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
@@ -17,7 +16,7 @@ import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class AreasController extends BaseController implements IUpdateUI {
+public class AreasController extends BaseController {
 
     public AreasController(){
         ListenersService.get().addListenerUI(this);
@@ -106,18 +105,8 @@ public class AreasController extends BaseController implements IUpdateUI {
     }
 
     @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
-
-    @Override
     protected Stage getStage() {
         return (Stage) mAnchorPaneArea.getScene().getWindow();
-    }
-
-    @Override
-    public void destroy() {
-
     }
 
 }

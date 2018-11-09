@@ -174,8 +174,4 @@ public class BaseTypeController extends BaseController {
         return null;
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }

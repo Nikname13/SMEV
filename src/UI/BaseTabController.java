@@ -1,9 +1,11 @@
 package UI;
 
+import Service.ErrorService;
+import Service.IUpdateUI;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
-public abstract class BaseTabController {
+public abstract class BaseTabController implements IUpdateUI {
 
     public static void nextTab(Tab nextTab, TabPane tabPane) {
         boolean flag = false;
@@ -23,5 +25,23 @@ public abstract class BaseTabController {
         }
     }
 
+    @Override
+    public void updateUI(Class<?> updateClass) {
+        ErrorService.get().overrideError("updateUI", this.getClass());
+    }
 
+    @Override
+    public void refreshControl(Class<?> updateClass) {
+        ErrorService.get().overrideError("refreshControl", this.getClass());
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass) {
+        ErrorService.get().overrideError("updateControl", this.getClass());
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+        ErrorService.get().overrideError("updateControl", this.getClass());
+    }
 }

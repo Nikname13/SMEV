@@ -3,9 +3,9 @@ package UI.Equipment.Controller;
 import Model.AbstractModel;
 import Model.Equipment.EquipmentModel;
 import Presenter.EquipmentPresenter;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
+import UI.BaseController;
 import UI.Coordinator;
 import UI.Popup.Controller.BasePopup;
 import javafx.application.Platform;
@@ -16,7 +16,7 @@ import javafx.scene.control.TreeView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class EquipmentsController implements IUpdateUI {
+public class EquipmentsController extends BaseController {
 
     public EquipmentsController() {
         ListenersService.get().addListenerUI(this);
@@ -81,7 +81,7 @@ public class EquipmentsController implements IUpdateUI {
 
     @FXML
     private void onClickAdd() {
-        new Coordinator().goToAddEquipmentWindow((Stage) mStackPaneEquipments.getScene().getWindow());
+        new Coordinator().goToAddEquipmentWindow(getStage());
     }
 
     private void selectedEquipment(TreeItem<AbstractModel<?>> equipment) {
@@ -95,6 +95,11 @@ public class EquipmentsController implements IUpdateUI {
                 EquipmentPresenter.get().setEquipmentModel(null);
             }
         }
+    }
+
+    @Override
+    protected Stage getStage() {
+        return (Stage) mStackPaneEquipments.getScene().getWindow();
     }
 
     @Override

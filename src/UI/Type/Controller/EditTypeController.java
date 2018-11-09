@@ -3,7 +3,6 @@ package UI.Type.Controller;
 import Model.Parameter.ParameterModel;
 import Model.Type.TypeModel;
 import Presenter.TypePresenter;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -15,7 +14,7 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.stage.Stage;
 
-public class EditTypeController extends BaseTypeController implements IUpdateUI {
+public class EditTypeController extends BaseTypeController {
 
     private TypeModel mTypeModel;
     @FXML
@@ -84,22 +83,6 @@ public class EditTypeController extends BaseTypeController implements IUpdateUI 
             updateTableView(mTypeModel.getObservableEntityList());
             setInvisibleEditButton();
         }
-    }
-
-
-    @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
     }
 
     @Override

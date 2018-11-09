@@ -10,7 +10,6 @@ import Model.State.StateModel;
 import Model.Type.TypeModel;
 import Presenter.EquipmentPresenter;
 import Service.IOnMouseClick;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseController;
@@ -42,7 +41,7 @@ import javafx.stage.Stage;
 
 import static UI.BaseTabController.nextTab;
 
-public class EditEquipmentController extends BaseController implements IUpdateUI, IOnMouseClick {
+public class EditEquipmentController extends BaseController implements IOnMouseClick {
 
     private static EquipmentModel sEquipmentModel;
     private BaseValidator mBaseValidator = new BaseValidator();
@@ -353,18 +352,8 @@ public class EditEquipmentController extends BaseController implements IUpdateUI
     }
 
     @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
-
-    @Override
     protected Stage getStage() {
         return (Stage) mStackPaneEditEquipment.getScene().getWindow();
-    }
-
-    @Override
-    public void destroy() {
-
     }
 
     @Override

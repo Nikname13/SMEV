@@ -2,7 +2,6 @@ package UI.Movement.Controller;
 
 import Model.Movement.MovementModel;
 import Presenter.MovementPresenter;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseController;
@@ -17,7 +16,7 @@ import javafx.stage.Stage;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
-public class MovementsController extends BaseController implements IUpdateUI {
+public class MovementsController extends BaseController {
 
     @FXML
     private TreeTableView<MovementModel> mTreeTableMovement;
@@ -116,26 +115,10 @@ public class MovementsController extends BaseController implements IUpdateUI {
     }
 
     @Override
-    public void updateUI(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(MovementModel.class.getName())) {
             updateTreeTable();
         }
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
     }
 
     @Override
@@ -143,8 +126,4 @@ public class MovementsController extends BaseController implements IUpdateUI {
         return (Stage) mStackPaneMovement.getScene().getWindow();
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }

@@ -1,6 +1,7 @@
 package UI.Equipment.Equipment_inventory.Equipment_number.Controller;
 
 import Presenter.EquipmentPresenter;
+import UI.BaseController;
 import UI.Validator.BaseValidator;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -11,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
-public class AddInventoryNumberLog {
+public class AddInventoryNumberLog extends BaseController {
 
     private BaseValidator mBaseValidator = new BaseValidator();
 
@@ -37,7 +38,7 @@ public class AddInventoryNumberLog {
     private void onClickAdd() {
         if (mBaseValidator.validate()) {
             EquipmentPresenter.get().addEquipmentInventoryLogModel(mTextAreaDescription.getText(), LocalDate.now());
-            close();
+            close(mAnchorPaneInventoryLog);
         }
 
     }
@@ -45,11 +46,11 @@ public class AddInventoryNumberLog {
     @FXML
     private void onClickCancel() {
         EquipmentPresenter.get().cancel();
-        close();
+        close(mAnchorPaneInventoryLog);
     }
 
-    private void close() {
-        Stage stage = (Stage) mAnchorPaneInventoryLog.getScene().getWindow();
-        stage.close();
+    @Override
+    protected Stage getStage() {
+        return (Stage) mAnchorPaneInventoryLog.getScene().getWindow();
     }
 }

@@ -3,7 +3,6 @@ package UI.Inventory_number.Controller;
 import Model.Inventory_number.InventoryNumberModel;
 import Presenter.InventoryNumberPresenter;
 import Service.IOnMouseClick;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseController;
@@ -21,7 +20,7 @@ import javafx.stage.Stage;
 import static UI.BaseTabController.nextTab;
 
 
-public class InventoryNumbersController extends BaseController implements IUpdateUI, IOnMouseClick {
+public class InventoryNumbersController extends BaseController implements IOnMouseClick {
 
     @FXML
     private TableView<InventoryNumberModel> mTableViewNumber;
@@ -83,11 +82,6 @@ public class InventoryNumbersController extends BaseController implements IUpdat
     }
 
     @Override
-    public void destroy() {
-
-    }
-
-    @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             updateTable(InventoryNumberPresenter.get().getObservableInventory());
@@ -111,11 +105,6 @@ public class InventoryNumbersController extends BaseController implements IUpdat
         if (updateClass.getName().equals(InventoryNumberModel.class.getName())) {
             updateTable(InventoryNumberPresenter.get().getObservableInventory());
         }
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
     }
 
     @Override

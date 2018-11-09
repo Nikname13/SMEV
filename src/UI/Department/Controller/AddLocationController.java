@@ -53,11 +53,6 @@ public class AddLocationController extends BaseController {
         mComboBoxLocation.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedLocation()));
     }
 
-    @Override
-    public void destroy() {
-
-    }
-
     private void selectedLocation() {
         if (mComboBoxLocation.getSelectionModel().getSelectedIndex() != -1) {
             setSelectedLocation(true);

@@ -1,7 +1,6 @@
 package UI.MainTabs.Controller;
 
 import Model.Equipment.EquipmentModel;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
@@ -10,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
-public class EquipmentTabController extends BaseTabController implements IUpdateUI {
+public class EquipmentTabController extends BaseTabController {
 
     public EquipmentTabController() {
         ListenersService.get().addListenerUI(this);
@@ -33,20 +32,5 @@ public class EquipmentTabController extends BaseTabController implements IUpdate
             ListenersService.get().updateControl(EquipmentModel.class);
             mEquipmentTabContainer.getSelectionModel().select(0);
         }
-    }
-
-    @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
     }
 }

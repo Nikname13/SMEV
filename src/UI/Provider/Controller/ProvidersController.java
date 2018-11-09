@@ -2,7 +2,6 @@ package UI.Provider.Controller;
 
 import Model.Provider.ProviderModel;
 import Presenter.ProviderPresenter;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
@@ -17,7 +16,7 @@ import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ProvidersController extends BaseController implements IUpdateUI {
+public class ProvidersController extends BaseController {
 
     @FXML
     private TreeTableView<ProviderModel> mTreeTableViewProvider;
@@ -100,11 +99,6 @@ public class ProvidersController extends BaseController implements IUpdateUI {
     }
 
     @Override
-    public void destroy() {
-
-    }
-
-    @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             updateTable(ProviderPresenter.get().getObservableProvider());
@@ -126,8 +120,4 @@ public class ProvidersController extends BaseController implements IUpdateUI {
         }
     }
 
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
 }

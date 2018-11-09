@@ -50,11 +50,6 @@ public class AddInventoryNumberController extends BaseController {
         comboBox.setItems(Supplys.get().getObsEntityList());
     }
 
-    @Override
-    public void destroy() {
-
-    }
-
     @FXML
     private void onClickAdd(){
         if (mBaseValidator.validate()) {

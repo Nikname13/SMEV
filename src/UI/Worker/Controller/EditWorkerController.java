@@ -69,12 +69,6 @@ public class EditWorkerController extends BaseController {
 
     }
 
-    @Override
-    public void destroy() {
-
-    }
-
-
     private void selectedPost() {
         if (mComboBoxPost.getSelectionModel().selectedIndexProperty().get() != -1) {
             setSelectedPost(true);

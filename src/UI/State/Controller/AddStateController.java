@@ -42,8 +42,4 @@ public class AddStateController extends BaseController {
         return null;
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }

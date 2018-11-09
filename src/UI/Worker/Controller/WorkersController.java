@@ -3,7 +3,6 @@ package UI.Worker.Controller;
 import Model.Worker.WorkerModel;
 import Presenter.WorkerPresenter;
 import Service.IOnMouseClick;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
@@ -14,7 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class WorkersController extends BaseController implements IUpdateUI, IOnMouseClick {
+public class WorkersController extends BaseController implements IOnMouseClick {
 
     @FXML
     private TableView<WorkerModel> mTableViewWorkers;
@@ -65,11 +64,6 @@ public class WorkersController extends BaseController implements IUpdateUI, IOnM
     }
 
     @Override
-    public void destroy() {
-
-    }
-
-    @Override
     public void primaryClick(String id) {
         switch (id) {
             case "mTableViewWorkers":
@@ -99,8 +93,4 @@ public class WorkersController extends BaseController implements IUpdateUI, IOnM
         }
     }
 
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
 }

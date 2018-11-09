@@ -177,11 +177,6 @@ public class AddSupplyController extends BaseController {
         //comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> providerListener(newValue));
     }
 
-    @Override
-    public void destroy() {
-
-    }
-
     private void initRadioButton() {
         ToggleGroup group=new ToggleGroup();
         mSupplyButton.setToggleGroup(group);

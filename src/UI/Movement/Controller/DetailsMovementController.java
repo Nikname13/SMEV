@@ -3,7 +3,6 @@ package UI.Movement.Controller;
 import Model.Movement.MovementEquipment;
 import Model.Movement.MovementModel;
 import Presenter.MovementPresenter;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import com.jfoenix.controls.JFXTextArea;
@@ -16,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class DetailsMovementController extends BaseController implements IUpdateUI {
+public class DetailsMovementController extends BaseController {
 
     private MovementModel mMovementModel;
     @FXML
@@ -73,20 +72,5 @@ public class DetailsMovementController extends BaseController implements IUpdate
         }
         mTreeTableEquipment.setRoot(rootItem);
         mTreeTableEquipment.setShowRoot(false);
-    }
-
-    @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
     }
 }

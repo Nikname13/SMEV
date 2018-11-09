@@ -1,7 +1,6 @@
 package UI.MainTabs.Controller;
 
 import Model.Movement.MovementModel;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
@@ -9,7 +8,7 @@ import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 
-public class MovementTabController extends BaseTabController implements IUpdateUI {
+public class MovementTabController extends BaseTabController {
 
     @FXML
     private JFXTabPane mMovementTabContainer;
@@ -33,18 +32,4 @@ public class MovementTabController extends BaseTabController implements IUpdateU
         }
     }
 
-    @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
 }

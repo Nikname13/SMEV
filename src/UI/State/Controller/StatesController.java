@@ -2,7 +2,6 @@ package UI.State.Controller;
 
 import Model.State.StateModel;
 import Presenter.StatePresenter;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
@@ -17,7 +16,7 @@ import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class StatesController extends BaseController implements IUpdateUI {
+public class StatesController extends BaseController {
 
     @FXML
     private TreeTableView<StateModel> mTreeTableState;
@@ -88,11 +87,6 @@ public class StatesController extends BaseController implements IUpdateUI {
     }
 
     @Override
-    public void destroy() {
-
-    }
-
-    @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             updateTable(StatePresenter.get().getObservableState());
@@ -114,8 +108,4 @@ public class StatesController extends BaseController implements IUpdateUI {
         }
     }
 
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
 }

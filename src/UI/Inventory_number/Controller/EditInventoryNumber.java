@@ -9,7 +9,6 @@ import Model.Supply.SupplyModel;
 import Presenter.EquipmentPresenter;
 import Presenter.InventoryNumberPresenter;
 import Service.IOnMouseClick;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
@@ -33,7 +32,7 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class EditInventoryNumber extends BaseController implements IUpdateUI, IOnMouseClick {
+public class EditInventoryNumber extends BaseController implements IOnMouseClick {
 
     private BaseValidator mBaseValidator=new BaseValidator();
     private String mOldNumber;

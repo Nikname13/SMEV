@@ -3,7 +3,6 @@ package UI.Department.Controller;
 import Model.Department.DepartmentModel;
 import Model.Department.PurchaseModel;
 import Presenter.DepartmentPresenter;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
@@ -16,7 +15,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class PurchaseController extends BaseController implements IUpdateUI {
+public class PurchaseController extends BaseController {
 
     private DepartmentModel mDepartmentModel;
 
@@ -75,26 +74,11 @@ public class PurchaseController extends BaseController implements IUpdateUI {
     }
 
     @Override
-    public void updateUI(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(PurchaseModel.class.getName())) {
             System.out.println("update Purchase");
             mListViewPurchase.setItems(mDepartmentModel.getObservableEntityList());
         }
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
     }
 
     @Override
@@ -104,7 +88,6 @@ public class PurchaseController extends BaseController implements IUpdateUI {
 
     @Override
     public void destroy() {
-        System.out.println("destroy purchase");
         ListenersService.get().removeListenerUI(this);
     }
 }

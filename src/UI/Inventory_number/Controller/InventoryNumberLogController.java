@@ -43,8 +43,4 @@ public class InventoryNumberLogController extends BaseController {
         return null;
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }

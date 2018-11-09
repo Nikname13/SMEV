@@ -1,6 +1,5 @@
 package UI.MainTabs.Controller;
 
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseTabController;
@@ -9,7 +8,7 @@ import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 
-public class SupplyTabController extends BaseTabController implements IUpdateUI {
+public class SupplyTabController extends BaseTabController {
 
     @FXML
     private JFXTabPane mSupplyTabContainer;
@@ -32,18 +31,4 @@ public class SupplyTabController extends BaseTabController implements IUpdateUI 
         }
     }
 
-    @Override
-    public void refreshControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass) {
-
-    }
-
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
 }

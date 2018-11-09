@@ -2,7 +2,6 @@ package UI.Parameter.Controller;
 
 import Model.Parameter.ParameterModel;
 import Presenter.ParameterPresenter;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
@@ -17,7 +16,7 @@ import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ParametersController extends BaseController implements IUpdateUI {
+public class ParametersController extends BaseController {
 
     @FXML
     private TreeTableView<ParameterModel> mTreeTableParameters;
@@ -80,11 +79,6 @@ public class ParametersController extends BaseController implements IUpdateUI {
     }
 
     @Override
-    public void destroy() {
-
-    }
-
-    @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
             mTreeTableParameters.getSelectionModel().clearSelection();
@@ -115,8 +109,4 @@ public class ParametersController extends BaseController implements IUpdateUI {
         }
     }
 
-    @Override
-    public void updateControl(Class<?> updateClass, Object currentItem) {
-
-    }
 }

@@ -4,9 +4,9 @@ import Model.Department.DepartmentModel;
 import Model.Department.Departments;
 import Presenter.DepartmentPresenter;
 import Service.IOnMouseClick;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import Service.TabControllerService;
+import UI.BaseController;
 import UI.Coordinator;
 import UI.Popup.Controller.BasePopup;
 import UI.TabPane.Controller.TabPaneSecondLvlTabController;
@@ -19,7 +19,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class DepartmentsController implements IUpdateUI, IOnMouseClick {
+public class DepartmentsController extends BaseController implements IOnMouseClick {
 
     public DepartmentsController(){
         ListenersService.get().addListenerUI(this);
@@ -31,7 +31,8 @@ public class DepartmentsController implements IUpdateUI, IOnMouseClick {
     @FXML
     private StackPane mStackPane;
 
-    private Stage getStage() {
+    @Override
+    public Stage getStage() {
         return (Stage) mStackPane.getScene().getWindow();
     }
 

@@ -1,7 +1,6 @@
 package UI.Parameter.Controller;
 
 import Model.Parameter.ValueParameterModel;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import javafx.fxml.FXML;
@@ -11,7 +10,7 @@ import javafx.stage.Stage;
 import java.util.HashSet;
 import java.util.Set;
 
-public class EditParameterController extends BaseController implements IUpdateUI {
+public class EditParameterController extends BaseController {
 
     public EditParameterController() {
         ListenersService.get().addListenerUI(this);
