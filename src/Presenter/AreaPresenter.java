@@ -44,12 +44,10 @@ public class AreaPresenter extends BasePresenter {
 
     @Override
     public void delete() {
-        if (getSelectedObject() != null) {
-            if (getSelectedObject().equals(sAreaModel)) {
+        if (getSelectedObject() != null && getSelectedObject().equals(sAreaModel)) {
                 if (new IteractorArea().delete(sAreaModel.getId())) {
                     ListenersService.get().updateControl(AreaModel.class);
                 }
-            }
         }
     }
 }

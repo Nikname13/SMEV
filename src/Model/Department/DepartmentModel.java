@@ -19,7 +19,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -230,14 +229,6 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
         return list;
     }
 
-    public void addFileDumpDocList(List<File> fileList) throws IOException {
-        if (mFileDumpDocList == null) {
-            setFileDumpDocList(fileList);
-        } else {
-            mFileDumpDocList.addAll(new IteractorDepartment().uploadFile(getId(), fileList, getTypeDoc()));
-        }
-    }
-
     public List<FileDumpModel> getFileDumpConfigList() {
         return mFileDumpConfigList;
     }
@@ -287,6 +278,17 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
         equipment.setDescription_department(entity.getDescription_department());
         equipment.setGuaranty(entity.getGuaranty());
         equipment.setInventoryNumber(entity.getInventoryNumber());
+    }
+
+    public void removeFile(int id, String type) {
+        switch (type) {
+            case "doc":
+                deleteFile(id, mFileDumpDocList);
+                break;
+            case "config":
+                deleteFile(id, mFileDumpConfigList);
+                break;
+        }
     }
 
     @Override

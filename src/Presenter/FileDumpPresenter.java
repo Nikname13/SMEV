@@ -5,7 +5,7 @@ import Model.FileDumpModel;
 public class FileDumpPresenter extends BasePresenter {
 
     private static FileDumpPresenter sFileDumpPresenter;
-    private FileDumpModel mFileDumpModel;
+    private static FileDumpModel sFileDumpModel;
 
     private FileDumpPresenter() {
     }
@@ -16,11 +16,11 @@ public class FileDumpPresenter extends BasePresenter {
     }
 
     public FileDumpModel getFileDumpModel() {
-        return mFileDumpModel;
+        return sFileDumpModel;
     }
 
     public void setFileDumpModel(FileDumpModel fileDumpModel) {
-        mFileDumpModel = fileDumpModel;
+        sFileDumpModel = fileDumpModel;
         setSelectedObject(fileDumpModel);
     }
 }

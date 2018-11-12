@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.layout.*?>
-<?import com.jfoenix.controls.JFXButton?>
 <StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mFilesPane"
-            xmlns="http://javafx.com/javafx/8.0.121"
-            fx:controller="UI.Department.DepartmentFiles.FilesDepartmentController" >
+           xmlns="http://javafx.com/javafx/8.0.121"
+           fx:controller="UI.Department.DepartmentFiles.FilesDepartmentController">
    <children>
        <AnchorPane style="-fx-background-color: #ffffff;">
            <children>

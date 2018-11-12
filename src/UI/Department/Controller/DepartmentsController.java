@@ -60,8 +60,8 @@ public class DepartmentsController extends BaseController implements IOnMouseCli
         mDepartmentListView.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                /*if (!oldValue)
-                    DepartmentPresenter.get().setSelectedObject(mDepartmentListView.getSelectionModel().getSelectedItem());*/
+                if (!oldValue)
+                    DepartmentPresenter.get().setDepartmentModel(mDepartmentListView.getSelectionModel().getSelectedItem());
             }
         });
     }

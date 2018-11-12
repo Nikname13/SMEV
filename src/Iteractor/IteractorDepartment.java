@@ -37,8 +37,13 @@ public class IteractorDepartment extends GenericIteractor<DepartmentModel> {
       return sLoadFileURL;
    }
 
-   @Override
+/*   @Override
    public void deleteEntity(int id) {
       Departments.get().deleteEntity(id);
    }
+
+   @Override
+   public void deleteFile(int idEntity, int idFile, String type) {
+      Departments.get().getEntity(idEntity).removeFile(idFile, type);
+   }*/
 }

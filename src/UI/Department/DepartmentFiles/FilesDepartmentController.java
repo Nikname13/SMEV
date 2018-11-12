@@ -107,15 +107,16 @@ public class FilesDepartmentController extends BaseController implements IOnMous
         DepartmentPresenter.get().uploadFiles(getStage());
     }
 
-    @FXML
-    private void selectFile(FileDumpModel file) {
-        //new DepartmentPresenter().downloadOpenFile(file.getPath(),mTypeDocument);
-
-    }
-
     @Override
     public void updateUI(Class<?> updateClass) {
         if(updateClass.getName().equals(this.getClass().getName())){
+        }
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass) {
+        if (updateClass.getName().equals(FileDumpModel.class.getName())) {
+            mFileDumpList.setItems(mDepartmentModel.getFilesList(mTypeDocument));
         }
     }
 

@@ -22,13 +22,15 @@ public interface IIteractor<T> {
 
     T edit(T entity);
 
-    List<T> edit(List<T> entitys);
+    List<T> edit(List<T> entity);
 
     boolean delete(Set<Integer> idList);
 
     boolean delete(int id);
 
     boolean delete(T entity);
+
+    boolean delete(int idEntity, int idFile, String type);
 
     List<T> getList(int id);
 
@@ -38,7 +40,7 @@ public interface IIteractor<T> {
 
     List<FileDumpModel> getFilesList(int id, String type);
 
-    FileDumpModel editFile(FileDumpModel entity);
+    FileDumpModel editFile(FileDumpModel entity, int id, String type);
 
     File downloadFile(int id, String type, String path, File file);
 
@@ -52,6 +54,8 @@ public interface IIteractor<T> {
     void deleteEntity(int id);
 
     void deleteEntity(T entity);
+
+    void deleteFile(int idEntity, int idFile, String type);
 
     String getLoadFileURL();
 

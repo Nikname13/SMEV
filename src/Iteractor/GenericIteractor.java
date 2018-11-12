@@ -141,6 +141,18 @@ public abstract class GenericIteractor<T> implements IIteractor<T> {
     }
 
     @Override
+    public boolean delete(int idEntity, int idFile, String type) {
+        URLBuilder url = new URLBuilder(getLoadFileURL()).withParam("id", String.valueOf(idFile)).withParam("idEntity", String.valueOf(idEntity)).withParam("type", String.valueOf(type));
+        if (Connector.delete(url.build()) == 200) {
+            deleteFile(idEntity, idFile, type);
+        } else {
+            System.out.println("Ошибка удаления");
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public List<T> getList(int id) {
         URLBuilder url=new URLBuilder(sURI);
         return new Gson().fromJson(Connector.get(url.withParam("id", String.valueOf(id)).withParam("type", "default").build()), mListType);
@@ -183,8 +195,9 @@ public abstract class GenericIteractor<T> implements IIteractor<T> {
     }
 
     @Override
-    public FileDumpModel editFile(FileDumpModel entity) {
-        String json = Connector.put(new URLBuilder(getLoadFileURL()).build(), new GsonBuilder().create().toJson(entity));
+    public FileDumpModel editFile(FileDumpModel entity, int id, String type) {
+        URLBuilder url = new URLBuilder(getLoadFileURL());
+        String json = Connector.put(url.withParam("id", String.valueOf(id)).withParam("type", type).build(), new GsonBuilder().create().toJson(entity));
         if (json != null) {
             return new Gson().fromJson(json, FileDumpModel.class);
         }
@@ -209,6 +222,10 @@ public abstract class GenericIteractor<T> implements IIteractor<T> {
     @Override
     public void deleteEntity(T entity) {
 
+    }
+
+    @Override
+    public void deleteFile(int idEntity, int idFile, String type) {
     }
 
     @Override

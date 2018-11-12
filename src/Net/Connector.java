@@ -158,23 +158,23 @@ public class Connector {
         connect.setRequestMethod("POST");
         connect.setRequestProperty("Connection", "Keep-Alive");
         connect.setRequestProperty("Cache-Control", "no-cache");
-        connect.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+        connect.setRequestProperty("Content-Type", "multipart/form-data;charset=UTF-8;boundary=" + boundary);
         //connect.setUseCaches(false);
         //connect.setAllowUserInteraction(true);
         connect.setDoOutput(true);
         connect.setDoInput(true);
 
-        DataOutputStream outputStream = new DataOutputStream(connect.getOutputStream());
+        DataOutputStream wr = new DataOutputStream(connect.getOutputStream());
+        BufferedWriter outputStream = new BufferedWriter(new OutputStreamWriter(wr, "UTF-8"));
         for (File file : uploadFiles) {
-            outputStream.writeBytes("--" + boundary + CRLF);
-            outputStream.writeBytes("Content-Disposition: form-data;name=\"documents\";filename=\"" + file.getName() + "\"" + CRLF);
-            //outputStream.writeBytes("Content-Type: text/plane"+CRLF);
-            outputStream.writeBytes(CRLF);
+            outputStream.write("--" + boundary + CRLF);
+            outputStream.write("Content-Disposition: form-data;name=\"documents\";filename=\"" + file.getName() + "\"" + CRLF);
+            outputStream.write(CRLF);
             byte[] bytes = Files.readAllBytes(file.toPath());
-            outputStream.write(bytes);
-            outputStream.writeBytes(CRLF);
+            outputStream.write(String.valueOf(bytes));
+            outputStream.write(CRLF);
         }
-        outputStream.writeBytes("--" + boundary + "--" + CRLF);
+        outputStream.write("--" + boundary + "--" + CRLF);
         outputStream.flush();
         outputStream.close();
         System.out.println(connect.getResponseMessage());

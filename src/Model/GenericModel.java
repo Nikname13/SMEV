@@ -93,6 +93,17 @@ public abstract class GenericModel<T> extends AbstractModel<GenericModel<T>> imp
     public void deleteEntity(int id) {
     }
 
+    public void deleteFile(int id, List<FileDumpModel> list) {
+        if (list != null) {
+            for (FileDumpModel file : list) {
+                if (file.getId() == id) {
+                    list.remove(file);
+                    break;
+                }
+            }
+        }
+    }
+
     @Override
     public void replace(T entity){
     }

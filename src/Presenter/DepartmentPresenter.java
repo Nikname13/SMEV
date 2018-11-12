@@ -93,7 +93,8 @@ public class DepartmentPresenter extends BasePresenter {
     public void editFile(String name) {
         FileDumpModel ediFile = FileDumpPresenter.get().getFileDumpModel();
         ediFile.setName(name.concat(ediFile.getName().substring(ediFile.getName().lastIndexOf("."))));
-        new IteractorDepartment().editFile(ediFile);
+        new IteractorDepartment().editFile(ediFile, sDepartmentModel.getId(), sTypeDocuments);
+        ListenersService.get().updateControl(FileDumpModel.class);
     }
 
     public boolean uploadFiles(Stage stage) {
@@ -101,6 +102,7 @@ public class DepartmentPresenter extends BasePresenter {
         if (fileList != null) {
             System.out.println("Процесс открытия файла");
             new IteractorDepartment().uploadFile(sDepartmentModel.getId(), fileList, sTypeDocuments);
+            ListenersService.get().updateControl(FileDumpModel.class);
             return true;
         }
         return false;
@@ -128,10 +130,19 @@ public class DepartmentPresenter extends BasePresenter {
             if (getSelectedObject().equals(sDepartmentModel)) {
                 if (new IteractorDepartment().delete(sDepartmentModel.getId()))
                     ListenersService.get().updateControl(DepartmentModel.class);
+                return;
             }
             if (getSelectedObject().equals(sPurchaseModel)) {
                 if (new IteractorPurchase().delete(sPurchaseModel))
                     ListenersService.get().updateControl(PurchaseModel.class);
+                return;
+            }
+            if (getSelectedObject().equals(FileDumpPresenter.get().getFileDumpModel())) {
+                System.out.println("selected object " + getSelectedObject());
+                if (new IteractorDepartment().delete(sDepartmentModel.getId(), FileDumpPresenter.get().getFileDumpModel().getId(), sTypeDocuments)) {
+                    ListenersService.get().updateControl(FileDumpModel.class);
+                    return;
+                }
             }
         }
     }
