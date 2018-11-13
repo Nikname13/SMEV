@@ -12,6 +12,7 @@ import java.util.Comparator;
 public class IteractorEquipment extends GenericIteractor<EquipmentModel>{
 
     private static String sURL ="/equipment_servlet";
+    private static String sLoadFileURL = "/load_equipment_servlet";
 
     public IteractorEquipment() {
         super(sURL, EquipmentModel.class, new TypeToken<ArrayList<EquipmentModel>>() {}.getType());
@@ -33,6 +34,11 @@ public class IteractorEquipment extends GenericIteractor<EquipmentModel>{
         }else{
             Equipments.get().addEntity(entity, Comparator.comparing(EquipmentModel::getNameToLowerCase));
         }
+    }
+
+    @Override
+    public String getLoadFileURL() {
+        return sLoadFileURL;
     }
 
     @Override

@@ -16,6 +16,7 @@ import Service.ListenersService;
 import UI.MainTabs.Controller.EquipmentTabController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -256,5 +257,17 @@ public class EquipmentPresenter extends BasePresenter {
             list.add(movement);
         }
         return list;
+    }
+
+    public void saveSelectedFile(Stage stage) {
+    }
+
+    public void openSelectedFile() {
+    }
+
+    public void editFile(String name) {
+    }
+
+    public void uploadFiles(Stage stage) {
     }
 }

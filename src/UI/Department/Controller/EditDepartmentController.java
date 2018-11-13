@@ -365,7 +365,8 @@ public class EditDepartmentController extends BaseController implements IOnMouse
 
     @FXML
     private void onClickConfig() {
-
+        DepartmentPresenter.get().setTypeDocuments(AbstractModel.getTypeConfig());
+        new Coordinator().goToFilesDepartmentWindow(getStage());
     }
 
     @FXML

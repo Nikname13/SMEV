@@ -292,6 +292,14 @@ public class Coordinator {
         }
     }
 
+    public void goToFilesEquipmentWindow(Stage stage) {
+        try {
+            windowSceneContent("Equipment/EquipmentFiles/filesEquipment.fxml", stage, "файлы", 350, 400);
+        } catch (Exception ex) {
+            System.out.println("Exception goToFilesEquipmentWindow " + ex);
+        }
+    }
+
     public void goToAddInventoryNumberLog(Stage stage) {
         try {
             windowSceneContent("Equipment/Equipment_inventory/Equipment_number/addInventoryNumberLog.fxml", stage, "Новый номер", 360.0, 355.0);

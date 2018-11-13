@@ -20,7 +20,7 @@ public class DepartmentPresenter extends BasePresenter {
 
     private static DepartmentModel sDepartmentModel;
     private static PurchaseModel sPurchaseModel;
-    private static String sTypeDocuments;
+
     private static DepartmentPresenter sDepartmentPresenter;
 
     public static DepartmentPresenter get() {
@@ -82,18 +82,11 @@ public class DepartmentPresenter extends BasePresenter {
         new IteractorDepartment().delete(id);
     }
 
-    public String getTypeDocuments() {
-        return sTypeDocuments;
-    }
-
-    public void setTypeDocuments(String type) {
-        sTypeDocuments = type;
-    }
 
     public void editFile(String name) {
         FileDumpModel ediFile = FileDumpPresenter.get().getFileDumpModel();
         ediFile.setName(name.concat(ediFile.getName().substring(ediFile.getName().lastIndexOf("."))));
-        new IteractorDepartment().editFile(ediFile, sDepartmentModel.getId(), sTypeDocuments);
+        new IteractorDepartment().editFile(ediFile, sDepartmentModel.getId(), getTypeDocuments());
         ListenersService.get().updateControl(FileDumpModel.class);
     }
 
@@ -101,7 +94,7 @@ public class DepartmentPresenter extends BasePresenter {
         List<File> fileList = uploadDocFiles(stage);
         if (fileList != null) {
             System.out.println("Процесс открытия файла");
-            new IteractorDepartment().uploadFile(sDepartmentModel.getId(), fileList, sTypeDocuments);
+            new IteractorDepartment().uploadFile(sDepartmentModel.getId(), fileList, getTypeDocuments());
             ListenersService.get().updateControl(FileDumpModel.class);
             return true;
         }
@@ -121,7 +114,7 @@ public class DepartmentPresenter extends BasePresenter {
 
     @Override
     protected File getFile(File savePathFile) {
-        return new IteractorDepartment().downloadFile(sDepartmentModel.getId(), sTypeDocuments, FileDumpPresenter.get().getFileDumpModel().getPath(), savePathFile);
+        return new IteractorDepartment().downloadFile(sDepartmentModel.getId(), getTypeDocuments(), FileDumpPresenter.get().getFileDumpModel().getPath(), savePathFile);
     }
 
     @Override
@@ -139,7 +132,7 @@ public class DepartmentPresenter extends BasePresenter {
             }
             if (getSelectedObject().equals(FileDumpPresenter.get().getFileDumpModel())) {
                 System.out.println("selected object " + getSelectedObject());
-                if (new IteractorDepartment().delete(sDepartmentModel.getId(), FileDumpPresenter.get().getFileDumpModel().getId(), sTypeDocuments)) {
+                if (new IteractorDepartment().delete(sDepartmentModel.getId(), FileDumpPresenter.get().getFileDumpModel().getId(), getTypeDocuments())) {
                     ListenersService.get().updateControl(FileDumpModel.class);
                     return;
                 }

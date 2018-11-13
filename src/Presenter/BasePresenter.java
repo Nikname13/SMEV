@@ -41,13 +41,22 @@ import java.util.List;
 public abstract class BasePresenter implements IUpdateData {
 
     private static Object sSelectedObject;
-
+    private static String sTypeDocuments;
     public static Object getSelectedObject() {
         return sSelectedObject;
     }
 
     protected void setSelectedObject(Object selectedObject) {
         sSelectedObject = selectedObject;
+    }
+
+
+    public String getTypeDocuments() {
+        return sTypeDocuments;
+    }
+
+    public void setTypeDocuments(String type) {
+        sTypeDocuments = type;
     }
 
     void loadEntity(int id) {
@@ -136,6 +145,7 @@ public abstract class BasePresenter implements IUpdateData {
             if (Desktop.isDesktopSupported()) {
                 desktop = Desktop.getDesktop();
             }
+            getFile(savePathFile);
             desktop.open(savePathFile);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

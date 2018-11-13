@@ -3,32 +3,21 @@ package UI.Department.DepartmentFiles;
 import Model.Department.DepartmentModel;
 import Model.FileDumpModel;
 import Presenter.DepartmentPresenter;
-import Presenter.FileDumpPresenter;
-import Service.IOnMouseClick;
 import Service.ListenersService;
-import UI.BaseController;
-import UI.Popup.Controller.BasePopup;
-import UI.Validator.BaseValidator;
-import com.jfoenix.controls.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import UI.BaseFileController;
+import com.jfoenix.controls.JFXListView;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class FilesDepartmentController extends BaseController implements IOnMouseClick {
+public class FilesDepartmentController extends BaseFileController {
 
     private DepartmentModel mDepartmentModel;
-    private String mTypeDocument;
-    private BaseValidator mBaseValidatorDialog = new BaseValidator();
 
     public FilesDepartmentController (){
         ListenersService.get().addListenerUI(this);
         mDepartmentModel=DepartmentPresenter.get().getDepartmentModel();
-        mTypeDocument=DepartmentPresenter.get().getTypeDocuments();
+        setTypeDocument(DepartmentPresenter.get().getTypeDocuments());
     }
 
     @FXML
@@ -38,68 +27,14 @@ public class FilesDepartmentController extends BaseController implements IOnMous
 
     @FXML
     public void initialize(){
-        initListView();
-        initPopup();
+        initListView(mFileDumpList);
+        initPopup(mFileDumpList);
     }
 
-    private void initPopup() {
-        new BasePopup(mFileDumpList, BasePopup.getFileDumpListPopup(), this, true);
-    }
-
-    private void initListView() {
-        mFileDumpList.setCellFactory(p -> new ListCell<>() {
-            @Override
-            protected void updateItem(FileDumpModel item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty) {
-                    setText(item.getName());
-                } else setText(null);
-            }
-        });
-        mFileDumpList.setItems(mDepartmentModel.getFilesList(mTypeDocument));
-        mFileDumpList.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedFile(newValue)));
-    }
-
-    private void selectedFile(FileDumpModel newValue) {
-        if (newValue != null) {
-            FileDumpPresenter.get().setFileDumpModel(newValue);
-        } else {
-            FileDumpPresenter.get().setFileDumpModel(null);
-        }
-    }
-
-    private void createDialog() {
-        String oldFileName = FileDumpPresenter.get().getFileDumpModel().getName();
-        JFXDialogLayout content = new JFXDialogLayout();
-        content.setHeading(new Text("Редактирование"));
-
-        JFXTextField text = new JFXTextField();
-        text.setText(oldFileName.substring(0, oldFileName.lastIndexOf(".")));
-        text.setPrefWidth(200);
-        text.setLabelFloat(true);
-        text.setPromptText("Наименование файла");
-        text.setFocusColor(Paint.valueOf("#40a85f"));
-        initPromptText(text, "Введите наименование файла", "Наименование файла");
-        mBaseValidatorDialog.setJFXTextFields(text);
-
-        JFXButton button = new JFXButton("Сохранить");
-        button.setRipplerFill(Paint.valueOf("#40a85f"));
-        button.setPrefHeight(35.0);
-
-        content.setBody(text);
-        content.setActions(button);
-        JFXDialog dialog = new JFXDialog(mFilesPane, content, JFXDialog.DialogTransition.TOP);
-
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if (mBaseValidatorDialog.validate()) {
-                    DepartmentPresenter.get().editFile(text.getText());
-                    dialog.close();
-                }
-            }
-        });
-        dialog.show();
+    @Override
+    protected void initListView(JFXListView<FileDumpModel> list) {
+        super.initListView(list);
+        list.setItems(mDepartmentModel.getFilesList(getTypeDocument()));
     }
 
     @FXML
@@ -108,15 +43,9 @@ public class FilesDepartmentController extends BaseController implements IOnMous
     }
 
     @Override
-    public void updateUI(Class<?> updateClass) {
-        if(updateClass.getName().equals(this.getClass().getName())){
-        }
-    }
-
-    @Override
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(FileDumpModel.class.getName())) {
-            mFileDumpList.setItems(mDepartmentModel.getFilesList(mTypeDocument));
+            mFileDumpList.setItems(mDepartmentModel.getFilesList(getTypeDocument()));
         }
     }
 
@@ -127,7 +56,6 @@ public class FilesDepartmentController extends BaseController implements IOnMous
 
     @Override
     public void destroy() {
-        System.out.println("destroy files");
         ListenersService.get().removeListenerUI(this);
     }
 
@@ -138,7 +66,7 @@ public class FilesDepartmentController extends BaseController implements IOnMous
                 DepartmentPresenter.get().saveSelectedFile(getStage());
                 break;
             case "renameFile":
-                createDialog();
+                createDialogEditFile(mFilesPane);
                 break;
             case "mFileDumpList":
                 System.out.println("double click");
@@ -147,4 +75,8 @@ public class FilesDepartmentController extends BaseController implements IOnMous
         }
     }
 
+    @Override
+    protected void editFile(String name) {
+        DepartmentPresenter.get().editFile(name);
+    }
 }

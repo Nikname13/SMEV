@@ -14,7 +14,7 @@
                    prefWidth="250.0" style="-fx-background-color: #a8f1b3;"/>
                 <JFXButton prefHeight="45.0" prefWidth="120.0" ripplerFill="#40a85f" text="Фотографии"
                            AnchorPane.topAnchor="180.0" AnchorPane.leftAnchor="10.0"/>
-                <JFXButton prefHeight="45.0" text="Конфиги" prefWidth="120.0" ripplerFill="#40a85f"
+                <JFXButton onAction="#onClickConfig" prefHeight="45.0" text="Конфиги" prefWidth="120.0" ripplerFill="#40a85f"
                            AnchorPane.topAnchor="180.0"
                            AnchorPane.leftAnchor="140.0"/>
 

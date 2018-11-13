@@ -13,6 +13,7 @@ public abstract class GenericModel<T> extends AbstractModel<GenericModel<T>> imp
 
     protected List<T> mEntityList;
     private transient boolean mIsLoad;
+    private transient List<FileDumpModel> mFileDumpDocList, mFileDumpConfigList, mFileDumpPhotoList;
 
     public GenericModel(int id, String name, List<T> entityList) {
         super(id, name);
@@ -82,6 +83,56 @@ public abstract class GenericModel<T> extends AbstractModel<GenericModel<T>> imp
     public void addEntity(T entity) {
         if(mEntityList == null) mEntityList=new ArrayList<>();
             mEntityList.add(entity);
+    }
+
+    public List<FileDumpModel> getFileDumpDocList() {
+        return mFileDumpDocList;
+    }
+
+    public void setFileDumpDocList(List<FileDumpModel> fileDumpDocList) {
+        mFileDumpDocList = fileDumpDocList;
+    }
+
+    public List<FileDumpModel> getFileDumpConfigList() {
+        return mFileDumpConfigList;
+    }
+
+    public void setFileDumpConfigList(List<FileDumpModel> fileDumpConfigList) {
+        mFileDumpConfigList = fileDumpConfigList;
+    }
+
+    public List<FileDumpModel> getFileDumpPhotoList() {
+        return mFileDumpPhotoList;
+    }
+
+    public void setFileDumpPhotoList(List<FileDumpModel> fileDumpPhotoList) {
+        mFileDumpPhotoList = fileDumpPhotoList;
+    }
+
+    public ObservableList<FileDumpModel> getObsFileDumpDocList() {
+        ObservableList<FileDumpModel> list = FXCollections.observableArrayList();
+        for (FileDumpModel file : getFileDumpDocList()) {
+            list.add(file);
+        }
+        return list;
+    }
+
+    public ObservableList<FileDumpModel> getObsFileDumpConfigList() {
+        ObservableList<FileDumpModel> list = FXCollections.observableArrayList();
+        for (FileDumpModel file : getFileDumpConfigList()) {
+            list.add(file);
+        }
+        return list;
+    }
+
+    public ObservableList<FileDumpModel> getFilesList(String type) {
+        switch (type) {
+            case "doc":
+                return getObsFileDumpDocList();
+            case "config":
+                return getObsFileDumpConfigList();
+        }
+        return null;
     }
 
     @Override

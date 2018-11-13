@@ -164,19 +164,22 @@ public class Connector {
         connect.setDoOutput(true);
         connect.setDoInput(true);
 
-        DataOutputStream wr = new DataOutputStream(connect.getOutputStream());
-        BufferedWriter outputStream = new BufferedWriter(new OutputStreamWriter(wr, "UTF-8"));
+        DataOutputStream outputStream = new DataOutputStream(connect.getOutputStream());
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
         for (File file : uploadFiles) {
-            outputStream.write("--" + boundary + CRLF);
-            outputStream.write("Content-Disposition: form-data;name=\"documents\";filename=\"" + file.getName() + "\"" + CRLF);
-            outputStream.write(CRLF);
+            writer.write("--" + boundary + CRLF);
+            writer.write("Content-Disposition: form-data;name=\"documents\";filename=\"" + file.getName() + "\"" + CRLF);
+            writer.write(CRLF);
+            writer.flush();
             byte[] bytes = Files.readAllBytes(file.toPath());
-            outputStream.write(String.valueOf(bytes));
-            outputStream.write(CRLF);
+            outputStream.write(bytes);
+            writer.write(CRLF);
+            writer.flush();
         }
-        outputStream.write("--" + boundary + "--" + CRLF);
-        outputStream.flush();
+        writer.write("--" + boundary + "--" + CRLF);
+        writer.flush();
         outputStream.close();
+        writer.close();
         System.out.println(connect.getResponseMessage());
 
         String response = getJSON(connect);

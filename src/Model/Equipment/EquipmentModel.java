@@ -1,7 +1,9 @@
 package Model.Equipment;
 
+import Iteractor.IteractorEquipment;
 import Iteractor.IteractorEquipmentInventory;
 import Iteractor.IteractorEquipmentParameter;
+import Model.FileDumpModel;
 import Model.GenericModel;
 import Model.Type.TypeModel;
 import javafx.beans.property.SimpleStringProperty;
@@ -115,6 +117,12 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
         equipment.setGuaranty(entity.getGuaranty());
         equipment.setInventoryNumber(entity.getInventoryNumber());
         equipment.setEntityList(entity.getEntityList());
+    }
+
+    @Override
+    public List<FileDumpModel> getFileDumpConfigList() {
+        setFileDumpConfigList(new IteractorEquipment().getFilesList(getId(), getTypeConfig()));
+        return super.getFileDumpConfigList();
     }
 
     @Override

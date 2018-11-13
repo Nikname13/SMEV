@@ -56,7 +56,7 @@
                                            text="Документация"
                                            AnchorPane.leftAnchor="10.0"
                                            AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0" prefHeight="50.0"/>
-                                <JFXButton fx:id="mButtonConfig" ripplerFill="#40a85f" text="Конфигурация"
+                                <JFXButton fx:id="mButtonConfig" onAction="#onClickConfig" ripplerFill="#40a85f" text="Конфигурация"
                                            AnchorPane.leftAnchor="10.0"
                                            AnchorPane.topAnchor="70.0" AnchorPane.rightAnchor="10.0" prefHeight="50.0"/>
                                 <JFXButton fx:id="mButtonPhoto" ripplerFill="#40a85f" text="Фотографии"

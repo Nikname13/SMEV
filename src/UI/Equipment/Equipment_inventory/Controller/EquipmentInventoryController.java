@@ -1,5 +1,6 @@
 package UI.Equipment.Equipment_inventory.Controller;
 
+import Model.AbstractModel;
 import Model.Department.DepartmentModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Equipment.EquipmentModel;
@@ -81,6 +82,13 @@ public class EquipmentInventoryController extends BaseController implements IUpd
                 if (mTextFieldGuaranty.focusedProperty().get()) mButtonSave.setVisible(true);
             }
         });
+    }
+
+    @FXML
+    private void onClickConfig() {
+        EquipmentPresenter.get().setTypeDocuments(AbstractModel.getTypeConfig());
+        EquipmentPresenter.get().setEquipmentModel(mEquipmentModel);
+        new Coordinator().goToFilesEquipmentWindow(getStage());
     }
 
     @Override
