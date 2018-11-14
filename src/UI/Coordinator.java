@@ -203,6 +203,14 @@ public class Coordinator {
         }
     }
 
+    public void goToFilesSupplyWindow(Stage stage) {
+        try {
+            windowSceneContent("Supply/SupplyFiles/filesSupply.fxml", stage, "файлы", 350, 400);
+        } catch (Exception ex) {
+            System.out.println("Exception goToFilesEquipmentWindow " + ex);
+        }
+    }
+
     public void goToEquipmentsWindow(Stage stage, double width, double height){
         try {
             windowSceneContent("Equipment/equipments.fxml",stage,"Оборудование", width, height);

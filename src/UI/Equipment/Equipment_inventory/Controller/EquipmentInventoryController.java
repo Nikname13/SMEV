@@ -7,7 +7,6 @@ import Model.Equipment.EquipmentModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.State.StateModel;
 import Presenter.EquipmentPresenter;
-import Service.IUpdateUI;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
@@ -22,7 +21,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class EquipmentInventoryController extends BaseController implements IUpdateUI {
+public class EquipmentInventoryController extends BaseController {
 
     private EquipmentInventoryModel mEquipmentInventory;
     private EquipmentModel mEquipmentModel;
@@ -52,7 +51,7 @@ public class EquipmentInventoryController extends BaseController implements IUpd
     private JFXButton mButtonSave;
 
     @FXML
-    private AnchorPane anchorPaneEquipmentInventory;
+    private AnchorPane PaneEquipmentInventory;
 
     @FXML
     public void initialize(){
@@ -114,7 +113,7 @@ public class EquipmentInventoryController extends BaseController implements IUpd
 
     @Override
     protected Stage getStage() {
-        return (Stage) anchorPaneEquipmentInventory.getScene().getWindow();
+        return (Stage) PaneEquipmentInventory.getScene().getWindow();
     }
 
     @Override
@@ -153,7 +152,7 @@ public class EquipmentInventoryController extends BaseController implements IUpd
         if (mComboBoxDepartment.focusedProperty().get()) {
             EquipmentPresenter.get().setEquipmentInventoryModel(mEquipmentInventory);
             EquipmentPresenter.get().setDepartmentModel(mComboBoxDepartment.getValue());
-            new Coordinator().goToMoveEquipmentInventoryWindow((Stage) anchorPaneEquipmentInventory.getScene().getWindow());
+            new Coordinator().goToMoveEquipmentInventoryWindow((Stage) PaneEquipmentInventory.getScene().getWindow());
         }
     }
 
@@ -161,7 +160,7 @@ public class EquipmentInventoryController extends BaseController implements IUpd
         if (mComboBoxState.getSelectionModel().getSelectedIndex() != -1 && mComboBoxState.focusedProperty().get()) {
             EquipmentPresenter.get().setEquipmentStateLog(null);
             EquipmentPresenter.get().setStateModel(mComboBoxState.getValue());
-            new Coordinator().goToAddEquipmentStateLog((Stage) anchorPaneEquipmentInventory.getScene().getWindow());
+            new Coordinator().goToAddEquipmentStateLog((Stage) PaneEquipmentInventory.getScene().getWindow());
         }
     }
 

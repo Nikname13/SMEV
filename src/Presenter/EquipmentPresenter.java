@@ -7,6 +7,7 @@ import Iteractor.IteractorMovement;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
 import Model.Equipment.*;
+import Model.FileDumpModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Movement.MovementModel;
 import Model.Parameter.ParameterModel;
@@ -16,13 +17,13 @@ import Service.ListenersService;
 import UI.MainTabs.Controller.EquipmentTabController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.stage.Stage;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EquipmentPresenter extends BasePresenter {
+public class EquipmentPresenter extends BaseFilePresenter {
 
     private static EquipmentModel sEquipmentModel;
     private static EquipmentInventoryModel sEquipmentInventoryModel;
@@ -259,15 +260,18 @@ public class EquipmentPresenter extends BasePresenter {
         return list;
     }
 
-    public void saveSelectedFile(Stage stage) {
+    @Override
+    protected void editFile(FileDumpModel editableFile) {
+        new IteractorEquipment().editFile(editableFile, sEquipmentModel.getId(), getTypeDocuments());
     }
 
-    public void openSelectedFile() {
+    @Override
+    protected void uploadFiles(List<File> fileList) {
+        new IteractorEquipment().uploadFile(sEquipmentModel.getId(), fileList, getTypeDocuments());
     }
 
-    public void editFile(String name) {
-    }
-
-    public void uploadFiles(Stage stage) {
+    @Override
+    protected File getFile(File savePathFile) {
+        return new IteractorEquipment().downloadFile(sEquipmentModel.getId(), getTypeDocuments(), FileDumpPresenter.get().getFileDumpModel().getPath(), savePathFile);
     }
 }

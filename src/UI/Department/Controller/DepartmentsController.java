@@ -123,10 +123,8 @@ public class DepartmentsController extends BaseController implements IOnMouseCli
 
     @Override
     public void primaryClick(String id) {
-        switch (id) {
-            case "purchase":
+        if (id.equals("purchase")) {
                 new Coordinator().goToPurchasesWindow(getStage());
-                break;
         }
     }
 }

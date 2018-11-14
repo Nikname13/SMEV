@@ -1,8 +1,9 @@
-package UI.Equipment.EquipmentFiles;
+package UI.Supply.SupplyFiles;
 
-import Model.Equipment.EquipmentModel;
+
 import Model.FileDumpModel;
-import Presenter.EquipmentPresenter;
+import Model.Supply.SupplyModel;
+import Presenter.SupplyPresenter;
 import Service.ListenersService;
 import UI.BaseFileController;
 import com.jfoenix.controls.JFXListView;
@@ -10,18 +11,18 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class FilesEquipmentController extends BaseFileController {
+public class FilesSupplyController extends BaseFileController {
 
-    private EquipmentModel mEquipmentModel;
+    private SupplyModel mSupplyModel;
     @FXML
     private StackPane mPaneFiles;
     @FXML
     private JFXListView<FileDumpModel> mListFileDump;
 
-    public FilesEquipmentController() {
+    public FilesSupplyController() {
         ListenersService.get().addListenerUI(this);
-        mEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
-        setTypeDocument(EquipmentPresenter.get().getTypeDocuments());
+        mSupplyModel = SupplyPresenter.get().getSupplyModel();
+        setTypeDocument(SupplyPresenter.get().getTypeDocuments());
     }
 
     @FXML
@@ -33,23 +34,23 @@ public class FilesEquipmentController extends BaseFileController {
     @Override
     protected void initListView(JFXListView<FileDumpModel> list) {
         super.initListView(list);
-        list.setItems(mEquipmentModel.getFilesList(getTypeDocument()));
+        list.setItems(mSupplyModel.getFilesList(getTypeDocument()));
     }
 
     @Override
     protected void editFile(String name) {
-        EquipmentPresenter.get().editFile(name);
+        SupplyPresenter.get().editFile(name);
     }
 
     @FXML
     private void onClickAdd() {
-        EquipmentPresenter.get().uploadFiles(getStage());
+        SupplyPresenter.get().uploadFiles(getStage());
     }
 
     @Override
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(FileDumpModel.class.getName())) {
-            mListFileDump.setItems(mEquipmentModel.getFilesList(getTypeDocument()));
+            mListFileDump.setItems(mSupplyModel.getFilesList(getTypeDocument()));
         }
     }
 
@@ -57,13 +58,13 @@ public class FilesEquipmentController extends BaseFileController {
     public void primaryClick(String id) {
         switch (id) {
             case "saveFile":
-                EquipmentPresenter.get().saveSelectedFile(getStage());
+                SupplyPresenter.get().saveSelectedFile(getStage());
                 break;
             case "renameFile":
                 createDialogEditFile(mPaneFiles);
                 break;
             case "mListFileDump":
-                EquipmentPresenter.get().openSelectedFile();
+                SupplyPresenter.get().openSelectedFile();
                 break;
         }
     }

@@ -65,10 +65,8 @@ public class WorkersController extends BaseController implements IOnMouseClick {
 
     @Override
     public void primaryClick(String id) {
-        switch (id) {
-            case "mTableViewWorkers":
+        if (id.equals("mTableViewWorkers")) {
                 new Coordinator().goToEditWorkerWindow(getStage());
-                break;
         }
     }
 

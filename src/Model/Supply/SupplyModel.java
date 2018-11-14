@@ -1,6 +1,8 @@
 package Model.Supply;
 
 import Iteractor.IteractorInventoryNumber;
+import Iteractor.IteractorSupply;
+import Model.FileDumpModel;
 import Model.GenericModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Provider.ProviderModel;
@@ -69,5 +71,10 @@ public class SupplyModel extends GenericModel<InventoryNumberModel> {
 
     public void setProviderModel(ProviderModel providerModel) {
         mProviderModel = providerModel;
+    }
+
+    @Override
+    public List<FileDumpModel> getFileDumpDocList() {
+        return new IteractorSupply().getFilesList(getId(), getTypeDoc());
     }
 }

@@ -10,13 +10,12 @@ import Model.Department.PurchaseModel;
 import Model.FileDumpModel;
 import Model.Location.LocationModel;
 import Service.ListenersService;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 
-public class DepartmentPresenter extends BasePresenter {
+public class DepartmentPresenter extends BaseFilePresenter {
 
     private static DepartmentModel sDepartmentModel;
     private static PurchaseModel sPurchaseModel;
@@ -74,42 +73,14 @@ public class DepartmentPresenter extends BasePresenter {
         ListenersService.get().updateControl(PurchaseModel.class);
     }
 
-    public void editPurchase() {
+    @Override
+    protected void editFile(FileDumpModel editableFile) {
+        new IteractorDepartment().editFile(editableFile, sDepartmentModel.getId(), getTypeDocuments());
     }
 
-
-    public void deleteDepartment(int id) {
-        new IteractorDepartment().delete(id);
-    }
-
-
-    public void editFile(String name) {
-        FileDumpModel ediFile = FileDumpPresenter.get().getFileDumpModel();
-        ediFile.setName(name.concat(ediFile.getName().substring(ediFile.getName().lastIndexOf("."))));
-        new IteractorDepartment().editFile(ediFile, sDepartmentModel.getId(), getTypeDocuments());
-        ListenersService.get().updateControl(FileDumpModel.class);
-    }
-
-    public boolean uploadFiles(Stage stage) {
-        List<File> fileList = uploadDocFiles(stage);
-        if (fileList != null) {
-            System.out.println("Процесс открытия файла");
-            new IteractorDepartment().uploadFile(sDepartmentModel.getId(), fileList, getTypeDocuments());
-            ListenersService.get().updateControl(FileDumpModel.class);
-            return true;
-        }
-        return false;
-    }
-
-    public void saveSelectedFile(Stage stage) {
-        File savePathFile = saveFile(FileDumpPresenter.get().getFileDumpModel(), stage);
-        if (savePathFile != null) {
-            getFile(savePathFile);
-        }
-    }
-
-    public void openSelectedFile() {
-        openFile(FileDumpPresenter.get().getFileDumpModel().getPath());
+    @Override
+    protected void uploadFiles(List<File> fileList) {
+        new IteractorDepartment().uploadFile(sDepartmentModel.getId(), fileList, getTypeDocuments());
     }
 
     @Override
@@ -144,5 +115,6 @@ public class DepartmentPresenter extends BasePresenter {
     public void loadEntity(int id) {
             new IteractorDepartment().loadData(id);
     }
+
 
 }

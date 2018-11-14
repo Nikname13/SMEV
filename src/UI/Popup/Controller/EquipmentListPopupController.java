@@ -5,8 +5,7 @@ import com.jfoenix.controls.JFXListView;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 
-public class BaseListPopupController extends BasePopupController {
-
+public class EquipmentListPopupController extends BasePopupController {
     @FXML
     private JFXListView<Node> mPopupList;
 
@@ -17,9 +16,17 @@ public class BaseListPopupController extends BasePopupController {
 
     @Override
     protected void selectedPopupItem(Node node) {
-        if (node != null && node.getId().equals("delete")) {
+        if (node != null) {
+            switch (node.getId()) {
+                case "config":
+                    System.out.println(node.getId());
+                    ListenersService.get().onMouseClick(node.getId());
+                    break;
+                case "delete":
                     ListenersService.get().delete();
+                    break;
+            }
         }
-    }
 
+    }
 }

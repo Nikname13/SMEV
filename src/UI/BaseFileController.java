@@ -40,6 +40,7 @@ public abstract class BaseFileController extends BaseController implements IOnMo
                 } else setText(null);
             }
         });
+        list.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedFile(newValue)));
     }
 
     private void selectedFile(FileDumpModel newValue) {
@@ -83,6 +84,7 @@ public abstract class BaseFileController extends BaseController implements IOnMo
         });
         dialog.show();
     }
+
 
     protected abstract void editFile(String name);
 }

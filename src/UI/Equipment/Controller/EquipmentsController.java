@@ -3,6 +3,7 @@ package UI.Equipment.Controller;
 import Model.AbstractModel;
 import Model.Equipment.EquipmentModel;
 import Presenter.EquipmentPresenter;
+import Service.IOnMouseClick;
 import Service.ListenersService;
 import Service.TabControllerService;
 import UI.BaseController;
@@ -16,7 +17,7 @@ import javafx.scene.control.TreeView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class EquipmentsController extends BaseController {
+public class EquipmentsController extends BaseController implements IOnMouseClick {
 
     public EquipmentsController() {
         ListenersService.get().addListenerUI(this);
@@ -36,7 +37,7 @@ public class EquipmentsController extends BaseController {
     }
 
     private void initPopup() {
-        new BasePopup(mEquipmentTreeView, BasePopup.getBaseListPopup(), null);
+        new BasePopup(mEquipmentTreeView, BasePopup.getEquipmentListPopup(), this);
     }
 
     private void initEquipmentTreeView() {
@@ -132,6 +133,14 @@ public class EquipmentsController extends BaseController {
                 }
             });
 
+        }
+    }
+
+    @Override
+    public void primaryClick(String id) {
+        if (id.equals("config")) {
+            EquipmentPresenter.get().setTypeDocuments(AbstractModel.getTypeConfig());
+            new Coordinator().goToFilesEquipmentWindow(getStage());
         }
     }
 }

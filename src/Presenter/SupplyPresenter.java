@@ -1,6 +1,7 @@
 package Presenter;
 
 import Iteractor.IteractorSupply;
+import Model.FileDumpModel;
 import Model.Inventory_number.InventoryNumberLog;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Provider.ProviderModel;
@@ -8,10 +9,11 @@ import Model.Supply.SupplyModel;
 import Service.ListenersService;
 import UI.Supply.Controller.SupplysController;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 
-public class SupplyPresenter extends BasePresenter {
+public class SupplyPresenter extends BaseFilePresenter {
 
     private static SupplyModel sSupplyModel;
     private static SupplyPresenter sSupplyPresenter;
@@ -66,5 +68,20 @@ public class SupplyPresenter extends BasePresenter {
                 }
             }
         }
+    }
+
+    @Override
+    protected void editFile(FileDumpModel editableFile) {
+        new IteractorSupply().editFile(editableFile, sSupplyModel.getId(), getTypeDocuments());
+    }
+
+    @Override
+    protected void uploadFiles(List<File> fileList) {
+        new IteractorSupply().uploadFile(sSupplyModel.getId(), fileList, getTypeDocuments());
+    }
+
+    @Override
+    protected File getFile(File savePathFile) {
+        return new IteractorSupply().downloadFile(sSupplyModel.getId(), getTypeDocuments(), FileDumpPresenter.get().getFileDumpModel().getPath(), savePathFile);
     }
 }

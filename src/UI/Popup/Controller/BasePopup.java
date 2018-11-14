@@ -15,11 +15,13 @@ public class BasePopup implements IUpdatePopup {
 
     private static String sEquipmentInventoryPopup = "/UI/Popup/equipmentInventoryPopup.fxml";
     private static String sEquipmentInventoryReadPopup = "/UI/Popup/equipmentInventoryReadPopup.fxml";
+    private static String sEquipmentListPopup = "/UI/Popup/equipmentListPopup.fxml";
     private static String sBaseListPopup = "/UI/Popup/baseListPopup.fxml";
     private static String sDepartmentListPopup = "/UI/Popup/departmentsListPopup.fxml";
     private static String sSupplyListPopup = "/UI/Popup/supplyListPopup.fxml";
     private static String sInventoryNumberPopup = "/UI/Popup/inventoryNumberPopup.fxml";
     private static String sFileDumpListPopup = "/UI/Popup/fileDumpListPopup.fxml";
+
     private JFXPopup mPopup;
     private boolean mDoubleClick;
     private IOnMouseClick mPrimaryClickClass;
@@ -65,6 +67,10 @@ public class BasePopup implements IUpdatePopup {
 
     public static String getEquipmentInventoryReadPopup() {
         return sEquipmentInventoryReadPopup;
+    }
+
+    public static String getEquipmentListPopup() {
+        return sEquipmentListPopup;
     }
 
     private void initPopup(Node node, String resourceURL) {

@@ -1,5 +1,6 @@
 package UI.Supply.Controller;
 
+import Model.AbstractModel;
 import Model.Provider.ProviderModel;
 import Model.Supply.SupplyModel;
 import Presenter.SupplyPresenter;
@@ -88,7 +89,6 @@ public class SupplysController extends BaseController implements IOnMouseClick {
             SupplyModel supplyModel = newValue.getValue();
             if (supplyModel != null && supplyModel.getId() != -1) {
                 SupplyPresenter.get().setSupplyModel(supplyModel);
-                //SupplyPresenter.get().loadEntity(supplyModel.getId());
                 TabControllerService.get().getListenerFirstTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEditSupplyResource()));
                 ListenersService.get().updateUI(SupplyModel.class);
             } else {
@@ -133,7 +133,8 @@ public class SupplysController extends BaseController implements IOnMouseClick {
     @Override
     public void primaryClick(String id) {
         if (id.equals("documentation")) {
-            System.out.println("окно с документацией");
+            SupplyPresenter.get().setTypeDocuments(AbstractModel.getTypeDoc());
+            new Coordinator().goToFilesSupplyWindow(getStage());
         }
     }
 }

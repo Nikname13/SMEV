@@ -2,7 +2,7 @@
 
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane fx:id="anchorPaneEquipmentInventory"
+<AnchorPane fx:id="PaneEquipmentInventory"
             xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="UI.Equipment.Equipment_inventory.Controller.EquipmentInventoryController"
