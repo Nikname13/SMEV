@@ -86,5 +86,7 @@ public abstract class BaseFileController extends BaseController implements IOnMo
     }
 
 
-    protected abstract void editFile(String name);
+    protected void editFile(String name) {
+
+    }
 }

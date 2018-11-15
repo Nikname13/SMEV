@@ -3,6 +3,7 @@ package UI.Department.Controller;
 import Model.AbstractModel;
 import Model.Area.AreaModel;
 import Model.Department.DepartmentModel;
+import Model.Department.Departments;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Equipment.EquipmentModel;
 import Model.Inventory_number.InventoryNumberModel;
@@ -31,6 +32,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import static UI.BaseTabController.nextTab;
@@ -61,6 +63,8 @@ public class EditDepartmentController extends BaseController implements IOnMouse
     private JFXTabPane mSecondLvlTabPane;
     @FXML
     private JFXButton mButtonUpdate;
+    @FXML
+    private BorderPane mAvatarImage;
 
     public EditDepartmentController() {
         mDepartmentModel = DepartmentPresenter.get().getDepartmentModel();
@@ -79,7 +83,10 @@ public class EditDepartmentController extends BaseController implements IOnMouse
         initLocationListView();
         initWorkerListView();
         initPopup();
+
     }
+//"C:/Users/a.zolotarev/Desktop/sapce/space-wallpapers-1920x1080-00012.jpg"
+
 
     private void initTextFields() {
         mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNumber);
@@ -241,6 +248,9 @@ public class EditDepartmentController extends BaseController implements IOnMouse
         new BasePopup(mTreeTableEquipmentInventory, BasePopup.getEquipmentInventoryReadPopup(), this);
         new BasePopup(mListViewLocation, BasePopup.getBaseListPopup());
         new BasePopup(mListViewWorker, BasePopup.getBaseListPopup(), this);
+        new BasePopup(mAvatarImage, BasePopup.getAvatarPopup(), this, true);
+        //new BasePopup(mAvatarImage, BasePopup.getAvatarPopup(),this,true);
+
     }
 
     private void setVisibleEditButton() {
@@ -393,6 +403,7 @@ public class EditDepartmentController extends BaseController implements IOnMouse
             mSecondLvlTabPane.getSelectionModel().select(0);
             if (mSecondLvlTabPane.getTabs().size() > 1) mSecondLvlTabPane.getTabs().remove(1);
             TabControllerService.get().setListenerSecondTabPane(((Tab nextTab) -> nextTab(nextTab, mSecondLvlTabPane)));
+            setAvatar(DepartmentPresenter.get().getPathAvatar(), mAvatarImage);
 
         }
     }
@@ -404,6 +415,9 @@ public class EditDepartmentController extends BaseController implements IOnMouse
         }
         if (updateClass.getName().equals(WorkerModel.class.getName())) {
             mListViewWorker.refresh();
+        }
+        if (updateClass.getName().equals(Departments.class.getName())) {
+            setAvatar(DepartmentPresenter.get().getPathAvatar(), mAvatarImage);
         }
 
     }
@@ -442,6 +456,16 @@ public class EditDepartmentController extends BaseController implements IOnMouse
                 break;
             case "moveLog":
                 new Coordinator().goToMovementsEquipmentInventoryLog(getStage());
+                break;
+            case "editAvatar":
+                DepartmentPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
+                DepartmentPresenter.get().uploadAvatar(getStage());
+                break;
+            case "deleteAvatar":
+                System.out.println(" delete avatar");
+                break;
+            case "mAvatarImage":
+                System.out.println("open avatar");
                 break;
         }
     }

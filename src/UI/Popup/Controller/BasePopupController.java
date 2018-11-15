@@ -22,5 +22,12 @@ public abstract class BasePopupController {
     }
 
     protected void selectedPopupItem(Node node) {
+        if (node != null) {
+            if (node.getId().equals("delete")) {
+                ListenersService.get().delete();
+            } else {
+                ListenersService.get().onMouseClick(node.getId());
+            }
+        }
     }
 }

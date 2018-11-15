@@ -125,15 +125,27 @@ public abstract class GenericModel<T> extends AbstractModel<GenericModel<T>> imp
         return list;
     }
 
+
+    private ObservableList<FileDumpModel> getObsPhotoList() {
+        ObservableList<FileDumpModel> list = FXCollections.observableArrayList();
+        for (FileDumpModel file : getFileDumpPhotoList()) {
+            list.add(file);
+        }
+        return list;
+    }
+
     public ObservableList<FileDumpModel> getFilesList(String type) {
         switch (type) {
             case "doc":
                 return getObsFileDumpDocList();
             case "config":
                 return getObsFileDumpConfigList();
+            case "photo":
+                return getObsPhotoList();
         }
         return null;
     }
+
 
     @Override
     public void deleteEntity(T entity) {

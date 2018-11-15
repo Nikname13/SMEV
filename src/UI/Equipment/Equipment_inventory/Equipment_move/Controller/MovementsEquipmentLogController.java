@@ -3,13 +3,15 @@ package UI.Equipment.Equipment_inventory.Equipment_move.Controller;
 import Model.Department.DepartmentModel;
 import Model.Movement.MovementModel;
 import Presenter.EquipmentPresenter;
+import UI.BaseController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
+import javafx.stage.Stage;
 
-public class MovementsEquipmentLogController {
+public class MovementsEquipmentLogController extends BaseController {
 
     @FXML
     private TreeTableView<MovementModel> mMovementsLogTreeView;
@@ -42,5 +44,10 @@ public class MovementsEquipmentLogController {
         }
         mMovementsLogTreeView.setRoot(rootItem);
         mMovementsLogTreeView.setShowRoot(false);
+    }
+
+    @Override
+    protected Stage getStage() {
+        return null;
     }
 }

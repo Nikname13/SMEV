@@ -31,15 +31,12 @@ public class Departments extends GenericList<DepartmentModel> {
     @Override
     public void replace(DepartmentModel entity) {
         DepartmentModel department=Departments.get().getEntity(entity.getId());
-        department.setLoad(entity.isLoad());
         department.setNumber(entity.getNumber());
         department.setName(entity.getName());
+        department.setAvatar(entity.getAvatar());
         department.setAreaModel(entity.getAreaModel());
-       // department.setConfig(entity.getConfig());
         department.setDescription(entity.getDescription());
-        //department.setDocumentation(entity.getDocumentation());
         department.setLocationList(entity.getLocationList());
-        //department.setPhotos(entity.getPhotos());
         department.setRenting(entity.isRenting());
         department.setWorkerList(entity.getWorkerList());
         department.setElectronicQ(entity.isElectronicQ());

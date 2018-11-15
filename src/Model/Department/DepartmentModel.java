@@ -27,6 +27,8 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     private String mNumber, mDescription;
     private boolean mElectronicQ, mRenting;
     private AreaModel mAreaModel;
+    private FileDumpModel mAvatar;
+
     @Expose
     private List<WorkerModel> mWorkerList;
     @Expose
@@ -159,7 +161,7 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     }
 
     public List<WorkerModel> getWorkerList() {
-            mWorkerList = new IteractorWorker().getList(getId());
+        mWorkerList = new IteractorWorker().getList(getId());
         return mWorkerList;
     }
 
@@ -207,6 +209,15 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
         return null;
     }
 
+    public FileDumpModel getAvatar() {
+        return mAvatar;
+    }
+
+    public void setAvatar(FileDumpModel avatar) {
+        mAvatar = avatar;
+    }
+
+
     @Override
     public List<FileDumpModel> getFileDumpDocList() {
         setFileDumpDocList(new IteractorDepartment().getFilesList(getId(), getTypeDoc()));
@@ -217,6 +228,12 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     public List<FileDumpModel> getFileDumpConfigList() {
         setFileDumpConfigList(new IteractorDepartment().getFilesList(getId(), getTypeConfig()));
         return super.getFileDumpConfigList();
+    }
+
+    @Override
+    public List<FileDumpModel> getFileDumpPhotoList() {
+        setFileDumpPhotoList(new IteractorDepartment().getFilesList(getId(), getTypePhoto()));
+        return super.getFileDumpPhotoList();
     }
 
     @Override

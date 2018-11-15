@@ -11,9 +11,9 @@ public class Coordinator {
 
     private Parent windowSceneContent(String fxml, Stage rootStage, String title, double width, double height) throws Exception {
         System.out.println("WindowSceneContent");
+        Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), null, new JavaFXBuilderFactory());
         Parent page = loader.load();
-        Stage stage=new Stage();
         stage.setScene(new Scene(page));
         stage.setTitle(title);
         stage.setWidth(width);
@@ -33,6 +33,8 @@ public class Coordinator {
             BaseController controller = loader.getController();
             controller.destroy();
         });
+        BaseController controller = loader.getController();
+        controller.createGallery();
         return page;
     }
 
@@ -358,7 +360,7 @@ public class Coordinator {
 
     public void goToPhotoDepartmentWindow(Stage stage) {
         try {
-            windowSceneContent("Department/DepartmentFiles/photoDepartment.fxml", stage, "Фото", 100.0, 200.0);
+            windowSceneContent("Department/DepartmentFiles/photoDepartment.fxml", stage, "Фото", 600.0, 400.0);
         }catch (Exception ex){
             System.out.println("Exception goToPhotoDepartmentWindow " + ex);
         }

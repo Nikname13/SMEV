@@ -2,13 +2,15 @@ package UI.Equipment.Equipment_inventory.Equipment_number.Controller;
 
 import Model.Equipment.EquipmentInventoryLogModel;
 import Presenter.EquipmentPresenter;
+import UI.BaseController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
+import javafx.stage.Stage;
 
-public class InventoryLogController {
+public class InventoryLogController extends BaseController {
 
     @FXML
     private TreeTableView<EquipmentInventoryLogModel> mInventoryLogTreeView;
@@ -37,4 +39,8 @@ public class InventoryLogController {
         mInventoryLogTreeView.setShowRoot(false);
     }
 
+    @Override
+    protected Stage getStage() {
+        return null;
+    }
 }

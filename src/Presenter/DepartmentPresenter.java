@@ -3,6 +3,7 @@ package Presenter;
 import Iteractor.IteractorDepartment;
 import Iteractor.IteractorLocation;
 import Iteractor.IteractorPurchase;
+import Model.AbstractModel;
 import Model.Area.AreaModel;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
@@ -68,6 +69,11 @@ public class DepartmentPresenter extends BaseFilePresenter {
         ListenersService.get().refreshControl(Departments.class);
     }
 
+    public void editDepartment(DepartmentModel departmentModel) {
+        new IteractorDepartment().edit(departmentModel);
+        ListenersService.get().refreshControl(Departments.class);
+    }
+
     public void addPurchase(String url, String description, LocalDate date) {
         new IteractorPurchase().addNew(new PurchaseModel(0, url, description, date, sDepartmentModel));
         ListenersService.get().updateControl(PurchaseModel.class);
@@ -79,13 +85,28 @@ public class DepartmentPresenter extends BaseFilePresenter {
     }
 
     @Override
-    protected void uploadFiles(List<File> fileList) {
-        new IteractorDepartment().uploadFile(sDepartmentModel.getId(), fileList, getTypeDocuments());
+    protected void setAvatar(List<File> fileList) {
+        sDepartmentModel.setAvatar(uploadFiles(fileList).get(0));
+        editDepartment(sDepartmentModel);
+    }
+
+    @Override
+    protected List<FileDumpModel> uploadFiles(List<File> fileList) {
+        return new IteractorDepartment().uploadFile(sDepartmentModel.getId(), fileList, getTypeDocuments());
     }
 
     @Override
     protected File getFile(File savePathFile) {
         return new IteractorDepartment().downloadFile(sDepartmentModel.getId(), getTypeDocuments(), FileDumpPresenter.get().getFileDumpModel().getPath(), savePathFile);
+    }
+
+    public String getPathAvatar() {
+        if (sDepartmentModel.getAvatar() != null) {
+            setTypeDocuments(AbstractModel.getTypePhoto());
+            FileDumpPresenter.get().setFileDumpModel(sDepartmentModel.getAvatar());
+            return getTempFile(sDepartmentModel.getAvatar().getPath()).getPath();
+        }
+        return "";
     }
 
     @Override

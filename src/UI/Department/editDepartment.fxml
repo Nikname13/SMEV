@@ -60,7 +60,8 @@
                                            text="Конфигурация"
                                            AnchorPane.leftAnchor="10.0"
                                            AnchorPane.topAnchor="70.0" AnchorPane.rightAnchor="10.0" prefHeight="50.0"/>
-                                <JFXButton fx:id="mButtonPhoto" ripplerFill="#40a85f" text="Фотографии"
+                                <JFXButton fx:id="mButtonPhoto" onAction="#onClickPhoto" ripplerFill="#40a85f"
+                                           text="Фотографии"
                                            AnchorPane.leftAnchor="10.0"
                                            AnchorPane.topAnchor="130.0" AnchorPane.rightAnchor="10.0"
                                            prefHeight="50.0"/>
@@ -69,12 +70,11 @@
                         <!--аватар-->
                         <AnchorPane style="-fx-background-color: #ffffff;" prefHeight="190.0" prefWidth="250">
                             <children>
-                                <JFXButton AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
-                                           AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0"
-                                           prefWidth="340.0" style="-fx-background-color: #a8f1b3;"/>
+                                <BorderPane fx:id="mAvatarImage" minHeight="170" minWidth="230"
+                                            AnchorPane.rightAnchor="10" AnchorPane.leftAnchor="10"
+                                            AnchorPane.bottomAnchor="10" AnchorPane.topAnchor="10"/>
                             </children>
                         </AnchorPane>
-
                     </children>
                 </HBox>
             </children>

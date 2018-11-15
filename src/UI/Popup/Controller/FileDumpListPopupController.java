@@ -1,6 +1,5 @@
 package UI.Popup.Controller;
 
-import Service.ListenersService;
 import com.jfoenix.controls.JFXListView;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -12,25 +11,5 @@ public class FileDumpListPopupController extends BasePopupController {
     @FXML
     public void initialize() {
         init(mPopupList);
-    }
-
-    @Override
-    protected void selectedPopupItem(Node node) {
-        if (node != null) {
-            switch (node.getId()) {
-                case "saveFile":
-                    System.out.println(node.getId());
-                    ListenersService.get().onMouseClick(node.getId());
-                    break;
-                case "renameFile":
-                    System.out.println(node.getId());
-                    ListenersService.get().onMouseClick(node.getId());
-                    break;
-                case "delete":
-                    ListenersService.get().delete();
-                    break;
-            }
-        }
-
     }
 }

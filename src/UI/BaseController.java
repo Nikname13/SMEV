@@ -20,9 +20,15 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public abstract class BaseController implements IUpdateUI {
 
@@ -555,6 +561,20 @@ public abstract class BaseController implements IUpdateUI {
         });
     }
 
+    protected void setAvatar(String path, BorderPane imageContainer) {
+        try {
+            ImageView image = new ImageView(new Image(new FileInputStream(path), imageContainer.getMinWidth(), imageContainer.getHeight(), true,
+                    true));
+            image.setFitHeight(imageContainer.getPrefHeight());
+            image.setFitWidth(imageContainer.getPrefWidth());
+            image.setCache(true);
+            imageContainer.setCenter(image);
+
+        } catch (FileNotFoundException ex) {
+
+        }
+    }
+
     protected void close(Node node) {
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
@@ -583,6 +603,10 @@ public abstract class BaseController implements IUpdateUI {
 
     public void destroy() {
         ErrorService.get().overrideError("destroy", this.getClass());
+    }
+
+    public void createGallery() {
+
     }
 }
 

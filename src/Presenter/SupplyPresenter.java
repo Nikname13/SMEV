@@ -76,8 +76,8 @@ public class SupplyPresenter extends BaseFilePresenter {
     }
 
     @Override
-    protected void uploadFiles(List<File> fileList) {
-        new IteractorSupply().uploadFile(sSupplyModel.getId(), fileList, getTypeDocuments());
+    protected List<FileDumpModel> uploadFiles(List<File> fileList) {
+        return new IteractorSupply().uploadFile(sSupplyModel.getId(), fileList, getTypeDocuments());
     }
 
     @Override

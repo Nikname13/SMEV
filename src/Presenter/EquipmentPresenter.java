@@ -266,8 +266,8 @@ public class EquipmentPresenter extends BaseFilePresenter {
     }
 
     @Override
-    protected void uploadFiles(List<File> fileList) {
-        new IteractorEquipment().uploadFile(sEquipmentModel.getId(), fileList, getTypeDocuments());
+    protected List<FileDumpModel> uploadFiles(List<File> fileList) {
+        return new IteractorEquipment().uploadFile(sEquipmentModel.getId(), fileList, getTypeDocuments());
     }
 
     @Override

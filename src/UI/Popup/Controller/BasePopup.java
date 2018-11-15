@@ -21,6 +21,8 @@ public class BasePopup implements IUpdatePopup {
     private static String sSupplyListPopup = "/UI/Popup/supplyListPopup.fxml";
     private static String sInventoryNumberPopup = "/UI/Popup/inventoryNumberPopup.fxml";
     private static String sFileDumpListPopup = "/UI/Popup/fileDumpListPopup.fxml";
+    private static String sAvatarPopup = "/UI/Popup/avatarPopup.fxml";
+
 
     private JFXPopup mPopup;
     private boolean mDoubleClick;
@@ -71,6 +73,10 @@ public class BasePopup implements IUpdatePopup {
 
     public static String getEquipmentListPopup() {
         return sEquipmentListPopup;
+    }
+
+    public static String getAvatarPopup() {
+        return sAvatarPopup;
     }
 
     private void initPopup(Node node, String resourceURL) {
