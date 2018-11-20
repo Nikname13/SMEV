@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class IteractorEquipmentInventory extends GenericIteractor<EquipmentInventoryModel>{
 
     private static String sURL="/equipmentInventory_servlet";
+    private static String sLoadFileURL = "/load_equipmentInventory_servlet";
 
     public IteractorEquipmentInventory() {
         super(sURL, EquipmentInventoryModel.class, new TypeToken<ArrayList<EquipmentInventoryModel>>(){}.getType());
@@ -32,4 +33,8 @@ public class IteractorEquipmentInventory extends GenericIteractor<EquipmentInven
         }).create().toJson(entity);
     }
 
+    @Override
+    public String getLoadFileURL() {
+        return sLoadFileURL;
+    }
 }

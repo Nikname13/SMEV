@@ -7,9 +7,11 @@ import Model.Equipment.EquipmentModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.State.StateModel;
 import Presenter.EquipmentPresenter;
+import Service.IOnMouseClick;
 import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
+import UI.Popup.Controller.BasePopup;
 import UI.Validator.BaseValidator;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -19,9 +21,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class EquipmentInventoryController extends BaseController {
+public class EquipmentInventoryController extends BaseController implements IOnMouseClick {
 
     private EquipmentInventoryModel mEquipmentInventory;
     private EquipmentModel mEquipmentModel;
@@ -51,7 +54,10 @@ public class EquipmentInventoryController extends BaseController {
     private JFXButton mButtonSave;
 
     @FXML
-    private AnchorPane PaneEquipmentInventory;
+    private BorderPane mAvatarImage;
+
+    @FXML
+    private AnchorPane mPaneEquipmentInventory;
 
     @FXML
     public void initialize(){
@@ -62,6 +68,11 @@ public class EquipmentInventoryController extends BaseController {
         initComboBoxState(mComboBoxState, true, "Выберите состояние", "Состояние");
         initTextField();
         initTextArea();
+        initPopup();
+    }
+
+    private void initPopup() {
+        new BasePopup(mAvatarImage, BasePopup.getAvatarPopup(), this, true);
     }
 
     private void initTextArea() {
@@ -83,12 +94,7 @@ public class EquipmentInventoryController extends BaseController {
         });
     }
 
-    @FXML
-    private void onClickConfig() {
-        EquipmentPresenter.get().setTypeDocuments(AbstractModel.getTypeConfig());
-        EquipmentPresenter.get().setEquipmentModel(mEquipmentModel);
-        new Coordinator().goToFilesEquipmentWindow(getStage());
-    }
+
 
     @Override
     protected void initComboBoxState(JFXComboBox<StateModel> comboBox, boolean isSelectionItem, String promptText, String label) {
@@ -113,7 +119,7 @@ public class EquipmentInventoryController extends BaseController {
 
     @Override
     protected Stage getStage() {
-        return (Stage) PaneEquipmentInventory.getScene().getWindow();
+        return (Stage) mPaneEquipmentInventory.getScene().getWindow();
     }
 
     @Override
@@ -136,6 +142,20 @@ public class EquipmentInventoryController extends BaseController {
         }
     }
 
+    @FXML
+    private void onClickConfig() {
+        EquipmentPresenter.get().setTypeDocuments(AbstractModel.getTypeConfig());
+        EquipmentPresenter.get().setEquipmentModel(mEquipmentModel);
+        new Coordinator().goToFilesEquipmentWindow(getStage());
+    }
+
+    @FXML
+    private void onClickPhoto() {
+        EquipmentPresenter.get().setEquipmentInventoryModel(mEquipmentInventory);
+        EquipmentPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
+        new Coordinator().goToPhotoEquipmentWindow(getStage());
+    }
+
     private DepartmentModel getDepartment() {
         return mDepartmentModel == null ? mEquipmentInventory.getDepartmentModel() : mDepartmentModel;
     }
@@ -152,7 +172,7 @@ public class EquipmentInventoryController extends BaseController {
         if (mComboBoxDepartment.focusedProperty().get()) {
             EquipmentPresenter.get().setEquipmentInventoryModel(mEquipmentInventory);
             EquipmentPresenter.get().setDepartmentModel(mComboBoxDepartment.getValue());
-            new Coordinator().goToMoveEquipmentInventoryWindow((Stage) PaneEquipmentInventory.getScene().getWindow());
+            new Coordinator().goToMoveEquipmentInventoryWindow((Stage) mPaneEquipmentInventory.getScene().getWindow());
         }
     }
 
@@ -160,7 +180,7 @@ public class EquipmentInventoryController extends BaseController {
         if (mComboBoxState.getSelectionModel().getSelectedIndex() != -1 && mComboBoxState.focusedProperty().get()) {
             EquipmentPresenter.get().setEquipmentStateLog(null);
             EquipmentPresenter.get().setStateModel(mComboBoxState.getValue());
-            new Coordinator().goToAddEquipmentStateLog((Stage) PaneEquipmentInventory.getScene().getWindow());
+            new Coordinator().goToAddEquipmentStateLog((Stage) mPaneEquipmentInventory.getScene().getWindow());
         }
     }
 
@@ -178,6 +198,7 @@ public class EquipmentInventoryController extends BaseController {
             mTextAreaDescription.setText(mEquipmentInventory.getDescription());
             mComboBoxState.setItems(EquipmentPresenter.get().getObservableState());
             mComboBoxState.getSelectionModel().select(mEquipmentInventory.getStateModel());
+            setAvatar(EquipmentPresenter.get().getPathAvatar(), mAvatarImage);
         }
     }
 
@@ -188,6 +209,25 @@ public class EquipmentInventoryController extends BaseController {
             mComboBoxDepartment.getSelectionModel().select(getDepartment());
             mComboBoxNumber.getSelectionModel().select(getInventoryNumber());
         }
+        if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
+            setAvatar(EquipmentPresenter.get().getPathAvatar(), mAvatarImage);
+        }
     }
 
+    @Override
+    public void primaryClick(String id) {
+        switch (id) {
+
+            case "editAvatar":
+                EquipmentPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
+                EquipmentPresenter.get().uploadAvatar(getStage());
+                break;
+            case "deleteAvatar":
+                System.out.println(" delete avatar");
+                break;
+            case "mAvatarImage":
+                System.out.println("open avatar");
+                break;
+        }
+    }
 }

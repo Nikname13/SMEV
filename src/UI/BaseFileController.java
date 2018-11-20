@@ -1,17 +1,36 @@
 package UI;
 
+import Model.AbstractModel;
 import Model.FileDumpModel;
+import Presenter.DepartmentPresenter;
 import Presenter.FileDumpPresenter;
 import Service.IOnMouseClick;
 import UI.Popup.Controller.BasePopup;
 import UI.Validator.BaseValidator;
 import com.jfoenix.controls.*;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
+
+import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public abstract class BaseFileController extends BaseController implements IOnMouseClick {
 
@@ -85,7 +104,82 @@ public abstract class BaseFileController extends BaseController implements IOnMo
         dialog.show();
     }
 
+    protected ImageView createImageView(File imageFile) {
+        ImageView imageView = null;
+        try {
+            final Image image = new Image(new FileInputStream(imageFile), 150, 0, true,
+                    true);
+            imageView = new ImageView(image);
+            imageView.setFitWidth(150);
+            imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+
+                    if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+
+                        if (mouseEvent.getClickCount() == 2) {
+                            try {
+                                Desktop desktop = null;
+                                if (Desktop.isDesktopSupported()) {
+                                    desktop = Desktop.getDesktop();
+                                }
+                                desktop.open(imageFile);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+                }
+            });
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return imageView;
+    }
+
+    @Override
+    public void createGallery() {
+        if (mTypeDocument.equals(AbstractModel.getTypePhoto())) {
+            javafx.scene.control.ScrollPane root = new javafx.scene.control.ScrollPane();
+            TilePane tile = new TilePane();
+            // root.setStyle("-fx-background-color: DAE6F3;");
+            tile.setPadding(new Insets(15, 15, 15, 15));
+            tile.setHgap(15);
+            tile.setVgap(15);
+            root.setHbarPolicy(javafx.scene.control.ScrollPane.ScrollBarPolicy.NEVER); // Horizontal
+            root.setVbarPolicy(javafx.scene.control.ScrollPane.ScrollBarPolicy.AS_NEEDED); // Vertical scroll bar
+            root.setFitToWidth(true);
+            root.setContent(tile);
+
+            for (FileDumpModel file : getFileList()) {
+                ImageView imageView;
+                FileDumpPresenter.get().setFileDumpModel(file);
+                imageView = createImageView(DepartmentPresenter.get().getTempFile(file.getPath()));
+                Pane pane = new Pane();
+                VBox vBox = new VBox();
+                vBox.getChildren().add(imageView);
+                javafx.scene.control.Label label = new Label(file.getName());
+                label.setMaxWidth(150);
+                label.setWrapText(true);
+                vBox.getChildren().add(label);
+                pane.getChildren().add(vBox);
+                new BasePopup(pane, BasePopup.getBaseListPopup(), this);
+                //pane.setStyle("-fx-background-color: #ffffff;");
+                tile.getChildren().addAll(pane);
+            }
+            getStage().setWidth(600);
+            getStage().setHeight(400);
+            Scene scene = new Scene(root);
+            getStage().setScene(scene);
+            getStage().show();
+        }
+    }
+
+    protected ObservableList<FileDumpModel> getFileList() {
+        return null;
+    }
     protected void editFile(String name) {
 
     }

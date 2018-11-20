@@ -4,6 +4,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public abstract class AbstractModel<T extends AbstractModel<?>> extends RecursiveTreeObject<AbstractModel> implements IAbstractModel {
@@ -11,6 +12,7 @@ public abstract class AbstractModel<T extends AbstractModel<?>> extends Recursiv
     private int mId;
     private String mName;
     private LocalDate mDate;
+    private LocalDateTime mLastUpdate, mLastTableUpdate;
 
     private transient String mDisplayDate;
     private transient static String typeDoc="doc";
@@ -64,6 +66,22 @@ public abstract class AbstractModel<T extends AbstractModel<?>> extends Recursiv
 
     public void setDate(LocalDate date) {
         mDate = date;
+    }
+
+    public LocalDateTime getLastUpdate() {
+        return mLastUpdate;
+    }
+
+    public void setLastUpdate(LocalDateTime lastUpdate) {
+        mLastUpdate = lastUpdate;
+    }
+
+    public LocalDateTime getLastTableUpdate() {
+        return mLastTableUpdate;
+    }
+
+    public void setLastTableUpdate(LocalDateTime lastTableUpdate) {
+        mLastTableUpdate = lastTableUpdate;
     }
 
     @Override

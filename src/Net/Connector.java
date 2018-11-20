@@ -21,7 +21,7 @@ public class Connector {
             URL url = new URL(uri);
             HttpURLConnection connect = (HttpURLConnection) url.openConnection();
             connect.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            //connect.setUseCaches(false);
+            connect.setUseCaches(true);
             connect.setAllowUserInteraction(true);
             connect.setDoOutput(true);
             connect.setDoInput(true);

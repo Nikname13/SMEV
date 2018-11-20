@@ -28,7 +28,7 @@ public class TabControllerService {
 
     private TabControllerService(){
         mEditDepartmentResource=new ResourceModel("/UI/Department/editDepartment.fxml","anchorPaneEditDepartment");
-        mEquipmentInventoryResource=new ResourceModel("/UI/Equipment/Equipment_inventory/equipmentInventory.fxml","anchorPaneEquipmentInventory");
+        mEquipmentInventoryResource = new ResourceModel("/UI/Equipment/Equipment_inventory/equipmentInventory.fxml", "mPaneEquipmentInventory");
         mEditEquipmentResource = new ResourceModel("/UI/Equipment/editEquipment.fxml", "mStackPaneEditEquipment");
         mEmptyTab = new ResourceModel("/UI/MainTabs/emptyTab.fxml", "emptyTab.fxml");
         mDetailsMovementResource = new ResourceModel("/UI/Movement/detailsMovement.fxml", "mDetailsAnchorPane");

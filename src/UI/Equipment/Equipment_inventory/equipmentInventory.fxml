@@ -2,18 +2,19 @@
 
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane fx:id="PaneEquipmentInventory"
+<AnchorPane fx:id="mPaneEquipmentInventory"
             xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="UI.Equipment.Equipment_inventory.Controller.EquipmentInventoryController"
             style="-fx-background-color: #ffffff;">
     <children>
 
-        <JFXButton AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
-                   prefHeight="160.0"
-                   prefWidth="250.0" style="-fx-background-color: #a8f1b3;"/>
-                <JFXButton prefHeight="45.0" prefWidth="120.0" ripplerFill="#40a85f" text="Фотографии"
-                           AnchorPane.topAnchor="180.0" AnchorPane.leftAnchor="10.0"/>
+        <BorderPane fx:id="mAvatarImage" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
+                    AnchorPane.rightAnchor="10.0"
+                    prefHeight="160.0"
+                    prefWidth="250.0" style="-fx-background-color: #a8f1b3;"/>
+        <JFXButton onAction="#onClickPhoto" prefHeight="45.0" prefWidth="120.0" ripplerFill="#40a85f" text="Фотографии"
+                   AnchorPane.topAnchor="180.0" AnchorPane.leftAnchor="10.0"/>
         <JFXButton onAction="#onClickConfig" prefHeight="45.0" text="Конфиги" prefWidth="120.0" ripplerFill="#40a85f"
                    AnchorPane.topAnchor="180.0"
                    AnchorPane.leftAnchor="140.0"/>

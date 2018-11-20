@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.image.ImageView?>
 <AnchorPane fx:id="anchorPaneEditDepartment"
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="UI.Department.Controller.EditDepartmentController">
@@ -61,18 +60,20 @@
                                            text="Конфигурация"
                                            AnchorPane.leftAnchor="10.0"
                                            AnchorPane.topAnchor="70.0" AnchorPane.rightAnchor="10.0" prefHeight="50.0"/>
-                                <JFXButton fx:id="mButtonPhoto" onAction="#onClickPhoto" ripplerFill="#40a85f" text="Фотографии"
+                                <JFXButton fx:id="mButtonPhoto" onAction="#onClickPhoto" ripplerFill="#40a85f"
+                                           text="Фотографии"
                                            AnchorPane.leftAnchor="10.0"
                                            AnchorPane.topAnchor="130.0" AnchorPane.rightAnchor="10.0"
                                            prefHeight="50.0"/>
                             </children>
                         </AnchorPane>
                         <!--аватар-->
-                        <AnchorPane  style="-fx-background-color: #ffffff;" prefHeight="190.0" prefWidth="250">
-                                <children>
-                                    <BorderPane fx:id="mAvatarImage" minHeight="170" minWidth="230" AnchorPane.rightAnchor="10" AnchorPane.leftAnchor="10"
-                                                AnchorPane.bottomAnchor="10" AnchorPane.topAnchor="10"/>
-                                </children>
+                        <AnchorPane style="-fx-background-color: #ffffff;" prefHeight="190.0" prefWidth="250">
+                            <children>
+                                <BorderPane fx:id="mAvatarImage" minHeight="170" minWidth="230"
+                                            AnchorPane.rightAnchor="10" AnchorPane.leftAnchor="10"
+                                            AnchorPane.bottomAnchor="10" AnchorPane.topAnchor="10"/>
+                            </children>
                         </AnchorPane>
                     </children>
                 </HBox>

@@ -1,8 +1,10 @@
 package Model.Equipment;
 
+import Iteractor.IteractorEquipmentInventory;
 import Iteractor.IteractorInventoryNumberEquipmentLog;
 import Iteractor.IteractorStateLog;
 import Model.Department.DepartmentModel;
+import Model.FileDumpModel;
 import Model.GenericModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.State.StateModel;
@@ -12,7 +14,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.List;
 public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel> {
 
     private int mGuaranty;
-    private transient Image mAvatar;
+    private FileDumpModel mAvatar;
     private String mDescription, mDescription_department;
     private InventoryNumberModel mInventoryNumber;
     private DepartmentModel mDepartmentModel;
@@ -103,11 +104,11 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel
         mGuaranty = guaranty;
     }
 
-    public Image getAvatar() {
+    public FileDumpModel getAvatar() {
         return mAvatar;
     }
 
-    public void setAvatar(Image avatar) {
+    public void setAvatar(FileDumpModel avatar) {
         mAvatar = avatar;
     }
 
@@ -161,6 +162,12 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel
 
     public void setEquipmentModel(EquipmentModel equipmentModel) {
         mEquipmentModel = equipmentModel;
+    }
+
+    @Override
+    public List<FileDumpModel> getFileDumpPhotoList() {
+        setFileDumpPhotoList(new IteractorEquipmentInventory().getFilesList(getId(), getTypePhoto()));
+        return super.getFileDumpPhotoList();
     }
 
     @Override

@@ -4,6 +4,7 @@ import Iteractor.IteractorEquipment;
 import Iteractor.IteractorEquipmentInventory;
 import Iteractor.IteractorEquipmentParameter;
 import Iteractor.IteractorMovement;
+import Model.AbstractModel;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
 import Model.Equipment.*;
@@ -258,6 +259,21 @@ public class EquipmentPresenter extends BaseFilePresenter {
             list.add(movement);
         }
         return list;
+    }
+
+    @Override
+    protected void setAvatar(List<File> fileList) {
+        sEquipmentInventoryModel.setAvatar(new IteractorEquipmentInventory().uploadFile(sEquipmentInventoryModel.getId(), fileList, getTypeDocuments()).get(0));
+        editEquipmentInventory(sEquipmentInventoryModel);
+    }
+
+    public String getPathAvatar() {
+        if (sEquipmentInventoryModel.getAvatar() != null) {
+            setTypeDocuments(AbstractModel.getTypePhoto());
+            FileDumpPresenter.get().setFileDumpModel(sEquipmentInventoryModel.getAvatar());
+            return getTempFile(sEquipmentInventoryModel.getAvatar().getPath()).getPath();
+        }
+        return "";
     }
 
     @Override
