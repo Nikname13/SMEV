@@ -2,12 +2,15 @@ package UI.Equipment.EquipmentFiles;
 
 import Model.Equipment.EquipmentInventoryModel;
 import Model.FileDumpModel;
+import Presenter.EquipmentInventoryPresenter;
 import Presenter.EquipmentPresenter;
 import UI.BaseFileController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 public class PhotoEquipmentController extends BaseFileController {
 
@@ -16,7 +19,7 @@ public class PhotoEquipmentController extends BaseFileController {
     private AnchorPane mPanePhoto;
 
     public PhotoEquipmentController() {
-        mEquipmentInventoryModel = EquipmentPresenter.get().getEquipmentInventoryModel();
+        mEquipmentInventoryModel = EquipmentInventoryPresenter.get().getEquipmentInventoryModel();
         setTypeDocument(EquipmentPresenter.get().getTypeDocuments());
 
     }
@@ -29,6 +32,11 @@ public class PhotoEquipmentController extends BaseFileController {
     @Override
     protected ObservableList<FileDumpModel> getFileList() {
         return mEquipmentInventoryModel.getFilesList(getTypeDocument());
+    }
+
+    @Override
+    protected File getTempFile(String path) {
+        return EquipmentInventoryPresenter.get().getTempFile(path);
     }
 
     @Override

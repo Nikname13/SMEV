@@ -6,6 +6,7 @@ import Model.Equipment.EquipmentInventoryModel;
 import Model.Equipment.EquipmentModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.State.StateModel;
+import Presenter.EquipmentInventoryPresenter;
 import Presenter.EquipmentPresenter;
 import Service.IOnMouseClick;
 import Service.ListenersService;
@@ -111,7 +112,7 @@ public class EquipmentInventoryController extends BaseController implements IOnM
     private void selectedNumber() {
         if (mComboBoxNumber.getSelectionModel().getSelectedIndex() != -1 && mComboBoxNumber.focusedProperty().get()) {
             System.out.println("переход в модальное окно");
-            EquipmentPresenter.get().setInventoryNumberModel(mComboBoxNumber.getValue());
+            EquipmentInventoryPresenter.get().setInventoryNumberModel(mComboBoxNumber.getValue());
             new Coordinator().goToAddInventoryNumberLog(getStage());
 
         }
@@ -132,7 +133,7 @@ public class EquipmentInventoryController extends BaseController implements IOnM
     private void onClickSave(){
         mButtonSave.setVisible(false);
         if (mTextFieldGuaranty.validate()) {
-            EquipmentPresenter.get().editEquipmentInventory(
+            EquipmentInventoryPresenter.get().editEquipmentInventory(
                     mEquipmentInventory.getInventoryNumber(),
                     Integer.parseInt(mTextFieldGuaranty.getText()),
                     mTextAreaDescription.getText(),
@@ -151,8 +152,8 @@ public class EquipmentInventoryController extends BaseController implements IOnM
 
     @FXML
     private void onClickPhoto() {
-        EquipmentPresenter.get().setEquipmentInventoryModel(mEquipmentInventory);
-        EquipmentPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
+        EquipmentInventoryPresenter.get().setEquipmentInventoryModel(mEquipmentInventory);
+        EquipmentInventoryPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
         new Coordinator().goToPhotoEquipmentWindow(getStage());
     }
 
@@ -161,25 +162,25 @@ public class EquipmentInventoryController extends BaseController implements IOnM
     }
 
     private StateModel getState() {
-        return EquipmentPresenter.get().getEquipmentStateLog() == null ? mEquipmentInventory.getStateModel() : EquipmentPresenter.get().getStateModel();
+        return EquipmentInventoryPresenter.get().getEquipmentStateLog() == null ? mEquipmentInventory.getStateModel() : EquipmentInventoryPresenter.get().getStateModel();
     }
 
     private InventoryNumberModel getInventoryNumber() {
-        return EquipmentPresenter.get().getEquipmentInventoryLogModel() == null ? mEquipmentInventory.getInventoryNumber() : EquipmentPresenter.get().getInventoryNumberModel();
+        return EquipmentInventoryPresenter.get().getEquipmentInventoryLogModel() == null ? mEquipmentInventory.getInventoryNumber() : EquipmentInventoryPresenter.get().getInventoryNumberModel();
     }
 
     private void selectedDepartment() {
         if (mComboBoxDepartment.focusedProperty().get()) {
-            EquipmentPresenter.get().setEquipmentInventoryModel(mEquipmentInventory);
-            EquipmentPresenter.get().setDepartmentModel(mComboBoxDepartment.getValue());
+            EquipmentInventoryPresenter.get().setEquipmentInventoryModel(mEquipmentInventory);
+            EquipmentInventoryPresenter.get().setDepartmentModel(mComboBoxDepartment.getValue());
             new Coordinator().goToMoveEquipmentInventoryWindow((Stage) mPaneEquipmentInventory.getScene().getWindow());
         }
     }
 
     private void selectedState() {
         if (mComboBoxState.getSelectionModel().getSelectedIndex() != -1 && mComboBoxState.focusedProperty().get()) {
-            EquipmentPresenter.get().setEquipmentStateLog(null);
-            EquipmentPresenter.get().setStateModel(mComboBoxState.getValue());
+            EquipmentInventoryPresenter.get().setEquipmentStateLog(null);
+            EquipmentInventoryPresenter.get().setStateModel(mComboBoxState.getValue());
             new Coordinator().goToAddEquipmentStateLog((Stage) mPaneEquipmentInventory.getScene().getWindow());
         }
     }
@@ -187,8 +188,8 @@ public class EquipmentInventoryController extends BaseController implements IOnM
     @Override
     public void updateUI(Class<?> updateClass) {
         if(updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
-            EquipmentPresenter.get().setEquipmentStateLog(null);
-            mEquipmentInventory = EquipmentPresenter.get().getEquipmentInventoryModel();
+            EquipmentInventoryPresenter.get().setEquipmentStateLog(null);
+            mEquipmentInventory = EquipmentInventoryPresenter.get().getEquipmentInventoryModel();
             mEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
             mComboBoxDepartment.setItems(EquipmentPresenter.get().getObservableDepartment());
             mComboBoxDepartment.getSelectionModel().select(mEquipmentInventory.getDepartmentModel());
@@ -198,7 +199,7 @@ public class EquipmentInventoryController extends BaseController implements IOnM
             mTextAreaDescription.setText(mEquipmentInventory.getDescription());
             mComboBoxState.setItems(EquipmentPresenter.get().getObservableState());
             mComboBoxState.getSelectionModel().select(mEquipmentInventory.getStateModel());
-            setAvatar(EquipmentPresenter.get().getPathAvatar(), mAvatarImage);
+            setAvatar(EquipmentInventoryPresenter.get().getPathAvatar(), mAvatarImage);
         }
     }
 
@@ -208,9 +209,7 @@ public class EquipmentInventoryController extends BaseController implements IOnM
             mComboBoxState.getSelectionModel().select(getState());
             mComboBoxDepartment.getSelectionModel().select(getDepartment());
             mComboBoxNumber.getSelectionModel().select(getInventoryNumber());
-        }
-        if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
-            setAvatar(EquipmentPresenter.get().getPathAvatar(), mAvatarImage);
+            setAvatar(EquipmentInventoryPresenter.get().getPathAvatar(), mAvatarImage);
         }
     }
 

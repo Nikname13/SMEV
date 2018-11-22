@@ -75,6 +75,10 @@ public class SupplyModel extends GenericModel<InventoryNumberModel> {
 
     @Override
     public List<FileDumpModel> getFileDumpDocList() {
-        return new IteractorSupply().getFilesList(getId(), getTypeDoc());
+        List<FileDumpModel> list = new IteractorSupply().getFilesList(getId(), getTypeDoc(), this);
+        if (list != null) {
+            setFileDumpDocList(list);
+        }
+        return super.getFileDumpDocList();
     }
 }

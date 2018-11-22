@@ -55,7 +55,9 @@ public abstract class BaseFilePresenter extends BasePresenter {
 
     public File getTempFile(String savePath) {
         try {
-            return getFile(File.createTempFile(savePath.substring(0, savePath.lastIndexOf(".")), savePath.substring(savePath.lastIndexOf("."))));
+            File tempFile = getFile(File.createTempFile(savePath.substring(0, savePath.lastIndexOf(".")), savePath.substring(savePath.lastIndexOf("."))));
+            FileDumpPresenter.get().getFileDumpModel().setTempPath(tempFile.getPath());
+            return tempFile;
         } catch (IOException ex) {
             ErrorService.get().showError(ex.getMessage());
             return null;
@@ -63,16 +65,21 @@ public abstract class BaseFilePresenter extends BasePresenter {
     }
 
     protected void openFile(String path) {
+        System.out.println(path);
+        openTempFile(getTempFile(path));
+    }
+
+    protected void openTempFile(File file) {
+        System.out.println(file.getPath());
         try {
             Desktop desktop = null;
             if (Desktop.isDesktopSupported()) {
                 desktop = Desktop.getDesktop();
             }
-            desktop.open(getTempFile(path));
+            desktop.open(file);
         } catch (IOException ex) {
             ErrorService.get().showError(ex.getMessage());
         }
-
     }
 
     public void editFile(String name) {
@@ -122,7 +129,11 @@ public abstract class BaseFilePresenter extends BasePresenter {
     }
 
     public void openSelectedFile() {
-        openFile(FileDumpPresenter.get().getFileDumpModel().getPath());
+        if (FileDumpPresenter.get().getFileDumpModel().getTempPath() != null) {
+            openTempFile(new File(FileDumpPresenter.get().getFileDumpModel().getTempPath()));
+        } else {
+            openFile(FileDumpPresenter.get().getFileDumpModel().getPath());
+        }
     }
 
     protected abstract File getFile(File savePathFile);

@@ -6,7 +6,7 @@ import Model.Equipment.EquipmentModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.State.StateModel;
 import Model.Supply.SupplyModel;
-import Presenter.EquipmentPresenter;
+import Presenter.EquipmentInventoryPresenter;
 import Presenter.InventoryNumberPresenter;
 import Service.IOnMouseClick;
 import Service.ListenersService;
@@ -94,9 +94,9 @@ public class EditInventoryNumber extends BaseController implements IOnMouseClick
     private void selectedEquipment(TreeItem<EquipmentInventoryModel> newValue) {
         if (newValue != null) {
             if (newValue.getValue().getId() != -1) {
-                EquipmentPresenter.get().setEquipmentInventoryModel(newValue.getValue());
+                EquipmentInventoryPresenter.get().setEquipmentInventoryModel(newValue.getValue());
             } else {
-                EquipmentPresenter.get().setEquipmentInventoryModel(null);
+                EquipmentInventoryPresenter.get().setEquipmentInventoryModel(null);
             }
         }
     }

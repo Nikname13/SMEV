@@ -18,7 +18,8 @@ public class URLBuilder {
         mUrl=url;
     }
 
-    public URLBuilder withParam(String name, String value){
+    public URLBuilder withParam(Object name, Object value) {
+        if (name != null && value != null)
         mParams.add(name+"="+value);
         return this;
     }

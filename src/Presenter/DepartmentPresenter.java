@@ -97,6 +97,7 @@ public class DepartmentPresenter extends BaseFilePresenter {
 
     @Override
     protected File getFile(File savePathFile) {
+        System.out.println("file path " + savePathFile.getPath());
         return new IteractorDepartment().downloadFile(sDepartmentModel.getId(), getTypeDocuments(), FileDumpPresenter.get().getFileDumpModel().getPath(), savePathFile);
     }
 

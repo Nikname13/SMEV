@@ -3,6 +3,7 @@ package UI.Equipment.Equipment_inventory.Equipment_move.Controller;
 import Model.Department.DepartmentModel;
 import Model.Equipment.EquipmentInventoryModel;
 import Model.Worker.WorkerModel;
+import Presenter.EquipmentInventoryPresenter;
 import Presenter.EquipmentPresenter;
 import Presenter.MovementPresenter;
 import UI.BaseController;
@@ -39,7 +40,7 @@ public class MoveEquipmentInventoryController extends BaseController {
     private AnchorPane mAnchorPaneMoveEquipment;
 
     public MoveEquipmentInventoryController() {
-        mEquipment = EquipmentPresenter.get().getEquipmentInventoryModel();
+        mEquipment = EquipmentInventoryPresenter.get().getEquipmentInventoryModel();
         mDepartment = EquipmentPresenter.get().getDepartmentModel();
     }
 

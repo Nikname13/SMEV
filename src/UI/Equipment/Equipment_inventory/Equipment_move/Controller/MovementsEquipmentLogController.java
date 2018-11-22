@@ -2,6 +2,7 @@ package UI.Equipment.Equipment_inventory.Equipment_move.Controller;
 
 import Model.Department.DepartmentModel;
 import Model.Movement.MovementModel;
+import Presenter.EquipmentInventoryPresenter;
 import Presenter.EquipmentPresenter;
 import UI.BaseController;
 import javafx.collections.ObservableList;
@@ -28,7 +29,7 @@ public class MovementsEquipmentLogController extends BaseController {
         mDateColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().dateToString());
         mBaseColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().nameProperty());
         mMovementsLogTreeView.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedMovement(newValue)));
-        updateTable(EquipmentPresenter.get().getEquipmentMovementsLog(EquipmentPresenter.get().getEquipmentInventoryModel().getId()));
+        updateTable(EquipmentPresenter.get().getEquipmentMovementsLog(EquipmentInventoryPresenter.get().getEquipmentInventoryModel().getId()));
     }
 
     private void selectedMovement(TreeItem<MovementModel> newValue) {

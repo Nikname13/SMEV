@@ -16,7 +16,7 @@ public abstract class BaseTabController implements IUpdateUI {
                 break;
             }
         }
-        if (flag && !tabPane.getSelectionModel().getSelectedItem().getContent().getId().equals(nextTab.getContent().getId())) {
+        if (flag) {
                 tabPane.getSelectionModel().select(nextTab);
         } else {
             System.out.println("add tab");

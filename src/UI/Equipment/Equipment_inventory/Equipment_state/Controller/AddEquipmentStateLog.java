@@ -1,5 +1,6 @@
 package UI.Equipment.Equipment_inventory.Equipment_state.Controller;
 
+import Presenter.EquipmentInventoryPresenter;
 import Presenter.EquipmentPresenter;
 import UI.BaseController;
 import UI.Validator.ControllerValidator;
@@ -29,14 +30,14 @@ public class AddEquipmentStateLog extends BaseController {
     @FXML
     public void initialize(){
         labelData.setText(String.valueOf(LocalDate.now()));
-        mTextFieldState.setText(EquipmentPresenter.get().getStateModel().getName());
+        mTextFieldState.setText(EquipmentInventoryPresenter.get().getStateModel().getName());
         ControllerValidator.setTextAreaValidator(mTextAreaDescription);
     }
 
     @FXML
     private void onClickAdd(){
         if (mTextAreaDescription.validate()) {
-            EquipmentPresenter.get().addEquipmentStateLog(mTextFieldState.getText(), mTextAreaDescription.getText(), LocalDate.now());
+            EquipmentInventoryPresenter.get().addEquipmentStateLog(mTextFieldState.getText(), mTextAreaDescription.getText(), LocalDate.now());
             close(mAnchorPaneEquipmentState);
         }
     }

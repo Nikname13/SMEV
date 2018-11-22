@@ -166,7 +166,10 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel
 
     @Override
     public List<FileDumpModel> getFileDumpPhotoList() {
-        setFileDumpPhotoList(new IteractorEquipmentInventory().getFilesList(getId(), getTypePhoto()));
+        List<FileDumpModel> list = new IteractorEquipmentInventory().getFilesList(getId(), getTypePhoto(), this);
+        if (list != null) {
+            setFileDumpPhotoList(list);
+        }
         return super.getFileDumpPhotoList();
     }
 

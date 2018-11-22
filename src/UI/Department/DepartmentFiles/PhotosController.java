@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class PhotosController extends BaseFileController {
 
     private DepartmentModel mDepartmentModel;
@@ -29,6 +31,11 @@ public class PhotosController extends BaseFileController {
     @Override
     protected ObservableList<FileDumpModel> getFileList() {
         return mDepartmentModel.getFilesList(getTypeDocument());
+    }
+
+    @Override
+    protected File getTempFile(String path) {
+        return DepartmentPresenter.get().getTempFile(path);
     }
 
     @Override

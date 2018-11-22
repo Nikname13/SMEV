@@ -220,19 +220,28 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
 
     @Override
     public List<FileDumpModel> getFileDumpDocList() {
-        setFileDumpDocList(new IteractorDepartment().getFilesList(getId(), getTypeDoc()));
+        List<FileDumpModel> list = new IteractorDepartment().getFilesList(getId(), getTypeDoc(), this);
+        if (list != null) {
+            setFileDumpDocList(list);
+        }
         return super.getFileDumpDocList();
     }
 
     @Override
     public List<FileDumpModel> getFileDumpConfigList() {
-        setFileDumpConfigList(new IteractorDepartment().getFilesList(getId(), getTypeConfig()));
+        List<FileDumpModel> list = new IteractorDepartment().getFilesList(getId(), getTypeConfig(), this);
+        if (list != null) {
+            setFileDumpConfigList(list);
+        }
         return super.getFileDumpConfigList();
     }
 
     @Override
     public List<FileDumpModel> getFileDumpPhotoList() {
-        setFileDumpPhotoList(new IteractorDepartment().getFilesList(getId(), getTypePhoto()));
+        List<FileDumpModel> list = new IteractorDepartment().getFilesList(getId(), getTypePhoto(), this);
+        if (list != null) {
+            setFileDumpPhotoList(list);
+        }
         return super.getFileDumpPhotoList();
     }
 

@@ -4,10 +4,12 @@ import Iteractor.IteractorEquipment;
 import Iteractor.IteractorEquipmentInventory;
 import Iteractor.IteractorEquipmentParameter;
 import Iteractor.IteractorMovement;
-import Model.AbstractModel;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
-import Model.Equipment.*;
+import Model.Equipment.EquipmentInventoryModel;
+import Model.Equipment.EquipmentModel;
+import Model.Equipment.EquipmentParameterModel;
+import Model.Equipment.Equipments;
 import Model.FileDumpModel;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Movement.MovementModel;
@@ -27,11 +29,6 @@ import java.util.List;
 public class EquipmentPresenter extends BaseFilePresenter {
 
     private static EquipmentModel sEquipmentModel;
-    private static EquipmentInventoryModel sEquipmentInventoryModel;
-    private static StateModel sStateModel;
-    private static InventoryNumberModel sInventoryNumberModel;
-    private static EquipmentStateLogModel sEquipmentStateLog;
-    private static EquipmentInventoryLogModel sEquipmentInventoryLogModel;
     private static EquipmentPresenter sEquipmentPresenter;
     private static DepartmentModel sDepartmentModel;
 
@@ -63,33 +60,8 @@ public class EquipmentPresenter extends BaseFilePresenter {
         setSelectedObject(sEquipmentModel);
     }
 
-    public EquipmentInventoryModel getEquipmentInventoryModel() {
-        return sEquipmentInventoryModel;
-    }
 
-    public void setEquipmentInventoryModel(EquipmentInventoryModel equipmentInventoryModel) {
-        sEquipmentInventoryModel = equipmentInventoryModel;
-        if (equipmentInventoryModel != null) {
-            sEquipmentModel = equipmentInventoryModel.getEquipmentModel();
-        }
-        setSelectedObject(equipmentInventoryModel);
-    }
 
-    public StateModel getStateModel() {
-        return sStateModel;
-    }
-
-    public void setStateModel(Object stateModel) {
-        sStateModel = (StateModel) stateModel;
-    }
-
-    public InventoryNumberModel getInventoryNumberModel() {
-        return sInventoryNumberModel;
-    }
-
-    public void setInventoryNumberModel(InventoryNumberModel inventoryNumberModel) {
-        sInventoryNumberModel = inventoryNumberModel;
-    }
 
     public ObservableList<ParameterModel> getObservableEquipmentParameter(List<EquipmentParameterModel> equipmentParameter) {
         ObservableList<ParameterModel> obsList = FXCollections.observableArrayList();
@@ -154,64 +126,6 @@ public class EquipmentPresenter extends BaseFilePresenter {
         ListenersService.get().updateControl(EquipmentInventoryModel.class);
     }
 
-    public void editEquipmentInventory(InventoryNumberModel inventoryNumber, int guaranty, String description,
-                                       DepartmentModel departmentModel, EquipmentModel equipmentModel, StateModel state) {
-        /*      */
-        EquipmentInventoryModel newEquipment = new IteractorEquipmentInventory().edit(new EquipmentInventoryModel(sEquipmentInventoryModel.getId(), inventoryNumber, guaranty,
-                description, departmentModel, equipmentModel, state));
-        if (newEquipment != null) {
-            //ListenersService.get().updateData(newEquipment);
-            sEquipmentInventoryModel.setInventoryNumber(inventoryNumber);
-            sEquipmentInventoryModel.setGuaranty(guaranty);
-            sEquipmentInventoryModel.setDescription(description);
-            sEquipmentInventoryModel.setDepartmentModel(departmentModel);
-            sEquipmentInventoryModel.setEquipmentModel(equipmentModel);
-            sEquipmentInventoryModel.setStateModel(state);
-            ListenersService.get().updateData(newEquipment);
-            ListenersService.get().refreshControl(EquipmentInventoryModel.class);
-        }
-    }
-
-    public void editEquipmentInventory(EquipmentInventoryModel equipment) {
-        ListenersService.get().updateData(new IteractorEquipmentInventory().edit(equipment));
-        ListenersService.get().refreshControl(EquipmentInventoryModel.class);
-    }
-
-    public void deleteEquipment() {
-    }
-
-    public void addEquipmentStateLog(String state, String description, LocalDate date) {
-        sEquipmentStateLog = new EquipmentStateLogModel(0, state, description, date);
-        sEquipmentInventoryModel.setStateModel(sStateModel);
-        sEquipmentInventoryModel.addEntity(sEquipmentStateLog);
-        editEquipmentInventory(sEquipmentInventoryModel);
-        ListenersService.get().refreshControl(EquipmentInventoryModel.class);
-    }
-
-    public EquipmentStateLogModel getEquipmentStateLog() {
-        return sEquipmentStateLog;
-    }
-
-    public void setEquipmentStateLog(EquipmentStateLogModel equipmentState) {
-        sEquipmentStateLog = equipmentState;
-    }
-
-    public void addEquipmentInventoryLogModel(String description, LocalDate date) {
-        sEquipmentInventoryLogModel = new EquipmentInventoryLogModel(0, sInventoryNumberModel.getName(), sInventoryNumberModel.getId(), date, description);
-        sEquipmentInventoryModel.setInventoryNumber(sInventoryNumberModel);
-        sEquipmentInventoryModel.addInventoryEditLog(sEquipmentInventoryLogModel);
-        editEquipmentInventory(sEquipmentInventoryModel);
-        ListenersService.get().refreshControl(EquipmentInventoryLogModel.class);
-    }
-
-    public EquipmentInventoryLogModel getEquipmentInventoryLogModel() {
-        return sEquipmentInventoryLogModel;
-    }
-
-    public void setEquipmentInventoryLogModel(EquipmentInventoryLogModel equipmentInventoryLogModel) {
-        sEquipmentInventoryLogModel = equipmentInventoryLogModel;
-    }
-
     public void addMovement(LocalDate date, String base, Object fromDepartment, Object toDepartment, Object fromWorker, Object toWorker, Object equipment) {
 
     }
@@ -219,13 +133,6 @@ public class EquipmentPresenter extends BaseFilePresenter {
     @Override
     public void delete() {
         if (getSelectedObject() != null) {
-            if (getSelectedObject().equals(sEquipmentInventoryModel)) {
-                System.out.println("delete " + sEquipmentInventoryModel.getInventoryNumber().getName());
-                if (new IteractorEquipmentInventory().delete(sEquipmentInventoryModel.getId())) {
-                    ListenersService.get().updateData(sEquipmentInventoryModel);
-                    ListenersService.get().updateControl(EquipmentInventoryModel.class);
-                }
-            }
             if (getSelectedObject().equals(sEquipmentModel)) {
                 System.out.println("delete equipment");
                 if (new IteractorEquipment().delete(sEquipmentModel.getId())) {
@@ -261,20 +168,6 @@ public class EquipmentPresenter extends BaseFilePresenter {
         return list;
     }
 
-    @Override
-    protected void setAvatar(List<File> fileList) {
-        sEquipmentInventoryModel.setAvatar(new IteractorEquipmentInventory().uploadFile(sEquipmentInventoryModel.getId(), fileList, getTypeDocuments()).get(0));
-        editEquipmentInventory(sEquipmentInventoryModel);
-    }
-
-    public String getPathAvatar() {
-        if (sEquipmentInventoryModel.getAvatar() != null) {
-            setTypeDocuments(AbstractModel.getTypePhoto());
-            FileDumpPresenter.get().setFileDumpModel(sEquipmentInventoryModel.getAvatar());
-            return getTempFile(sEquipmentInventoryModel.getAvatar().getPath()).getPath();
-        }
-        return "";
-    }
 
     @Override
     protected void editFile(FileDumpModel editableFile) {

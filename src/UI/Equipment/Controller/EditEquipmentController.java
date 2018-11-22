@@ -8,6 +8,7 @@ import Model.Inventory_number.InventoryNumberModel;
 import Model.Parameter.ParameterModel;
 import Model.State.StateModel;
 import Model.Type.TypeModel;
+import Presenter.EquipmentInventoryPresenter;
 import Presenter.EquipmentPresenter;
 import Service.IOnMouseClick;
 import Service.ListenersService;
@@ -254,11 +255,11 @@ public class EditEquipmentController extends BaseController implements IOnMouseC
         if (treeEquipment != null) {
             EquipmentInventoryModel equipment = treeEquipment.getValue();
             if (equipment != null && equipment.getId() != -1) {
-                EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
+                EquipmentInventoryPresenter.get().setEquipmentInventoryModel(equipment);
                 TabControllerService.get().getListenerSecondTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
                 ListenersService.get().updateUI(EquipmentInventoryModel.class);
             } else {
-                EquipmentPresenter.get().setEquipmentInventoryModel(null);
+                EquipmentInventoryPresenter.get().setEquipmentInventoryModel(null);
             }
             //new Coordinator().goToEquipentInventoryWindow((Stage) mStackPaneEditEquipment.getScene().getWindow());
         }

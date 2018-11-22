@@ -1,7 +1,7 @@
 package UI.Equipment.Equipment_inventory.Equipment_number.Controller;
 
 import Model.Equipment.EquipmentInventoryLogModel;
-import Presenter.EquipmentPresenter;
+import Presenter.EquipmentInventoryPresenter;
 import UI.BaseController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,7 +27,7 @@ public class InventoryLogController extends BaseController {
         mDateColumn.setCellValueFactory(cellDate -> cellDate.getValue().getValue().dateToString());
         mInventoryNumberColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().nameProperty());
         mDescriptionColumn.setCellValueFactory(cellData -> cellData.getValue().getValue().descriptionProperty());
-        updateTable(EquipmentPresenter.get().getEquipmentInventoryModel().getObsInventoryLogList());
+        updateTable(EquipmentInventoryPresenter.get().getEquipmentInventoryModel().getObsInventoryLogList());
     }
 
     private void updateTable(ObservableList<EquipmentInventoryLogModel> equipmentList) {

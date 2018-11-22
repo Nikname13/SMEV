@@ -121,7 +121,10 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
 
     @Override
     public List<FileDumpModel> getFileDumpConfigList() {
-        setFileDumpConfigList(new IteractorEquipment().getFilesList(getId(), getTypeConfig()));
+        List<FileDumpModel> list = new IteractorEquipment().getFilesList(getId(), getTypeConfig(), this);
+        if (list != null) {
+            setFileDumpConfigList(list);
+        }
         return super.getFileDumpConfigList();
     }
 

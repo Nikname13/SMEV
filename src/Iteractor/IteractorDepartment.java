@@ -2,9 +2,11 @@ package Iteractor;
 
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
+import Presenter.DepartmentPresenter;
 import com.google.gson.reflect.TypeToken;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -23,12 +25,17 @@ public class IteractorDepartment extends GenericIteractor<DepartmentModel> {
    }
 
    @Override
+   protected LocalDateTime getLastUpdate(DepartmentModel entity) {
+      return entity.getLastFileDumpUpdate(DepartmentPresenter.get().getTypeDocuments());
+   }
+
+   @Override
    public void setEntity(DepartmentModel entity) {
       if(Departments.get().getEntity(entity.getId())!=null){
          entity.setLoad(true);
          Departments.get().replace(entity);
       }else {
-          Departments.get().addEntity(entity, Comparator.comparing(DepartmentModel::getNameToLowerCase));
+         Departments.get().addEntity(entity, Comparator.comparing(DepartmentModel::getNameToLowerCase));
       }
    }
 
@@ -37,13 +44,4 @@ public class IteractorDepartment extends GenericIteractor<DepartmentModel> {
       return sLoadFileURL;
    }
 
-/*   @Override
-   public void deleteEntity(int id) {
-      Departments.get().deleteEntity(id);
-   }
-
-   @Override
-   public void deleteFile(int idEntity, int idFile, String type) {
-      Departments.get().getEntity(idEntity).removeFile(idFile, type);
-   }*/
 }

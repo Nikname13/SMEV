@@ -11,7 +11,7 @@ import Model.Location.LocationModel;
 import Model.State.StateModel;
 import Model.Worker.WorkerModel;
 import Presenter.DepartmentPresenter;
-import Presenter.EquipmentPresenter;
+import Presenter.EquipmentInventoryPresenter;
 import Presenter.LocationPresenter;
 import Presenter.WorkerPresenter;
 import Service.IOnMouseClick;
@@ -85,8 +85,6 @@ public class EditDepartmentController extends BaseController implements IOnMouse
         initPopup();
 
     }
-//"C:/Users/a.zolotarev/Desktop/sapce/space-wallpapers-1920x1080-00012.jpg"
-
 
     private void initTextFields() {
         mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNumber);
@@ -160,7 +158,7 @@ public class EditDepartmentController extends BaseController implements IOnMouse
                 TreeItem<EquipmentInventoryModel> currentEditEquipment = mTreeTableEquipmentInventory.getTreeItem(event.getTreeTablePosition().getRow());
                 if (currentEditEquipment.getValue().getId() != -1) {
                     currentEditEquipment.getValue().setDescription_department(event.getNewValue());
-                    EquipmentPresenter.get().editEquipmentInventory(currentEditEquipment.getValue());
+                    EquipmentInventoryPresenter.get().editEquipmentInventory(currentEditEquipment.getValue());
                 } else {
                     mTreeTableEquipmentInventory.refresh();
                 }
@@ -176,7 +174,7 @@ public class EditDepartmentController extends BaseController implements IOnMouse
                     if (mTreeTableEquipmentInventory.getSelectionModel().getSelectedItem() != null) {
                         EquipmentInventoryModel equipment = mTreeTableEquipmentInventory.getSelectionModel().getSelectedItem().getValue();
                         if (equipment != null && equipment.getId() != -1)
-                            EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
+                            EquipmentInventoryPresenter.get().setEquipmentInventoryModel(equipment);
                     }
                 }
             }
@@ -269,11 +267,11 @@ public class EditDepartmentController extends BaseController implements IOnMouse
             EquipmentInventoryModel equipment = treeEquipment.getValue();
             if (equipment != null && equipment.getId() != -1) {
                 //  EquipmentPresenter.get().setEquipmentModel(equipment.getEquipmentModel());
-                EquipmentPresenter.get().setEquipmentInventoryModel(equipment);
+                EquipmentInventoryPresenter.get().setEquipmentInventoryModel(equipment);
                 TabControllerService.get().getListenerSecondTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
                 ListenersService.get().updateUI(EquipmentInventoryModel.class);
             } else {
-                EquipmentPresenter.get().setEquipmentInventoryModel(null);
+                EquipmentInventoryPresenter.get().setEquipmentInventoryModel(null);
             }
         }
     }
@@ -402,9 +400,9 @@ public class EditDepartmentController extends BaseController implements IOnMouse
             updateEquipmentTable(mDepartmentModel.getObsEquipmentList());
             mSecondLvlTabPane.getSelectionModel().select(0);
             if (mSecondLvlTabPane.getTabs().size() > 1) mSecondLvlTabPane.getTabs().remove(1);
-            TabControllerService.get().setListenerSecondTabPane(((Tab nextTab) -> nextTab(nextTab, mSecondLvlTabPane)));
+            TabControllerService.get().setListenerSecondTabPane(
+                    ((Tab nextTab) -> nextTab(nextTab, mSecondLvlTabPane)));
             setAvatar(DepartmentPresenter.get().getPathAvatar(), mAvatarImage);
-
         }
     }
 
@@ -466,6 +464,7 @@ public class EditDepartmentController extends BaseController implements IOnMouse
                 break;
             case "mAvatarImage":
                 System.out.println("open avatar");
+
                 break;
         }
     }

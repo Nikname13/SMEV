@@ -11,10 +11,10 @@
 
         <BorderPane fx:id="mAvatarImage" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
                     AnchorPane.rightAnchor="10.0"
-                   prefHeight="160.0"
-                   prefWidth="250.0" style="-fx-background-color: #a8f1b3;"/>
-                <JFXButton onAction="#onClickPhoto" prefHeight="45.0" prefWidth="120.0" ripplerFill="#40a85f" text="Фотографии"
-                           AnchorPane.topAnchor="180.0" AnchorPane.leftAnchor="10.0"/>
+                    minHeight="160.0"
+                    minWidth="250.0"/>
+        <JFXButton onAction="#onClickPhoto" prefHeight="45.0" prefWidth="120.0" ripplerFill="#40a85f" text="Фотографии"
+                   AnchorPane.topAnchor="180.0" AnchorPane.leftAnchor="10.0"/>
         <JFXButton onAction="#onClickConfig" prefHeight="45.0" text="Конфиги" prefWidth="120.0" ripplerFill="#40a85f"
                    AnchorPane.topAnchor="180.0"
                    AnchorPane.leftAnchor="140.0"/>

@@ -2,7 +2,6 @@ package UI;
 
 import Model.AbstractModel;
 import Model.FileDumpModel;
-import Presenter.DepartmentPresenter;
 import Presenter.FileDumpPresenter;
 import Service.IOnMouseClick;
 import UI.Popup.Controller.BasePopup;
@@ -156,7 +155,7 @@ public abstract class BaseFileController extends BaseController implements IOnMo
             for (FileDumpModel file : getFileList()) {
                 ImageView imageView;
                 FileDumpPresenter.get().setFileDumpModel(file);
-                imageView = createImageView(DepartmentPresenter.get().getTempFile(file.getPath()));
+                imageView = createImageView(getTempFile(file.getPath()));
                 Pane pane = new Pane();
                 VBox vBox = new VBox();
                 vBox.getChildren().add(imageView);
@@ -175,6 +174,10 @@ public abstract class BaseFileController extends BaseController implements IOnMo
             getStage().setScene(scene);
             getStage().show();
         }
+    }
+
+    protected File getTempFile(String path) {
+        return null;
     }
 
     protected ObservableList<FileDumpModel> getFileList() {

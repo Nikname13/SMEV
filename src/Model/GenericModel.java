@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,6 +143,57 @@ public abstract class GenericModel<T> extends AbstractModel<GenericModel<T>> imp
                 return getObsFileDumpConfigList();
             case "photo":
                 return getObsPhotoList();
+        }
+        return null;
+    }
+
+    public LocalDateTime getLastFileDumpUpdate(String type) {
+        switch (type) {
+            case "doc":
+                return getLastUpdateDocList();
+            case "config":
+                return getLastUpdateConfigList();
+            case "photo":
+                return getObsLastUpdatePhotoList();
+        }
+        return null;
+    }
+
+    private LocalDateTime getObsLastUpdatePhotoList() {
+        if (mFileDumpPhotoList != null) {
+            LocalDateTime lastUpdate = mFileDumpPhotoList.get(0).getLastUpdate();
+            for (FileDumpModel file : mFileDumpPhotoList) {
+                if (file.getLastUpdate().isAfter(lastUpdate)) {
+                    lastUpdate = file.getLastUpdate();
+                }
+            }
+            return lastUpdate;
+        }
+        return null;
+    }
+
+    private LocalDateTime getLastUpdateConfigList() {
+        if (mFileDumpConfigList != null) {
+            LocalDateTime lastUpdate = mFileDumpConfigList.get(0).getLastUpdate();
+            for (FileDumpModel file : mFileDumpConfigList) {
+                if (file.getLastUpdate().isAfter(lastUpdate)) {
+                    lastUpdate = file.getLastUpdate();
+                }
+            }
+            return lastUpdate;
+        }
+        return null;
+    }
+
+    private LocalDateTime getLastUpdateDocList() {
+        if (mFileDumpDocList != null) {
+            LocalDateTime lastUpdate = mFileDumpDocList.get(0).getLastUpdate();
+            for (FileDumpModel file : mFileDumpDocList) {
+                if (file.getLastUpdate().isAfter(lastUpdate)) {
+                    lastUpdate = file.getLastUpdate();
+                }
+            }
+            return lastUpdate;
         }
         return null;
     }

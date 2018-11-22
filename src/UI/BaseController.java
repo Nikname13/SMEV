@@ -17,6 +17,7 @@ import Service.IUpdateUI;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.CacheHint;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextInputControl;
@@ -563,16 +564,23 @@ public abstract class BaseController implements IUpdateUI {
 
     protected void setAvatar(String path, BorderPane imageContainer) {
         try {
-            ImageView image = new ImageView(new Image(new FileInputStream(path), imageContainer.getMinWidth(), imageContainer.getHeight(), true,
-                    true));
-            image.setFitHeight(imageContainer.getPrefHeight());
-            image.setFitWidth(imageContainer.getPrefWidth());
-            image.setCache(true);
-            imageContainer.setCenter(image);
-
+            setImage(new Image(new FileInputStream(path), imageContainer.getMinWidth(), imageContainer.getHeight(), true,
+                    true), imageContainer);
         } catch (FileNotFoundException ex) {
-
+            System.out.println("path is empty");
+            setImage(new Image("/Resource/not_photo.jpg"), imageContainer);
         }
+    }
+
+
+    private void setImage(Image image, BorderPane imageContainer) {
+        ImageView imageView = new ImageView(image);
+       /* imageView.setFitHeight(imageContainer.getPrefHeight());
+        imageView.setFitWidth(imageContainer.getPrefWidth());*/
+        imageView.setCache(true);
+        imageView.setCacheHint(CacheHint.SPEED);
+        imageContainer.setCenter(imageView);
+
     }
 
     protected void close(Node node) {

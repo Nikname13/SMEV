@@ -1,5 +1,6 @@
 package UI.Equipment.Equipment_inventory.Equipment_number.Controller;
 
+import Presenter.EquipmentInventoryPresenter;
 import Presenter.EquipmentPresenter;
 import UI.BaseController;
 import UI.Validator.BaseValidator;
@@ -31,13 +32,13 @@ public class AddInventoryNumberLog extends BaseController {
     public void initialize() {
         mLabelData.setText(String.valueOf(LocalDate.now()));
         mBaseValidator.setJFXTextAreas(mTextAreaDescription);
-        mTextFieldNumber.setText(EquipmentPresenter.get().getInventoryNumberModel().getName());
+        mTextFieldNumber.setText(EquipmentInventoryPresenter.get().getInventoryNumberModel().getName());
     }
 
     @FXML
     private void onClickAdd() {
         if (mBaseValidator.validate()) {
-            EquipmentPresenter.get().addEquipmentInventoryLogModel(mTextAreaDescription.getText(), LocalDate.now());
+            EquipmentInventoryPresenter.get().addEquipmentInventoryLogModel(mTextAreaDescription.getText(), LocalDate.now());
             close(mAnchorPaneInventoryLog);
         }
 
