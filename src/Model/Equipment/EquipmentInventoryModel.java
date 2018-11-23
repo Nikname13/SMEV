@@ -22,7 +22,6 @@ import java.util.List;
 public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel> {
 
     private int mGuaranty;
-    private FileDumpModel mAvatar;
     private String mDescription, mDescription_department;
     private InventoryNumberModel mInventoryNumber;
     private DepartmentModel mDepartmentModel;
@@ -53,6 +52,13 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel
         super(id);
         mEquipmentModel = equipment;
         mInventoryNumber = inventoryNumber;
+    }
+
+    public EquipmentInventoryModel(int id, String name) {
+        super(id, name);
+    }
+
+    public EquipmentInventoryModel() {
     }
 
     public List<EquipmentInventoryLogModel> getInventoryEditLog() {
@@ -102,14 +108,6 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel
 
     public void setGuaranty(int guaranty) {
         mGuaranty = guaranty;
-    }
-
-    public FileDumpModel getAvatar() {
-        return mAvatar;
-    }
-
-    public void setAvatar(FileDumpModel avatar) {
-        mAvatar = avatar;
     }
 
     public String getDescription() {
@@ -176,5 +174,10 @@ public class EquipmentInventoryModel extends GenericModel<EquipmentStateLogModel
     @Override
     public String toString() {
         return getEquipmentModel().getName()+" - "+getInventoryNumber().getName();
+    }
+
+    @Override
+    public GenericModel<EquipmentStateLogModel> create(String name) {
+        return new EquipmentInventoryModel(-1, name);
     }
 }

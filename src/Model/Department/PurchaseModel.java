@@ -22,6 +22,13 @@ public class PurchaseModel extends AbstractModel {
         setDepartment(department);
     }
 
+    public PurchaseModel(int id, String name) {
+        super(id, name);
+    }
+
+    public PurchaseModel() {
+    }
+
     public String getDescription() {
         return mDescription;
     }
@@ -40,5 +47,10 @@ public class PurchaseModel extends AbstractModel {
 
     public void setDepartment(DepartmentModel department) {
         mDepartment = department;
+    }
+
+    @Override
+    public AbstractModel<?> create(String name) {
+        return new PurchaseModel(-1, name);
     }
 }

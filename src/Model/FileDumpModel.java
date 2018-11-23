@@ -9,6 +9,14 @@ public class FileDumpModel extends AbstractModel {
         super(id, name);
     }
 
+    public FileDumpModel() {
+    }
+
+    @Override
+    public AbstractModel<?> create(String name) {
+        return new FileDumpModel(-1, name);
+    }
+
     public String getPath() {
         return mPath;
     }

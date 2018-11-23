@@ -64,8 +64,14 @@ public class AddEquipmentController extends BaseController {
     public void initialize() {
         mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNameFact);
         mBaseValidator.setValidationFacades(new Pair(mFacadeType, mErrorType, mComboBoxType));
-        initComboBoxType(mComboBoxType, false, "Выберите тип", "Тип");
+        initComboBox();
         initTableVieParameter();
+    }
+
+    private void initComboBox() {
+        initJFXComboBox(new TypeModel(), mComboBoxType, false, "Выберите тип", "Тип");
+        mComboBoxType.setItems(EquipmentPresenter.get().getObservableType());
+        mComboBoxType.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> selectedType());
     }
 
     private void initTableVieParameter() {
@@ -111,7 +117,7 @@ public class AddEquipmentController extends BaseController {
         JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(new Text("Добавить параметр"));
 
-        JFXComboBox<ParameterModel> comboBox = initComboBoxParameter(
+        JFXComboBox<ParameterModel> comboBox = initJFXComboBox(new EquipmentParameterModel(),
                 new JFXComboBox(EquipmentPresenter.get().getObservableEquipmentParameter(mEquipmentParameterList)), false, "Выберите параметр", "Параметр");
         comboBox.setLabelFloat(true);
         comboBox.setPromptText("Параметр");
@@ -175,13 +181,6 @@ public class AddEquipmentController extends BaseController {
     @Override
     protected Stage getStage() {
         return (Stage) mStackPaneAddEquipment.getScene().getWindow();
-    }
-
-    @Override
-    protected void initComboBoxType(JFXComboBox<TypeModel> comboBoxType, boolean isSelectionItem, String promptText, String label) {
-        super.initComboBoxType(comboBoxType, isSelectionItem, promptText, label);
-        mComboBoxType.setItems(EquipmentPresenter.get().getObservableType());
-        mComboBoxType.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> selectedType());
     }
 
     private void selectedType() {

@@ -2,6 +2,7 @@ package Presenter;
 
 import Model.AbstractModel;
 import Model.FileDumpModel;
+import Model.GenericModel;
 import Service.ErrorService;
 import Service.ListenersService;
 import javafx.stage.FileChooser;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class BaseFilePresenter extends BasePresenter {
+public abstract class BaseFilePresenter<T extends GenericModel> extends BasePresenter {
 
     protected List<File> uploadDocFiles(Stage stage) {
         FileChooser fileChooser = getFileChooser();
@@ -118,6 +119,21 @@ public abstract class BaseFilePresenter extends BasePresenter {
     protected void setAvatar(List<File> fileList) {
     }
 
+    public String getPathAvatar() {
+        if (getAvatarEntity().getAvatar() != null) {
+            FileDumpModel avatar = getAvatarEntity().getAvatar();
+            setTypeDocuments(AbstractModel.getTypePhoto());
+            FileDumpPresenter.get().setFileDumpModel(avatar);
+            if (avatar.getTempPath() != null && new File(avatar.getTempPath()).exists())
+                return avatar.getTempPath();
+            return getTempFile(avatar.getPath()).getPath();
+        }
+        return "";
+    }
+
+    protected T getAvatarEntity() {
+        return null;
+    }
 
     protected abstract List<FileDumpModel> uploadFiles(List<File> fileList);
 
@@ -129,11 +145,12 @@ public abstract class BaseFilePresenter extends BasePresenter {
     }
 
     public void openSelectedFile() {
-        if (FileDumpPresenter.get().getFileDumpModel().getTempPath() != null) {
+        if (FileDumpPresenter.get().getFileDumpModel().getTempPath() != null && new File(FileDumpPresenter.get().getFileDumpModel().getTempPath()).exists()) {
+            System.out.println("file exists");
             openTempFile(new File(FileDumpPresenter.get().getFileDumpModel().getTempPath()));
-        } else {
-            openFile(FileDumpPresenter.get().getFileDumpModel().getPath());
+            return;
         }
+            openFile(FileDumpPresenter.get().getFileDumpModel().getPath());
     }
 
     protected abstract File getFile(File savePathFile);

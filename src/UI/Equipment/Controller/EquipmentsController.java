@@ -112,7 +112,6 @@ public class EquipmentsController extends BaseController implements IOnMouseClic
 
     @Override
     public void refreshControl(Class<?> updateClass) {
-
     }
 
     @Override

@@ -26,6 +26,13 @@ public class MovementModel extends GenericModel<MovementEquipment> {
         setDepartmentList(departmentList);
     }
 
+    public MovementModel(int id, String name) {
+        super(id, name);
+    }
+
+    public MovementModel() {
+    }
+
     public List<MovementWorker> getWorkerList() {
         return mWorkerList;
     }
@@ -79,5 +86,11 @@ public class MovementModel extends GenericModel<MovementEquipment> {
     public MovementEquipment newMovementEquipment(EquipmentInventoryModel equipment) {
         return new MovementEquipment(0, equipment.getEquipmentModel().getNameFact(), equipment.getInventoryNumber().getName(),
                 equipment.getEquipmentModel().getTypeModel().getName(), equipment.getId());
+    }
+
+
+    @Override
+    public GenericModel<MovementEquipment> create(String name) {
+        return new MovementModel(-1, name);
     }
 }

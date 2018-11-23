@@ -9,6 +9,8 @@ import UI.Validator.Pair;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.ValidationFacade;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +19,7 @@ import javafx.stage.Stage;
 public class AddWorkerController extends BaseController {
 
     private BaseValidator mBaseValidator = new BaseValidator();
+    private boolean mPostIsSelected;
     private PostModel mPostModel;
 
     @FXML
@@ -41,9 +44,23 @@ public class AddWorkerController extends BaseController {
     public void initialize(){
         mBaseValidator.setValidationFacades(new Pair(mFacadeDepartment, mErrorDepartment, mComboBoxDepartment), new Pair(mFacadePost, mErrorPost, mComboBoxPost));
         mBaseValidator.setJFXTextFields(mTextFieldName);
+        initComboBox();
         initPromptText(mTextFieldName, "Введите ФИО сотрудника", "ФИО");
-        initComboBoxDepartment(mComboBoxDepartment, false, "Выберите отдел", "Отдел");
-        initComboBoxPost(mComboBoxPost, "Выберите должность", "Должность");
+
+    }
+
+    private void initComboBox() {
+        initJFXComboBox(new DepartmentModel(), mComboBoxDepartment, false, "Выберите отдел", "Отдел");
+        initJFXComboBox(new PostModel(), mComboBoxPost, false, "Выберите должность", "Должность");
+        mComboBoxDepartment.setItems(WorkerPresenter.get().getObservableDepartment());
+        mComboBoxPost.setItems(WorkerPresenter.get().getObservablePost());
+        mComboBoxPost.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedPost()));
+        mComboBoxPost.getEditor().textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                mPostIsSelected = false;
+            }
+        });
     }
 
     @Override
@@ -51,22 +68,9 @@ public class AddWorkerController extends BaseController {
         return null;
     }
 
-    @Override
-    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem, String promptText, String label) {
-        super.initComboBoxDepartment(comboBox, isSelectionItem, promptText, label);
-        comboBox.setItems(WorkerPresenter.get().getObservableDepartment());
-    }
-
-    @Override
-    protected void initComboBoxPost(JFXComboBox<PostModel> comboBoxPost, String promptText, String label) {
-        super.initComboBoxPost(comboBoxPost, promptText, label);
-        comboBoxPost.setItems(WorkerPresenter.get().getObservablePost());
-        mComboBoxPost.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedPost()));
-    }
-
     private void selectedPost() {
         if (mComboBoxPost.getSelectionModel().selectedIndexProperty().get() != -1) {
-            setSelectedPost(true);
+            mPostIsSelected = true;
             mPostModel = mComboBoxPost.getValue();
         }
     }
@@ -75,7 +79,7 @@ public class AddWorkerController extends BaseController {
     @FXML
     private void onClickAdd(){
         if (mBaseValidator.validate()) {
-            if (isSelectedPost()) {
+            if (mPostIsSelected) {
                 WorkerPresenter.get().addWorker(mTextFieldName.getText(), mPostModel, mComboBoxDepartment.getValue());
             } else {
                 WorkerPresenter.get().addWorker(mTextFieldName.getText(), mComboBoxPost.getValue(), mComboBoxDepartment.getValue());

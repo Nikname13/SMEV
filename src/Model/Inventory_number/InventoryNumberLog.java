@@ -17,6 +17,13 @@ public class InventoryNumberLog extends AbstractModel {
         mDescription = description;
     }
 
+    public InventoryNumberLog(int id, String name) {
+        super(id, name);
+    }
+
+    public InventoryNumberLog() {
+    }
+
     public String getSupplyNumber() {
         return mSupplyNumber;
     }
@@ -39,5 +46,10 @@ public class InventoryNumberLog extends AbstractModel {
 
     public StringProperty descriptionProperty(){
         return new SimpleStringProperty(getDescription());
+    }
+
+    @Override
+    public AbstractModel<?> create(String name) {
+        return new InventoryNumberLog(-1, name);
     }
 }

@@ -12,7 +12,7 @@ public abstract class AbstractModel<T extends AbstractModel<?>> extends Recursiv
     private int mId;
     private String mName;
     private LocalDate mDate;
-    private LocalDateTime mLastUpdate, mLastTableUpdate;
+    private LocalDateTime mLastUpdate;
 
     private transient String mDisplayDate;
     private transient static String typeDoc="doc";
@@ -72,17 +72,7 @@ public abstract class AbstractModel<T extends AbstractModel<?>> extends Recursiv
         return mLastUpdate;
     }
 
-    public void setLastUpdate(LocalDateTime lastUpdate) {
-        mLastUpdate = lastUpdate;
-    }
-
-    public LocalDateTime getLastTableUpdate() {
-        return mLastTableUpdate;
-    }
-
-    public void setLastTableUpdate(LocalDateTime lastTableUpdate) {
-        mLastTableUpdate = lastTableUpdate;
-    }
+    public abstract T create(String name);
 
     @Override
     public IntegerProperty idProperty() {

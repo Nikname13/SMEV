@@ -26,7 +26,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EquipmentPresenter extends BaseFilePresenter {
+public class EquipmentPresenter extends BaseFilePresenter<EquipmentModel> {
 
     private static EquipmentModel sEquipmentModel;
     private static EquipmentPresenter sEquipmentPresenter;

@@ -24,6 +24,11 @@ public class ParameterModel extends GenericModel<ValueParameterModel> {
     }
 
     @Override
+    public GenericModel<ValueParameterModel> create(String name) {
+        return new ParameterModel(-1, name);
+    }
+
+    @Override
     public List<ValueParameterModel> getEntityList() {
         if (!isLoad()) {
             new IteractorParameter().loadData(getId());

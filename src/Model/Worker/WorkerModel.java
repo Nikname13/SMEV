@@ -19,6 +19,14 @@ public class WorkerModel extends AbstractModel {
         super(id, name);
     }
 
+    public WorkerModel() {
+    }
+
+    @Override
+    public AbstractModel<?> create(String name) {
+        return new WorkerModel(-1, name);
+    }
+
     public DepartmentModel getDepartmentModel() {
         return mDepartmentModel;
     }

@@ -9,6 +9,8 @@ import UI.Validator.BaseValidator;
 import UI.Validator.Pair;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.validation.ValidationFacade;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +19,7 @@ import javafx.stage.Stage;
 public class AddLocationController extends BaseController {
 
     private DepartmentModel mDepartment;
+    private boolean mLocationIsSelected;
     private BaseValidator mBaseValidator = new BaseValidator();
 
     public AddLocationController() {
@@ -34,11 +37,23 @@ public class AddLocationController extends BaseController {
 
     private LocationModel mLocation;
 
-
     @FXML
     public void initialize() {
+        mLocationIsSelected = false;
         mBaseValidator.setValidationFacades(new Pair(mFacadeLocation, mErrorLocation, mComboBoxLocation));
-        initComboBoxLocation(mComboBoxLocation,"Выберите или введите адрес", "Адрес");
+        initComboBox();
+    }
+
+    private void initComboBox() {
+        initJFXComboBox(new LocationModel(), mComboBoxLocation, false, "Выберите или введите адрес", "Адрес");
+        mComboBoxLocation.setItems(DepartmentPresenter.get().getObservableLocation());
+        mComboBoxLocation.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedLocation()));
+        mComboBoxLocation.getEditor().textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                mLocationIsSelected = false;
+            }
+        });
     }
 
     @Override
@@ -46,16 +61,9 @@ public class AddLocationController extends BaseController {
         return null;
     }
 
-    @Override
-    protected void initComboBoxLocation(JFXComboBox<LocationModel> comboBoxLocation, String promptText, String label) {
-        super.initComboBoxLocation(comboBoxLocation,promptText,label);
-        comboBoxLocation.setItems(DepartmentPresenter.get().getObservableLocation());
-        mComboBoxLocation.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedLocation()));
-    }
-
     private void selectedLocation() {
         if (mComboBoxLocation.getSelectionModel().getSelectedIndex() != -1) {
-            setSelectedLocation(true);
+            mLocationIsSelected = true;
             mLocation = mComboBoxLocation.getValue();
         }
     }
@@ -63,7 +71,7 @@ public class AddLocationController extends BaseController {
     @FXML
     private void onClickAdd() {
         if (mBaseValidator.validate()) {
-            if (isSelectedLocation()) {
+            if (mLocationIsSelected) {
                 mLocation.addLocation(mDepartment);
                 LocationPresenter.get().editLocation(mLocation);
             } else {

@@ -21,6 +21,14 @@ public class EquipmentInventoryLogModel extends AbstractModel {
         super(id, name);
     }
 
+    public EquipmentInventoryLogModel() {
+    }
+
+    @Override
+    public AbstractModel<?> create(String name) {
+        return new EquipmentInventoryLogModel(-1, name);
+    }
+
     public int getInventoryId() {
         return mInventoryId;
     }

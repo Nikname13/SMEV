@@ -20,6 +20,11 @@ public class TypeModel extends GenericModel<ParameterModel> {
     }
 
     @Override
+    public GenericModel<ParameterModel> create(String name) {
+        return new TypeModel(-1, name);
+    }
+
+    @Override
     public List<ParameterModel> getEntityList() {
         if(!isLoad()){
             new IteractorType().loadData(getId());

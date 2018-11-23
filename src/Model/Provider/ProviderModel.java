@@ -17,6 +17,14 @@ public class ProviderModel extends AbstractModel {
         super(id, name);
     }
 
+    public ProviderModel() {
+    }
+
+    @Override
+    public AbstractModel<?> create(String name) {
+        return new ProviderModel(-1, name);
+    }
+
     public String getDescription() {
         return mDescription;
     }

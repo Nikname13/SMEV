@@ -53,12 +53,17 @@ public class EditSupplyController extends BaseController implements IOnMouseClic
 
     @FXML
     public void initialize(){
-        initComboBoxProvider(mComboBoxProvider, true, "Выберите поставщика", "Поставщик");
+        initComboBox();
         initTextField();
         initTextArea();
         initRadioButton();
         initTreeTable();
         initPopup();
+    }
+
+    private void initComboBox() {
+        initJFXComboBox(new ProviderModel(), mComboBoxProvider, true, "Выберите поставщика", "Поставщик");
+        mComboBoxProvider.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> providerListener());
     }
 
     private void initPopup() {
@@ -118,12 +123,6 @@ public class EditSupplyController extends BaseController implements IOnMouseClic
     private void setInvisibleEditButton() {
         mButtonEdit.setVisible(false);
         mTextAreaDescription.setPrefHeight(mTextAreaDescription.getMaxHeight());
-    }
-
-    @Override
-    protected void initComboBoxProvider(JFXComboBox<ProviderModel> comboBox, boolean isSelectionItem, String promptText, String label) {
-        super.initComboBoxProvider(comboBox, isSelectionItem, promptText, label);
-        comboBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> providerListener());
     }
 
     private void providerListener() {

@@ -23,6 +23,11 @@ public class EquipmentParameterModel extends AbstractModel {
     public EquipmentParameterModel() {
     }
 
+    @Override
+    public AbstractModel<?> create(String name) {
+        return new EquipmentParameterModel(-1, name);
+    }
+
     public ParameterModel getParameterModel() {
         return mParameterModel;
     }

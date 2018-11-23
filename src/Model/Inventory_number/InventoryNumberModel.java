@@ -44,6 +44,14 @@ public class InventoryNumberModel extends GenericModel<InventoryNumberLog> {
         super(id,number);
     }
 
+    public InventoryNumberModel() {
+    }
+
+    @Override
+    public GenericModel<InventoryNumberLog> create(String name) {
+        return new InventoryNumberModel(-1, name);
+    }
+
     @Override
     public List<InventoryNumberLog> getEntityList() {
         //  mEntityList=new ArrayList<>();

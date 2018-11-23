@@ -40,7 +40,7 @@ public class EquipmentInventoryController extends BaseController implements IOnM
     private JFXTextField mTextFieldGuaranty;
 
     @FXML
-    private JFXComboBox<InventoryNumberModel>  mComboBoxNumber;
+    private JFXComboBox<InventoryNumberModel> mComboBoxInventoryNumber;
 
     @FXML
     private JFXComboBox<StateModel> mComboBoxState;
@@ -64,12 +64,21 @@ public class EquipmentInventoryController extends BaseController implements IOnM
     public void initialize(){
         System.out.println("equipment inventory initialize");
         mButtonSave.setFocusTraversable(false);
-        initComboBoxDepartment(mComboBoxDepartment, true, "Выберите отдел", "Отдел");
-        initComboBoxNumber(mComboBoxNumber, true, "Выберите номер", "Номер");
-        initComboBoxState(mComboBoxState, true, "Выберите состояние", "Состояние");
+        initComboBox();
         initTextField();
         initTextArea();
         initPopup();
+    }
+
+    private void initComboBox() {
+        initJFXComboBox(new DepartmentModel(), mComboBoxDepartment, true, "Выберите отдел", "Отдел");
+        initJFXComboBox(new InventoryNumberModel(), mComboBoxInventoryNumber, true, "Выберите номер", "Номер");
+        initJFXComboBox(new StateModel(), mComboBoxState, true, "Выберите состояние", "Состояние");
+        mComboBoxState.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedState());
+        mComboBoxInventoryNumber.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedNumber()));
+        mComboBoxDepartment.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment()));
+
+
     }
 
     private void initPopup() {
@@ -95,24 +104,10 @@ public class EquipmentInventoryController extends BaseController implements IOnM
         });
     }
 
-
-
-    @Override
-    protected void initComboBoxState(JFXComboBox<StateModel> comboBox, boolean isSelectionItem, String promptText, String label) {
-        super.initComboBoxState(comboBox, isSelectionItem, promptText, label);
-        comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedState());
-    }
-
-    @Override
-    protected void initComboBoxNumber(JFXComboBox<InventoryNumberModel> comboBox, boolean isSelectionItem, String promptText, String label) {
-        super.initComboBoxNumber(comboBox, isSelectionItem, promptText, label);
-        comboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedNumber()));
-    }
-
     private void selectedNumber() {
-        if (mComboBoxNumber.getSelectionModel().getSelectedIndex() != -1 && mComboBoxNumber.focusedProperty().get()) {
+        if (mComboBoxInventoryNumber.getSelectionModel().getSelectedIndex() != -1 && mComboBoxInventoryNumber.focusedProperty().get()) {
             System.out.println("переход в модальное окно");
-            EquipmentInventoryPresenter.get().setInventoryNumberModel(mComboBoxNumber.getValue());
+            EquipmentInventoryPresenter.get().setInventoryNumberModel(mComboBoxInventoryNumber.getValue());
             new Coordinator().goToAddInventoryNumberLog(getStage());
 
         }
@@ -121,12 +116,6 @@ public class EquipmentInventoryController extends BaseController implements IOnM
     @Override
     protected Stage getStage() {
         return (Stage) mPaneEquipmentInventory.getScene().getWindow();
-    }
-
-    @Override
-    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem, String promptText, String label) {
-        super.initComboBoxDepartment(comboBox, isSelectionItem, promptText, label);
-        comboBox.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment()));
     }
 
     @FXML
@@ -193,8 +182,8 @@ public class EquipmentInventoryController extends BaseController implements IOnM
             mEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
             mComboBoxDepartment.setItems(EquipmentPresenter.get().getObservableDepartment());
             mComboBoxDepartment.getSelectionModel().select(mEquipmentInventory.getDepartmentModel());
-            mComboBoxNumber.setItems(EquipmentPresenter.get().getObservableInventory());
-            mComboBoxNumber.getSelectionModel().select(mEquipmentInventory.getInventoryNumber());
+            mComboBoxInventoryNumber.setItems(EquipmentPresenter.get().getObservableInventory());
+            mComboBoxInventoryNumber.getSelectionModel().select(mEquipmentInventory.getInventoryNumber());
             mTextFieldGuaranty.setText(String.valueOf(mEquipmentInventory.getGuaranty()));
             mTextAreaDescription.setText(mEquipmentInventory.getDescription());
             mComboBoxState.setItems(EquipmentPresenter.get().getObservableState());
@@ -208,7 +197,7 @@ public class EquipmentInventoryController extends BaseController implements IOnM
         if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
             mComboBoxState.getSelectionModel().select(getState());
             mComboBoxDepartment.getSelectionModel().select(getDepartment());
-            mComboBoxNumber.getSelectionModel().select(getInventoryNumber());
+            mComboBoxInventoryNumber.getSelectionModel().select(getInventoryNumber());
             setAvatar(EquipmentInventoryPresenter.get().getPathAvatar(), mAvatarImage);
         }
     }
@@ -218,8 +207,8 @@ public class EquipmentInventoryController extends BaseController implements IOnM
         switch (id) {
 
             case "editAvatar":
-                EquipmentPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
-                EquipmentPresenter.get().uploadAvatar(getStage());
+                EquipmentInventoryPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
+                EquipmentInventoryPresenter.get().uploadAvatar(getStage());
                 break;
             case "deleteAvatar":
                 System.out.println(" delete avatar");

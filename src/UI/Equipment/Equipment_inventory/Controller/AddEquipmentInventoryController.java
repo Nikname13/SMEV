@@ -34,7 +34,7 @@ public class AddEquipmentInventoryController extends BaseController {
     private JFXComboBox<StateModel> mComboBoxState;
 
     @FXML
-    private JFXComboBox<InventoryNumberModel> mComboBoxInventory;
+    private JFXComboBox<InventoryNumberModel> mComboBoxInventoryNumber;
 
     @FXML
     private JFXTextArea mTextAreaDescription;
@@ -49,11 +49,19 @@ public class AddEquipmentInventoryController extends BaseController {
     private AnchorPane mAnchorPaneEquipmentInventory;
 
     public void initialize(){
-        initComboBoxNumber(mComboBoxInventory, false, "Выберите номер", "Номер");
-        initComboBoxState(mComboBoxState, false, "Выберите состояние", "Состояние");
+        initComboBox();
         initTextFieldCount();
         mBaseValidator.setJFXTextFields(mTextFieldCount, mTextFieldGuaranty);
-        mBaseValidator.setValidationFacades(new Pair(mFacadeNumber, mErrorNumber, mComboBoxInventory), new Pair(mFacadeState, mErrorState, mComboBoxState));
+        mBaseValidator.setValidationFacades(new Pair(mFacadeNumber, mErrorNumber, mComboBoxInventoryNumber), new Pair(mFacadeState, mErrorState, mComboBoxState));
+    }
+
+    private void initComboBox() {
+        initJFXComboBox(new InventoryNumberModel(), mComboBoxInventoryNumber, false, "Выберите номер", "Номер");
+        initJFXComboBox(new StateModel(), mComboBoxState, false, "Выберите состояние", "Состояние");
+        mComboBoxInventoryNumber.setItems(EquipmentPresenter.get().getObservableInventory());
+        mComboBoxInventoryNumber.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedInventory(newValue)));
+        mComboBoxState.setItems(EquipmentPresenter.get().getObservableState());
+
     }
 
     private void initTextFieldCount() {
@@ -81,25 +89,12 @@ public class AddEquipmentInventoryController extends BaseController {
         return (Stage) mAnchorPaneEquipmentInventory.getScene().getWindow();
     }
 
-    @Override
-    protected void initComboBoxNumber(JFXComboBox<InventoryNumberModel> comboBox, boolean isSelectionItem, String promptText, String label) {
-        super.initComboBoxNumber(comboBox, isSelectionItem, promptText, label);
-        comboBox.setItems(EquipmentPresenter.get().getObservableInventory());
-        comboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedInventory(newValue)));
-    }
-
     private void selectedInventory(InventoryNumberModel inventory){
         if (inventory != null) {
             mTextFieldCount.setText("");
             mTextFieldCount.setVisible(inventory.isGroup());
                 resizeWidthStage();
         }
-    }
-
-    @Override
-    protected void initComboBoxState(JFXComboBox<StateModel> comboBox, boolean isSelectionItem, String promptText, String label) {
-        super.initComboBoxState(comboBox, isSelectionItem, promptText, label);
-        comboBox.setItems(EquipmentPresenter.get().getObservableState());
     }
 
     private void resizeWidthStage() {
@@ -115,12 +110,12 @@ public class AddEquipmentInventoryController extends BaseController {
         if (mBaseValidator.validate()) {
             System.out.println("true");
             EquipmentPresenter.get().addEquipmentInventory(
-                    mComboBoxInventory.getValue(),
+                    mComboBoxInventoryNumber.getValue(),
                     Integer.parseInt(mTextFieldGuaranty.getText()),
                     mTextAreaDescription.getText(),
                     mEquipment,
                     mComboBoxState.getValue(),
-                    mComboBoxInventory.getValue().isGroup() ? Integer.parseInt(mTextFieldCount.getText()) : 1);
+                    mComboBoxInventoryNumber.getValue().isGroup() ? Integer.parseInt(mTextFieldCount.getText()) : 1);
             close(mAnchorPaneEquipmentInventory);
         }
     }

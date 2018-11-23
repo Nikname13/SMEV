@@ -52,12 +52,21 @@ public class MoveEquipmentInventoryController extends BaseController {
                 new Pair(mFacadeDepartmentTo, mErrorDepartmentTo, mComboBoxDepartment));
         mBaseValidator.setJFXTextAreas(mTextAreaBase);
 
-        initComboBoxDepartment(mComboBoxDepartment, true, "Выберите отдел", "Отдел");
-        initComboBoxWorker(mComboBoxWorkerFrom, true, "Выберите сотрудника", "Сотрудник");
-        initComboBoxWorker(mComboBoxWorkerTo, true, "Выберите сотрудника", "Сотрудник");
+
+        initComboBox();
+
         setWorker();
 
         mTextFieldDepartment.setText(mEquipment.getDepartmentModel().getName());
+    }
+
+    private void initComboBox() {
+        initJFXComboBox(new WorkerModel(), mComboBoxWorkerFrom, true, "Выберите сотрудника", "Сотрудник");
+        initJFXComboBox(new WorkerModel(), mComboBoxWorkerTo, true, "Выберите сотрудника", "Сотрудник");
+        initJFXComboBox(new DepartmentModel(), mComboBoxDepartment, true, "Выберите отдел", "Отдел");
+        mComboBoxDepartment.setItems(EquipmentPresenter.get().getObservableDepartment());
+        mComboBoxDepartment.getSelectionModel().select(EquipmentPresenter.get().getDepartmentModel());
+        mComboBoxDepartment.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment(newValue)));
     }
 
     private void setWorker() {
@@ -68,14 +77,6 @@ public class MoveEquipmentInventoryController extends BaseController {
         setWorkerTo();
         mComboBoxWorkerFrom.setItems(mEquipment.getDepartmentModel().getObsWorkerList());
         mComboBoxWorkerFrom.getSelectionModel().selectFirst();
-    }
-
-    @Override
-    protected void initComboBoxDepartment(JFXComboBox<DepartmentModel> comboBox, boolean isSelectionItem, String promptText, String label) {
-        super.initComboBoxDepartment(comboBox, isSelectionItem, promptText, label);
-        comboBox.setItems(EquipmentPresenter.get().getObservableDepartment());
-        comboBox.getSelectionModel().select(EquipmentPresenter.get().getDepartmentModel());
-        comboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment(newValue)));
     }
 
     private void setWorkerTo() {

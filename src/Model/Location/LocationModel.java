@@ -14,6 +14,14 @@ public class LocationModel extends AbstractModel {
         super(id, name);
     }
 
+    public LocationModel() {
+    }
+
+    @Override
+    public AbstractModel<?> create(String name) {
+        return new LocationModel(-1, name);
+    }
+
     public LocationModel(int id, String name, DepartmentModel department) {
         super(id, name);
         addLocation(department);

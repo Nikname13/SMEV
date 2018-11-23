@@ -1,7 +1,6 @@
 package Presenter;
 
 import Iteractor.IteractorEquipmentInventory;
-import Model.AbstractModel;
 import Model.Department.DepartmentModel;
 import Model.Equipment.EquipmentInventoryLogModel;
 import Model.Equipment.EquipmentInventoryModel;
@@ -16,7 +15,7 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 
-public class EquipmentInventoryPresenter extends BaseFilePresenter {
+public class EquipmentInventoryPresenter extends BaseFilePresenter<EquipmentInventoryModel> {
 
     private static EquipmentInventoryModel sEquipmentInventoryModel;
     private static EquipmentModel sEquipmentModel;
@@ -149,15 +148,10 @@ public class EquipmentInventoryPresenter extends BaseFilePresenter {
         return new IteractorEquipmentInventory().downloadFile(sEquipmentInventoryModel.getId(), getTypeDocuments(), FileDumpPresenter.get().getFileDumpModel().getPath(), savePathFile);
     }
 
-    public String getPathAvatar() {
-        if (sEquipmentInventoryModel.getAvatar() != null) {
-            setTypeDocuments(AbstractModel.getTypePhoto());
-            FileDumpPresenter.get().setFileDumpModel(sEquipmentInventoryModel.getAvatar());
-            return getTempFile(sEquipmentInventoryModel.getAvatar().getPath()).getPath();
-        }
-        return "";
+    @Override
+    protected EquipmentInventoryModel getAvatarEntity() {
+        return sEquipmentInventoryModel;
     }
-
 
     @Override
     public void delete() {

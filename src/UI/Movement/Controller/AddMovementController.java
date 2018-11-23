@@ -65,13 +65,17 @@ public class AddMovementController extends BaseController {
                 new Pair(mFacadeWorkerTo, mErrorWorkerTo, mComboBoxWorkerTo)
         );
         mBaseValidator.setJFXTextAreas(mTextAreaBase);
-        initComboBoxDepartment(mComboBoxDepartmentFrom, false, "Выберите отдел отправления", "Из отдела");
-        initComboBoxDepartment(mComboBoxDepartmentTo, false, "Выберите отдел назначения", "В отдел");
+        initComboBox();
         initDepartment();
-        initComboBoxWorker(mComboBoxWorkerFrom, false, "Выберите сотрудника", "Сотрудник");
-        initComboBoxWorker(mComboBoxWorkerTo, false, "Выберите сотрудника", "Сотрудник");
         initTableView();
         updateTableView(mEquipmentInventoryList);
+    }
+
+    private void initComboBox() {
+        initJFXComboBox(new DepartmentModel(), mComboBoxDepartmentFrom, false, "Выберите отдел отправления", "Из отдела");
+        initJFXComboBox(new DepartmentModel(), mComboBoxDepartmentTo, false, "Выберите отдел назначения", "В отдел");
+        initJFXComboBox(new WorkerModel(), mComboBoxWorkerFrom, false, "Выберите сотрудника", "Сотрудник");
+        initJFXComboBox(new WorkerModel(), mComboBoxWorkerTo, false, "Выберите сотрудника", "Сотрудник");
     }
 
     private void updateTableView(ObservableList<EquipmentInventoryModel> equipmentInventoryList) {

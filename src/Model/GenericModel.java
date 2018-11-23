@@ -13,6 +13,7 @@ public abstract class GenericModel<T> extends AbstractModel<GenericModel<T>> imp
 
 
     protected List<T> mEntityList;
+    private FileDumpModel mAvatar;
     private transient boolean mIsLoad;
     private transient List<FileDumpModel> mFileDumpDocList, mFileDumpConfigList, mFileDumpPhotoList;
 
@@ -62,6 +63,16 @@ public abstract class GenericModel<T> extends AbstractModel<GenericModel<T>> imp
     public void setLoad(boolean load) {
         mIsLoad = load;
     }
+
+
+    public FileDumpModel getAvatar() {
+        return mAvatar;
+    }
+
+    public void setAvatar(FileDumpModel avatar) {
+        mAvatar = avatar;
+    }
+
 
     @Override
     public ObservableList<T> getObservableEntityList() {
@@ -160,7 +171,7 @@ public abstract class GenericModel<T> extends AbstractModel<GenericModel<T>> imp
     }
 
     private LocalDateTime getObsLastUpdatePhotoList() {
-        if (mFileDumpPhotoList != null) {
+        if (mFileDumpPhotoList != null && mFileDumpPhotoList.size() != 0) {
             LocalDateTime lastUpdate = mFileDumpPhotoList.get(0).getLastUpdate();
             for (FileDumpModel file : mFileDumpPhotoList) {
                 if (file.getLastUpdate().isAfter(lastUpdate)) {
@@ -173,7 +184,7 @@ public abstract class GenericModel<T> extends AbstractModel<GenericModel<T>> imp
     }
 
     private LocalDateTime getLastUpdateConfigList() {
-        if (mFileDumpConfigList != null) {
+        if (mFileDumpConfigList != null && mFileDumpConfigList.size() != 0) {
             LocalDateTime lastUpdate = mFileDumpConfigList.get(0).getLastUpdate();
             for (FileDumpModel file : mFileDumpConfigList) {
                 if (file.getLastUpdate().isAfter(lastUpdate)) {
@@ -186,7 +197,7 @@ public abstract class GenericModel<T> extends AbstractModel<GenericModel<T>> imp
     }
 
     private LocalDateTime getLastUpdateDocList() {
-        if (mFileDumpDocList != null) {
+        if (mFileDumpDocList != null && mFileDumpDocList.size() != 0) {
             LocalDateTime lastUpdate = mFileDumpDocList.get(0).getLastUpdate();
             for (FileDumpModel file : mFileDumpDocList) {
                 if (file.getLastUpdate().isAfter(lastUpdate)) {

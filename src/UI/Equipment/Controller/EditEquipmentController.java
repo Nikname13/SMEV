@@ -154,7 +154,7 @@ public class EditEquipmentController extends BaseController implements IOnMouseC
         JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(new Text("Добавить параметр"));
 
-        JFXComboBox<ParameterModel> comboBox = initComboBoxParameter(
+        JFXComboBox<ParameterModel> comboBox = initJFXComboBox(new EquipmentParameterModel(),
                 new JFXComboBox(EquipmentPresenter.get().getObservableEquipmentParameter(mEquipmentParameterList)), false, "Выберите параметр", "Параметр");
         comboBox.setLabelFloat(true);
         comboBox.setPromptText("Параметр");

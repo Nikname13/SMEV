@@ -13,7 +13,7 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 
-public class SupplyPresenter extends BaseFilePresenter {
+public class SupplyPresenter extends BaseFilePresenter<SupplyModel> {
 
     private static SupplyModel sSupplyModel;
     private static SupplyPresenter sSupplyPresenter;

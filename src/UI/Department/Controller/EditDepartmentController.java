@@ -10,10 +10,7 @@ import Model.Inventory_number.InventoryNumberModel;
 import Model.Location.LocationModel;
 import Model.State.StateModel;
 import Model.Worker.WorkerModel;
-import Presenter.DepartmentPresenter;
-import Presenter.EquipmentInventoryPresenter;
-import Presenter.LocationPresenter;
-import Presenter.WorkerPresenter;
+import Presenter.*;
 import Service.IOnMouseClick;
 import Service.ListenersService;
 import Service.TabControllerService;
@@ -77,13 +74,18 @@ public class EditDepartmentController extends BaseController implements IOnMouse
         mButtonUpdate.setFocusTraversable(false);
         initTextFields();
         initTreeTableEquipmentInventory();
-        initComboBoxArea(mComboBoxArea, true,"Выберите район", "Район");
+        initComboBox();
         initTextAreaDescription();
         initRadioButton();
         initLocationListView();
         initWorkerListView();
         initPopup();
 
+    }
+
+    private void initComboBox() {
+        initJFXComboBox(new AreaModel(), mComboBoxArea, true, "Выберите район", "Район");
+        mComboBoxArea.getSelectionModel().selectedIndexProperty().addListener((observable -> selectedArea()));
     }
 
     private void initTextFields() {
@@ -105,12 +107,6 @@ public class EditDepartmentController extends BaseController implements IOnMouse
     @Override
     protected Stage getStage() {
         return (Stage) anchorPaneEditDepartment.getScene().getWindow();
-    }
-
-    @Override
-    protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea, boolean isSelectionItem, String promptText, String label) {
-        super.initComboBoxArea(comboBoxArea, isSelectionItem, promptText, label);
-        comboBoxArea.getSelectionModel().selectedIndexProperty().addListener((observable -> selectedArea()));
     }
 
     @Override
@@ -266,7 +262,7 @@ public class EditDepartmentController extends BaseController implements IOnMouse
         if (treeEquipment != null) {
             EquipmentInventoryModel equipment = treeEquipment.getValue();
             if (equipment != null && equipment.getId() != -1) {
-                //  EquipmentPresenter.get().setEquipmentModel(equipment.getEquipmentModel());
+                EquipmentPresenter.get().setEquipmentModel(equipment.getEquipmentModel());
                 EquipmentInventoryPresenter.get().setEquipmentInventoryModel(equipment);
                 TabControllerService.get().getListenerSecondTabPane().nextTab(TabControllerService.get().getNextTab(TabControllerService.get().getEquipmentInventoryResource()));
                 ListenersService.get().updateUI(EquipmentInventoryModel.class);

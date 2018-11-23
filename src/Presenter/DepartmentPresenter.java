@@ -3,7 +3,6 @@ package Presenter;
 import Iteractor.IteractorDepartment;
 import Iteractor.IteractorLocation;
 import Iteractor.IteractorPurchase;
-import Model.AbstractModel;
 import Model.Area.AreaModel;
 import Model.Department.DepartmentModel;
 import Model.Department.Departments;
@@ -16,7 +15,7 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 
-public class DepartmentPresenter extends BaseFilePresenter {
+public class DepartmentPresenter extends BaseFilePresenter<DepartmentModel> {
 
     private static DepartmentModel sDepartmentModel;
     private static PurchaseModel sPurchaseModel;
@@ -101,13 +100,9 @@ public class DepartmentPresenter extends BaseFilePresenter {
         return new IteractorDepartment().downloadFile(sDepartmentModel.getId(), getTypeDocuments(), FileDumpPresenter.get().getFileDumpModel().getPath(), savePathFile);
     }
 
-    public String getPathAvatar() {
-        if (sDepartmentModel.getAvatar() != null) {
-            setTypeDocuments(AbstractModel.getTypePhoto());
-            FileDumpPresenter.get().setFileDumpModel(sDepartmentModel.getAvatar());
-            return getTempFile(sDepartmentModel.getAvatar().getPath()).getPath();
-        }
-        return "";
+    @Override
+    protected DepartmentModel getAvatarEntity() {
+        return sDepartmentModel;
     }
 
     @Override

@@ -22,9 +22,9 @@
                 <JFXComboBox fx:id="mComboBoxDepartment" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
                              prefWidth="243.0" promptText="Отдел"
                              AnchorPane.topAnchor="255.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"/>
-                <JFXComboBox fx:id="mComboBoxNumber" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
-                             prefWidth="243.0" promptText="Номер"
-                             AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="315.0" AnchorPane.rightAnchor="10.0"/>
+        <JFXComboBox fx:id="mComboBoxInventoryNumber" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
+                     prefWidth="243.0" promptText="Номер"
+                     AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="315.0" AnchorPane.rightAnchor="10.0"/>
                 <JFXTextField fx:id="mTextFieldGuaranty" focusColor="#40a85f" labelFloat="true" prefHeight="25.0"
                               prefWidth="243.0"
                               promptText="Гарантия" AnchorPane.topAnchor="375.0" AnchorPane.leftAnchor="10.0"

@@ -27,7 +27,7 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
     private String mNumber, mDescription;
     private boolean mElectronicQ, mRenting;
     private AreaModel mAreaModel;
-    private FileDumpModel mAvatar;
+
 
     @Expose
     private List<WorkerModel> mWorkerList;
@@ -51,6 +51,14 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
 
     public DepartmentModel(int id, String name) {
         super(id, name);
+    }
+
+    public DepartmentModel() {
+    }
+
+    @Override
+    public GenericModel<PurchaseModel> create(String name) {
+        return new DepartmentModel(-1, name);
     }
 
     public DepartmentModel(int id, String name, String number) {
@@ -207,14 +215,6 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
             if (location.getId() == id) return location;
         }
         return null;
-    }
-
-    public FileDumpModel getAvatar() {
-        return mAvatar;
-    }
-
-    public void setAvatar(FileDumpModel avatar) {
-        mAvatar = avatar;
     }
 
 

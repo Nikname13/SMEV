@@ -41,13 +41,13 @@ public class AddInventoryNumberController extends BaseController {
         mBaseValidator.setJFXTextFields(mTextField);
         mBaseValidator.setValidationFacades(new Pair(mFacadeSupply, mErrorSupply));
         initPromptText(mTextField, "Введите инвентарный номер", "Инвентарный номер");
-        initComboBoxSupply(mComboBoxSupply, false, "Выберите поставку", "Номер поставки");
+        initComboBox();
     }
 
-    @Override
-    protected void initComboBoxSupply(JFXComboBox<SupplyModel> comboBox, boolean isSelectionItem, String promptText, String label) {
-        super.initComboBoxSupply(comboBox, isSelectionItem, promptText, label);
-        comboBox.setItems(Supplys.get().getObsEntityList());
+    private void initComboBox() {
+        initJFXComboBox(new SupplyModel(), mComboBoxSupply, false, "Выберите поставку", "Номер поставки");
+        mComboBoxSupply.setItems(Supplys.get().getObsEntityList());
+
     }
 
     @FXML

@@ -10,9 +10,7 @@ public interface IAbstractModel {
 
     IntegerProperty idProperty();
     StringProperty nameProperty();
-
     ObjectProperty<LocalDate> dateProperty();
-
     StringProperty dateToString();
 
 }

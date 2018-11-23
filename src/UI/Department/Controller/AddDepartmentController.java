@@ -10,6 +10,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.ValidationFacade;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -19,7 +21,7 @@ import javafx.stage.Stage;
 public class AddDepartmentController extends BaseController {
 
     private AreaModel mAreaModel;
-    private boolean mFlagLocation;
+    private boolean mLocationIsSelected;
     private LocationModel mLocation;
     private BaseValidator mBaseValidator = new BaseValidator();
 
@@ -51,11 +53,24 @@ public class AddDepartmentController extends BaseController {
 
     @FXML
     public void initialize(){
-        mFlagLocation=false;
+        mLocationIsSelected = false;
         mBaseValidator.setJFXTextFields(mTextFieldName, mTextFieldNumber);
         mBaseValidator.setValidationFacades(new Pair(mFacadeArea, mErrorArea, mComboBoxArea), new Pair(mFacadeLocation, mErrorLocation, mComboBoxLocation));
-        initComboBoxArea(mComboBoxArea, false, "Выберите район", "Район");
-        initComboBoxLocation(mComboBoxLocation, "Выберите или введите адрес", "Адрес");
+        initComboBox();
+    }
+
+    private void initComboBox() {
+        initJFXComboBox(new AreaModel(), mComboBoxArea, false, "Выберите район", "Район");
+        initJFXComboBox(new LocationModel(), mComboBoxLocation, false, "Выберите или введите адрес", "Адрес");
+        mComboBoxLocation.setItems(DepartmentPresenter.get().getObservableLocation());
+        mComboBoxLocation.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedLocation()));
+        mComboBoxLocation.getEditor().textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                mLocationIsSelected = false;
+            }
+        });
+        mComboBoxArea.setItems(DepartmentPresenter.get().getObservableArea());
 
     }
 
@@ -64,22 +79,9 @@ public class AddDepartmentController extends BaseController {
         return null;
     }
 
-    @Override
-    protected void initComboBoxLocation(JFXComboBox<LocationModel> comboBoxLocation, String promptText, String label) {
-       super.initComboBoxLocation(comboBoxLocation,promptText,label);
-        comboBoxLocation.setItems(DepartmentPresenter.get().getObservableLocation());
-        mComboBoxLocation.getSelectionModel().selectedIndexProperty().addListener(((observable, oldValue, newValue) -> selectedLocation()));
-    }
-
-    @Override
-    protected void initComboBoxArea(JFXComboBox<AreaModel> comboBoxArea, boolean isSelectionItem, String promptText, String label) {
-        super.initComboBoxArea(comboBoxArea, isSelectionItem,promptText,label);
-        comboBoxArea.setItems(DepartmentPresenter.get().getObservableArea());
-    }
-
     private void selectedLocation(){
         if(mComboBoxLocation.getSelectionModel().getSelectedIndex()!=-1){
-            setSelectedLocation(true);
+            mLocationIsSelected = true;
             mLocation = mComboBoxLocation.getValue();
         }
     }
@@ -88,7 +90,7 @@ public class AddDepartmentController extends BaseController {
     private void onClickAdd(){
         if (mBaseValidator.validate()) {
             close(mAnchorPaneAddDepartment);
-            if (isSelectedLocation()) {
+            if (mLocationIsSelected) {
               DepartmentPresenter.get().addDepartment(mTextFieldNumber.getText(),
                       mTextFieldName.getText(),
                       mRadioButtonElQ.isSelected(),

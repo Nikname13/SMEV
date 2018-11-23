@@ -37,6 +37,11 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
 
     public EquipmentModel(){}
 
+    @Override
+    public GenericModel<EquipmentParameterModel> create(String name) {
+        return new EquipmentModel(-1, name);
+    }
+
 
     public List<EquipmentInventoryModel> getEquipmentInventoryList() {
         //mEqInventoryList = new ArrayList<>();

@@ -19,6 +19,14 @@ public class EquipmentStateLogModel extends AbstractModel {
         super(id, state);
     }
 
+    public EquipmentStateLogModel() {
+    }
+
+    @Override
+    public AbstractModel<?> create(String name) {
+        return new EquipmentStateLogModel(-1, name);
+    }
+
     public String getDescription() {
         return mDescription;
     }

@@ -63,10 +63,16 @@ public class EditInventoryNumber extends BaseController implements IOnMouseClick
     public void initialize(){
         initTextFieldNumber();
         initTreeTable();
-        initComboBoxSupply(mComboBoxSupply, true, "Выберите поставку", "Номер поставки");
         initPromptText(mTextAreaDescription, "Добавить комментарий", "Комментарий");
         initTextArea();
         initPopup();
+        initComboBox();
+    }
+
+    private void initComboBox() {
+        initJFXComboBox(new SupplyModel(), mComboBoxSupply, true, "Выберите поставку", "Номер поставки");
+        mComboBoxSupply.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedSupply()));
+
     }
 
     private void initPopup() {
@@ -99,17 +105,6 @@ public class EditInventoryNumber extends BaseController implements IOnMouseClick
                 EquipmentInventoryPresenter.get().setEquipmentInventoryModel(null);
             }
         }
-    }
-
-    @Override
-    protected void initComboBoxSupply(JFXComboBox<SupplyModel> comboBox, boolean isSelectionItem, String promptText, String label) {
-        super.initComboBoxSupply(comboBox, isSelectionItem, promptText, label);
-        comboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedSupply()));
-    }
-
-    @Override
-    public void destroy() {
-
     }
 
     private void selectedSupply() {

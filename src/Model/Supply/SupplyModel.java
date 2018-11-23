@@ -41,6 +41,11 @@ public class SupplyModel extends GenericModel<InventoryNumberModel> {
 
     public SupplyModel(){}
 
+    @Override
+    public GenericModel<InventoryNumberModel> create(String name) {
+        return new SupplyModel(-1, name);
+    }
+
     public String getDescription() {
         return mDescription;
     }
