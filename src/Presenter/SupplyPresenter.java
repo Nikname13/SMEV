@@ -7,7 +7,8 @@ import Model.Inventory_number.InventoryNumberModel;
 import Model.Provider.ProviderModel;
 import Model.Supply.SupplyModel;
 import Service.ListenersService;
-import UI.Supply.Controller.SupplysController;
+import UI.MainTabs.Controller.SupplyTabController;
+import UI.Supply.Controller.SupplyController;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -42,14 +43,15 @@ public class SupplyPresenter extends BaseFilePresenter<SupplyModel> {
             inventoryNumber.addEntity(new InventoryNumberLog(0, inventoryNumber.getName(), LocalDate.now(), number, "Начало начал"));
         }
         ListenersService.get().updateData(new IteractorSupply().addNew(new SupplyModel(0, number, typeSupply, dateSupply, inventoryList, description, provider)));
-        ListenersService.get().updateUI(SupplysController.class);
+        ListenersService.get().updateUI(SupplyController.class);
 
     }
 
     public void editSupply(String number, String typeSupply, LocalDate dateSupply, String description, ProviderModel provider) {
+        ProviderModel pr = sSupplyModel.getProviderModel();
         new IteractorSupply().edit(new SupplyModel(sSupplyModel.getId(), number, typeSupply, dateSupply, null, description, provider));
         ListenersService.get().refreshControl(SupplyModel.class);
-        if (sSupplyModel.getProviderModel().getId() != provider.getId()) {
+        if (pr.getId() != provider.getId()) {
             ListenersService.get().updateControl(SupplyModel.class);
         }
     }
@@ -64,7 +66,7 @@ public class SupplyPresenter extends BaseFilePresenter<SupplyModel> {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sSupplyModel)) {
                 if (new IteractorSupply().delete(sSupplyModel.getId())) {
-                    ListenersService.get().updateControl(SupplyModel.class);
+                    ListenersService.get().updateUI(SupplyTabController.class);
                 }
             }
         }

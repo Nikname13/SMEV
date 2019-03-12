@@ -6,8 +6,12 @@ import Service.ListenersService;
 import UI.BaseController;
 import UI.Coordinator;
 import UI.Popup.Controller.BasePopup;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
@@ -20,12 +24,14 @@ public class ProvidersController extends BaseController {
 
     @FXML
     private TreeTableView<ProviderModel> mTreeTableViewProvider;
-
     @FXML
     private TreeTableColumn<ProviderModel, String> mNameColumn, mDescriptionColumn;
-
     @FXML
     private AnchorPane mAnchorPaneProviders;
+    @FXML
+    private JFXTextField mTextFieldSearch;
+    private ObservableList<ProviderModel> mModelList;
+    private FilteredList<ProviderModel> mFilteredList;
 
     public ProvidersController() {
         ListenersService.get().addListenerUI(this);
@@ -33,8 +39,34 @@ public class ProvidersController extends BaseController {
 
     @FXML
     public void initialize() {
+        mModelList = FXCollections.observableArrayList();
+        initTextView();
         initTable();
         initPopup();
+    }
+
+    private void initTextView() {
+        mFilteredList = new FilteredList<>(mModelList, p -> true);
+        mTextFieldSearch.textProperty().addListener(((observable, oldValue, newValue) -> {
+            mFilteredList.setPredicate(number -> {
+                if (newValue == null || newValue.trim().isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                return number.getName().toLowerCase().contains(lowerCaseFilter);
+            });
+            updateTree();
+        }));
+    }
+
+    private void updateTree() {
+        SortedList<ProviderModel> sortedList = new SortedList<>(mFilteredList);
+        TreeItem<ProviderModel> rootItem = new TreeItem<>();
+        for (ProviderModel provider : sortedList) {
+            rootItem.getChildren().add(new TreeItem<>(provider));
+        }
+        mTreeTableViewProvider.setRoot(rootItem);
+        mTreeTableViewProvider.setShowRoot(false);
     }
 
     private void initPopup() {
@@ -80,12 +112,9 @@ public class ProvidersController extends BaseController {
 
 
     private void updateTable(ObservableList<ProviderModel> observableProvider) {
-        TreeItem<ProviderModel> rootItem = new TreeItem<>();
-        for (ProviderModel provider : observableProvider) {
-            rootItem.getChildren().add(new TreeItem<>(provider));
-        }
-        mTreeTableViewProvider.setRoot(rootItem);
-        mTreeTableViewProvider.setShowRoot(false);
+        mModelList = observableProvider;
+        mFilteredList = new FilteredList<>(mModelList, p -> true);
+        updateTree();
     }
 
     @FXML
@@ -101,6 +130,7 @@ public class ProvidersController extends BaseController {
     @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
+            mTextFieldSearch.setText("");
             updateTable(ProviderPresenter.get().getObservableProvider());
         }
     }
@@ -116,6 +146,7 @@ public class ProvidersController extends BaseController {
     @Override
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(ProviderModel.class.getName())) {
+            mTextFieldSearch.setText("");
             updateTable(ProviderPresenter.get().getObservableProvider());
         }
     }

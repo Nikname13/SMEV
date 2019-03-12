@@ -120,7 +120,6 @@ public abstract class BaseController implements IUpdateUI {
         }
     }
 
-
     private void setImage(Image image, BorderPane imageContainer) {
         ImageView imageView = new ImageView(image);
         imageView.setCache(true);
@@ -152,6 +151,26 @@ public abstract class BaseController implements IUpdateUI {
     @Override
     public void updateControl(Class<?> updateClass, Object currentItem) {
         ErrorService.get().overrideError("updateControl", this.getClass());
+    }
+
+    protected void onlyNumber(TextInputControl textControl, int maxNumber) {
+        textControl.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                System.out.println(newValue);
+                if (!newValue.isEmpty()) {
+                    if (!newValue.matches("^[1-9]+([0-9]+$)?")) {
+                        textControl.setText(oldValue);
+                        return;
+                    }
+                    int number = Integer.parseInt(newValue);
+                    if (number <= maxNumber) {
+                        return;
+                    }
+                    textControl.setText(oldValue);
+                }
+            }
+        });
     }
 
 

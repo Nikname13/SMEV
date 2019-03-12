@@ -223,6 +223,8 @@ public class DepartmentModel extends GenericModel<PurchaseModel> {
         List<FileDumpModel> list = new IteractorDepartment().getFilesList(getId(), getTypeDoc(), this);
         if (list != null) {
             setFileDumpDocList(list);
+        } else {
+            setFileDumpDocList(new ArrayList<>());
         }
         return super.getFileDumpDocList();
     }

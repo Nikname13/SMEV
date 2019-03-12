@@ -25,7 +25,10 @@ import com.jfoenix.controls.events.JFXDialogEvent;
 import com.jfoenix.validation.ValidationFacade;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -54,37 +57,34 @@ public class EditEquipmentController extends BaseController implements IOnMouseC
 
     @FXML
     private JFXTextField mTextFieldName, mTextFieldNameFact;
-
     @FXML
     private JFXTextArea mTextAreaDescription;
-
     @FXML
     private JFXButton mButtonUpdate;
-
     @FXML
     private ComboBox<TypeModel> comboBoxType;
-
     @FXML
     private TreeTableView<EquipmentParameterModel> mTreeTableViewParameter;
-
     @FXML
     private TreeTableColumn<EquipmentParameterModel, String> mColumnNameParameter, mColumnValueParameter;
-
     @FXML
     private TreeTableView<EquipmentInventoryModel> mTreeTableEquipmentInventory;
-
     @FXML
     private TreeTableColumn<EquipmentInventoryModel, String> mDepartmentEquipmentColumn, mNumberEquipmentColumn, mStateEquipmentColumn, mDescriptionEquipmentColumn;
+    @FXML
+    private StackPane mStackPaneEditEquipment;
+    @FXML
+    private JFXTextField mTextFieldSearch;
+    private ObservableList<EquipmentInventoryModel> mModelList;
+    private FilteredList<EquipmentInventoryModel> mFilteredList;
 
     public EditEquipmentController() {
         ListenersService.get().addListenerUI(this);
     }
 
     @FXML
-    private StackPane mStackPaneEditEquipment;
-
-    @FXML
     public void initialize() {
+        mModelList = FXCollections.observableArrayList();
         initTableViewEquipment();
         initTextField();
         initTextArea();
@@ -249,6 +249,66 @@ public class EditEquipmentController extends BaseController implements IOnMouseC
                     setVisibleEditButton();
             }
         });
+        mFilteredList = new FilteredList<>(mModelList, p -> true);
+        mTextFieldSearch.textProperty().addListener(((observable, oldValue, newValue) -> {
+            mFilteredList.setPredicate(equipment -> {
+                if (newValue == null || newValue.trim().isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (equipment.getInventoryNumber().getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (equipment.getDepartmentModel().getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (equipment.getStateModel().getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else
+                    return equipment.getDescription() != null && equipment.getDescription().toLowerCase().contains(lowerCaseFilter);
+            });
+            updateTree();
+        }));
+    }
+
+    private void updateTree() {
+        TreeItem<EquipmentInventoryModel> rootItem = new TreeItem<>();
+        SortedList<EquipmentInventoryModel> sortedList = new SortedList<>(mFilteredList);
+        for (EquipmentInventoryModel equipmentModel : sortedList) {
+            if (mTextFieldSearch.getText().trim().isEmpty()) {
+                onUnSortedList(equipmentModel, rootItem);
+            } else {
+                onSortedList(equipmentModel, rootItem);
+            }
+        }
+        mTreeTableEquipmentInventory.setRoot(rootItem);
+        mTreeTableEquipmentInventory.setShowRoot(false);
+    }
+
+    private void onSortedList(EquipmentInventoryModel equipmentModel, TreeItem<EquipmentInventoryModel> rootItem) {
+        rootItem.getChildren().add(new TreeItem<>(equipmentModel));
+    }
+
+    private void onUnSortedList(EquipmentInventoryModel equipmentModel, TreeItem<EquipmentInventoryModel> rootItem) {
+        boolean flag = false;
+        for (TreeItem<EquipmentInventoryModel> treeEquipment : rootItem.getChildren()) {
+            if (treeEquipment.getValue().getInventoryNumber().getId() == equipmentModel.getInventoryNumber().getId()) {
+                treeEquipment.getChildren().add(new TreeItem<>(equipmentModel));
+                flag = true;
+                treeEquipment.getValue().getInventoryNumber().setName(equipmentModel.getInventoryNumber().getName() + " (" + treeEquipment.getChildren().size() + ")");
+                break;
+            }
+        }
+        if (!flag) {
+            EquipmentInventoryModel emptyEquipment = new EquipmentInventoryModel(
+                    -1,
+                    new InventoryNumberModel(equipmentModel.getInventoryNumber().getId(), equipmentModel.getInventoryNumber().getName()),
+                    null,
+                    new DepartmentModel(-1, ""),
+                    new StateModel(-1, ""));
+            TreeItem<EquipmentInventoryModel> treeItemFirst = new TreeItem<>(emptyEquipment);
+            treeItemFirst.getChildren().add(new TreeItem<>(equipmentModel));
+            rootItem.getChildren().add(treeItemFirst);
+
+        }
     }
 
     private void selectedEquipment(TreeItem<EquipmentInventoryModel> treeEquipment) {
@@ -291,40 +351,16 @@ public class EditEquipmentController extends BaseController implements IOnMouseC
     }
 
     private void updateEquipmentTable(ObservableList<EquipmentInventoryModel> equipmentList) {
-        TreeItem<EquipmentInventoryModel> rootItem = new TreeItem<>();
-        boolean flag = false;
-        for (EquipmentInventoryModel equipment : equipmentList) {
-            for (TreeItem<EquipmentInventoryModel> treeEquipment : rootItem.getChildren()) {
-                if (treeEquipment.getValue().getInventoryNumber().getId() == equipment.getInventoryNumber().getId()) {
-                    treeEquipment.getChildren().add(new TreeItem<>(equipment));
-                    flag = true;
-                    treeEquipment.getValue().getInventoryNumber().setName(equipment.getInventoryNumber().getName() + " (" + treeEquipment.getChildren().size() + ")");
-                    break;
-                }
-            }
-            if (!flag) {
-                EquipmentInventoryModel emptyEquipment = new EquipmentInventoryModel(
-                        -1,
-                        new InventoryNumberModel(equipment.getInventoryNumber().getId(), equipment.getInventoryNumber().getName()),
-                        null,
-                        new DepartmentModel(-1, ""),
-                        new StateModel(-1, ""));
-                TreeItem<EquipmentInventoryModel> treeItemFirst = new TreeItem<>(emptyEquipment);
-                treeItemFirst.getChildren().add(new TreeItem<>(equipment));
-                rootItem.getChildren().add(treeItemFirst);
-
-            } else {
-                flag = false;
-            }
-        }
-        mTreeTableEquipmentInventory.setRoot(rootItem);
-        mTreeTableEquipmentInventory.setShowRoot(false);
+        mModelList = equipmentList;
+        mFilteredList = new FilteredList<>(mModelList, p -> true);
+        updateTree();
     }
 
     @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(EquipmentModel.class.getName())) {
             System.out.println("updateUI edit equipment");
+            mTextFieldSearch.setText("");
             sEquipmentModel = EquipmentPresenter.get().getEquipmentModel();
             mEquipmentParameterList = sEquipmentModel.getObservableEntityList();
             mTextFieldName.setText(sEquipmentModel.getName());
@@ -348,6 +384,16 @@ public class EditEquipmentController extends BaseController implements IOnMouseC
     @Override
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
+            mTextFieldSearch.setText("");
+            updateEquipmentTable(sEquipmentModel.getObservableEqInventoryList());
+        }
+    }
+
+    @Override
+    public void updateControl(Class<?> updateClass, Object currentItem) {
+        if (updateClass.getName().equals(EquipmentInventoryModel.class.getName())) {
+            mTextFieldSearch.setText("");
+            mSecondLvlTabPane.getSelectionModel().select(0);
             updateEquipmentTable(sEquipmentModel.getObservableEqInventoryList());
         }
     }

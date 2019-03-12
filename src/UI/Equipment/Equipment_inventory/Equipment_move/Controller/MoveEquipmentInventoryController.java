@@ -41,7 +41,7 @@ public class MoveEquipmentInventoryController extends BaseController {
 
     public MoveEquipmentInventoryController() {
         mEquipment = EquipmentInventoryPresenter.get().getEquipmentInventoryModel();
-        mDepartment = EquipmentPresenter.get().getDepartmentModel();
+        mDepartment = EquipmentInventoryPresenter.get().getDepartmentModel();
     }
 
     @FXML
@@ -51,19 +51,15 @@ public class MoveEquipmentInventoryController extends BaseController {
                 new Pair(mFacadeWorkerTo, mErrorWorkerTo, mComboBoxWorkerTo),
                 new Pair(mFacadeDepartmentTo, mErrorDepartmentTo, mComboBoxDepartment));
         mBaseValidator.setJFXTextAreas(mTextAreaBase);
-
-
         initComboBox();
-
         setWorker();
-
         mTextFieldDepartment.setText(mEquipment.getDepartmentModel().getName());
     }
 
     private void initComboBox() {
-        initJFXComboBox(new WorkerModel(), mComboBoxWorkerFrom, true, "Выберите сотрудника", "Сотрудник");
-        initJFXComboBox(new WorkerModel(), mComboBoxWorkerTo, true, "Выберите сотрудника", "Сотрудник");
-        initJFXComboBox(new DepartmentModel(), mComboBoxDepartment, true, "Выберите отдел", "Отдел");
+        initJFXComboBox(new WorkerModel(), mComboBoxWorkerFrom, false, "Выберите сотрудника", "Сотрудник");
+        initJFXComboBox(new WorkerModel(), mComboBoxWorkerTo, false, "Выберите сотрудника", "Сотрудник");
+        initJFXComboBox(new DepartmentModel(), mComboBoxDepartment, false, "Выберите отдел", "Отдел");
         mComboBoxDepartment.setItems(EquipmentPresenter.get().getObservableDepartment());
         mComboBoxDepartment.getSelectionModel().select(EquipmentPresenter.get().getDepartmentModel());
         mComboBoxDepartment.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedDepartment(newValue)));

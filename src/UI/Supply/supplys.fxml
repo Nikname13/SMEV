@@ -3,15 +3,19 @@
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.layout.*?>
 <StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mStackPaneSupply" prefHeight="400.0" prefWidth="882.0"
-           xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Supply.Controller.SupplysController">
+           xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Supply.Controller.SupplyController">
     <AnchorPane>
         <children>
             <JFXButton onAction="#onClickAdd" ripplerFill="#40a85f" style="-fx-background-color: #a8f1b3;"
                        mnemonicParsing="false"
                        text="Новая поставка" prefHeight="35.0" AnchorPane.leftAnchor="0.0"
                        AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+            <JFXTextField fx:id="mTextFieldSearch" focusColor="#40a85f" labelFloat="true"
+                          prefHeight="25.0" promptText="Поиск"
+                          AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="55.0"
+                          AnchorPane.rightAnchor="10.0"/>
             <JFXTreeTableView fx:id="mTreeTableSupply"
-                              AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="45.0"
+                              AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="95.0"
                               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                 <columns>
                     <JFXTreeTableColumn fx:id="mProviderColumn" prefWidth="200.0" text="Поставщик"/>

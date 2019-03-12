@@ -45,6 +45,7 @@ public class FilesDepartmentController extends BaseFileController {
     @Override
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(FileDumpModel.class.getName())) {
+            System.out.print("updateControl file after delete");
             mFileDumpList.setItems(mDepartmentModel.getFilesList(getTypeDocument()));
         }
     }

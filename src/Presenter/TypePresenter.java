@@ -4,6 +4,7 @@ import Iteractor.IteractorType;
 import Model.Parameter.ParameterModel;
 import Model.Type.TypeModel;
 import Service.ListenersService;
+import UI.Type.Controller.TypesController;
 
 import java.util.List;
 
@@ -41,11 +42,13 @@ public class TypePresenter extends BasePresenter {
     public void editType(String name) {
         sTypeModel.setName(name);
         new IteractorType().edit(sTypeModel);
+        ListenersService.get().updateControl(TypeModel.class);
     }
 
     public void editType(List<ParameterModel> parametersList) {
         sTypeModel.setEntityList(parametersList);
         new IteractorType().edit(sTypeModel);
+        ListenersService.get().updateControl(TypeModel.class);
     }
 
     @Override
@@ -53,7 +56,7 @@ public class TypePresenter extends BasePresenter {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sTypeModel)) {
                 if (new IteractorType().delete(sTypeModel.getId())) {
-                    ListenersService.get().updateControl(TypeModel.class);
+                    ListenersService.get().updateUI(TypesController.class);
                 }
             }
         }

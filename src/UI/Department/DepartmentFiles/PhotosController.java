@@ -45,6 +45,5 @@ public class PhotosController extends BaseFileController {
 
     @Override
     public void primaryClick(String id) {
-
     }
 }

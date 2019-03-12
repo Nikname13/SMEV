@@ -68,7 +68,7 @@
                             </children>
                         </AnchorPane>
                         <!--аватар-->
-                        <AnchorPane style="-fx-background-color: #ffffff;" prefHeight="190.0" prefWidth="250">
+                        <AnchorPane style="-fx-background-color: #ffffff;" prefHeight="190.0" prefWidth="270">
                             <children>
                                 <BorderPane fx:id="mAvatarImage" minHeight="170" minWidth="230"
                                             AnchorPane.rightAnchor="10" AnchorPane.leftAnchor="10"
@@ -79,12 +79,9 @@
                 </HBox>
             </children>
         </AnchorPane>
-
-
         <!--Адрес, сотрудники-->
         <AnchorPane style="-fx-background-color: #ffffff;"
-                    AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0" prefWidth="800.0" prefHeight="100.0"
-                    AnchorPane.rightAnchor="0">
+                    AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0" prefWidth="800.0" prefHeight="100.0">
             <children>
                 <HBox AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0"
                       AnchorPane.bottomAnchor="10.0" spacing="10.0">
@@ -139,10 +136,14 @@
                       AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
                         <!--Список оборудования-->
-                        <AnchorPane style="-fx-background-color: #ffffff;" prefWidth="560">
+                        <AnchorPane style="-fx-background-color: #ffffff;" prefWidth="530">
                             <children>
+                                <JFXTextField fx:id="mTextFieldSearch" focusColor="#40a85f" labelFloat="true"
+                                              prefHeight="25.0" promptText="Поиск"
+                                              AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="20.0"
+                                              AnchorPane.rightAnchor="10.0"/>
                                 <JFXTreeTableView fx:id="mTreeTableEquipmentInventory" prefHeight="200.0"
-                                                  AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0"
+                                                  AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="60.0"
                                                   AnchorPane.rightAnchor="10.0"
                                                   AnchorPane.bottomAnchor="10.0">
                                     <columns>
@@ -152,7 +153,7 @@
                                                             text="Номер"/>
                                         <JFXTreeTableColumn fx:id="mStateEquipmentColumn" prefWidth="75.0"
                                                             text="Состояние"/>
-                                        <JFXTreeTableColumn fx:id="mDescriptionEquipmentColumn" prefWidth="200.0"
+                                        <JFXTreeTableColumn fx:id="mDescriptionEquipmentColumn" prefWidth="170.0"
                                                             text="Заметка для отдела"/>
                                     </columns>
                                 </JFXTreeTableView>

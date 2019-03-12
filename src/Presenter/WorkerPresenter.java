@@ -31,7 +31,8 @@ public class WorkerPresenter extends BasePresenter {
     }
 
     public void addWorker(String name, PostModel post, DepartmentModel department) {
-        if (post.getId() == 0) {
+        if (post.getId() == -1
+                ) {
             post = addPost(post);
         }
         new IteractorWorker().addNew(new WorkerModel(0, name, post, department));

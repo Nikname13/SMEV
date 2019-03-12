@@ -7,6 +7,8 @@ import Service.IOnMouseClick;
 import UI.Popup.Controller.BasePopup;
 import UI.Validator.BaseValidator;
 import com.jfoenix.controls.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -103,15 +105,23 @@ public abstract class BaseFileController extends BaseController implements IOnMo
         dialog.show();
     }
 
-    protected ImageView createImageView(File imageFile) {
+    protected ImageView createImageView(FileDumpModel file) {
         ImageView imageView = null;
+        File imageFile = getTempFile(file.getPath());
         try {
             final Image image = new Image(new FileInputStream(imageFile), 150, 0, true,
                     true);
             imageView = new ImageView(image);
             imageView.setFitWidth(150);
+            imageView.setId("imageViewGallery");
+            imageView.focusedProperty().addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                    if (newValue) System.out.println("image focus");
+                }
+            });
+            new BasePopup(imageView, BasePopup.getBaseListPopup(), this, true);
             imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
                 @Override
                 public void handle(MouseEvent mouseEvent) {
 
@@ -127,7 +137,6 @@ public abstract class BaseFileController extends BaseController implements IOnMo
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-
                         }
                     }
                 }
@@ -136,6 +145,10 @@ public abstract class BaseFileController extends BaseController implements IOnMo
             ex.printStackTrace();
         }
         return imageView;
+    }
+
+    protected void openImage() {
+
     }
 
     @Override
@@ -155,7 +168,7 @@ public abstract class BaseFileController extends BaseController implements IOnMo
             for (FileDumpModel file : getFileList()) {
                 ImageView imageView;
                 FileDumpPresenter.get().setFileDumpModel(file);
-                imageView = createImageView(getTempFile(file.getPath()));
+                imageView = createImageView(file);
                 Pane pane = new Pane();
                 VBox vBox = new VBox();
                 vBox.getChildren().add(imageView);

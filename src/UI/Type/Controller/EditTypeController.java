@@ -28,6 +28,7 @@ public class EditTypeController extends BaseTypeController {
 
     public EditTypeController() {
         ListenersService.get().addListenerUI(this);
+        setTypeModel(TypePresenter.get().getTypeModel());
     }
 
     @FXML
@@ -54,6 +55,7 @@ public class EditTypeController extends BaseTypeController {
 
     @Override
     protected boolean editType(ObservableList<ParameterModel> parametersList) {
+        TypePresenter.get().setTypeModel(getTypeModel());
         TypePresenter.get().editType(parametersList);
         return true;
     }
@@ -70,6 +72,7 @@ public class EditTypeController extends BaseTypeController {
     private void onClickAdd() {
         if (getBaseValidator().validate()) {
             setInvisibleEditButton();
+            TypePresenter.get().setTypeModel(getTypeModel());
             TypePresenter.get().editType(mTextFieldName.getText());
         }
     }

@@ -85,7 +85,6 @@ public class Connector {
     public static String get(String uri) {
         System.out.println("GET " + uri);
         HttpURLConnection connect = connection(uri, "GET");
-
         if (connect != null) {
             String json = getJSON(connect);
             return json;

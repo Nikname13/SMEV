@@ -19,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class EditSupplyController extends BaseController implements IOnMouseClick {
@@ -57,8 +58,18 @@ public class EditSupplyController extends BaseController implements IOnMouseClic
         initTextField();
         initTextArea();
         initRadioButton();
+        initDatePicker();
         initTreeTable();
         initPopup();
+    }
+
+    private void initDatePicker() {
+        mDatePicker.valueProperty().addListener(new ChangeListener<LocalDate>() {
+            @Override
+            public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
+                if (newValue != oldValue) setVisibleEditButton();
+            }
+        });
     }
 
     private void initComboBox() {

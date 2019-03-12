@@ -11,25 +11,32 @@ import UI.Coordinator;
 import UI.Popup.Controller.BasePopup;
 import UI.TabPane.Controller.TabPaneSecondLvlTabController;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class DepartmentsController extends BaseController implements IOnMouseClick {
-
-    public DepartmentsController(){
-        ListenersService.get().addListenerUI(this);
-    }
-
     @FXML
     private JFXListView<DepartmentModel> mDepartmentListView;
-
     @FXML
     private StackPane mStackPane;
+    @FXML
+    private JFXTextField mTextFieldSearch;
+    private ObservableList<DepartmentModel> mModelList;
+    private FilteredList<DepartmentModel> mFilteredList;
+
+    public DepartmentsController() {
+        ListenersService.get().addListenerUI(this);
+    }
 
     @Override
     public Stage getStage() {
@@ -39,12 +46,29 @@ public class DepartmentsController extends BaseController implements IOnMouseCli
     @FXML
     public void initialize(){
         System.out.println("init department");
+        mModelList = FXCollections.observableArrayList();
+        initTextView();
         initListViewDepartments();
         initPopup();
     }
 
+    private void initTextView() {
+        mFilteredList = new FilteredList<>(mModelList, p -> true);
+        mTextFieldSearch.textProperty().addListener(((observable, oldValue, newValue) -> {
+            mFilteredList.setPredicate(department -> {
+                if (newValue == null || newValue.trim().isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (department.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else return department.getNumber().toLowerCase().contains(lowerCaseFilter);
+            });
+        }));
+    }
+
     private void initListViewDepartments() {
-        mDepartmentListView.setItems(DepartmentPresenter.get().getObservableDepartment());
+        updateTable(DepartmentPresenter.get().getObservableDepartment());
         mDepartmentListView.setCellFactory(p->new ListCell<>(){
             @Override
             protected void updateItem(DepartmentModel item, boolean empty) {
@@ -104,8 +128,16 @@ public class DepartmentsController extends BaseController implements IOnMouseCli
 
     @Override
     public void updateControl(Class<?> updateClass) {
-        if (updateClass.getName().equals(DepartmentModel.class.getName()))
-            mDepartmentListView.setItems(DepartmentPresenter.get().getObservableDepartment());
+        if (updateClass.getName().equals(DepartmentModel.class.getName())) {
+            updateTable(DepartmentPresenter.get().getObservableDepartment());
+        }
+    }
+
+    private void updateTable(ObservableList<DepartmentModel> observableDepartment) {
+        mModelList = observableDepartment;
+        mFilteredList = new FilteredList<>(mModelList, p -> true);
+        SortedList<DepartmentModel> sortedList = new SortedList<>(mFilteredList);
+        mDepartmentListView.setItems(sortedList);
     }
 
     @Override

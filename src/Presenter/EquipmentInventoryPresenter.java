@@ -27,7 +27,7 @@ public class EquipmentInventoryPresenter extends BaseFilePresenter<EquipmentInve
     private static DepartmentModel sDepartmentModel;
 
     private EquipmentInventoryPresenter() {
-
+        ListenersService.get().addListenerData(this);
     }
 
     public static EquipmentInventoryPresenter get() {
@@ -160,7 +160,7 @@ public class EquipmentInventoryPresenter extends BaseFilePresenter<EquipmentInve
                 System.out.println("delete " + sEquipmentInventoryModel.getInventoryNumber().getName());
                 if (new IteractorEquipmentInventory().delete(sEquipmentInventoryModel.getId())) {
                     ListenersService.get().updateData(sEquipmentInventoryModel);
-                    ListenersService.get().updateControl(EquipmentInventoryModel.class);
+                    ListenersService.get().updateControl(EquipmentInventoryModel.class, null);
                 }
             }
         }

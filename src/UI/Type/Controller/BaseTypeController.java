@@ -2,6 +2,7 @@ package UI.Type.Controller;
 
 import Model.Parameter.ParameterModel;
 import Model.Parameter.SelectedParameterShell;
+import Model.Type.TypeModel;
 import Presenter.ParameterPresenter;
 import UI.BaseController;
 import UI.Validator.BaseValidator;
@@ -33,6 +34,7 @@ public class BaseTypeController extends BaseController {
     private TableView<SelectedParameterShell> mTableViewParameterDialog;
     private JFXDialog mJFXDialog;
     private BaseValidator mBaseValidator = new BaseValidator();
+    private TypeModel mTypeModel;
 
     public void setTreeTableViewParameters(TreeTableView<ParameterModel> treeTableViewParameters) {
         mTreeTableViewParameters = treeTableViewParameters;
@@ -167,6 +169,14 @@ public class BaseTypeController extends BaseController {
     }
 
     protected void resizeHeightStage(double prefHeight) {
+    }
+
+    public TypeModel getTypeModel() {
+        return mTypeModel;
+    }
+
+    public void setTypeModel(TypeModel typeModel) {
+        mTypeModel = typeModel;
     }
 
     @Override

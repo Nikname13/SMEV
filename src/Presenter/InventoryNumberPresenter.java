@@ -6,6 +6,7 @@ import Model.Inventory_number.InventoryNumberLog;
 import Model.Inventory_number.InventoryNumberModel;
 import Model.Supply.SupplyModel;
 import Service.ListenersService;
+import UI.Inventory_number.Controller.InventoryNumbersController;
 
 import java.time.LocalDate;
 
@@ -41,7 +42,7 @@ public class InventoryNumberPresenter extends BasePresenter {
                 supply,
                 group,
                 description,
-                new InventoryNumberLog(0, number, LocalDate.now(), supply.getName(), "Начало начал")
+                new InventoryNumberLog(0, number, LocalDate.now(), supply.getName(), "First number")
         )));
         ListenersService.get().updateControl(InventoryNumberModel.class);
     }
@@ -76,7 +77,8 @@ public class InventoryNumberPresenter extends BasePresenter {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sInventoryNumberModel)) {
                 if (new IteractorInventoryNumber().delete(sInventoryNumberModel.getId())) {
-                    ListenersService.get().updateControl(InventoryNumberModel.class);
+                    ListenersService.get().updateUI(InventoryNumbersController.class);
+                    ListenersService.get().updateUI(SupplyModel.class);
                 }
             }
         }

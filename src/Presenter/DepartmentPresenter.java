@@ -10,6 +10,7 @@ import Model.Department.PurchaseModel;
 import Model.FileDumpModel;
 import Model.Location.LocationModel;
 import Service.ListenersService;
+import UI.MainTabs.Controller.DepartmentTabController;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -109,13 +110,16 @@ public class DepartmentPresenter extends BaseFilePresenter<DepartmentModel> {
     public void delete() {
         if (getSelectedObject() != null) {
             if (getSelectedObject().equals(sDepartmentModel)) {
-                if (new IteractorDepartment().delete(sDepartmentModel.getId()))
+                if (new IteractorDepartment().delete(sDepartmentModel.getId())) {
                     ListenersService.get().updateControl(DepartmentModel.class);
+                    ListenersService.get().updateUI(DepartmentTabController.class);
+                }
                 return;
             }
             if (getSelectedObject().equals(sPurchaseModel)) {
-                if (new IteractorPurchase().delete(sPurchaseModel))
+                if (new IteractorPurchase().delete(sPurchaseModel)) {
                     ListenersService.get().updateControl(PurchaseModel.class);
+                }
                 return;
             }
             if (getSelectedObject().equals(FileDumpPresenter.get().getFileDumpModel())) {

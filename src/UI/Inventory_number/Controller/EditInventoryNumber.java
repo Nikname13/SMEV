@@ -178,6 +178,7 @@ public class EditInventoryNumber extends BaseController implements IOnMouseClick
             @Override
             public void handle(ActionEvent event) {
                 if (mBaseValidator.validate()) {
+                    InventoryNumberPresenter.get().setInventoryNumberModel(mInventoryNumberModel);
                     InventoryNumberPresenter.get().addInventoryNumberLog(text.getText(), textArea.getText());
                     mJFXDialog.close();
                 }

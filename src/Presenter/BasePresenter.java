@@ -107,6 +107,9 @@ public abstract class BasePresenter implements IUpdateData {
         return Posts.get().getObsEntityList();
     }
 
+    public boolean isNumber(String currentString) {
+        return currentString.matches("^[1-9]+([0-9]+$)?");
+    }
 
 
     @Override

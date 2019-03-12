@@ -11,8 +11,6 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.ValidationFacade;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -50,9 +48,14 @@ public class AddEquipmentInventoryController extends BaseController {
 
     public void initialize(){
         initComboBox();
-        initTextFieldCount();
-        mBaseValidator.setJFXTextFields(mTextFieldCount, mTextFieldGuaranty);
+        initTextField();
         mBaseValidator.setValidationFacades(new Pair(mFacadeNumber, mErrorNumber, mComboBoxInventoryNumber), new Pair(mFacadeState, mErrorState, mComboBoxState));
+    }
+
+    private void initTextField() {
+        onlyNumber(mTextFieldCount, 100);
+        onlyNumber(mTextFieldGuaranty, 100);
+        mBaseValidator.setJFXTextFields(mTextFieldCount, mTextFieldGuaranty);
     }
 
     private void initComboBox() {
@@ -62,26 +65,6 @@ public class AddEquipmentInventoryController extends BaseController {
         mComboBoxInventoryNumber.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedInventory(newValue)));
         mComboBoxState.setItems(EquipmentPresenter.get().getObservableState());
 
-    }
-
-    private void initTextFieldCount() {
-        mTextFieldCount.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                System.out.println(newValue);
-                if (!newValue.isEmpty()) {
-                    if (!newValue.matches("^[1-9]+([0-9]+$)?")) {
-                        mTextFieldCount.setText(oldValue);
-                        return;
-                    }
-                    int number = Integer.parseInt(newValue);
-                    if (number <= 100) {
-                        return;
-                    }
-                    mTextFieldCount.setText(oldValue);
-                }
-            }
-        });
     }
 
     @Override

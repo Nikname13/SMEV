@@ -8,7 +8,11 @@ import UI.BaseController;
 import UI.Coordinator;
 import UI.Popup.Controller.BasePopup;
 import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TreeItem;
@@ -27,6 +31,10 @@ public class TypesController extends BaseController {
     private TreeTableColumn<TypeModel, String> mNameColumn;
     @FXML
     private JFXTabPane mSecondLvlTabPane;
+    @FXML
+    private JFXTextField mTextFieldSearch;
+    private ObservableList<TypeModel> mModelList;
+    private FilteredList<TypeModel> mFilteredList;
 
     public TypesController() {
         ListenersService.get().addListenerUI(this);
@@ -37,8 +45,34 @@ public class TypesController extends BaseController {
 
     @FXML
     public void initialize(){
+        mModelList = FXCollections.observableArrayList();
+        initTextView();
         initTable();
         initPopup();
+    }
+
+    private void initTextView() {
+        mFilteredList = new FilteredList<>(mModelList, p -> true);
+        mTextFieldSearch.textProperty().addListener(((observable, oldValue, newValue) -> {
+            mFilteredList.setPredicate(type -> {
+                if (newValue == null || newValue.trim().isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                return type.getName().toLowerCase().contains(lowerCaseFilter);
+            });
+            updateTree();
+        }));
+    }
+
+    private void updateTree() {
+        TreeItem<TypeModel> rootItem = new TreeItem<>();
+        SortedList<TypeModel> sortedList = new SortedList<>(mFilteredList);
+        for (TypeModel type : sortedList) {
+            rootItem.getChildren().add(new TreeItem<>(type));
+        }
+        mTreeTableView.setRoot(rootItem);
+        mTreeTableView.setShowRoot(false);
     }
 
     private void initPopup() {
@@ -62,12 +96,9 @@ public class TypesController extends BaseController {
 
 
     private void updateTable(ObservableList<TypeModel> observableType) {
-        TreeItem<TypeModel> rootItem = new TreeItem<>();
-        for (TypeModel type : observableType) {
-            rootItem.getChildren().add(new TreeItem<>(type));
-        }
-        mTreeTableView.setRoot(rootItem);
-        mTreeTableView.setShowRoot(false);
+        mModelList = observableType;
+        mFilteredList = new FilteredList<>(mModelList, p -> true);
+        updateTree();
     }
 
 
@@ -79,6 +110,7 @@ public class TypesController extends BaseController {
     @Override
     public void updateUI(Class<?> updateClass) {
         if (updateClass.getName().equals(this.getClass().getName())) {
+            mTextFieldSearch.setText("");
             updateTable(TypePresenter.get().getObservableType());
             mTreeTableView.getSelectionModel().clearSelection();
             mSecondLvlTabPane.getSelectionModel().select(0);
@@ -97,6 +129,7 @@ public class TypesController extends BaseController {
     @Override
     public void updateControl(Class<?> updateClass) {
         if (updateClass.getName().equals(TypeModel.class.getName())) {
+            mTextFieldSearch.setText("");
             updateTable(TypePresenter.get().getObservableType());
         }
     }

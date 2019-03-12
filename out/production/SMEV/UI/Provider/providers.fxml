@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXTextField?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="UI.Provider.Controller.ProvidersController"
@@ -22,7 +23,10 @@
                     style="-fx-background-color: #ffffff;"
                     prefHeight="55" minHeight="55" prefWidth="500" minWidth="500">
             <children>
-                <JFXTreeTableView fx:id="mTreeTableViewProvider" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10"
+                <JFXTextField fx:id="mTextFieldSearch" focusColor="#40a85f" labelFloat="true"
+                              prefHeight="25.0" promptText="Поиск"
+                              AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="20.0" AnchorPane.rightAnchor="10.0"/>
+                <JFXTreeTableView fx:id="mTreeTableViewProvider" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="60"
                                   AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
                     <columns>
                         <TreeTableColumn fx:id="mNameColumn" prefWidth="250.0" text="Наименование"/>

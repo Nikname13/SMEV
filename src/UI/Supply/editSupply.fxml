@@ -35,8 +35,8 @@
                     </control>
                 </ValidationFacade>
                 <Label fx:id="mErrorProvider"/>
-                <JFXTextArea fx:id="mTextAreaDescription" labelFloat="true" prefHeight="181.0" minHeight="140"
-                             maxHeight="181.0" focusColor="#40a85f"
+                <JFXTextArea fx:id="mTextAreaDescription" labelFloat="true" prefHeight="185.0" minHeight="140"
+                             maxHeight="185.0" focusColor="#40a85f"
                              AnchorPane.topAnchor="30" AnchorPane.leftAnchor="275" AnchorPane.rightAnchor="15"
                              promptText="Комментарий"/>
                 <JFXButton onAction="#onClickAdd" fx:id="mButtonEdit" text="Сохранить" ripplerFill="#40a85f"

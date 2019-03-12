@@ -52,12 +52,17 @@
                         <!--список оборудования-->
                         <AnchorPane style="-fx-background-color: #ffffff;" prefWidth="530.0" minWidth="530.0">
                             <JFXButton onAction="#onClickAddEquipmentInventory" text="Добавить" ripplerFill="#40a85f"
+                                       style="-fx-background-color: #a8f1b3;"
                                        prefHeight="35" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0"
                                        AnchorPane.rightAnchor="10.0"/>
+                            <JFXTextField fx:id="mTextFieldSearch" focusColor="#40a85f" labelFloat="true"
+                                          prefHeight="25.0" promptText="Поиск"
+                                          AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="65.0"
+                                          AnchorPane.rightAnchor="10.0"/>
                             <JFXTreeTableView fx:id="mTreeTableEquipmentInventory" prefHeight="200.0" prefWidth="530.0"
                                               AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
                                               AnchorPane.rightAnchor="10.0"
-                                              AnchorPane.topAnchor="55.0">
+                                              AnchorPane.topAnchor="105.0">
                                 <columns>
                                     <JFXTreeTableColumn fx:id="mNumberEquipmentColumn" prefWidth="182.0" text="Номер"/>
                                     <JFXTreeTableColumn fx:id="mDepartmentEquipmentColumn" prefWidth="100.0"
