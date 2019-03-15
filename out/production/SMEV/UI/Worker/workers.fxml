@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.*?>
-<?import com.jfoenix.controls.JFXTextField?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mAnchorPaneWorkers" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.Worker.Controller.WorkersController">
     <children>

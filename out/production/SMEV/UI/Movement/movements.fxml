@@ -14,7 +14,7 @@
             <children>
                 <JFXButton onAction="#onClickAdd" ripplerFill="#40a85f" style="-fx-background-color: #a8f1b3;"
                            mnemonicParsing="false"
-                           text="Новое оборудование" prefHeight="35.0" AnchorPane.leftAnchor="0.0"
+                           text="Переместить" prefHeight="35.0" AnchorPane.leftAnchor="0.0"
                            AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
                 <JFXTreeTableView fx:id="mTreeTableMovement"
                                   AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="45.0"

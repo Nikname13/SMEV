@@ -53,8 +53,8 @@ public class InventoryNumberPresenter extends BasePresenter {
         editInventoryNumber(sInventoryNumberModel);
     }
 
-    public void editInventoryNumber( SupplyModel supply, String description){
-        if (new IteractorInventoryNumber().edit(new InventoryNumberModel(sInventoryNumberModel.getId(), sInventoryNumberModel.getName(), supply, sInventoryNumberModel.isGroup(), description)) != null) {
+    public void editInventoryNumber( SupplyModel supply, String description, boolean isGroup){
+        if (new IteractorInventoryNumber().edit(new InventoryNumberModel(sInventoryNumberModel.getId(), sInventoryNumberModel.getName(), supply, isGroup, description)) != null) {
             update();
         }
     }

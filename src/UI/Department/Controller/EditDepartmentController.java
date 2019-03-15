@@ -418,7 +418,8 @@ public class EditDepartmentController extends BaseController implements IOnMouse
     @FXML
     private void onClickPhoto() {
         DepartmentPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
-        new Coordinator().goToPhotoDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
+        new Coordinator().goToFilesDepartmentWindow(getStage());
+        //new Coordinator().goToPhotoDepartmentWindow((Stage) anchorPaneEditDepartment.getScene().getWindow());
     }
 
     @Override
@@ -503,7 +504,6 @@ public class EditDepartmentController extends BaseController implements IOnMouse
                 break;
             case "mAvatarImage":
                 System.out.println("open avatar");
-
                 break;
         }
     }

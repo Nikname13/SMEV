@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeView?>
 <?import javafx.scene.layout.*?>
 <StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mStackPaneEquipments" xmlns="http://javafx.com/javafx/8"
@@ -12,8 +13,12 @@
                            mnemonicParsing="false"
                            text="Новое оборудование" prefHeight="35.0" AnchorPane.leftAnchor="0.0"
                            AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+                <JFXTextField fx:id="mTextFieldSearch" focusColor="#40a85f" labelFloat="true"
+                              prefHeight="25.0" promptText="Поиск"
+                              AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="55.0"
+                              AnchorPane.rightAnchor="10.0"/>
                 <JFXTreeView fx:id="mEquipmentTreeView"
-                             AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="45.0"
+                             AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="95.0"
                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
             </children>
         </AnchorPane>

@@ -28,6 +28,7 @@ import Model.Worker.WorkerModel;
 import Model.Worker.Workers;
 import Service.ErrorService;
 import Service.IUpdateData;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public abstract class BasePresenter implements IUpdateData {
@@ -85,6 +86,21 @@ public abstract class BasePresenter implements IUpdateData {
 
     public ObservableList<InventoryNumberModel> getObservableInventory() {
         return InventoryNumbers.get().getObsEntityList();
+    }
+
+    public ObservableList<InventoryNumberModel> getObservableAvailableInventory() {
+        ObservableList<InventoryNumberModel> list=InventoryNumbers.get().getObsEntityList();
+        ObservableList<InventoryNumberModel> availableList=FXCollections.observableArrayList();
+        for(InventoryNumberModel inventoryNumber:list){
+            if(!inventoryNumber.isGroup()){
+                if(inventoryNumber.getEquipmentInventoryList().size()<1) {
+                    availableList.add(inventoryNumber);
+                }
+            }else{
+                availableList.add(inventoryNumber);
+            }
+        }
+        return availableList;
     }
 
     public ObservableList<ParameterModel> getObservableParameter() {

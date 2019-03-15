@@ -141,9 +141,10 @@ public class EquipmentInventoryController extends BaseController implements IOnM
 
     @FXML
     private void onClickPhoto() {
-        EquipmentInventoryPresenter.get().setEquipmentInventoryModel(mEquipmentInventory);
-        EquipmentInventoryPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
-        new Coordinator().goToPhotoEquipmentWindow(getStage());
+        EquipmentPresenter.get().setEquipmentModel(mEquipmentModel);
+        EquipmentPresenter.get().setTypeDocuments(AbstractModel.getTypePhoto());
+       // new Coordinator().goToPhotoEquipmentWindow(getStage());
+        new Coordinator().goToFilesEquipmentWindow(getStage());
     }
 
     private DepartmentModel getDepartment() {

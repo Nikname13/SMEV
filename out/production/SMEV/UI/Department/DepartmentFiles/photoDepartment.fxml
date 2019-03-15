@@ -5,5 +5,4 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
             fx:id="mPanePhoto"
             fx:controller="UI.Department.DepartmentFiles.PhotosController">
-
 </AnchorPane>

@@ -24,6 +24,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
@@ -109,38 +110,45 @@ public abstract class BaseFileController extends BaseController implements IOnMo
         ImageView imageView = null;
         File imageFile = getTempFile(file.getPath());
         try {
-            final Image image = new Image(new FileInputStream(imageFile), 150, 0, true,
+            final Image image = new Image(new FileInputStream(imageFile), 150, 150, true,
                     true);
-            imageView = new ImageView(image);
-            imageView.setFitWidth(150);
-            imageView.setId("imageViewGallery");
-            imageView.focusedProperty().addListener(new ChangeListener<Boolean>() {
-                @Override
-                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                    if (newValue) System.out.println("image focus");
-                }
-            });
-            new BasePopup(imageView, BasePopup.getBaseListPopup(), this, true);
-            imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
+            double h=image.getHeight();
+            double w=image.getWidth();
+            if(h!=0.0 && w!=0.0) {
+                imageView = new ImageView(image);
+                imageView.setFitWidth(150);
+                //imageView.setFitHeight(150);
+                imageView.setId("imageViewGallery");
+                imageView.focusedProperty().addListener(new ChangeListener<Boolean>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                        if (newValue) System.out.println("image focus");
+                    }
+                });
+                new BasePopup(imageView, BasePopup.getBaseListPopup(), this, true);
+                imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
 
-                    if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                        if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
 
-                        if (mouseEvent.getClickCount() == 2) {
-                            try {
-                                Desktop desktop = null;
-                                if (Desktop.isDesktopSupported()) {
-                                    desktop = Desktop.getDesktop();
+                            if (mouseEvent.getClickCount() == 2) {
+                                try {
+                                    Desktop desktop = null;
+                                    if (Desktop.isDesktopSupported()) {
+                                        desktop = Desktop.getDesktop();
+                                    }
+                                    desktop.open(imageFile);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
                                 }
-                                desktop.open(imageFile);
-                            } catch (IOException e) {
-                                e.printStackTrace();
                             }
                         }
                     }
-                }
-            });
+                });
+            }else{
+                return null;
+            }
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
@@ -156,7 +164,6 @@ public abstract class BaseFileController extends BaseController implements IOnMo
         if (mTypeDocument.equals(AbstractModel.getTypePhoto())) {
             javafx.scene.control.ScrollPane root = new javafx.scene.control.ScrollPane();
             TilePane tile = new TilePane();
-            // root.setStyle("-fx-background-color: DAE6F3;");
             tile.setPadding(new Insets(15, 15, 15, 15));
             tile.setHgap(15);
             tile.setVgap(15);
@@ -165,21 +172,35 @@ public abstract class BaseFileController extends BaseController implements IOnMo
             root.setFitToWidth(true);
             root.setContent(tile);
 
+            JFXButton addButton=new JFXButton();
+            addButton.setPrefHeight(150);
+            addButton.setPrefWidth(150);
+            //addButton.setStyle("-fx-background-color: #a8f1b3;");
+            //addButton.setRipplerFill(Color.web("#40a85f"));
+            tile.getChildren().add(addButton);
+            addButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.print("click click click");
+                }
+            });
             for (FileDumpModel file : getFileList()) {
                 ImageView imageView;
                 FileDumpPresenter.get().setFileDumpModel(file);
                 imageView = createImageView(file);
-                Pane pane = new Pane();
-                VBox vBox = new VBox();
-                vBox.getChildren().add(imageView);
-                javafx.scene.control.Label label = new Label(file.getName());
-                label.setMaxWidth(150);
-                label.setWrapText(true);
-                vBox.getChildren().add(label);
-                pane.getChildren().add(vBox);
-                new BasePopup(pane, BasePopup.getBaseListPopup(), this);
-                //pane.setStyle("-fx-background-color: #ffffff;");
-                tile.getChildren().addAll(pane);
+                if(imageView!=null) {
+                    Pane pane = new Pane();
+                    VBox vBox = new VBox();
+                    vBox.getChildren().add(imageView);
+                    javafx.scene.control.Label label = new Label(file.getName());
+                    label.setMaxWidth(150);
+                    label.setWrapText(true);
+                    vBox.getChildren().add(label);
+                    pane.getChildren().add(vBox);
+                    new BasePopup(pane, BasePopup.getBaseListPopup(), this);
+                    //pane.setStyle("-fx-background-color: #ffffff;");
+                    tile.getChildren().addAll(pane);
+                }
             }
             getStage().setWidth(600);
             getStage().setHeight(400);

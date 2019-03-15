@@ -134,6 +134,15 @@ public class EquipmentModel extends GenericModel<EquipmentParameterModel> {
     }
 
     @Override
+    public List<FileDumpModel> getFileDumpPhotoList() {
+        List<FileDumpModel> list = new IteractorEquipment().getFilesList(getId(), getTypePhoto(), this);
+        if (list != null) {
+            setFileDumpPhotoList(list);
+        }
+        return super.getFileDumpPhotoList();
+    }
+
+    @Override
     public void replace(EquipmentParameterModel entity) {
         super.replace(entity);
     }

@@ -61,10 +61,9 @@ public class AddEquipmentInventoryController extends BaseController {
     private void initComboBox() {
         initJFXComboBox(new InventoryNumberModel(), mComboBoxInventoryNumber, false, "Выберите номер", "Номер");
         initJFXComboBox(new StateModel(), mComboBoxState, false, "Выберите состояние", "Состояние");
-        mComboBoxInventoryNumber.setItems(EquipmentPresenter.get().getObservableInventory());
+        mComboBoxInventoryNumber.setItems(EquipmentPresenter.get().getObservableAvailableInventory());
         mComboBoxInventoryNumber.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectedInventory(newValue)));
         mComboBoxState.setItems(EquipmentPresenter.get().getObservableState());
-
     }
 
     @Override

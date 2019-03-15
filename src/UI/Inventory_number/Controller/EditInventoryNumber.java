@@ -61,12 +61,22 @@ public class EditInventoryNumber extends BaseController implements IOnMouseClick
     }
 
     public void initialize(){
+        initCheckBox();
         initTextFieldNumber();
         initTreeTable();
         initPromptText(mTextAreaDescription, "Добавить комментарий", "Комментарий");
         initTextArea();
         initPopup();
         initComboBox();
+    }
+
+    private void initCheckBox() {
+        mCheckBoxGroup.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                setVisibleEditButton();
+            }
+        });
     }
 
     private void initComboBox() {
@@ -220,7 +230,7 @@ public class EditInventoryNumber extends BaseController implements IOnMouseClick
 
     @FXML
     private void onClickAdd(){
-     InventoryNumberPresenter.get().editInventoryNumber(mComboBoxSupply.getValue(), mTextAreaDescription.getText());
+     InventoryNumberPresenter.get().editInventoryNumber(mComboBoxSupply.getValue(), mTextAreaDescription.getText(), mCheckBoxGroup.isSelected());
      setInvisibleEditButton();
     }
 

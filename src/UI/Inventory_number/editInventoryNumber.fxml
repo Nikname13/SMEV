@@ -12,7 +12,7 @@
                 <JFXTextField fx:id="mTextFieldNumber" promptText="Инвентарный номер" focusColor="#40a85f" labelFloat="true" AnchorPane.leftAnchor="15" editable="false"
                               AnchorPane.topAnchor="25" prefWidth="170"/>
                 <JFXCheckBox fx:id="mCheckBoxGroup" AnchorPane.topAnchor="35.0" AnchorPane.leftAnchor="200"
-                             mnemonicParsing="false" text="Группа" disable="true"/>
+                             mnemonicParsing="false" text="Группа"/>
 
                 <JFXComboBox fx:id="mComboBoxSupply" promptText="Номер поставки" prefWidth="250.0" focusColor="#40a85f" labelFloat="true" AnchorPane.leftAnchor="15"
                              AnchorPane.topAnchor="90"/>

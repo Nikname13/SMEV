@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.layout.*?>
 <StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mStackPane" xmlns="http://javafx.com/javafx/8"
            fx:controller="UI.Department.Controller.DepartmentsController">
@@ -12,7 +13,11 @@
                            mnemonicParsing="false"
                            text="Новый отдел" prefHeight="35.0" AnchorPane.leftAnchor="0.0"
                            AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
-        <JFXListView fx:id="mDepartmentListView" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="45.0"
+                <JFXTextField fx:id="mTextFieldSearch" focusColor="#40a85f" labelFloat="true"
+                              prefHeight="25.0" promptText="Поиск"
+                              AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="55.0"
+                              AnchorPane.rightAnchor="10.0"/>
+                <JFXListView fx:id="mDepartmentListView" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="95.0"
                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
             </children>
         </AnchorPane>

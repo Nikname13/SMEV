@@ -6,8 +6,7 @@ import java.util.List;
 public class URLBuilder {
     private String mUrl;
     private List<String> mParams;
-    private String URL = "http://10.13.96.40:8080/smev_server";
-    //private String URL="http://10.13.96.34:8080/Smev-server";
+    private static String sURL;
 
     public URLBuilder(){
         mUrl="";
@@ -19,6 +18,10 @@ public class URLBuilder {
         mUrl=url;
     }
 
+    public void setURL(String URL) {
+        sURL = URL;
+    }
+
     public URLBuilder withParam(Object name, Object value) {
         if (name != null && value != null)
         mParams.add(name+"="+value);
@@ -26,7 +29,7 @@ public class URLBuilder {
     }
 
     public String build(){
-        return URL+mUrl+"?"+String.join("&",mParams);
+        return sURL +mUrl+"?"+String.join("&",mParams);
     }
 
 
